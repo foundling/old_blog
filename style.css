@@ -1,0 +1,94 @@
+body
+{
+  font-family: 'HelveticaNeue-Light', sans-serif;
+  padding: 0px;
+  margin: 0px;
+}
+
+header
+{
+  background: whitesmoke;
+  height: 160px;
+  padding-left:17.5%;
+  padding-right: 17.5%;
+}
+
+.header-title
+{
+  font-size: 1.4em;
+  font-weight: 400;
+}
+
+.header-subtitle
+{
+  color: red;
+  font-size: 1.3em;
+  font-weight: 400;
+}
+
+.header-icons
+{
+  float: right;
+  font-size: 2em;
+  padding: 10px;
+}
+
+.header-icons:hover
+{
+  color: rgb(120,120,120);
+}
+
+.header-title, .header-subtitle
+{
+  display: inline-block;
+  float: left;
+  padding: 5px;
+  vertical-align: bottom;
+}
+
+.header-title, .header-subtitle, .header-icons 
+{
+  line-height:140px;
+}
+
+
+.content
+{
+  width: 65%;
+  margin:0 auto;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.content-title
+{
+  font-weight: 400;
+  font-size: 3.5em;
+}
+
+.content-body
+{
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+p.content-body
+{
+  line-height: 32px;
+}
+
+.red
+{
+  color: red;
+}
+
+pre.code
+{
+  overflow: hidden;    
+}
+
+@media (max-width:500px)
+{
+  .header-icons { display: hidden;}
+  .content { width: 85% }
+}

@@ -1,0 +1,23 @@
+HEADER:
+  Name and description: "Alex Ramsdell writing, tutorials, fun"
+  Description links to archive page
+
+MAIN PAGE: 
+  Header, menu, most recent post
+
+ARCHIVE PAGE: 
+  Search box and results area below.
+  Default results are last 5 posts, title and first paragraph. 
+  Search replaces default area with results from search.
+
+
+POST METADATA:
+
+  name
+  origin-date
+  published
+  published-date
+  keywords
+  title
+  first-paragraph
+  full-text
