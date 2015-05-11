@@ -1,0 +1,31 @@
+#!/bin/bash
+
+## takes a filename and appends two underscores and a custom date string
+## then mvs the og file to the new one
+
+## make sure that if we move the renamed file to the published folder
+
+function usage()
+{
+  echo "Usage: publish article1 [ .. article2]"
+}
+
+
+  [ "$#" -lt 1 ] && usage && exit 1 
+
+  for f in "$@"
+  do
+    if (echo "$f" | grep -q __[0-9])
+    then
+      echo "ERROR: $f seems to have a time stamp already. Refusing to publish."
+      continue
+    elif ! $(echo "$f" | grep -q '.md')
+    then
+      echo "ERROR: $f does not look like a markdown file. Refusing to publish" 
+      continue
+    else
+      echo "- Publishing $f ..."
+      mv "$f" "$(echo $f | sed "s/\(.*\).md/\1__$(date '+%Y_%m_%d_%H_%M_%S').md/g" )"
+      echo "+ file $f has been published!"
+    fi
+  done

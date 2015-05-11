@@ -1,36 +1,14 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,400' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/data/newblog/static/css/prism.css">
-  <link rel="stylesheet" href="/data/newblog/static/css/style.css">
-</head>
-<body>
-  <header>
-    <h1 class="header-title">Alex Ramsdell</h1><h1 class="header-subtitle"><span class="red">writing, tutorials, fun</span></h1>
-    <i class="header-icons fa fa-github-alt"></i>
-    <i class="header-icons fa fa-stack-exchange"></i>
-    <i class="header-icons fa fa-archive"></i>
-  </header>
+## Getting Started with Raspberry Pi
 
-  <div class="content">
-  <h1 class="content-title">Getting Started with Raspberry Pi</h1>
-  <p class="content-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac blandit purus. Proin posuere non augue non sagittis. Praesent laoreet mi ac odio blandit, quis viverra augue interdum. Nulla facilisi. Aenean ut sapien facilisis, luctus lorem sit amet, fringilla augue. Fusce auctor ornare lorem, quis ultrices sem luctus ut. Suspendisse at mi et erat malesuada venenatis. Curabitur eu elit fermentum metus feugiat dignissim ut vitae tellus. Ut in lorem lobortis, pellentesque tortor vitae, aliquet metus.</p>
-<p class="content-body">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac blandit purus. Proin posuere non augue non sagittis. Praesent laoreet mi ac odio blandit, quis viverra augue interdum. Nulla facilisi. Aenean ut sapien facilisis, luctus lorem sit amet, fringilla augue. Fusce auctor ornare lorem, quis ultrices sem luctus ut. Suspendisse at mi et erat malesuada venenatis. Curabitur eu elit fermentum metus feugiat dignissim ut vitae tellus. Ut in lorem lobortis, pellentesque tortor vitae, aliquet metus.</p>
 Cras malesuada lacus nec ante fringilla consequat. Suspendisse potenti. Vestibulum a efficitur odio. Nulla sit amet blandit ipsum, ut hendrerit turpis. Morbi quam velit, sollicitudin in lobortis quis, egestas et tellus. Praesent molestie metus auctor nisi ultricies facilisis. Praesent ex mauris, mattis sed finibus eget, hendrerit non leo. Nulla facilisi. Quisque vitae luctus tellus. Maecenas ut dolor malesuada, mattis arcu eget, egestas odio. Nulla facilisi. Sed erat lorem, dapibus et porttitor eu, egestas in erat.</p>
+
   <pre class="language-python"><code class="language-python">
 def abc:
     return 1</code></pre>
 
-<p class="content-body">
+
 Mauris eget nibh ut ex facilisis cursus vitae a nunc. Nullam eleifend elit vitae erat accumsan tristique. Quisque a eros lectus. Maecenas a euismod sem, ut egestas ante. Duis semper dolor eu condimentum faucibus. Aliquam non sapien faucibus, pulvinar velit quis, scelerisque enim. Aenean semper ligula sit amet justo faucibus, id molestie nibh lacinia. Quisque aliquam eget ipsum eu lobortis. Praesent malesuada tempor ultrices.</p>
 
-<p class="content-body">
 Cras malesuada lacus nec ante fringilla consequat. Suspendisse potenti. Vestibulum a efficitur odio. Nulla sit amet blandit ipsum, ut hendrerit turpis. Morbi quam velit, sollicitudin in lobortis quis, egestas et tellus. Praesent molestie metus auctor nisi ultricies facilisis. Praesent ex mauris, mattis sed finibus eget, hendrerit non leo. Nulla facilisi. Quisque vitae luctus tellus. Maecenas ut dolor malesuada, mattis arcu eget, egestas odio. Nulla facilisi. Sed erat lorem, dapibus et porttitor eu, egestas in erat.</p>
-</div>
 
-<script src="/data/newblog/static/js/prism.js"></script>
-</body>
-</html>

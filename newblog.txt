@@ -1,4 +1,0 @@
-front page:
-  posts by date (most recent first)
-
-
