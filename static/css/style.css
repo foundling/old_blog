@@ -8,7 +8,7 @@ body
 header
 {
   background: whitesmoke;
-  height: 160px;
+  height: 260px;
   padding-left:17.5%;
   padding-right: 17.5%;
 }
@@ -48,15 +48,21 @@ header
 
 .header-title, .header-subtitle, .header-icons 
 {
-  line-height:140px;
+  line-height:240px;
 }
 
-
+a.link-wrap:link,
+a.link-wrap:visited,
+a.link-wrap:hover,
+a.link-wrap:active
+{
+  color: black;
+}
 .content
 {
   width: 65%;
   margin:0 auto;
-  padding-top: 2.5%;
+  padding-top: 5%;
   padding-bottom: 5%;
 }
 

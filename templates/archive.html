@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if last_five_posts %}
+  {% for post in last_five_posts %}
+  <div class="content"> {{ post | markdown }} </div>
+  {% endfor %}
+{% endif %}
+
+ 
+{% endblock %}
