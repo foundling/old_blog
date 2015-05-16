@@ -3,7 +3,7 @@
 {% block content %}
 
 {% if latest_post %}
-  <div class="content">{{ latest_post | markdown }}</div>
+  <div class="content">{{ latest_post.decode('utf-8') | markdown }}</div>
 {% endif %}
 
  

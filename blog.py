@@ -4,7 +4,7 @@ import os
 
 from flask import Flask, url_for, render_template, redirect, request
 from flask.ext.misaka import Misaka
-from blog_io import datesort
+from blog_io import datesort, last_n_posts
 
 app = Flask(__name__)
 Misaka(app)
@@ -29,7 +29,8 @@ def latest():
 
 @app.route('/archive')
 def archive():
-  return redirect(render_template('archive'))
+  posts = last_n_posts(5)
+  return render_template('archive.html',last_five_posts=posts)
 
 @app.route('/tutorials')
 def tutorials():
