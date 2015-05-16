@@ -4,7 +4,9 @@
 
 {% if last_five_posts %}
   {% for post in last_five_posts %}
-  <div class="content"> {{ post.decode('utf-8') | markdown }} </div>
+  <div class="content">
+  {{ post[1].decode('utf-8') | markdown }} 
+  </div>
   {% endfor %}
 {% endif %}
 

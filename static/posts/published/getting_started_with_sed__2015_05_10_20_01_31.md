@@ -1,4 +1,6 @@
-<h1><a href="">Getting Started with <span class="highlight-red">Sed</span>, or How I Learned to Stop Worrying and Start Typing <span class="aux-color-yellow">sed 's///g'</span> All the Time</a></h1>
+<!-- title: Getting Started with Sed, or How I learned to Stop Worrying and Start Typing 's///g' All the Time -->
+
+<a href="" class="link-wrap"><h1>Getting Started with Sed, or How I Learned to Stop Worrying and Start Typing sed 's///g' All the Time</h1></a>
 
 <h2></h2>
 

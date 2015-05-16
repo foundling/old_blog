@@ -57,6 +57,7 @@ a.link-wrap:hover,
 a.link-wrap:active
 {
   color: black;
+  text-decoration: none;
 }
 .content
 {

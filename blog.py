@@ -11,12 +11,9 @@ Misaka(app)
 
 POSTS_DIR = 'static/posts/published'
 
-
-
 @app.route('/')
 def index():
   return redirect(url_for('latest')) 
-
 
 @app.route('/latest')
 def latest():
@@ -26,17 +23,14 @@ def latest():
   latest_post_content
   return render_template('index.html',latest_post=latest_post_content)
 
-
 @app.route('/archive')
 def archive():
-  posts = last_n_posts(5)
-  return render_template('archive.html',last_five_posts=posts)
+  titles_and_content = last_n_posts(5)
+  return render_template('archive.html',last_five_posts=titles_and_content)
 
 @app.route('/tutorials')
 def tutorials():
   return render_template('archive.html',results=tutorial_results)
-  
-
 
 if __name__ == '__main__':
   app.run(debug=True)
