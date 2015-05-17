@@ -3,6 +3,7 @@ body
   font-family: 'HelveticaNeue-Light', sans-serif;
   padding: 0px;
   margin: 0px;
+  padding-bottom: 5%;
 }
 
 header
@@ -64,7 +65,7 @@ a.link-wrap:active
   width: 65%;
   margin:0 auto;
   padding-top: 5%;
-  padding-bottom: 5%;
+  /*padding-bottom: 5%;*/
 }
 
 .content-title
