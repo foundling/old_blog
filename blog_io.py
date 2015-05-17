@@ -1,31 +1,58 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import re
 import os
-# -*- coding: utf-8 -*-
+import sys
 
 def datesort(filename):
   '''
-     Datesort. A key function for the sorted() built-in. Parses the filename's
+     A key function for the sorted() built-in. Parses the filename's
      date information into a large int for numeric comparison.
   ''' 
   datestring = filename.strip('.md').split('__')[1].replace('_','')
   return int(datestring)
 
 def last_n_posts(n,posts_dir='/data/newblog/static/posts/published'):
-  ''' returns 5 newest posts and titles '''
-  post_content = [ open(posts_dir + '/' + p).read()\
-                   for p in os.listdir(posts_dir) 
-                     if p.endswith('.md')
-                 ]
-  titles = []
-  for post in post_content:
+  ''' 
+     Returns the 5 newest posts by title, author and short_text
+  '''
+
+  n_posts = [ posts_dir + '/' + filename for filename 
+              in os.listdir(posts_dir) 
+              if filename.endswith('.md') ]
+  #n_posts.sort(key=datesort)
+
+  posts_content = [ open(post).read()
+                   for post in n_posts ]
+
+  post_bundles = []
+  for post in posts_content:
     try:
-      title = re.findall('title: (.*) -->',post)[0]
+      title = re.findall(r'^(title:.*[a-zA-Z]) *\n',post,re.MULTILINE)[0]
+      title = title.split(':')[1].strip()
+
     except IndexError:
       title = ''
-    titles.append(title)
+
+    try:
+      author = re.findall(r'^(author:.*[a-zA-Z]) *\n',post,re.MULTILINE)[0] 
+      author = author.split(':')[1].strip()
+
+    except IndexError:
+      author = ''
+
+    try:
+      short_text = re.findall(r'^(short_text:.*[a-zA-Z][.?!]) *\n',
+                              post,re.MULTILINE)[0] 
+      short_text = short_text.split(':')[1].strip()
+    except IndexError:
+      short_text = ''
+
+    post_bundles.append([title,author,short_text]) 
  
-  return map(None,titles,post_content)[-5:]
+  return post_bundles[n] 
 
 if __name__ == '__main__':
-  for i in last_n_posts(5):
-    print i[0]
+  for p in last_n_posts(3):
+    print p

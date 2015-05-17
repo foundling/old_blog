@@ -13,7 +13,7 @@ POSTS_DIR = 'static/posts/published'
 
 @app.route('/')
 def index():
-  return redirect(url_for('latest')) 
+  return redirect(url_for('latest'))
 
 @app.route('/latest')
 def latest():

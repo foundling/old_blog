@@ -1,4 +1,8 @@
-<!-- title: Getting Started with Sed, or How I learned to Stop Worrying and Start Typing 's///g' All the Time -->
+<!-- 
+title: Getting Started with Sed, or How I learned to Stop Worrying and Start Typing 's///g' All the Time 
+author: alex
+short_text: Sed is a very useful tool.
+-->
 
 <a href="" class="link-wrap"><h1>Getting Started with Sed, or How I Learned to Stop Worrying and Start Typing sed 's///g' All the Time</h1></a>
 
