@@ -7,8 +7,7 @@ def datesort(filename):
      Datesort. A key function for the sorted() built-in. Parses the filename's
      date information into a large int for numeric comparison.
   ''' 
-  datestring = filename.strip('.md').split('__')[1]
-  datestring = datestring.replace('_','')
+  datestring = filename.strip('.md').split('__')[1].replace('_','')
   return int(datestring)
 
 def last_n_posts(n,posts_dir='/data/newblog/static/posts/published'):
