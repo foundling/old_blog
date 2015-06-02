@@ -19,12 +19,22 @@ header
   padding-left: 17%;
 }
 
-h1 { padding: 0; margin: 0;}
+h1
+{ 
+  padding: 0; margin: 0;
+}
+
 nav
 {
   display: inline-block;
   padding-left: 40px;
 }
+
+hr
+{
+  display: none;
+}
+
 
 .fa 
 {
@@ -117,24 +127,32 @@ pre.code
 
 @media (max-width:700px)
 {
+  hr
+  {
+    display: block;
+    border: 1px solid lightgray;
+    width: 95px;
+  }
+
   body { min-width: 100%}
   .content { width: 85%}
   .fa { padding-top: 25px; }
   .header-title, .header-subtitle { line-height: 290px;}
-  header { height: 290px; padding-left: 0%; text-align: center;}
+  header { height: 210px; padding-left: 0%; text-align: center;}
   nav {width: 100%; display:block; position: absolute; top: 20px; left: 0px; padding-left: 0%;}
   
 }
 
-@media (max-width:320px)
+@media (max-width:500px)
 {
   .header-title 
   {
-    padding-top: 160px;
+    padding-top: 100px;
   }
   .header-title,
   .header-subtitle
   {
+    display: block;
     line-height: 2em;
   }
   
