@@ -1,12 +1,45 @@
-html,body{
+html,body 
+{
   min-width:100%;
   margin:0;
   padding:0;
   font-family: 'HelveticaNeue-Light', sans-serif;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
+
+.header-subtitle a 
+{
+  color: red;
+}
+
+.header-subtitle a:hover 
+{
+  color: lightgray;
+} 
+
+
+a 
+{
+  text-decoration: none;
+  color: black;
+}
+
+h1 a:hover 
+{
+  border-bottom: 2px solid red;
+}
+
 body
 {
   padding-bottom: 5%;
+}
+
+pre { box-sizing: border-box; border-left: 10px solid rgba(0,0,255,.1); }
+
+.fa-arrow-left,
+.fa-arrow-right
+{
+  display:none;
 }
 
 header
@@ -15,18 +48,19 @@ header
   top: 0px;
   left: 0px;
   background: whitesmoke;
-  height: 260px;
+  height: auto;
   padding-left: 17%;
 }
-.mobile-nav
-{
-  display: none;
-  height: 85px;
-  width: 100%;
-}
+
+
 h1
 { 
   padding: 0; margin: 0;
+}
+
+.content h1 
+{
+  padding-bottom: 20px;
 }
 
 nav
@@ -48,28 +82,8 @@ hr
   padding-right: 5px;
 } 
 
-.fa .f-arrow-left,
-.fa .fa-arrow-right
-{
-  padding-top: 10px;
-}
-.fa-arrow-left
-{
-  float: left;
-  padding-left: 20px;
-}
 
-.fa-arrow-right
-{
-  float: right;
-  padding-right: 20px;
-}
 
-.fa-arrow-left:after,
-.fa-arrow-right:after
-{
-  clear: both;  
-}
 .fa:hover 
 {
   color: lightgray;
@@ -118,7 +132,7 @@ a.link-wrap:active
 {
   width: 65%;
   margin:0 auto;
-  padding-top: 80px;
+  padding-top: 60px;
   /*padding-bottom: 5%;*/
 }
 
@@ -126,6 +140,7 @@ a.link-wrap:active
 {
   font-weight: 400;
   font-size: 3.2em;
+  margin-bottom: 10px;
 }
 
 .content-body,
@@ -135,8 +150,8 @@ p
   font-weight: 400;
 }
 
-p.content-body,
-p
+p,
+p.content-body
 {
   line-height: 1.5em;
 }
@@ -151,9 +166,10 @@ pre.code
   overflow: hidden;    
 }
 
-
 @media (max-width:700px)
 {
+
+
   hr
   {
     display: block;
@@ -163,10 +179,18 @@ pre.code
 
   body { min-width: 100%}
   .content { width: 85%}
-  .fa { padding-top: 25px; }
-  .fa-arrow-left, .fa-arrow-right {margin-top:10px}
-  .header-title, .header-subtitle { line-height: 290px;}
-  header { height: 210px; padding-left: 0%; text-align: center;}
+  .fa {
+    font-size: 35px;
+  }
+  .fa-github-alt,
+  .fa-stack-exchange,
+  .fa-archive
+   { padding-top: 25px; }
+
+  
+
+
+  header { padding-left: 0%; text-align: center;}
   nav {width: 100%; display:block; position: absolute; top: 20px; left: 0px; padding-left: 0%;}
   
 }
@@ -177,16 +201,19 @@ pre.code
   {
     padding-top: 130px;
   }
-  .header-title,
+ .fa-arrow-left,
+  .fa-arrow-right
+  {
+    display: inline-block;
+    height: 70px;
+    line-height: 70px;
+    padding: 20px 50px;
+  } .header-title,
   .header-subtitle
   {
     display: block;
     line-height: 1em;
   }
 
-  .mobile-nav
-  {
-    display: block;
-  }
   
 }
