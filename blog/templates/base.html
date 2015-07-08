@@ -15,8 +15,11 @@
 {% include "header.html" %}
 {% endblock %}
 
+<div class="content">
 {% block content %}
 {% endblock %}
+</div>
+
 {% block scripts %}
 {% endblock %}
 <script src={{url_for('static',filename="js/prism.js")}}></script>
