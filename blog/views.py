@@ -61,3 +61,10 @@ def resume():
   # another page that doesn't inherit from base. similar to about-me, a free-flowing, lazy-loading stream
   # of stuff I'm interested in and do: photos, drawings, music  etc
   return render_template('resume.html')
+
+@app.route('/guides/<path:name>')
+def guides(name):
+  if name.lower() == 'javascript':
+    return render_template('javascript_guide')
+  if name.lower() == 'python':
+    return render_template('python_guide')

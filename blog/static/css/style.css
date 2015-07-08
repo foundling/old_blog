@@ -13,6 +13,11 @@ body
   background-color: whitesmoke;
 }
 
+header span.padding
+{
+  background: white;
+}
+
 .header-subtitle a 
 {
   color: red;
@@ -37,7 +42,6 @@ h1 a:hover
 
 body
 {
-  padding-bottom: 5%;
 }
 
 pre { box-sizing: border-box; border-left: 10px solid rgb(255, 223, 223); }
@@ -50,10 +54,11 @@ pre { box-sizing: border-box; border-left: 10px solid rgb(255, 223, 223); }
 
 header
 {
+  background-color: black;
   position: relative;
   top: 0px;
   left: 0px;
-  background: whitesmoke;
+  background: white;
   height: auto;
   padding-left: 17%;
   border-bottom: 1px solid lightgray;
@@ -92,6 +97,8 @@ hr
   font-size: 30px;
   padding-left: 5px;
   padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 } 
 
 
@@ -99,11 +106,6 @@ hr
 .fa:hover 
 {
   color: lightgray;
-}
-
-header
-{
-  background-color: white;
 }
 
 .header-title
@@ -150,6 +152,7 @@ a.link-wrap:active
   width: 65%;
   margin:0 auto;
   padding-top: 60px;
+  padding-bottom: 120px;
   background-color: whitesmoke;
 }
 
@@ -181,6 +184,40 @@ p.content-body
 pre.code
 {
   overflow: hidden;    
+}
+
+footer
+{
+  position: relative;
+  width: 65%;
+  height: 35px;
+  padding-right: 17.5%;
+  padding-left: 17.5%;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  margin: 0 auto;
+  font-size: 90%;
+  border-top: 1px solid lightgray;
+  background-color:white;
+}
+
+footer > p 
+{
+  margin: 5px 0px;
+}
+
+#copyright
+{
+  float: right;
+}
+#built-with
+{
+  float: left;
+}
+#copyright:after,
+#built-with:after
+{
+  clear:both;
 }
 
 @media (max-width:700px)
