@@ -4,6 +4,7 @@ html,body
   margin:0;
   padding:0;
   font-family: 'HelveticaNeue-Light', sans-serif;
+  font-size: 100%;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
@@ -34,7 +35,7 @@ body
   padding-bottom: 5%;
 }
 
-pre { box-sizing: border-box; border-left: 10px solid rgba(0,0,255,.1); }
+pre { box-sizing: border-box; border-left: 10px solid rgb(255, 223, 223); }
 
 .fa-arrow-left,
 .fa-arrow-right

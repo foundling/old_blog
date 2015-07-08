@@ -29,7 +29,8 @@ def last_n_posts(n,posts_dir='/data/newblog/static/posts/published'):
      Returns the 5 newest posts by title, author and short_text
   '''
 
-  n_posts = sorted([ posts_dir + '/' + filename for filename 
+  n_posts = sorted([ posts_dir + '/' + filename 
+              for filename 
               in os.listdir(posts_dir) 
               if filename.endswith('.md') ], key=datesort, reverse=True)
 
@@ -60,10 +61,10 @@ def last_n_posts(n,posts_dir='/data/newblog/static/posts/published'):
       short_text = ''
 
     posts_data.append(dict(content=content,
-                             title=title,
-                             author=author,
-                             short_text=short_text)
-                       ) 
+                           title=title,
+                           author=author,
+                           short_text=short_text)
+                      ) 
  
   return posts_data 
 
