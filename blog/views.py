@@ -1,15 +1,10 @@
-#!/usr/env/bin python
-
 import os
+from flask import url_for, render_template, redirect, request
 
-from flask import Flask, url_for, render_template, redirect, request
-from flask.ext.misaka import Misaka
+from blog import app
 from blog_io import datesort, last_n_posts
 
-app = Flask(__name__)
-Misaka(app)
-
-POSTS_DIR = 'static/posts/published'
+POSTS_DIR = 'blog/static/posts/published'
 
 @app.route('/')
 def index():
@@ -32,5 +27,4 @@ def archive():
 def tutorials():
   return render_template('archive.html',results=tutorial_results)
 
-if __name__ == '__main__':
-  app.run(host='0.0.0.0',debug=True)
+

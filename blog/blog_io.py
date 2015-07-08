@@ -24,7 +24,7 @@ def fname_to_datetime(fname):
   # d = datetime.strptime("10:30", "%H:%M")
   # d.strftime("%I:%M %p")
 
-def last_n_posts(n,posts_dir='/data/newblog/static/posts/published'):
+def last_n_posts(n,posts_dir='/data/web/blog/blog/static/posts/published'):
   ''' 
      Returns the 5 newest posts by title, author and short_text
   '''
