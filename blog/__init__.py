@@ -10,4 +10,4 @@ Misaka(app)
 
 from blog import views 
 
-
+print __path__

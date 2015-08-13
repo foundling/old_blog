@@ -25,7 +25,7 @@ function usage()
       continue
     else
       echo "- Publishing $f ..."
-      mv "$f" "$(echo $f | sed "s/\(.*\).md/\1__$(date '+%Y_%m_%d_%H_%M_%S').md/g" )"
+      mv "$f" "$(echo $f | sed "s/\(.*\).md/\1__$(date '+%m%d%Y').md/g" )"
       echo "+ file $f has been published!"
     fi
   done

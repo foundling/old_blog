@@ -1,3 +1,5 @@
+#!/usr/env/bin python
+
 import os
 from flask import url_for, render_template, redirect, request
 
@@ -8,6 +10,7 @@ POSTS_DIR = 'blog/static/posts/published'
 
 @app.route('/')
 @app.route('/index')
+@app.route('/index.html')
 def index():
   # should show last five posts
   # at end, a link to archive
@@ -24,16 +27,13 @@ def archive():
   titles_and_content = last_n_posts(5)
   return render_template('archive.html',last_five_posts=titles_and_content)
 
-@app.route('/tutorials')
-def tutorial_stubs():
-  # main page for tutorial stubs
-  titles_and_content = last_n_posts(5)
-  return render_template('tutorials.html',last_five_posts=titles_and_content)
-
+# /index acts as /tutorials
 @app.route('/tutorials/<path:name>')
 def tutorial_single(name):
   # fetch tutorial from db
   # render tutorial template
+  # name should have n dashes: things-i-learned-this-year,
+  # so add a layer that splits on - and rejoins / manipulates the text however the db needs it
   return name
 
 @app.route('/writing')
@@ -56,15 +56,10 @@ def fun():
   # of stuff I'm interested in and do: photos, drawings, music  etc
   return render_template('fun.html')
 
-@app.route('/resume')
-def resume():
-  # another page that doesn't inherit from base. similar to about-me, a free-flowing, lazy-loading stream
-  # of stuff I'm interested in and do: photos, drawings, music  etc
-  return render_template('resume.html')
+@app.route('/guides/js')
+def guides_js():
+  return render_template('js_guide.html')
 
-@app.route('/guides/<path:name>')
-def guides(name):
-  if name.lower() == 'javascript':
-    return render_template('javascript_guide')
-  if name.lower() == 'python':
-    return render_template('python_guide')
+@app.route('/guides/python')
+def guides_python():
+  return render_template('python_guide.html')
