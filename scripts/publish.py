@@ -1,8 +1,17 @@
 #!/usr/bin/env python
+''' 
 
-# 1: establish user input -> mongodb commit pipeline
-# 2: establish default/specified  behavior for input
-# 3: write any parsing functions needed 
+    This script takes a file path as an argument and does the following:
+        - creates a post object
+        - takes user input regarding the post name, author and keywords
+        - adds these to the object
+        - reads the file content and calculates an excerpt
+        - adds these to the object
+        - connects to a mongodb 'blog' database 'post' collection
+        - inserts the post object into the post collection
+        - asserts that the same thing that was inserted is retrievable
+
+'''
 
 import datetime
 import json
@@ -16,26 +25,11 @@ def usage():
     usage_text = 'usage: publish file1'
     print usage_text
 
-def establish_connection(host='localhost',port='27017'):
-    client = MongoClient(''.join([
-                                    'mongodb://',
-                                    host,
-                                    ':',
-                                    port,
-                                    '/',
-                                    ])
-                                 )
-    db = client.blog
-    collection = db.posts
-    return client if collection else False
-
 def get_short_text(file_content):
     max_chars  = 80 
     first_sentence = file_content.split('.')[0]
     return first_sentence + '.' if len(first_sentence) <= max_chars else first_sentence + ' ... ' 
 
-def insert_blog_post(title,author,short_text,content,keyworks,date_published):
-    pass
 
 def get_user_values(post):
     prompt_questions = {
@@ -59,19 +53,36 @@ def get_automatic_values(post):
 
     return post
 
+def connect(host='localhost',port='27017'):
+    client = MongoClient(''.join([
+                                    'mongodb://',
+                                    host,
+                                    ':',
+                                    port,
+                                    '/',
+                                    ])
+                                 )
+    db = client.blog
+    collection = db.posts
+    return client if collection else False
+
+
 
 def main():
     post = {}
     post = get_user_values(post)
     post = get_automatic_values(post)
 
-    client = establish_connection()
-    if client: 
-        print 'client successfully established. posts collection works!'
-        client.blog.posts.insert_one(post)
-        client.close()
-    else:
+    client = connect()
+
+    if not client: 
         print 'client connection was unsuccessful'
+        sys.exit()
+    
+    print 'client successfully established. posts collection works!'
+    client.blog.posts.insert_one(post)
+    # here, you assert that the post is what you inserted
+    client.close()
 
 if __name__ == '__main__':
 
@@ -81,4 +92,3 @@ if __name__ == '__main__':
 
     else:
         main()
-
