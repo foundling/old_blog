@@ -19,7 +19,7 @@ import os
 import pprint
 import sys
 
-from pymongo import MongoClient 
+import pymongo
 
 def usage():
     usage_text = 'usage: publish file1'
@@ -31,7 +31,7 @@ def get_short_text(file_content):
     return first_sentence + '.' if len(first_sentence) <= max_chars else first_sentence + ' ... ' 
 
 
-def get_user_values(post):
+def append_user_values(post):
     prompt_questions = {
                             'title':'Title:',
                             'author':'Author:',
@@ -46,7 +46,7 @@ def get_user_values(post):
 
     return post
 
-def get_automatic_values(post):
+def append_automatic_values(post):
     post['date_published'] = datetime.datetime.now() 
     post['content'] = open(sys.argv[1]).read().decode('utf-8')
     post['short_text'] = get_short_text(post['content'])
@@ -54,32 +54,34 @@ def get_automatic_values(post):
     return post
 
 def connect(host='localhost',port='27017'):
-    client = MongoClient(''.join([
-                                    'mongodb://',
-                                    host,
-                                    ':',
-                                    port,
-                                    '/',
-                                    ])
-                                 )
-    db = client.blog
-    collection = db.posts
-    return client if collection else False
+    try:
+        client = pymongo.MongoClient(''.join([
+                                        'mongodb://',
+                                        host,
+                                        ':',
+                                        port,
+                                        '/',
+                                        ]),
+                                        connectTimeoutMS=1000
+                                     )
+    except pymongo.errors.ConnectionFailure:
+        return False
 
+    return client
 
 
 def main():
-    post = {}
-    post = get_user_values(post)
-    post = get_automatic_values(post)
+
+    serverIsRunning = os.system('pgrep -q mongod') == 0
+    if not serverIsRunning:
+        print 'mongod server is not running. start it and run the script again'
+        sys.exit()
 
     client = connect()
+    post = {}
+    post = append_user_values(post)
+    post = append_automatic_values(post)
 
-    if not client: 
-        print 'client connection was unsuccessful'
-        sys.exit()
-    
-    print 'client successfully established. posts collection works!'
     client.blog.posts.insert_one(post)
     # here, you assert that the post is what you inserted
     client.close()
