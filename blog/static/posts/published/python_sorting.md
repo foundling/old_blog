@@ -1,10 +1,3 @@
-<!-- 
-title: Sorting a List of Tuples 
-author: alex
-short_text: A short tutorial on how to conceptualize sorting using Python's sorted function.
-published_on: July 8th, 2015
--->
-
 # Sorting a List of Tuples
 
 

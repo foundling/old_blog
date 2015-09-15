@@ -3,7 +3,7 @@
 {% block content %}
 
 {% if latest_post %}
-{{ latest_post.decode('utf-8') | markdown }}
+{{ latest_post.content.decode('utf-8') | markdown }}
 {% endif %}
 
  

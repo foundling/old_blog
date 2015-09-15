@@ -1,24 +1,33 @@
 #!/usr/env/bin python
 
 import os
+import sys
+
 from flask import url_for, render_template, redirect, request
+from pymongo import MongoClient
 
 from blog import app
-from blog_io import datesort, last_n_posts
+from db_ops import n_most_recent
+from config import config
+from utilities import print_config_values, connect
 
-POSTS_DIR = 'blog/static/posts/published'
+
+''' Initialization Stuff '''
+
+print_config_values()
+client = connect()
+db = client.blog
 
 @app.route('/')
 @app.route('/index')
-@app.route('/index.html')
 def index():
   # should show last five posts
   # at end, a link to archive
-  published_posts = [f for f in os.listdir(POSTS_DIR) if f.endswith('.md')]
-  latest_post_filename = sorted(published_posts,key=datesort)[-1]
-  latest_post_content = open('/'.join([POSTS_DIR,latest_post_filename])).read()
-  latest_post_content
-  return render_template('index.html',latest_post=latest_post_content)
+     
+    
+    latest_post = n_most_recent(db,1)[0]
+    print latest_post
+    return render_template('index.html',latest_post=latest_post)
 
 @app.route('/archive')
 def archive():

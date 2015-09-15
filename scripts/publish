@@ -19,7 +19,10 @@ import os
 import pprint
 import sys
 
+
 import pymongo
+
+from config import config
 
 def usage():
     usage_text = 'usage: publish file1'
@@ -36,13 +39,23 @@ def append_user_values(post):
                             'title':'Title:',
                             'author':'Author:',
                             'keywords':'Keywords:',
-                        }
+                            'published':'Publish? (y/Y) [default: no/draft]:',
+                       }
+
     for category in prompt_questions:
+
+        raw_string = raw_input(prompt_questions[category])
+
         if category == 'keywords':
-            raw_kw_string = raw_input(prompt_questions[category])
-            post[category] = [ kw.strip() for kw in raw_kw_string.split(',') ] 
+            ''' process keywords by splitting string, stripping, lowercasing words'''
+            post[category] = [ kw.strip().lower() for kw in raw_string.split(',') ] 
+
+        elif category == 'published':
+            ''' map text to boolean values '''
+            post[category] = True if raw_string.strip() in ('y','Y') else False
+
         else:
-            post[category] = raw_input(prompt_questions[category])
+            post[category] = raw_string.strip()
 
     return post
 
@@ -53,7 +66,25 @@ def append_automatic_values(post):
 
     return post
 
+def move_to_published_dir(filename):
+    cmd = '\mv {} {}'.format(filename,config['published_dir'])
+    if filename in os.listdir(config['published_dir']):
+        print "Can't move {} to {} because a file by that name already exists there. Quitting...".format(
+                filename,config['published_dir'])
+        sys.exit(1)
+    else:
+        print 'publishing {} and \nmoving it to {}'.format(filename,config['published_dir'])
+        os.system(cmd)
+
+
 def connect(host='localhost',port='27017'):
+
+    serverIsRunning = os.system('pgrep -q mongod') == 0
+
+    if not serverIsRunning:
+        print 'mongod server is not running. start it and run the script again'
+        return False
+
     try:
         client = pymongo.MongoClient(''.join([
                                         'mongodb://',
@@ -72,10 +103,6 @@ def connect(host='localhost',port='27017'):
 
 def main():
 
-    serverIsRunning = os.system('pgrep -q mongod') == 0
-    if not serverIsRunning:
-        print 'mongod server is not running. start it and run the script again'
-        sys.exit()
 
     client = connect()
     post = {}
@@ -85,6 +112,8 @@ def main():
     client.blog.posts.insert_one(post)
     # here, you assert that the post is what you inserted
     client.close()
+    move_to_published_dir(sys.argv[1])
+
 
 if __name__ == '__main__':
 
