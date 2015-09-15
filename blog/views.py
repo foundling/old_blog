@@ -24,10 +24,10 @@ def index():
   # should show last five posts
   # at end, a link to archive
      
-    
-    latest_post = n_most_recent(db,1)[0]
-    print latest_post
-    return render_template('index.html',latest_post=latest_post)
+    n=2 
+    latest_posts = n_most_recent(db,n)
+    print latest_posts
+    return render_template('index.html',latest_posts=latest_posts)
 
 @app.route('/archive')
 def archive():

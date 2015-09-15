@@ -2,9 +2,15 @@
 
 {% block content %}
 
-{% if latest_post %}
-{{ latest_post.content.decode('utf-8') | markdown }}
-{% endif %}
+{% for post in latest_posts %}
+{{ post.content | markdown }}
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endfor %}
+
+{% endblock %}
 
  
-{% endblock %}
