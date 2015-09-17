@@ -1,9 +1,4 @@
-<!-- 
-author: alex
-title: Installing and Configuring Raspbian Linux on a Raspberry Pi
-short_text: Raspberry Pis are a lot of fun! 
--->
-
+<!-- #short_title#Installing and Configuring Raspbian Linux# -->
 <h1><a href="">Installing and Configuring <span class="highlight-red">Raspbian Linux</span> on a <span class="aux-color-yellow">Raspberry Pi</span> Model B</a></h1>
 
 <span class="meta-info">posted by <a href="aboutme">Alex</a> at 12:39pm on Mon, Aug 9th, 2014</span>
@@ -149,7 +144,7 @@ Note: this method is permissable on your private network, but I don’t recommen
  
 If you’ve found the IP address of the pi, then type `ssh pi@raspberrypi`. You will likely see a message that says:
 
-    - ‘The authenticity of the host ‘xxx.xxx.xxx.xxx’ can’t be established. Are you sure you want to continue connecting (yes/no)?’.
+    - `‘The authenticity of the host ‘xxx.xxx.xxx.xxx’ can’t be established. Are you sure you want to continue connecting (yes/no)?’.`
 
 
 Type ‘yes’ and enter ‘raspberry’ as the password.

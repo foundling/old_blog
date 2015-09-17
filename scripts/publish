@@ -13,15 +13,6 @@
 
 '''
 
-import datetime
-import json
-import os 
-import pprint
-import sys
-
-
-import pymongo
-
 from config import config
 
 def usage():
@@ -104,6 +95,7 @@ def connect(host='localhost',port='27017'):
 def main():
 
 
+
     client = connect()
     post = {}
     post = append_user_values(post)
@@ -116,6 +108,19 @@ def main():
 
 
 if __name__ == '__main__':
+
+    try:
+        import datetime
+        import json
+        import os 
+        import pprint
+        import sys
+        import pymongo
+
+    except ImportError:
+        usage() 
+        sys.exit()
+
 
     if len(sys.argv) < 2:
         usage()
