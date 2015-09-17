@@ -1,25 +1,45 @@
 #!/usr/bin/env python
-''' 
 
-    This script takes a file path as an argument and does the following:
-        - creates a post object
-        - takes user input regarding the post name, author and keywords
-        - adds these to the object
-        - reads the file content and calculates an excerpt
-        - adds these to the object
-        - connects to a mongodb 'blog' database 'post' collection
-        - inserts the post object into the post collection
-        - asserts that the same thing that was inserted is retrievable
+''' This script updates a post '''
 
-'''
+import datetime
+import json
+import os 
+import pprint
+from subprocess import call
+import sys
+import tempfile
 
-from config import config
+from lib.helpers import usage
+
+try:
+    import pymongo
+
+except ImportError as err:
+    msg = 'You probably didn\'t source your virtualenv. Do that and try again.'
+    usage(msg=msg, err=err) 
+
+
+
+
+
+
+def pipe_to_vim():
+    with tempfile.NamedTemporaryFile(suffix='task') as tempfile:
+        tempfile.write(content)
+        tempfile.flush()
+        call(['vim', tempfile.name])
+        text = open(temp.name, 'r').read()
+
+
+
 
 def usage(msg=None, err=None):
     if err:
         print "\nThe following Modules were not Imported:"
         print '\n\n'.join( ''.join(['  ' + e + '\n']) for e in err)
-    msg = msg if msg else 'usage: publish file1'
+        sys.exit()
+    msg = msg if msg else 'usage: publish <FILENAME>'
     print msg
 
 def get_short_text(file_content):
@@ -97,34 +117,44 @@ def connect(host='localhost',port='27017'):
 
 def main():
 
-    client = connect()
-    sys.exit()
-    post = {}
-    post = append_user_values(post)
-    post = append_automatic_values(post)
+    # Overall process
+    # query mongo for one or more titles that match a regex
+    # get back ids and titles for matches, or alert no match (try again) 
+    # display the results in a list to the user
+    # let user choose which file
+    # the id of the chosen file is then used to get the post content from mongo 
+    # use tempfile library to create a named tempfile
+    # write post content to temp file
+    # open temp file in vim with process.call(['vim',tempfilefile.name])
+    # open tempfile.name, read content (as utf-8)
+    # update post content field associated with that id with new content
 
-    client.blog.posts.insert_one(post)
-    # here, you assert that the post is what you inserted
+    
+    client = connect() or sys.exit(1)
+    blog_posts = client.blog.posts
+    title = [ word\
+              for word in raw_input('Post Title: ')
+              .strip()
+              .split(' ') if len(word) > 2]
+    # map each title to a case insensitive regex expression
+    # look them up in mongodb, getting only titles and ids
+    # put results in a set (by id) to eliminate duplicates
+    # present user with titles corresponding to set ids 
+
+    # if the user choses an id, that's a match, fetch the whole
+    # thing in mongodb
+    sys.exit()
+    '''
+    for post in blog_posts.find({"name":{"$regex":title}}).
+    client.blog.posts.find({name:post)
     client.close()
     move_to_published_dir(sys.argv[1])
-
+    '''
 
 if __name__ == '__main__':
 
-    try:
-        import datetime
-        import json
-        import os 
-        import pprint
-        import sys
-        import pymongo
-
-    except ImportError as err:
-        usage("You Probably didn't source your virtual environment. Do that and try again!", err) 
-        sys.exit()
-
-
     if len(sys.argv) < 2:
+        import sys
         usage()
         sys.exit()
 
