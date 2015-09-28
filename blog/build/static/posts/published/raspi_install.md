@@ -149,7 +149,7 @@ Note: this method is permissable on your private network, but I don’t recommen
  
 If you’ve found the IP address of the pi, then type `ssh pi@raspberrypi`. You will likely see a message that says:
 
-    - `‘The authenticity of the host ‘xxx.xxx.xxx.xxx’ can’t be established. Are you sure you want to continue connecting (yes/no)?’.`
+    - ‘The authenticity of the host ‘xxx.xxx.xxx.xxx’ can’t be established. Are you sure you want to continue connecting (yes/no)?’.
 
 
 Type ‘yes’ and enter ‘raspberry’ as the password.
