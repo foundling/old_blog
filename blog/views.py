@@ -27,6 +27,9 @@ def index():
     latest_posts = n_most_recent(db,n)
     print latest_posts
     return render_template('index.html',latest_posts=latest_posts)
+@app.route('/resume.html')
+def resume():
+  return render_template('resume.html')
 #
 #@app.route('/archive')
 #def archive():

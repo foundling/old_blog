@@ -37,6 +37,7 @@ a
 
 h1 a:hover 
 {
+  padding-top: 90px;
   border-bottom: 2px solid red;
 }
 
@@ -77,6 +78,7 @@ h1
 
 .content h1 
 {
+  padding-top: 90px;
   padding-bottom: 20px;
 }
 

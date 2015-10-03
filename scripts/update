@@ -20,19 +20,12 @@ except ImportError as err:
     usage(msg=msg, err=err) 
 
 
-
-
-
-
 def pipe_to_vim():
     with tempfile.NamedTemporaryFile(suffix='task') as tempfile:
         tempfile.write(content)
         tempfile.flush()
         call(['vim', tempfile.name])
         text = open(temp.name, 'r').read()
-
-
-
 
 def usage(msg=None, err=None):
     if err:

@@ -37,6 +37,7 @@ a
 
 h1 a:hover 
 {
+  padding-top: 90px;
   border-bottom: 2px solid red;
 }
 
@@ -44,7 +45,10 @@ body
 {
 }
 
-pre { box-sizing: border-box; border-left: 10px solid rgb(255, 223, 223); }
+pre { 
+  box-sizing: border-box;
+  border-left: 10px solid rgb(255, 223, 223);
+}
 
 .fa-arrow-left,
 .fa-arrow-right
@@ -77,6 +81,7 @@ h1
 
 .content h1 
 {
+  padding-top: 90px;
   padding-bottom: 20px;
 }
 

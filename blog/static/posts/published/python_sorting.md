@@ -15,7 +15,7 @@ If we sort this list with `sorted`,
 </code></pre>
 
 
-Python will compare the first item in each and if there is a tie, move on to the second.  If there is a tie in the second case, (and we provide no additional ways to sort), there is no more sort criteria.  So in a tie, the items are sorted in the order in which they appeared in the original list. This extra specification is an attribute of a sort algorithm known as stability, and Python's `sorted` algorithm is proceeds this way.
+Python will compare the first item in each and if there is a tie, move on to the second.  If there is a tie in the second case, (and we provide no additional ways to sort), there is no more sort criteria.  So in a tie, the items are sorted in the order in which they appeared in the original list. This extra specification is an attribute of a sort algorithm known as stability, and Python's `sorted` algorithm proceeds this way.
 
 The zeros tied, so the secondary keys 'z', 'n' and 'a' were compared to determine the order of the sorted `mylist`.
 
