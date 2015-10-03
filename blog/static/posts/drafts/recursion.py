@@ -1,8 +1,8 @@
 ## Mr. Show, 'Change For a Dollar' and Recursion
 
-If you're familiar with Mr. Show, you probably know that a technique common to some of the funniest (and worst) sketches is the assiduous repetition of a single idea. This technique is really effective in 'The Story of Everest' and 'The Audition', where the repetition takes on additional value over time.
+If you're familiar with Mr. Show, you probably know that a technique common to some of the funniest (and worst) sketches is the assiduous repetition of a single idea. This technique works beautifully in 'The Story of Everest' and 'The Audition', where the repetition continually heightens the comedic effect.
 
-The sketch 'Change for a Dollar' uses this tight repetition to play a good joke on the fate of value in the hands of pure beaurocracy. Oddly, it also quite nicely demonstrates the winding and unwinding of function calls in a recursive function.
+The sketch 'Change for a Dollar' uses this tight repetition to play a good joke on the fate of value in the hands of pure beaurocracy. Oddly, the structure is legimately recursive in nature and serves as a good (if not highly alternative) introduction to the winding-and-unwinding-process of a recursive routine.
 
 Recursion? Mr. Show?
 
