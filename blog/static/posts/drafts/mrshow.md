@@ -75,4 +75,7 @@ Just in case you were wondering why I'm making a big deal about this being a goo
   1. The context for each authorization check is a totally new location relative to the specific employee and boss involved. If the sketch demonstrated iteration (like 'Story of Everest' and 'The Audition' mentioned above), the context of the employee traversal process would be the `customer.getChangeForADollar` method throughout, aka, the whole sketch would have to take place in the convenience store. 
   2. The sketch demonstrates an explicit 'unwinding' phase where the ultimate answer is relayed from boss to underling in exactly the reverse order of the recursive calls. 
 
-Note: the pronouns in this post are all male. The reason is simply that the relevant roles in the sketch are played by David Cross and Bob Odenkirk, who in fact play all of the employees and bosses.
+
+I'm sure that the analogy eventually breaks down, so if YOU are interested in telling me where it does, get @ me via Twitter: @drlolzrofl.
+
+[note: there are almost exclusively gendered pronouns in this post and the reason is simply that the relevant roles in the sketch are played by David Cross and Bob Odenkirk, who in fact play all of the employees and bosses.]
