@@ -8,7 +8,7 @@ Recursion? Mr. Show?
 
 Yes, recursion! Yes, Mr. Show!
 
-The gist of the sketch is that a man asks a convenience store clerk to exchange a dollar for four quarters. Instead of just saying yes or no, the clerk has to ask his boss for permission, and it turns out his boss must in turn ask *his* boss for permission, and so on, until the original request reaches an employee with the credentials to say yes or no. At that point, the answer propagates back through each boss to the requesting underling. When that underline is the store clerk, the customer receives the answer: 'no'.
+The gist of the sketch is that a man asks a convenience store clerk to exchange a dollar for four quarters. Instead of just saying yes or no, the clerk has to ask his boss for permission, and it turns out his boss must in turn ask *his* boss for permission, and so on, until the original request reaches an employee with the credentials to say yes or no. At that point, the answer propagates back through each boss to the requesting underling. When that underling is the store clerk, the customer receives the answer: 'no'.
  
 You can think of each scene as the 'execution context' of a new function placed on top of the call stack created by the request to make change. For every scene, the boss from the previous scene assumes the roll of the employee seeking an answer from his boss. If the employee cannot authorize the request, he must call the same 'procedure' on his boss.      
 
