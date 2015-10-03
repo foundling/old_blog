@@ -64,7 +64,7 @@ var customer = {
 When the `authorize` method is found on an employee, the results of that method call are returned. This is our base case, and causes each function on the call stack to resolve its return value until the original caller is reached. 
 
 ````
-customer.say('I need change for a dollar.');
+customer.say('Can I get change for a dollar?');
 console.log(customer.getChangeForADollar(employee1));
 ````
 
