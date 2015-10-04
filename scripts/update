@@ -6,7 +6,7 @@ import datetime
 import json
 import os 
 import pprint
-from subprocess import call
+import subprocess
 import sys
 import tempfile
 
@@ -24,7 +24,7 @@ def pipe_to_vim():
     with tempfile.NamedTemporaryFile(suffix='task') as tempfile:
         tempfile.write(content)
         tempfile.flush()
-        call(['vim', tempfile.name])
+        subprocess.call(['vim', tempfile.name])
         text = open(temp.name, 'r').read()
 
 def usage(msg=None, err=None):
@@ -111,6 +111,7 @@ def connect(host='localhost',port='27017'):
 def main():
 
     # Overall process
+
     # query mongo for one or more titles that match a regex
     # get back ids and titles for matches, or alert no match (try again) 
     # display the results in a list to the user
@@ -126,9 +127,9 @@ def main():
     client = connect() or sys.exit(1)
     blog_posts = client.blog.posts
     title = [ word\
-              for word in raw_input('Post Title: ')
-              .strip()
-              .split(' ') if len(word) > 2]
+              for word in raw_input('Post Title: ').strip().split(' ') 
+              if len(word) > 2 ]
+
     # map each title to a case insensitive regex expression
     # look them up in mongodb, getting only titles and ids
     # put results in a set (by id) to eliminate duplicates
@@ -136,6 +137,7 @@ def main():
 
     # if the user choses an id, that's a match, fetch the whole
     # thing in mongodb
+    print 'exiting with sys.exit'
     sys.exit()
     '''
     for post in blog_posts.find({"name":{"$regex":title}}).

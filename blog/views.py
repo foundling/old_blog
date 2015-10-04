@@ -23,8 +23,7 @@ db = client.blog
 def index():
   # should show last five posts
   # at end, a link to archive
-    n=2 
-    latest_posts = n_most_recent(db,n)
+    latest_posts = n_most_recent(db,5)
     print latest_posts
     return render_template('index.html',latest_posts=latest_posts)
 @app.route('/resume.html')

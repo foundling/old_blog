@@ -15,12 +15,12 @@
 
 from config import config
 
-def usage(msg=None, err=None):
-    if err:
+def usage(aux_msg=None, err_msg=None):
+    if err_msg:
         print "\nThe following Modules were not Imported:"
-        print '\n\n'.join( ''.join(['  ' + e + '\n']) for e in err)
-    msg = msg if msg else 'usage: publish file1'
-    print msg
+        print '\n\n'.join( ''.join(['  ' + e + '\n']) for e in err_msg)
+    aux_msg = aux_msg or 'usage: publish file1'
+    print aux_msg
 
 def get_short_text(file_content):
     max_chars  = 80 
@@ -98,7 +98,6 @@ def connect(host='localhost',port='27017'):
 def main():
 
     client = connect()
-    sys.exit()
     post = {}
     post = append_user_values(post)
     post = append_automatic_values(post)
@@ -121,12 +120,12 @@ if __name__ == '__main__':
 
     except ImportError as err:
         usage("You Probably didn't source your virtual environment. Do that and try again!", err) 
-        sys.exit()
+        sys.exit(1)
 
 
     if len(sys.argv) < 2:
         usage()
-        sys.exit()
+        sys.exit(1)
 
     else:
         main()

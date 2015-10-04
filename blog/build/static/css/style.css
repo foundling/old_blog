@@ -45,7 +45,10 @@ body
 {
 }
 
-pre { box-sizing: border-box; border-left: 10px solid rgb(255, 223, 223); }
+pre { 
+  box-sizing: border-box;
+  border-left: 10px solid rgb(255, 223, 223);
+}
 
 .fa-arrow-left,
 .fa-arrow-right
