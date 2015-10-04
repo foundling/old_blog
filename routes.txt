@@ -1,0 +1,24 @@
+major site components:
+
+blog
+projects
+guides
+etc
+
+routes:
+
+/archive
+
+/blog/tutorials/<title>
+/blog/articles/<title>
+
+/projects/<project name>
+
+/guides/python  (single page app)
+/guides/javascript  (single page app)
+/guides/linux  (single page app) 
+
+/etc/music (single page app)
+/etc/design (single page app)
+
+
