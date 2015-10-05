@@ -3,12 +3,12 @@
 {% block content %}
 
 {% for post in latest_posts %}
+  <div class="title-wrap">
+  <h2>
+    {{ post.title }}
+  </h2>
+  </div>
 {{ post.content | markdown }}
-<br>
-<br>
-<br>
-<br>
-<br>
 {% endfor %}
 
 {% endblock %}
