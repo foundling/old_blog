@@ -8,7 +8,6 @@ import os
 import pprint
 import subprocess
 import sys
-import tempfile
 
 from lib.helpers import usage
 
@@ -20,12 +19,16 @@ except ImportError as err:
     usage(msg=msg, err=err) 
 
 
-def pipe_to_vim():
+def pipe_to_vim(content):
+
+    import tempfile
+
     with tempfile.NamedTemporaryFile(suffix='task') as tempfile:
         tempfile.write(content)
         tempfile.flush()
         subprocess.call(['vim', tempfile.name])
-        text = open(temp.name, 'r').read()
+        text = open(tempfile.name, 'r').read()
+        return text
 
 def usage(msg=None, err=None):
     if err:
@@ -34,55 +37,6 @@ def usage(msg=None, err=None):
         sys.exit()
     msg = msg if msg else 'usage: publish <FILENAME>'
     print msg
-
-def get_short_text(file_content):
-    max_chars  = 80 
-    first_sentence = file_content.split('.')[0]
-    return first_sentence + '.' if len(first_sentence) <= max_chars else first_sentence + ' ... ' 
-
-
-def append_user_values(post):
-    prompt_questions = {
-                            'title':'Title:',
-                            'author':'Author:',
-                            'keywords':'Keywords:',
-                            'published':'Publish? (y/Y) [default: no/draft]:',
-                       }
-
-    for category in prompt_questions:
-
-        raw_string = raw_input(prompt_questions[category])
-
-        if category == 'keywords':
-            ''' process keywords by splitting string, stripping, lowercasing words'''
-            post[category] = [ kw.strip().lower() for kw in raw_string.split(',') ] 
-
-        elif category == 'published':
-            ''' map text to boolean values '''
-            post[category] = True if raw_string.strip() in ('y','Y') else False
-
-        else:
-            post[category] = raw_string.strip()
-
-    return post
-
-def append_automatic_values(post):
-    post['date_published'] = datetime.datetime.now() 
-    post['content'] = open(sys.argv[1]).read().decode('utf-8')
-    post['short_text'] = get_short_text(post['content'])
-
-    return post
-
-def move_to_published_dir(filename):
-    cmd = '\mv {} {}'.format(filename,config['published_dir'])
-    if filename in os.listdir(config['published_dir']):
-        print "Can't move {} to {} because a file by that name already exists there. Quitting...".format(
-                filename,config['published_dir'])
-        sys.exit(1)
-    else:
-        print 'publishing {} and \nmoving it to {}'.format(filename,config['published_dir'])
-        os.system(cmd)
-
 
 def connect(host='localhost',port='27017'):
 
@@ -112,7 +66,30 @@ def main():
 
     # Overall process
 
-    # query mongo for one or more titles that match a regex
+    # get title from user
+    # query mongo for a single post that matches the title
+    client = connect() or sys.exit(1)
+    blog_posts = client.blog.posts
+
+    answer = None
+    while (answer not in ('y','Y')):
+      title = raw_input('Enter the Title of the Post You Want to Edit:').strip()
+      target = blog_posts.find_one({'title':title})
+      answer = raw_input( '*'*24 +
+                          '\n' +
+                          target['title'] + 
+                          target['content'][0:100] +
+                          '\n\n' +
+                          '*'*24 +
+                          '\n' +
+                          'Is this the file you are want to edit?'
+                          ).strip()
+                          
+    updated_text = pipe_to_vim(target['content'])
+    result = blog_posts.update_one({'title':title},{'$set': {'content':updated_text}})
+    print 'RESULT ',result
+
+
     # get back ids and titles for matches, or alert no match (try again) 
     # display the results in a list to the user
     # let user choose which file
@@ -123,12 +100,6 @@ def main():
     # open tempfile.name, read content (as utf-8)
     # update post content field associated with that id with new content
 
-    
-    client = connect() or sys.exit(1)
-    blog_posts = client.blog.posts
-    title = [ word\
-              for word in raw_input('Post Title: ').strip().split(' ') 
-              if len(word) > 2 ]
 
     # map each title to a case insensitive regex expression
     # look them up in mongodb, getting only titles and ids
@@ -137,8 +108,6 @@ def main():
 
     # if the user choses an id, that's a match, fetch the whole
     # thing in mongodb
-    print 'exiting with sys.exit'
-    sys.exit()
     '''
     for post in blog_posts.find({"name":{"$regex":title}}).
     client.blog.posts.find({name:post)
@@ -148,10 +117,4 @@ def main():
 
 if __name__ == '__main__':
 
-    if len(sys.argv) < 2:
-        import sys
-        usage()
-        sys.exit()
-
-    else:
         main()
