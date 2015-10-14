@@ -74,18 +74,24 @@ def main():
     answer = None
     while (answer not in ('y','Y')):
       title = raw_input('Enter the Title of the Post You Want to Edit:').strip()
+      targets = []
       target = blog_posts.find_one({'title':title})
-      answer = raw_input( '*'*24 +
-                          '\n' +
-                          target['title'] + 
-                          target['content'][0:100] +
-                          '\n\n' +
-                          '*'*24 +
-                          '\n' +
-                          'Is this the file you are want to edit?'
-                          ).strip()
+      if target:
+        targets.append(target)
+      else:
+        title_largest_word = reduce(lambda x,y: x if len(x) > len(y) else y, title.split(' '))
+        for post in blog_posts.find({"title":{"$regex": title_largest_word}}):
+          targets.append(post)
+      print 'Is one of these what you are looking for?'
+      print '*'*24
+      for num, post in enumerate(targets): 
+        print '{}: {}'.format(num, post['title'])
+      print '*'*24
+      choice = int(raw_input('').strip())
+      if targets[choice]:
+        break
                           
-    updated_text = pipe_to_vim(target['content'])
+    updated_text = pipe_to_vim(targets[choice].get('content',''))
     result = blog_posts.update_one({'title':title},{'$set': {'content':updated_text}})
     print 'RESULT ',result
 
