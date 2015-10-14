@@ -1,10 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <title>Alex Ramsdell</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no"/>
-  <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,400' rel='stylesheet' type='text/css'>
+<!doctype html> <html lang="en"> <head> <title>Alex Ramsdell</title> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, user-scalable=no"/> <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,400' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link href='https://fonts.googleapis.com/css?family=Lora|Lato|Source+Serif+Pro|Old+Standard+TT' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href={{url_for('static',filename="css/prism.css")}}>
@@ -23,8 +17,9 @@
 </div>
 
 {% include "footer.html" %}
+
 {% block scripts %}
+  {% include "body_scripts.html" %}
 {% endblock %}
-<script src="static/js/prism.js"></script>
 </body>
 </html>
