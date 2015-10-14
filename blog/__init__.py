@@ -8,7 +8,6 @@ from filters import human_readable_date
 
 app = Flask(__name__)
 app.jinja_env.filters['human_readable_date'] = human_readable_date
-print app.jinja_env.filters
 Misaka(app)
 
 

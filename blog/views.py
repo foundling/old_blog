@@ -31,7 +31,7 @@ def latest_posts():
     return render_template('index.html',posts=latest_posts)
 
 # all posts
-@app.route('/archive')
+@app.route('/blog/archive')
 def all_posts():
   all_posts = n_most_recent(db,0) # 0 means all
   return render_template('archive.html',posts=all_posts)
@@ -41,7 +41,6 @@ def all_posts():
 def single_blog_post(post_id):
   # so add a layer that splits on - and rejoins / manipulates the text however the db needs it
   post = find_by_id(db, post_id)
-  print 'POST', post
   print type(post_id)
   return render_template('single_blog_post.html', post=post)
 
