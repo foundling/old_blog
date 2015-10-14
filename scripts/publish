@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 ''' 
-
     This script takes a file path as an argument and does the following:
         - creates a post object
         - takes user input regarding the post name, author and keywords
@@ -10,7 +9,6 @@
         - connects to a mongodb 'blog' database 'post' collection
         - inserts the post object into the post collection
         - asserts that the same thing that was inserted is retrievable
-
 '''
 
 from config import config
@@ -23,9 +21,7 @@ def usage(aux_msg=None, err_msg=None):
     print aux_msg
 
 def get_short_text(file_content):
-    max_chars  = 80 
-    first_sentence = file_content.split('.')[0]
-    return first_sentence + '.' if len(first_sentence) <= max_chars else first_sentence + ' ... ' 
+    return file_content.split('\n')[0] 
 
 
 def append_user_values(post):
@@ -107,12 +103,11 @@ def main():
     client.blog.posts.insert_one(post)
     # here, you assert that the post is what you inserted
     client.close()
-    move_to_published_dir(sys.argv[1])
-
 
 if __name__ == '__main__':
 
     try:
+        import arrow
         import datetime
         import json
         import os 
