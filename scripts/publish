@@ -54,7 +54,7 @@ def append_automatic_values(client, post):
     post['date_published'] = datetime.datetime.now() 
     post['content'] = open(sys.argv[1]).read().decode('utf-8')
     post['short_text'] = get_short_text(post['content'])
-    post['post_id'] = client.blog.posts.find().count()
+    post['post_id'] = client.blog.posts.find().count() + 1
 
     return post
 

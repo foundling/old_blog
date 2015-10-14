@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>{{post.title}}</h1>
-<div class="color-block"></div><h4>by {{post.author}} on {{post.publish_date}}</h4>
+<div class="color-block"></div><h4>by {{post.author}} {{post.date_published | human_readable_date}}</h4>
 {{ post.content | markdown }}
 {% endblock %}
 
