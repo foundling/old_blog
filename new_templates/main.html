@@ -1,17 +1,15 @@
-{% include "header.html" %}
+{% extends "base.html" %}
 
-<article class="content">
+  {% block content %}
 
-{% for post in posts %}
-  <h1>{{post.title}}</h1>
-  <div class="color-block blue"></div><h2>by {{post.author}} on {{post.publish_date}}</h2>
-  <p class="post-body">{{post.content}}</p>
-{% endfor %}
+    {% for post in posts %}
+      <h1>{{post.title}}</h1>
+      <div class="color-block"></div><h2>by {{post.author}} on {{post.publish_date}}</h2>
+      <p class="post-body">{{post.content}}</p>
+    {% endfor %}
 
-<div>
-  <a href="/blog/archive">MORE POSTS</a><div class="color-triangle"></div>
-</div>
+    <div>
+      <a href="/blog/archive">MORE POSTS</a><div class="color-triangle"></div>
+    </div>
 
-</article>
-
-{% include "footer.html" %}
+  {% endblock %}
