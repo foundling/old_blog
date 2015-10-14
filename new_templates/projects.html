@@ -1,0 +1,10 @@
+<h1>Projects</h1>
+<ul>
+  {% for project in project %}
+  <div class="color-block"></div><h1>{{project.name}}</h1>
+  <p class="project-description">{{project.description}}</p>
+    {% for screenshot in project.screenshots %}
+    <img src="{{url_for('static',filename='img/' + screenshot)}}">
+    {% endfor %}
+  {% endfor %}
+</ul>

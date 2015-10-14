@@ -9,6 +9,7 @@ ROUTES for alexramsdell.com
 
 /blog []
 /blog/<post_id>
+/blog/archive
 
 :: ABOUT ::
 
