@@ -1,0 +1,4 @@
+improve the update script by doing 2 things:
+
+1. Allowing a user to modify more than just the article content.
+2. Take a word to search in the post title, show results, let user choose which one
