@@ -53,10 +53,12 @@ def append_user_values(post):
 
     return post
 
-def append_automatic_values(post):
+def append_automatic_values(client, post):
+
     post['date_published'] = datetime.datetime.now() 
     post['content'] = open(sys.argv[1]).read().decode('utf-8')
     post['short_text'] = get_short_text(post['content'])
+    post['post_id'] = client.blog.posts.find().count()
 
     return post
 
@@ -100,7 +102,7 @@ def main():
     client = connect()
     post = {}
     post = append_user_values(post)
-    post = append_automatic_values(post)
+    post = append_automatic_values(client, post)
 
     client.blog.posts.insert_one(post)
     # here, you assert that the post is what you inserted

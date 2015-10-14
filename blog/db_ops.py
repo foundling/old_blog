@@ -5,7 +5,5 @@ def n_most_recent(db,n):
     else: 
       return db.posts.find({'published':True}).sort('date_published')[:n]
 
-def findById(id):
-  return db.posts.find({'_id',ObjectId(id)})
-
-      
+def find_by_id(db, post_id):
+  return db.posts.find_one({'post_id': post_id})

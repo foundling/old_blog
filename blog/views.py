@@ -7,7 +7,7 @@ from flask import url_for, render_template, redirect, request
 from pymongo import MongoClient
 
 from blog import app
-from db_ops import n_most_recent
+from db_ops import n_most_recent, find_by_id
 from config import config
 from utilities import print_config_values, connect
 
@@ -37,10 +37,13 @@ def all_posts():
   return render_template('archive.html',posts=all_posts)
 
 # posts by id
-@app.route('/posts/<int:id>')
-def single_blog_post(id):
+@app.route('/posts/<int:post_id>')
+def single_blog_post(post_id):
   # so add a layer that splits on - and rejoins / manipulates the text however the db needs it
-  return render_template('single_blog_post.html')
+  post = find_by_id(db, post_id)
+  print 'POST', post
+  print type(post_id)
+  return render_template('single_blog_post.html', post=post)
 
 
 @app.route('/projects/<post_name>')

@@ -1,9 +1,8 @@
-<!-- title: What Separates a Good Joke From a Great Joke? Recursion. -->
-
-![Mr. Show's Bob and David](https://i.vimeocdn.com/video/199532043_640.jpg)
 If you're familiar with Mr. Show, you may know the technique common to many of their most successful sketches: assiduous repetition of a single idea. It's the key to 'The Story of Everest' and 'The Audition', where the same thing happens again and again, and things gets exponentially funnier.
 
 The sketch <a href="https://www.youtube.com/watch?v=cGuT97v4pv0">'Change for a Dollar'</a> uses this tight repetition to play a good joke on the fate of value in the hands of pure bureaucracy. Oddly, the structure is legimately recursive and I think serves as a good (if not highly alternative) illustration of the winding-and-unwinding process of a recursive program.
+
+![Mr. Show's Bob and David](https://i.vimeocdn.com/video/199532043_640.jpg)
 
 The gist of the sketch is that a man asks a convenience store clerk to exchange a dollar for four quarters. Instead of just saying yes or no, the clerk, after some delay, has to ask his boss for permission, and it turns out his boss must also, after some delay, ask *his* boss for permission. This continues until the original request reaches an employee with the credentials to say yes or no. At that point, the answer propagates back through each boss to the requesting underling. When that underling is the store clerk, he can tell the customer the answer.
  
