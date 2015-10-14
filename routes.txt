@@ -1,0 +1,28 @@
+ROUTES for alexramsdell.com
+
+::LANDING::
+
+/index [last 5 posts]
+/
+
+:: BLOG ::
+
+/blog []
+/blog/<post_id>
+
+:: ABOUT ::
+
+/about
+
+:: GUIDES ::
+
+/guides
+/guides/<guide_name>
+
+:: PROJECTS ::
+/projects
+/project/<project_name>
+
+
+
+

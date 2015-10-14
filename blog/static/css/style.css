@@ -1,84 +1,86 @@
 html,body 
 {
-  min-width:100%;
+  max-width:100%;
   margin:0;
   padding:0;
-  /*font-family: 'HelveticaNeue-Light', sans-serif;*/
   font-size: 100%;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+a {text-decoration:none; }
+
+ul 
+{
+  list-style-type: none;
+  margin: 0; padding: 0;
 }
 
 body
 {
-  background-color: gainsboro;
-}
-
-header {
-  font-family: "Lato"; 
-}
-
-h1 {
-  font-size: 3em;
-}
-
-a 
-{
-  text-decoration: none;
-  color: black;
+  background-color: white;
+  position: relative;
 }
 
 
 
-pre { 
-  box-sizing: border-box;
+pre[class*="language-"] { 
+  background: white;
   border-left: 10px solid rgba(255, 255, 255, 0.5);
   border: 1px solid black;
+  margin-top: 40px;
 }
 
-.fa-arrow-left,
-.fa-arrow-right
+pre.code
 {
-  display:none;
+  overflow: hidden;    
 }
 
+
+
+/* HEADER */
+#my-name {padding: 20px 20px 0px 20px;}
+nav {width: 100%; padding: 20px 20px 40px 20px; }
 header
 {
-  background-color: black;
-  position: relative;
-  top: 0px;
-  left: 0px;
-  background: white;
-  height: auto;
-  padding-left: 12.5%;
-  border-bottom: 1px solid lightgray;
+  text-align: left;
+  background: deepskyblue; 
+  font-family: "Lato"; 
+  font-weight: 300;
+  width: 100%;
 }
 
-pre[class*="language-"]
+header a {color: white}
+#me-links {text-align:left; padding-left: calc(12.5% - 20px)}
+
+#my-name {display: block; }
+
+#me-links li
 {
-  background: white;
+  text-align: center;
+  display: inline-block;
+}
+
+#me-links li{font-size: 2em; padding: 10px;}
+
+#me-links li:hover,
+
+nav a:hover
+{
+  color: whitesmoke;
 }
 
 
 h1
 { 
+  font-size: 1.8em;
   padding: 0; margin: 0;
 }
 
-.content h1 
+
+/* POST CONTENT */
+.content h2 
 {
   padding-top: 90px;
   padding-bottom: 20px;
-}
-
-nav
-{
-  display: inline-block;
-  padding-left: 40px;
-}
-
-hr
-{
-  display: none;
 }
 
 
@@ -92,54 +94,9 @@ hr
 } 
 
 
-
-.fa:hover 
-{
-  color: lightgray;
-}
-
-.header-title
-{
-  font-size: 1.4em;
-  font-weight: 400;
-  text-align: center;
-}
-
-.header-subtitle
-{
-  color: red;
-  font-size: 1.3em;
-  font-weight: 400;
-}
-
-
-.header-icons:hover
-{
-  color: rgb(120,120,120);
-}
-
-.header-title, .header-subtitle
-{
-  display: inline-block;
-  padding: 5px;
-}
-
-.header-title, .header-subtitle, .header-icons 
-{
-  line-height:240px;
-}
-
-
-a.link-wrap:link,
-a.link-wrap:visited,
-a.link-wrap:hover,
-a.link-wrap:active
-{
-  color: black;
-  text-decoration: none;
-}
 .content
 {
+  word-break: break-word;
   font-family: "Source Serif Pro"; 
   width: 75%;
   margin:0 auto;
@@ -150,18 +107,20 @@ a.link-wrap:active
 .title-wrap {
   margin-bottom: 40px;
 }
+
 .content h2 {
   font-family: "Lato"; 
   font-size: 2em;
   display: inline;
-  padding: 5px;
+  padding: 5px 5px 35px 5px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .content-title
 {
   font-weight: 400;
   font-size: 3.2em;
-  margin-bottom: 10px;
 }
 
 .content img {
@@ -170,6 +129,7 @@ a.link-wrap:active
   padding-bottom: 40px;
   display: block;
 }
+
 .content-body,
 p,
 li
@@ -190,10 +150,6 @@ li
   color: red;
 }
 
-pre.code
-{
-  overflow: hidden;    
-}
 
 footer
 {
@@ -203,61 +159,24 @@ footer
   padding-top: .5em;
   padding-bottom: .5em;
   font-family: Lato;
-  background-color:white;
+  color: white;
+  background-color:deepskyblue;
 }
-
-#copyright
-{
-}
-
-
-@media (max-width:700px)
-{
-
-  hr
-  {
-    display: block;
-    border: 1px solid lightgray;
-    width: 95px;
-  }
-
-  body { min-width: 100%}
-  .content { width: 85%}
-  .fa {
-    font-size: 35px;
-  }
-  .fa-github-alt,
-  .fa-stack-exchange,
-  .fa-archive
-   { padding-top: 25px; }
-
-  
-
-
-  header { padding-left: 0%; text-align: center;}
-  nav {width: 100%; display:block; position: absolute; top: 20px; left: 0px; padding-left: 0%;}
-  
-}
-
 @media (max-width:500px)
 {
-  .header-title 
-  {
-    padding-top: 130px;
-  }
- .fa-arrow-left,
-  .fa-arrow-right
-  {
-    display: inline-block;
-    height: 70px;
-    line-height: 70px;
-    padding: 20px 50px;
-  } .header-title,
-  .header-subtitle
+
+  
+  #me-links li,
+  nav a 
   {
     display: block;
-    line-height: 1em;
   }
+
+  nav {
+    width: 50%;
+    margin: 0 auto;
+  }
+  .content { width: 90%}
 
   footer {font-size: 3vw;}
   

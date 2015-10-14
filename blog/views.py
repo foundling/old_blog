@@ -16,7 +16,13 @@ from utilities import print_config_values, connect
 
 print_config_values()
 client = connect()
-db = client.blog
+if client:
+  db = client.blog
+else:
+  print 'your mongo server is not running'
+  sys.exit(1)
+
+
 
 @app.route('/')
 @app.route('/index.html')
@@ -26,6 +32,7 @@ def index():
     latest_posts = n_most_recent(db,5)
     print latest_posts
     return render_template('index.html',latest_posts=latest_posts)
+
 @app.route('/resume.html')
 def resume():
   return render_template('resume.html')

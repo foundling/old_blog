@@ -6,45 +6,24 @@
   <meta name="viewport" content="width=device-width, user-scalable=no"/>
   <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,400' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lora|Lato|Source+Serif+Pro|Old+Standard+TT' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href=/static/css/prism.css>
   <link rel="stylesheet" href=/static/css/style.css>
-  <!--
-  <link rel="stylesheet" href="static/css/prism.css">
-  <link rel="stylesheet" href="static/css/style.css">
--->
 
 </head>
 
 <body>
 
 <header>
-
-  <span class="padding">
-    <h1 class="header-title"><a href="/">Alex Ramsdell</a></h1>
-  </span>
-  <span class="padding">
-    <h1 class="header-subtitle">
-      <a class="red" href="/writing">writing</a>,
-      <a class="red" href="/tutorials">tutorials</a>, 
-      <a class="red" href="/fun">fun</a>
-    </h1>
-  </span>
-
-    <span class="padding">
-
+  <h1 id="my-name"><a href="/about">AR</a></h1>
   <nav>
-    <a href="https://github.com/foundling"><i class="fa fa-github-alt"></i></a>
-    <a href="http://stackoverflow.com/users/2446351/foundling"><i class="fa fa-stack-exchange"></i></a>
-    <a href="/archive"><i class="fa fa-archive"></i></a>
-    <a href="/about-me"><i class="fa fa-info"></i></a>
-    <hr>
+    <ul id="me-links">
+      <li><a href="/">blog</a></li>
+      <li><a href="">projects</a></li>
+      <li><a href="">guides</a></li>
+      <li><a href="">fun</a></li>
+    </ul>
   </nav>
-    </span>
-
-<div class="mobile-nav">
-    <a href=""><i class="fa fa-arrow-left"></i></a>
-    <a href=""><i class="fa fa-arrow-right"></i></a>
-</div>
 </header>
 
 
@@ -52,75 +31,81 @@
 
 
 
-<h2>Mr. Show, &#39;Change For a Dollar&#39; and Recursion</h2>
+  <div class="title-wrap">
+  <h2>
+    What Makes a Great Joke Better than a Good Joke? Recursion.
+  </h2>
+  </div>
+<!-- title: What Separates a Good Joke From a Great Joke? Recursion. -->
 
-<p>If you&#39;re familiar with Mr. Show, you probably know that a technique common to some of the funniest (and worst) sketches is the assiduous repetition of a single idea. This technique works beautifully in &#39;The Story of Everest&#39; and &#39;The Audition&#39;, where the repetition continually heightens the comedic effect.</p>
+<p><img src="https://i.vimeocdn.com/video/199532043_640.jpg" alt="Mr. Show&#39;s Bob and David">
+If you&#39;re familiar with Mr. Show, you may know the technique common to many of their most successful sketches: assiduous repetition of a single idea. It&#39;s the key to &#39;The Story of Everest&#39; and &#39;The Audition&#39;, where the same thing happens again and again, and things gets exponentially funnier.</p>
 
-<p>The sketch &#39;Change for a Dollar&#39; uses this tight repetition to play a good joke on the fate of value in the hands of pure bureaucracy. Oddly, the structure is legimately recursive in nature and serves as a good (if not highly alternative) introduction to the winding-and-unwinding-process of a recursive routine.</p>
+<p>The sketch <a href="https://www.youtube.com/watch?v=cGuT97v4pv0">&#39;Change for a Dollar&#39;</a> uses this tight repetition to play a good joke on the fate of value in the hands of pure bureaucracy. Oddly, the structure is legimately recursive and I think serves as a good (if not highly alternative) illustration of the winding-and-unwinding process of a recursive program.</p>
 
-<p>Recursion? Mr. Show?</p>
+<p>The gist of the sketch is that a man asks a convenience store clerk to exchange a dollar for four quarters. Instead of just saying yes or no, the clerk, after some delay, has to ask his boss for permission, and it turns out his boss must also, after some delay, ask <em>his</em> boss for permission. This continues until the original request reaches an employee with the credentials to say yes or no. At that point, the answer propagates back through each boss to the requesting underling. When that underling is the store clerk, he can tell the customer the answer.</p>
 
-<p>Yes, recursion! Yes, Mr. Show!</p>
-
-<p>The gist of the sketch is that a man asks a convenience store clerk to exchange a dollar for four quarters. Instead of just saying yes or no, the clerk has to ask his boss for permission, and it turns out his boss must in turn ask <em>his</em> boss for permission, and so on, until the original request reaches an employee with the credentials to say yes or no. At that point, the answer propagates back through each boss to the requesting underling. When that underling is the store clerk, the customer receives the answer: &#39;no&#39;.</p>
-
-<p>You can think of each scene as the &#39;execution context&#39; of a new function placed on top of the call stack created by the request to make change. For every scene, the boss from the previous scene assumes the roll of the employee seeking an answer from his boss. If the employee cannot authorize the request, he must call the same &#39;procedure&#39; on his boss.      </p>
+<p>In terms related to recursion, each scene is the execution context of a new function placed on top of the call stack that stores the state of the a program (whose purpose is to find out if an employee can have change for a dollar). In each scene, the employee seeks authorization from his boss to make change for a dollar. If the employee&#39;s boss isn&#39;t able to authorize, he has to call <em>his</em> boss.</p>
 
 <p>Below, I&#39;ve created a basic model to represent the chain of command in this haplessly bureaucratic corporation (notice that employee5 is the only one who has the <code>authorize</code> method, meaning only he can sign off on the &#39;change for a dollar&#39; request): </p>
 
-<p>````javascript</p>
-
-<p>var employee5 = {
-  name: &#39;President of the United States&#39;,
+<pre>
+<code class='language-javascript'>
+var employee5 = {
+  name: 'President of the United States',
   boss: null,
   authorize: function() {
-    return &#39;no&#39;;
+    return 'no';
   }
 };
 var employee4 = {
-  name: &#39;Corporate Executive&#39;,
+  name: 'Corporate Executive',
   boss: employee5,
 };
 var employee3 = {
-  name:&#39;Regional Manager&#39;,
+  name:'Regional Manager',
   boss: employee4,
 };
 var employee2 = {
-  name:&#39;Store Manager&#39;,
+  name:'Store Manager',
   boss: employee3,
 };
 var employee1 = {
-  name:&#39;Store Clerk&#39;,
+  name:'Store Clerk',
   boss: employee2,
-};</p>
-
-<p>````</p>
+};
+</code>
+</pre>
 
 <p>The five employee objects make up a singly-linked-list where each employee save the last has a reference to his boss, who has a reference to his boss, etc. We can use this structure to recurse through the list until an employee with an <code>authorize</code> method is found.</p>
 
-<p><code>javascript
+<pre>
+<code class='language-javascript'>
 var customer = {
-  name: &#39;customer&#39;,
+  name: 'customer',
   say: function(phrase) { console.log(phrase)},
   getChangeForADollar: function(employee) {
-    console.log(&#39;Asking the %s ...&#39;, employee.name);
+    console.log('Asking the %s ...', employee.name);
     if (employee.authorize) {
       var answer = employee.authorize();
-      return &#39;the answer is &#39; + answer +&#39;.&#39;; 
+      return 'the answer is ' + answer +'.'; 
     }
     else {
       return this.getChangeForADollar(employee.boss);
     }
   }
 };
-</code></p>
+</code>
+</pre>
 
 <p>When the <code>authorize</code> method is found on an employee, the results of that method call are returned. This is our base case, and causes each function on the call stack to resolve its return value until the original caller is reached. </p>
 
-<p><code>
-customer.say(&#39;Can I get change for a dollar?&#39;);
+<pre>
+<code class='language-javascript'>
+customer.say('Can I get change for a dollar?');
 console.log(customer.getChangeForADollar(employee1));
-</code></p>
+</code>
+</pre>
 
 <p>Why is this not iterative?</p>
 
@@ -128,31 +113,20 @@ console.log(customer.getChangeForADollar(employee1));
 
 <ol>
 <li>The context for each authorization check is a totally new location relative to the specific employee and boss involved. If the sketch demonstrated iteration (like &#39;Story of Everest&#39; and &#39;The Audition&#39; mentioned above), the context of the employee traversal process would be the <code>customer.getChangeForADollar</code> method throughout, aka, the whole sketch would have to take place in the convenience store. </li>
-<li>The sketch demonstrates an explicit &#39;unwinding&#39; phase where the ultimate answer is relayed from the top of the command-chain, through each boss and underling, to the caller and in exactly the reverse order of the recursive calls.<br></li>
+<li>The sketch demonstrates an explicit &#39;unwinding&#39; phase where the ultimate answer is relayed from the top of the command-chain, through each boss and underling, to the caller and in exactly the reverse order of the recursive calls. I&#39;d go so far as to say that this unwinding phase contains the punchline of the joke.<br></li>
 </ol>
 
-<p>All of this is just to demonstrate that recursion can be hilarious! In any case, I&#39;m sure that the analogy eventually breaks down, so if YOU are interested in telling me exactly where it does, I would be flattered. Get @ me via Twitter. I&#39;m <a href="https://twitter.com/drlolzrofl">@drlolzrofl</a>.</p>
+<p>All of this is just to demonstrate that while a <em>good</em> joke may use repetition, it is the rare comedic gem that implements it recursively! In any case, I&#39;m sure that my analysis eventually breaks down, so if <strong>YOU</strong> are interested in telling me exactly where it does, I would be flattered. You can call me on my twitterphone, the number is simply: <a href="https://twitter.com/drlolzrofl">@drlolzrofl</a>. </p>
 
 <p>[note: there are almost exclusively gendered pronouns in this post and the reason is simply that the relevant roles in the sketch are played by David Cross and Bob Odenkirk, who in fact play all of the employees and bosses.]</p>
 
-<br>
-<br>
-<br>
-<br>
-<br>
 
 
 
 </div>
 
 <footer>
-  <p id="built-with">Built with 
-   <a href="http://flask.pocoo.org/">Flask</a>,
-   <a href="http://prismjs.com">prism.js</a>, 
-   <a href="http://jquery.com">jquery</a>
-   and <a href="http://backbonejs.org">Backbone.js</a> 
-  </p>
-  <p id="copyright">© Alex Ramsdell 2015</p>
+   <p id="copyright">© Alex Ramsdell 2015, All Rights Reserved.</p>
 </footer>
 
 
