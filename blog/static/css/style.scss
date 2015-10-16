@@ -9,7 +9,7 @@ html,body
   font-size: 100%;
 }
 
-html, body * {
+body * {
   margin: 0; 
   padding: 0;
 }
@@ -58,6 +58,7 @@ $black: rgb(40,40,40);
 .logo span {
   padding-top: calc(50% - 20px);
   display: block;
+  font-size: 32px;
   font-family: "Verdana";
   font-weight: 400;
   -webkit-text-fill-color: $yellow;
@@ -73,8 +74,32 @@ header li
 {display: inline-block;}
 
 header {
-  margin-top: 140px;
-  margin-left: 140px;
+  background: $yellow;
+  font-family: Verdana;
+  width: calc(100% - 90px);
+  float:right;
+  text-align: center;
+  height: 70px;
+  padding-top: 20px;
+
+}
+
+nav {
+  display: block;
+  width: calc(100% - 90px);
+  height: 100%;
+}
+
+nav ul li {
+  margin-top: 13px;
+  padding-left: 1%;
+  padding-right: 1%;
+}
+nav ul li:first-child {
+  padding-left: 0px;
+}
+nav ul li:last-child {
+  padding-right: 0px;
 }
 
 
@@ -87,6 +112,12 @@ header {
 
 .content p {
   font-family: Baskerville;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.content h1 {
+  font-family: Verdana;
+  font-weight: 100px;
 }
 
 img {
@@ -111,4 +142,10 @@ pre.code
 footer {
   padding: 20px;
   text-align: center;
+}
+
+@media(max-width: 600px) {
+  .content {
+    width: 90%;
+  }
 }
