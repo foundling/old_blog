@@ -8,7 +8,15 @@ html,body
   font-size: 100%;
 }
 
-body * { 
+body,
+li,
+div,
+img
+h1, h2, h3, h4, h5
+span,
+ul,
+a
+{ 
   margin:0;
   padding:0;
 }
@@ -40,6 +48,31 @@ $blue: deepskyblue;
 $lightgray: rgb(140,140,140);
 $black: rgb(40,40,40);
 
+
+
+/* HEADER */
+.logo,
+header nav,
+header li
+{display: inline-block;}
+
+
+/* CONTENT */
+
+.content {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.content p {
+}
+
+img {
+  text-align: center;
+  margin: 40px 10%;
+  width: 500px;
+}
+
 /* PRISM OVERRIDE STYLES */ 
 pre[class*="language-"] { 
   background: white;
@@ -53,9 +86,7 @@ pre.code
   overflow: hidden;    
 }
 
-
-/* HEADER */
-.logo,
-header nav,
-header li
-{display: inline-block;}
+footer {
+  padding: 20px;
+  text-align: center;
+}
