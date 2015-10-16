@@ -3,22 +3,15 @@
 html,body 
 {
   max-width:100%;
+  height: 100%;
   margin:0;
   padding:0;
   font-size: 100%;
 }
 
-body,
-li,
-div,
-img
-h1, h2, h3, h4, h5
-span,
-ul,
-a
-{ 
-  margin:0;
-  padding:0;
+html, body * {
+  margin: 0; 
+  padding: 0;
 }
 
 
@@ -45,16 +38,44 @@ body
 $bg: white;
 $yellow: yellow;
 $blue: deepskyblue;
+$pink: rgb(255,164,155);
 $lightgray: rgb(140,140,140);
 $black: rgb(40,40,40);
 
 
+/* LOGO */
+
+.logo {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 90px;
+  height: 90px;
+  background: $blue;
+  text-align: center;
+}
+
+.logo span {
+  padding-top: calc(50% - 20px);
+  display: block;
+  font-family: "Verdana";
+  font-weight: 400;
+  -webkit-text-fill-color: $yellow;
+  -webkit-text-stroke-width: 14px;
+  -webkit-text-stroke-color: transparent;
+  text-shadow: -3px 2px $pink;
+}
 
 /* HEADER */
 .logo,
 header nav,
 header li
 {display: inline-block;}
+
+header {
+  margin-top: 140px;
+  margin-left: 140px;
+}
 
 
 /* CONTENT */
@@ -65,6 +86,7 @@ header li
 }
 
 .content p {
+  font-family: Baskerville;
 }
 
 img {
