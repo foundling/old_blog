@@ -82,7 +82,6 @@ body
   display: block;
   font-size: 32px;
   font-family: "Verdana";
-  font-weight: 400;
   -webkit-text-fill-color: $yellow;
   -webkit-text-stroke-width: 14px;
   -webkit-text-stroke-color: transparent;
@@ -94,10 +93,31 @@ body
 .logo { display: inline-block }
 /* Desktop Header */
 
+// side social media menu + search
+#social-media {
+  position: fixed;
+  top: $headerHeight;
+  //left: calc( (-1 * #{$headerHeight}) + 20px );
+  left: 0;
+  width: $headerHeight;
+  height: calc( (2 * #{$headerHeight}) + 15px );
+}
+
+#social-media .fa {
+  margin-top: 20px;
+}
+
+
+.fa {
+  color: white;
+  font-size: 25px;
+}
+
+
 #desktop-header {
   background: $yellow;
   font-family: Verdana;
-  width: calc(100% - #{$headerHeight});
+  width: 100%;
   float:right;
   text-align: center;
   height: $headerHeight;
@@ -118,13 +138,18 @@ nav ul {
 
 .nav-item {
   box-sizing: border-box;
-  line-height: $headerHeight;
   display: inline-block;
+  font-size: 1.1em;
+  line-height: $headerHeight;
   padding-left: 5px;
   padding-right: 5px;
+  text-shadow: -1px 1px transparent;
   -webkit-text-stroke-width: 14px;
   -webkit-text-stroke-color: transparent;
-  text-shadow: -3px 2px whitesmoke;
+}
+
+.nav-item:hover {
+  border-bottom: 4px solid $pink;
 }
 
 #search-input { 
@@ -140,6 +165,9 @@ nav ul {
 
 #mobile-header { 
   display: none; 
+  position: fixed;
+  top: 0;
+  left: $headerHeight;
   width: calc(100% - #{$headerHeight});
   float:right;
   text-align: center;
@@ -207,6 +235,7 @@ footer {
   #mobile-header { display: block}
   #search { display: block}
   .content {
-    width: 90%;
+    width: 100%;
+    padding: 0;
   }
 }
