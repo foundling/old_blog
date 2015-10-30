@@ -66,8 +66,9 @@ body
 
 /* LOGO */
 
-.logo {
+.logo-container {
   position: fixed;
+  display: inline-block; 
   top: 0px;
   left: 0px;
   width: $headerHeight;
@@ -76,8 +77,9 @@ body
   text-align: center;
 }
 
-.logo span {
-  $color: yellow;
+#logolink { color: $yellow};
+
+#logotext {
   line-height: $headerHeight;
   display: block;
   font-size: 32px;
@@ -90,7 +92,6 @@ body
 
 /* HEADER */
 
-.logo { display: inline-block }
 /* Desktop Header */
 
 // side social media menu + search
@@ -147,6 +148,7 @@ nav ul {
   padding-left: 5px;
   padding-right: 5px;
   text-shadow: -1px 1px transparent;
+  -webkit-text-stroke-fill: white;
   -webkit-text-stroke-width: 14px;
   -webkit-text-stroke-color: transparent;
 }

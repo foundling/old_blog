@@ -51,8 +51,9 @@ body {
   background-color: white; }
 
 /* LOGO */
-.logo {
+.logo-container {
   position: fixed;
+  display: inline-block;
   top: 0px;
   left: 0px;
   width: 90px;
@@ -60,7 +61,10 @@ body {
   background: deepskyblue;
   text-align: center; }
 
-.logo span {
+#logolink {
+  color: #fdff3f; }
+
+#logotext {
   line-height: 90px;
   display: block;
   font-size: 32px;
@@ -71,9 +75,6 @@ body {
   text-shadow: -3px 2px #ff409b; }
 
 /* HEADER */
-.logo {
-  display: inline-block; }
-
 /* Desktop Header */
 #social-media {
   position: fixed;
@@ -119,6 +120,7 @@ nav ul {
   padding-left: 5px;
   padding-right: 5px;
   text-shadow: -1px 1px transparent;
+  -webkit-text-stroke-fill: white;
   -webkit-text-stroke-width: 14px;
   -webkit-text-stroke-color: transparent; }
 
