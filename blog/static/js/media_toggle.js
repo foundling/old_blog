@@ -6,6 +6,8 @@ var headerHeight = 90;
 var pastHeader = false;
 var arrowEl = document.getElementById('to-top');
 
+arrowEl.onclick = function() { window.scrollTo(0,0)}
+
 
 
 
