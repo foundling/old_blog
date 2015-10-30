@@ -59,7 +59,8 @@ body {
   background: deepskyblue;
   height: 90px;
   width: 90px;
-  text-align: center; }
+  text-align: center;
+  transition: background-color .5s linear; }
 
 .logolink {
   color: #fdff3f;
@@ -70,15 +71,13 @@ body {
   -webkit-text-stroke-width: 14px;
   -webkit-text-stroke-color: transparent;
   text-shadow: -3px 2px #ff409b;
-  transition: font-size 0.3s ease; }
+  transition: font-size .5s ease; }
 
 .logolink:hover {
-  font-size: 36px; }
+  font-size: 42px; }
 
-/* HEADER */
-/* Desktop Header */
-header {
-  height: 90px; }
+.logo-container:hover {
+  background: rgba(0, 191, 255, 0.44); }
 
 .logo-container,
 nav {
@@ -106,7 +105,8 @@ nav ul {
   text-shadow: -1px 1px transparent;
   -webkit-text-stroke-fill: white;
   -webkit-text-stroke-width: 14px;
-  -webkit-text-stroke-color: transparent; }
+  -webkit-text-stroke-color: transparent;
+  transition: border-bottom .5s ease; }
 
 .nav-item:hover {
   border-bottom: 4px solid deepskyblue; }
@@ -114,30 +114,21 @@ nav ul {
 .current-page-highlight {
   border-bottom: 4px solid #ff409b; }
 
-.media-up {
-  left: calc((90px * -1) + 10px);
-  top: 90px;
-  left: 0; }
+.social-media-icon {
+  margin-top: 25px;
+  transition: font .5s ease;
+  color: white;
+  font-size: 1.6em; }
 
-.media-down {
-  top: 90px; }
+.social-media-icon:hover {
+  color: #fdff3f;
+  font-size: 2em; }
 
 #social-media {
-  font-size: 100%;
   position: fixed;
   width: 90px;
   height: calc( (2 * 90px) + 48px );
   text-align: center; }
-
-#social-media .fa {
-  margin-top: 25px; }
-
-#social-media .fa:hover {
-  color: #fdff3f; }
-
-.fa {
-  color: white;
-  font-size: 1.6em; }
 
 #search-input {
   border: 1px solid #282828;

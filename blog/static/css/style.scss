@@ -13,6 +13,7 @@ $mobileHeaderHeight: 317.99px;
 $bg: white;
 $yellow: rgb(253,255,63);
 $blue: deepskyblue;
+$lightblue: rgba(0,191,255,0.44);
 $pink: rgb(255,64,155);
 $lightgray: rgb(240,240,240);
 $black: rgb(40,40,40);
@@ -76,6 +77,7 @@ body
   height: $headerHeight;
   width: $headerHeight;
   text-align: center;
+  transition: background-color .5s linear;
 }
 
 .logolink { 
@@ -87,19 +89,14 @@ body
   -webkit-text-stroke-width: 14px;
   -webkit-text-stroke-color: transparent;
   text-shadow: -3px 2px $pink;
-  transition: font-size 0.3s ease;
+  transition: font-size .5s ease;
 }
 
 .logolink:hover {
-  font-size: 36px;
+  font-size: 42px;
 }
-
-/* HEADER */
-
-/* Desktop Header */
-
-header {
-  height: $headerHeight;
+.logo-container:hover {
+  background: $lightblue;
 }
 
 .logo-container,
@@ -110,6 +107,7 @@ nav
   vertical-align: top;
 }
 
+// Navigation Bar
 nav {
   width: calc(100% - 90px);
   margin-left: -4px;
@@ -131,6 +129,7 @@ nav ul {height: 100%;}
   -webkit-text-stroke-fill: white;
   -webkit-text-stroke-width: 14px;
   -webkit-text-stroke-color: transparent;
+  transition: border-bottom .5s ease;
 }
 
 // hover stuff for nav items
@@ -143,37 +142,26 @@ nav ul {height: 100%;}
   border-bottom: 4px solid $pink;
 }
 
-// side social media menu + search
+// TO TOP MODULAR ARROW
+// SOCIAL MEDIA MENU / SEARCH
 
-.media-up {
-  left: calc((#{$headerHeight} * -1) + 10px);
-  top: $headerHeight;
-  left: 0;
+.social-media-icon {
+  margin-top: 25px;
+  transition: font .5s ease;
+  color: white;
+  font-size: 1.6em;
 }
 
-.media-down {
-  top: $headerHeight;
+.social-media-icon:hover {
+  color: $yellow;
+  font-size: 2em;
 }
 
 #social-media {
-  font-size: 100%;
   position: fixed;
   width: $headerHeight;
   height: calc( (2 * #{$headerHeight}) + 48px );
   text-align: center;
-}
-
-#social-media .fa {
-  margin-top: 25px;
-}
-
-#social-media .fa:hover {
-  color: $yellow;
-}
-
-.fa {
-  color: white;
-  font-size: 1.6em;
 }
 
 #search-input { 
@@ -245,9 +233,10 @@ footer {
 @media (max-width: 915px) {
   .content {width: 400px;}
 }
+
 @media (max-width: 715px) {
   nav {height: $mobileHeaderHeight}
   .nav-item, .nav-item:hover {border-bottom: none}
   .nav-item:hover {background: $pink}
-  .nav-item {display: block !important; height: 20%; line-height: calc(#{$mobileHeaderHeight} / 5) }
+  .nav-item {display: block !important; height: 20%; line-height: calc(#{$mobileHeaderHeight} / 5)}
 }
