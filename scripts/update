@@ -60,7 +60,13 @@ def pipe_to_vim(content):
         text = open(tempfile.name, 'r').read()
         return text
 
+def backup_file(name, content, directory):
+  os.listdir(directory)
+
 def main():
+
+    ## refactor this so you can fucking read it!
+    ## not actually updating anything
 
     client = connect() or sys.exit(1)
     blog_posts = client.blog.posts
@@ -87,6 +93,8 @@ def main():
                           
     updated_text = pipe_to_vim(targets[choice].get('content',''))
     result = blog_posts.update_one({'title':title},{'$set': {'content':updated_text}})
+
+    # write this also to published posts in /data/web/blog/blog/static/posts/versions
     print 'RESULT ',result
 
 if __name__ == '__main__':
