@@ -143,6 +143,32 @@ nav ul {height: 100%;}
 }
 
 // TO TOP MODULAR ARROW
+
+
+#to-top {
+  display: none; // initially hidden, toggled by js
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: $headerHeight;
+  width: $headerHeight;
+  text-align: center;
+}
+
+#carrot {
+  position: relative;
+  line-height: 110px;  
+  font-size: 90px;
+  font-family: Verdana;
+  width: 90px;
+  height: 90px; 
+}
+#carrot a {
+
+  color: $lightblue;
+}
+
+
 // SOCIAL MEDIA MENU / SEARCH
 
 .social-media-icon {

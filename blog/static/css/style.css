@@ -114,6 +114,26 @@ nav ul {
 .current-page-highlight {
   border-bottom: 4px solid #ff409b; }
 
+#to-top {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 90px;
+  width: 90px;
+  text-align: center; }
+
+#carrot {
+  position: relative;
+  line-height: 110px;
+  font-size: 90px;
+  font-family: Verdana;
+  width: 90px;
+  height: 90px; }
+
+#carrot a {
+  color: rgba(0, 191, 255, 0.44); }
+
 .social-media-icon {
   margin-top: 25px;
   transition: font .5s ease;
