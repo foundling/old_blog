@@ -148,6 +148,7 @@ nav ul {
   font-size: 2em; }
 
 #social-media {
+  display: inline-block;
   position: fixed;
   top: 90px;
   left: 0px;
@@ -214,6 +215,11 @@ footer {
   .content {
     width: 400px; } }
 @media (max-width: 715px) {
+  #social-media {
+    position: absolute;
+    top: 90px;
+    left: 0px; }
+
   nav {
     height: 317.99px; }
 

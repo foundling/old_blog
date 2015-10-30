@@ -186,6 +186,7 @@ nav ul {height: 100%;}
 }
 
 #social-media {
+  display: inline-block;
   position: fixed;
   top: 90px; 
   left: 0px;
@@ -265,6 +266,7 @@ footer {
 }
 
 @media (max-width: 715px) {
+  #social-media {position: absolute; top:90px; left: 0px;}
   nav {height: $mobileHeaderHeight}
   .nav-item, .nav-item:hover {border-bottom: none}
   .nav-item:hover {background: $pink}
