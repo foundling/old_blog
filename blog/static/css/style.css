@@ -93,7 +93,13 @@ nav {
   background: #fdff3f;
   text-align: center; }
 
+nav ul {
+  height: 100%; }
+
 .nav-item {
+  border-bottom: 4px solid transparent;
+  padding-left: 10px;
+  padding-right: 10px;
   display: inline-block;
   font-size: 1.1em;
   line-height: 90px;
@@ -101,6 +107,12 @@ nav {
   -webkit-text-stroke-fill: white;
   -webkit-text-stroke-width: 14px;
   -webkit-text-stroke-color: transparent; }
+
+.nav-item:hover {
+  border-bottom: 4px solid deepskyblue; }
+
+.current-page-highlight {
+  border-bottom: 4px solid #ff409b; }
 
 .media-up {
   left: calc((90px * -1) + 10px);
@@ -111,6 +123,7 @@ nav {
   top: 90px; }
 
 #social-media {
+  font-size: 100%;
   position: fixed;
   width: 90px;
   height: calc( (2 * 90px) + 48px );
@@ -124,7 +137,7 @@ nav {
 
 .fa {
   color: white;
-  font-size: 25px; }
+  font-size: 1.6em; }
 
 #search-input {
   border: 1px solid #282828;
@@ -137,11 +150,11 @@ nav {
 
 /* CONTENT */
 .content {
-  padding-top: 90px;
   width: 600px;
   min-width: 400px;
   margin: 0 auto;
-  padding-left: 20px; }
+  padding-left: 20px;
+  padding-bottom: 80px; }
 
 .content p {
   font-size: 1.5em;
@@ -185,10 +198,18 @@ footer {
   .content {
     width: 400px; } }
 @media (max-width: 715px) {
-  header {
-    height: 318px; }
+  nav {
+    height: 317.99px; }
 
-  .content {
-    padding-top: 318px; } }
+  .nav-item, .nav-item:hover {
+    border-bottom: none; }
+
+  .nav-item:hover {
+    background: #ff409b; }
+
+  .nav-item {
+    display: block !important;
+    height: 20%;
+    line-height: calc(317.99px / 5); } }
 
 /*# sourceMappingURL=style.css.map */

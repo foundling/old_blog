@@ -7,6 +7,7 @@
 /* VARIABLES */
 /* layout variables */
 $headerHeight: 90px;
+$mobileHeaderHeight: 317.99px;
 
 /* color variables */
 $bg: white;
@@ -117,7 +118,12 @@ nav {
   text-align: center;
 }
 
+nav ul {height: 100%;}
+
 .nav-item {
+  border-bottom: 4px solid transparent;
+  padding-left: 10px;
+  padding-right: 10px;
   display: inline-block;
   font-size: 1.1em;
   line-height: $headerHeight;
@@ -129,10 +135,12 @@ nav {
 
 // hover stuff for nav items
 .nav-item:hover {
+  border-bottom: 4px solid $blue;
 }
 
 // indication of current page
 .current-page-highlight {
+  border-bottom: 4px solid $pink;
 }
 
 // side social media menu + search
@@ -148,6 +156,7 @@ nav {
 }
 
 #social-media {
+  font-size: 100%;
   position: fixed;
   width: $headerHeight;
   height: calc( (2 * #{$headerHeight}) + 48px );
@@ -164,7 +173,7 @@ nav {
 
 .fa {
   color: white;
-  font-size: 25px;
+  font-size: 1.6em;
 }
 
 #search-input { 
@@ -179,15 +188,13 @@ nav {
 /* CONTENT */
 
 .content {
-  padding-top: $headerHeight;
   width: 600px;
   min-width: 400px;
   margin: 0 auto;
   padding-left: 20px;
+  padding-bottom: 80px;
 }
 
-.content > * {
-}
 
 .content p {
   font-size: 1.5em;
@@ -239,6 +246,8 @@ footer {
   .content {width: 400px;}
 }
 @media (max-width: 715px) {
-  header { height: 318px;} 
-  .content {padding-top: 318px;}
+  nav {height: $mobileHeaderHeight}
+  .nav-item, .nav-item:hover {border-bottom: none}
+  .nav-item:hover {background: $pink}
+  .nav-item {display: block !important; height: 20%; line-height: calc(#{$mobileHeaderHeight} / 5) }
 }
