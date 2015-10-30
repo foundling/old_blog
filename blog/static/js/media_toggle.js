@@ -6,9 +6,9 @@ var headerHeight = 90;
 var pastHeader = false;
 var arrowEl = document.getElementById('to-top');
 
-arrowEl.onclick = function() { window.scrollTo(0,0)}
-
-
+arrowEl.onclick = function() { 
+  window.scrollTo(0,0);
+};
 
 
 var checkWindowOffsetFromTop = function(event) {
@@ -16,12 +16,12 @@ var checkWindowOffsetFromTop = function(event) {
   if (windowOffsetY > headerHeight) {
     pastHeader = true;
     console.log('past header');  
-    arrowEl.style.display ='block';
+    arrowEl.className = arrowEl.className.replace('hidden','').trim(' ');
   }
   else {
     console.log('not past header');  
     pastHeader = false;
-    arrowEl.style.display ='none';
+    arrowEl.className += ' hidden';
   }
 };
 

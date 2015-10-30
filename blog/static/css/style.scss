@@ -27,6 +27,10 @@ $black: rgb(40,40,40);
 
 /* GENERAL ELEMENTS */
 
+.hidden {
+  display: none;
+}
+
 
 html,body 
 {
@@ -146,7 +150,6 @@ nav ul {height: 100%;}
 
 
 #to-top {
-  display: none; // initially hidden, toggled by js
   position: fixed;
   top: 0;
   left: 0;
@@ -156,18 +159,20 @@ nav ul {height: 100%;}
 }
 
 #carrot {
-  color: $lightblue;
   position: relative;
   line-height: 110px;  
   font-size: 90px;
   font-family: Verdana;
   width: 90px;
   height: 90px; 
+  transition: opacity 1s ease-in;
 }
 
+#carrot a {
+  color: $lightblue;
+}
 
 // SOCIAL MEDIA MENU / SEARCH
-
 .social-media-icon {
   margin-top: 25px;
   transition: font .5s ease;
@@ -182,6 +187,8 @@ nav ul {height: 100%;}
 
 #social-media {
   position: fixed;
+  top: 90px; 
+  left: 0px;
   width: $headerHeight;
   height: calc( (2 * #{$headerHeight}) + 48px );
   text-align: center;
