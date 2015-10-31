@@ -16,10 +16,8 @@
 from config import config
 from lib import utils
 
-
 def get_short_text(file_content):
     return file_content.split('\n')[0] 
-
 
 def append_user_values(post):
     prompt_questions = {
