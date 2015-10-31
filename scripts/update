@@ -8,30 +8,26 @@ import os
 import subprocess
 import sys
 
-from lib.helpers import usage
+from lib import db
+from lib import utils
 
 try:
     import pymongo
 
 except ImportError as err:
     msg = 'You probably didn\'t source your virtualenv. Do that and try again.'
-    usage(msg=msg, err=err) 
+    utils.usage(msg=msg, err=err) 
+
+db = Database('mongodb://localhost:27017')
 
 
-def usage(msg=None, err=None):
-    if err:
-        print "\nThe following Modules were not Imported:"
-        print '\n\n'.join( ''.join(['  ' + e + '\n']) for e in err)
-        sys.exit()
-    msg = msg if msg else 'usage: publish <FILENAME>'
-    print msg
 
 def connect(host='localhost',port='27017'):
 
     serverIsRunning = os.system('pgrep -q mongod') == 0
 
     if not serverIsRunning:
-        print 'mongod server is not running. start it and run the script again'
+        print 'The mongod server is not running. Try starting it and run the script again'
         sys.exit(1)
 
     try:
@@ -53,14 +49,14 @@ def pipe_to_vim(content):
 
     import tempfile
 
-    with tempfile.NamedTemporaryFile(suffix='task') as tempfile:
+    with tempfile.NamedTemporaryFile(suffix='blogpost') as tempfile:
         tempfile.write(content)
         tempfile.flush()
         subprocess.call(['vim', tempfile.name])
         text = open(tempfile.name, 'r').read()
         return text
 
-def backup_file(name, content, directory):
+def backup_file(name, content, directory='/data/web/blog/blog/static/posts/versions'):
   os.listdir(directory)
 
 def main():
@@ -92,6 +88,7 @@ def main():
         break
                           
     updated_text = pipe_to_vim(targets[choice].get('content',''))
+    backup_post()
     result = blog_posts.update_one({'title':title},{'$set': {'content':updated_text}})
 
     # write this also to published posts in /data/web/blog/blog/static/posts/versions

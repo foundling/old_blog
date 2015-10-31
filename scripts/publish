@@ -9,16 +9,13 @@
         - connects to a mongodb 'blog' database 'post' collection
         - inserts the post object into the post collection
         - asserts that the same thing that was inserted is retrievable
+
+        TODO: add type: field, aka, blogpost, staticpost
 '''
 
 from config import config
+from lib import utils
 
-def usage(aux_msg=None, err_msg=None):
-    if err_msg:
-        print "\nThe following Modules were not Imported:"
-        print '\n\n'.join( ''.join(['  ' + e + '\n']) for e in err_msg)
-    aux_msg = aux_msg or 'usage: publish file1'
-    print aux_msg
 
 def get_short_text(file_content):
     return file_content.split('\n')[0] 
@@ -29,6 +26,7 @@ def append_user_values(post):
                             'title':'Title:',
                             'author':'Author:',
                             'keywords':'Keywords:',
+                            'type:':'Type',
                             'published':'Publish? (y/Y) [default: no/draft]:',
                        }
 
@@ -58,15 +56,21 @@ def append_automatic_values(client, post):
 
     return post
 
-def move_to_published_dir(filename):
-    cmd = '\mv {} {}'.format(filename,config['published_dir'])
-    if filename in os.listdir(config['published_dir']):
-        print "Can't move {} to {} because a file by that name already exists there. Quitting...".format(
-                filename,config['published_dir'])
-        sys.exit(1)
-    else:
-        print 'publishing {} and \nmoving it to {}'.format(filename,config['published_dir'])
-        os.system(cmd)
+def save_version(post):
+  ''' 
+    take current title entered to update
+    find version titles of which the name is a subset
+    get the largest version number
+    increment it and save a new file with the current name and the incremented version
+  '''
+
+  new_filename = post['title']
+  content = post['content']
+  current_date = datetime.datetime.isoformat(datetime.datetime.now())
+  f = open(config['versions_dir'] + '/' + new_filename + '_' + current_date, 'w')
+  f.write(content)
+  f.close()
+  # new filename should be a subset of versioned filenames with one or more digits at the end, or its not a match
 
 
 def connect(host='localhost',port='27017'):
@@ -99,9 +103,8 @@ def main():
     post = {}
     post = append_user_values(post)
     post = append_automatic_values(client, post)
-
+    save_version(post)
     client.blog.posts.insert_one(post)
-    # here, you assert that the post is what you inserted
     client.close()
 
 if __name__ == '__main__':
@@ -112,16 +115,18 @@ if __name__ == '__main__':
         import json
         import os 
         import pprint
+        import re
         import sys
         import pymongo
 
     except ImportError as err:
-        usage("You Probably didn't source your virtual environment. Do that and try again!", err) 
+        utils.usage("You Probably didn't source your virtual environment. Do that and try\
+               again!", err) 
         sys.exit(1)
 
 
     if len(sys.argv) < 2:
-        usage()
+        utils.usage()
         sys.exit(1)
 
     else:

@@ -56,6 +56,7 @@ def projects_all():
 
 @app.route('/about')
 def about_me():
+
   return render_template('about.html')
 
 @app.route('/fun')
