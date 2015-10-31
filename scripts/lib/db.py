@@ -28,17 +28,25 @@ class Database(object):
 
       return client
 
+  def close_connection(self):
+
+      self.db.close()
+
+
 
   def find_one(self, query, collection='posts'):
     return self.db[collection].find_one(query)
 
-  def find_all(self, query, collection='posts'):
+  def find_all(self, query={}, collection='posts'):
     result_set = self.db[collection].find(query)
-    return (result for result in result_set)
+    return [result for result in result_set]
 
   def find_n_most_recent(self, n, collection='posts'):
     result_set = self.db[collection].find().sort('title', pymongo.DESCENDING)
-    return (result for result in result_set)
+    return [result for result in result_set]
+
+  def insert_one(self, document, collection='posts'):
+    self.db[collection].insert_one(document);
 
   def update_one(self, query, update, collection='posts'):
     ''' 
@@ -51,7 +59,7 @@ class Database(object):
 
 if __name__ == '__main__':
 
-  db = Database('mongodb://localhost:27017')
+  db = db.Database('mongodb://localhost:27017')
 
   #print db.update_one({'title':'test updated!'},{'$set' : {'title':'test updated again!'}})
   #print db.find_one(title='test updated again!')

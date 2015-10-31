@@ -1,31 +1,35 @@
 #!/usr/bin/env python
-''' 
-    This script takes a file path as an argument and does the following:
-        - creates a post object
-        - takes user input regarding the post name, author and keywords
-        - adds these to the object
-        - reads the file content and calculates an excerpt
-        - adds these to the object
-        - connects to a mongodb 'blog' database 'post' collection
-        - inserts the post object into the post collection
-        - asserts that the same thing that was inserted is retrievable
 
-        TODO: add type: field, aka, blogpost, staticpost
-'''
+try:
+  import arrow
+  import datetime
+  import json
+  import os 
+  import pprint
+  import re
+  import sys
+  import pymongo
+
+except ImportError as err:
+  utils.usage("You Probably didn't source your virtual environment. Do that and try again!", err) 
+  sys.exit(1)
+
 
 from config import config
 from lib import utils
+from lib import db
 
 def get_short_text(file_content):
+    ''' this should be as many paragraphs that fit into 160 chars '''
     return file_content.split('\n')[0] 
 
 def append_user_values(post):
     prompt_questions = {
-                            'title':'Title:',
-                            'author':'Author:',
-                            'keywords':'Keywords:',
-                            'type:':'Type',
-                            'published':'Publish? (y/Y) [default: no/draft]:',
+                            'title'   :'Title:',
+                            'author'    :'Author:',
+                            'keywords'  :'Keywords:',
+                            'type'      :'Type:',
+                            'published' :'Publish? (y/Y) [default: no/draft]:',
                        }
 
     for category in prompt_questions:
@@ -50,11 +54,11 @@ def append_automatic_values(client, post):
     post['date_published'] = datetime.datetime.now() 
     post['content'] = open(sys.argv[1]).read().decode('utf-8')
     post['short_text'] = get_short_text(post['content'])
-    post['post_id'] = client.blog.posts.find().count() + 1
+    post['post_id'] = len(db.find_all()) + 1
 
     return post
 
-def save_version(post):
+def save_to_versions(post):
   ''' 
     take current title entered to update
     find version titles of which the name is a subset
@@ -67,65 +71,27 @@ def save_version(post):
   current_date = datetime.datetime.isoformat(datetime.datetime.now())
   f = open(config['versions_dir'] + '/' + new_filename + '_' + current_date, 'w')
   f.write(content)
+  f.flush()
   f.close()
-  # new filename should be a subset of versioned filenames with one or more digits at the end, or its not a match
 
+def main(db):
 
-def connect(host='localhost',port='27017'):
-
-    serverIsRunning = os.system('pgrep -q mongod') == 0
-
-    if not serverIsRunning:
-        print 'mongod server is not running. start it and run the script again'
-        sys.exit(1)
-
-    try:
-        client = pymongo.MongoClient(''.join([
-                                        'mongodb://',
-                                        host,
-                                        ':',
-                                        port,
-                                        '/',
-                                        ]),
-                                        connectTimeoutMS=1000
-                                     )
-    except pymongo.errors.ConnectionFailure:
-        return False
-
-    return client
-
-
-def main():
-
-    client = connect()
     post = {}
     post = append_user_values(post)
-    post = append_automatic_values(client, post)
-    save_version(post)
-    client.blog.posts.insert_one(post)
-    client.close()
+    post = append_automatic_values(db, post)
+    save_to_versions(post)
+    db.insert_one(post)
+
+
 
 if __name__ == '__main__':
 
-    try:
-        import arrow
-        import datetime
-        import json
-        import os 
-        import pprint
-        import re
-        import sys
-        import pymongo
-
-    except ImportError as err:
-        utils.usage("You Probably didn't source your virtual environment. Do that and try\
-               again!", err) 
-        sys.exit(1)
-
+    db = db.Database('mongodb://localhost:27017')
 
     if len(sys.argv) < 2:
-        utils.usage()
-        sys.exit(1)
+
+      utils.usage()
+      sys.exit(1)
 
     else:
-        main()
+        main(db)

@@ -11,7 +11,6 @@ from lib import utils
 
 db = db.Database('mongodb://localhost:27017')
 
-
 def backup_file(name, content, directory='/data/web/blog/blog/static/posts/versions'):
   os.listdir(directory)
 
