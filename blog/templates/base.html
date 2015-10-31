@@ -3,7 +3,14 @@
   <link href='https://fonts.googleapis.com/css?family=Lora|Lato|Source+Serif+Pro|Old+Standard+TT' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href={{url_for('static',filename="css/prism.css")}}>
   <link rel="stylesheet" href={{url_for('static',filename="css/style.css")}}>
-
+  <script src={{url_for('static',filename="js/fastclick.js")}}></script>
+  <script type="application/javascript">
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
+    }
+  </script>
 </head>
 
 <body>
