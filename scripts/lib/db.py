@@ -7,9 +7,20 @@ class Database(object):
 
   def find_one(self, collection='posts', **kwargs):
     query = dict([kw, kwargs[kw]] for kw in kwargs)
-    print self.db[collection].find_one(query)
+    return self.db[collection].find_one(query)
+
+  def find_all(self, collection='posts', **kwargs):
+    query = dict([kw, kwargs[kw]] for kw in kwargs)
+    result_set = self.db[collection].find(query)
+    return (result for result in result_set)
+
+  def find_n_most_recent(self, n, collection='posts'):
+    result_set = self.db[collection].find().sort('title', pymongo.DESCENDING)
+    return (result for result in result_set)
 
 if __name__ == '__main__':
 
   db = Database('mongodb://localhost:27017')
-  db.find_one(title='What\'s the Difference Between a Good Joke and a Great Joke?')
+  print db.find_one(title="test")
+  #for r in db.find_all(title="test"): print r
+  #for r in db.find_n_most_recent(5): print r
