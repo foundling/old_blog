@@ -1,0 +1,129 @@
+/* LOGO */
+.logo-container {
+  background: $blue;
+  height: $headerHeight;
+  width: $headerHeight;
+  text-align: center;
+  transition: background-color .5s linear;
+}
+
+.logolink { 
+  color: $yellow; 
+  font-size: 32px;
+  font-family: "Verdana";
+  line-height: $headerHeight;
+  -webkit-text-fill-color: $yellow;
+  -webkit-text-stroke-width: 14px;
+  -webkit-text-stroke-color: transparent;
+  text-shadow: -3px 2px $pink;
+  transition: font-size .5s ease;
+}
+
+.logolink:hover {
+  font-size: 42px;
+}
+.logo-container:hover {
+  background: $lightblue;
+}
+
+.logo-container,
+nav
+{
+  font-family: Verdana;
+  display: inline-block;
+  vertical-align: top;
+}
+
+// Navigation Bar
+nav {
+  width: calc(100% - 90px);
+  margin-left: -4px;
+  height: $headerHeight; 
+  background: $yellow;
+  text-align: center;
+}
+
+nav ul {height: 100%;}
+
+.nav-item {
+  border-bottom: 4px solid transparent;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: inline-block;
+  font-size: 1.1em;
+  line-height: $headerHeight;
+  text-shadow: -1px 1px transparent;
+  -webkit-text-stroke-fill: white;
+  -webkit-text-stroke-width: 14px;
+  -webkit-text-stroke-color: transparent;
+  transition: border-bottom .5s ease;
+}
+
+// hover stuff for nav items
+.nav-item:hover {
+  border-bottom: 4px solid $blue;
+}
+
+// indication of current page
+.current-page-highlight {
+  border-bottom: 4px solid $pink;
+}
+
+// TO TOP MODULAR ARROW
+
+
+#to-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: $headerHeight;
+  width: $headerHeight;
+  text-align: center;
+}
+
+#carrot {
+  position: relative;
+  line-height: 110px;  
+  font-size: 90px;
+  font-family: Verdana;
+  width: 90px;
+  height: 90px; 
+  transition: opacity 1s ease-in;
+}
+
+#carrot a {
+  color: $lightblue;
+}
+
+// SOCIAL MEDIA MENU / SEARCH
+.social-media-icon {
+  margin-top: 25px;
+  transition: font .5s ease;
+  color: white;
+  font-size: 1.6em;
+}
+
+.social-media-icon:hover {
+  color: $yellow;
+  font-size: 2em;
+}
+
+#social-media {
+  display: inline-block;
+  position: fixed;
+  top: 90px; 
+  left: 0px;
+  width: $headerHeight;
+  height: calc( (2 * #{$headerHeight}) + 48px );
+  text-align: center;
+}
+
+#search-input { 
+  border: 1px solid $black;
+  vertical-align: middle;
+  height: 2em;
+  padding: 2px 0px 2px 5px; 
+}
+
+#search-icon { padding-right: 10px; }
+

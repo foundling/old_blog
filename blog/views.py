@@ -25,10 +25,7 @@ else:
 @app.route('/')
 @app.route('/index.html')
 def latest_posts():
-  # should show last five posts
-  # at end, a link to archive
   latest_posts = n_most_recent(db,5)
-  print 'XYZ:', latest_posts
   return render_template('index.html',posts=latest_posts)
 
 # all posts
@@ -48,11 +45,19 @@ def single_blog_post(post_id):
 
 @app.route('/projects/<post_name>')
 def projects_by_name(post_name):
+
   return render_template('single_project.html')
 
 @app.route('/projects')
 def projects_all():
-  return render_template('projects.html')
+  projects = [
+    {'name':'node-help'},
+    {'name':'list'},
+    {'name':'coaster'},
+    {'name':'task'},
+    {'name':'billing interface'}
+  ]
+  return render_template('projects.html', projects=projects)
 
 @app.route('/about')
 def about_me():
