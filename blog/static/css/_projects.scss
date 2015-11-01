@@ -8,22 +8,34 @@
 .projects-header {
   display: block;
   padding-top: 30px;
+  padding-bottom: 80px;
+
 }
 
 .project-name {
   font-family: "Baskerville";
 }
 
-.projects-list ul {
+span.project-name {
+
+}
+
+h2.project-name {
+  font-family: Verdana;
+  font-size: 2em;
+}
+
+.projects-menu-list {
   padding-top: 30px;
   padding-left: 30px;
 }
 
-.projects-list li {
+.projects-menu-item {
   margin: 10px 0px 10px 0px;
+  font-size: 1.2em;
 }
 
-.projects-list,
+.projects-menu,
 .projects-illustration-container
 { 
   display: inline-block;
@@ -43,6 +55,10 @@
   width: 12vw;
   min-width: 80px;
   -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .diamond:nth-child(1) {

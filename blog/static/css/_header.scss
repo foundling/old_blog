@@ -16,6 +16,10 @@
   -webkit-text-stroke-width: 14px;
   -webkit-text-stroke-color: transparent;
   text-shadow: -3px 2px $pink;
+  -webkit-transition: font-size .5s ease;
+  -moz-transition: font-size .5s ease;
+  -o-transition: font-size .5s ease;
+  -ms-transition: font-size .5s ease;
   transition: font-size .5s ease;
 }
 
@@ -137,4 +141,3 @@
 }
 
 #search-icon { padding-right: 10px; }
-
