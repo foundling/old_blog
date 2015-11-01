@@ -3,7 +3,8 @@
   padding: 0; }
 
 body {
-  max-width: 100%; }
+  max-width: 100%;
+  background: #fdfdfd; }
 
 /* VARIABLES */
 /* layout */
@@ -87,19 +88,19 @@ body {
   background: rgba(0, 191, 255, 0.44); }
 
 .logo-container,
-nav {
+.main-menu {
   font-family: Verdana;
   display: inline-block;
   vertical-align: top; }
 
-nav {
+.main-menu {
   width: calc(100% - 90px);
   margin-left: -4px;
   height: 90px;
   background: #fdff3f;
   text-align: center; }
 
-nav ul {
+.main-menu ul {
   height: 100%; }
 
 .nav-item {
@@ -215,6 +216,58 @@ pre[class*="language-"] {
 pre.code {
   overflow: hidden; }
 
+.color-block {
+  background: deepskyblue;
+  height: 10px;
+  width: 10px;
+  display: inline-block; }
+
+.projects-header {
+  display: block;
+  padding-top: 30px; }
+
+.project-name {
+  font-family: "Baskerville"; }
+
+.projects-list ul {
+  padding-top: 30px;
+  padding-left: 30px; }
+
+.projects-list li {
+  margin: 10px 0px 10px 0px; }
+
+.projects-list,
+.projects-illustration-container {
+  display: inline-block;
+  vertical-align: top;
+  width: 49%; }
+
+.projects-illustration-container {
+  position: relative; }
+
+.diamond {
+  position: absolute;
+  left: 40px;
+  height: 12vw;
+  width: 12vw;
+  transform: rotate(45deg); }
+
+.diamond:nth-child(1) {
+  background: lightgray;
+  top: 40px; }
+
+.diamond:nth-child(2) {
+  background: deepskyblue;
+  top: 80px; }
+
+.diamond:nth-child(3) {
+  top: 120px;
+  background: #ff409b; }
+
+.diamond:nth-child(4) {
+  top: 160px;
+  background: #fdff3f; }
+
 @media (max-width: 900px) {
   .content {
     width: 500px; } }
@@ -244,7 +297,7 @@ pre.code {
     top: 90px;
     left: 0px; }
 
-  nav {
+  .main-menu {
     height: 317.99px; }
 
   .nav-item, .nav-item:hover {

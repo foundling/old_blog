@@ -1,6 +1,7 @@
 @import "base";
 @import "header";
 @import "content";
+@import "projects";
 
 
 
@@ -19,7 +20,7 @@
   .content h1 {width: 300px;}
   .content p {width: 300px; margin: 0; padding: 0;} 
   #social-media {position: absolute; top:90px; left: 0px;}
-  nav {height: $mobileHeaderHeight}
+  .main-menu {height: $mobileHeaderHeight}
 
   .nav-item, .nav-item:hover {border-bottom: none}
   .nav-item:hover {background: $pink}

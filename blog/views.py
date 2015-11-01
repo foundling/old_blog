@@ -52,6 +52,7 @@ def projects_by_name(post_name):
 def projects_all():
   projects = [
     {'name':'node-help'},
+    {'name':'this website'},
     {'name':'list'},
     {'name':'coaster'},
     {'name':'task'},

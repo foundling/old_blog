@@ -1,12 +1,29 @@
 {% extends "base.html" %}
 
   {% block content %}
-    <h1>Projects</h1>
-    <ul>
-      {% for project in projects %}
-      <div class="color-block"></div><li>{{project.name}}</li>
-      {% endfor %}
-    </ul>
+
+  <!-- PROJECTS HEADER -->
+    <section class="projects-header">
+      <nav class="projects-list">
+        <h1>Projects</h1>
+        <ul>
+          {% for project in projects %}
+          <li>
+            <div class="color-block"></div>
+            <span class="project-name">{{project.name}}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+      <aside class="projects-illustration-container">
+          <div class="diamond"></div>
+          <div class="diamond"></div>
+          <div class="diamond"></div>
+          <div class="diamond"></div>
+      </aside>
+    </section>
+
+    <!-- Project Descriptions -->
     <ul>
       {% for project in projects %}
       <h1>{{project.name}}</h1>

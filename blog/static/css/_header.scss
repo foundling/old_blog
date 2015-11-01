@@ -27,7 +27,7 @@
 }
 
 .logo-container,
-nav
+.main-menu
 {
   font-family: Verdana;
   display: inline-block;
@@ -35,7 +35,7 @@ nav
 }
 
 // Navigation Bar
-nav {
+.main-menu {
   width: calc(100% - 90px);
   margin-left: -4px;
   height: $headerHeight; 
@@ -43,7 +43,7 @@ nav {
   text-align: center;
 }
 
-nav ul {height: 100%;}
+.main-menu ul {height: 100%;}
 
 .nav-item {
   border-bottom: 4px solid transparent;
