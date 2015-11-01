@@ -57,16 +57,27 @@
   -webkit-text-stroke-width: 14px;
   -webkit-text-stroke-color: transparent;
   transition: border-bottom .5s ease;
+  transition: background .1s ease;
 }
 
 // hover stuff for nav items
 .nav-item:hover {
-  border-bottom: 4px solid $blue;
+  border-bottom: 4px solid $pink;
+  background: $blue;
+  color: whitesmoke;
+}
+.nav-item a {
+  display: inline-block;
+  height: 100%;
+}
+.nav-item a:hover {
+  color: whitesmoke;
 }
 
 // indication of current page
 .current-page-highlight {
   border-bottom: 4px solid $pink;
+  background: white;
 }
 
 // TO TOP MODULAR ARROW

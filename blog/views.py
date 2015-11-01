@@ -51,8 +51,8 @@ def projects_by_name(post_name):
 @app.route('/projects')
 def projects_all():
   projects = [
-    {'name':'node-help'},
     {'name':'this website'},
+    {'name':'node-help'},
     {'name':'list'},
     {'name':'coaster'},
     {'name':'task'},

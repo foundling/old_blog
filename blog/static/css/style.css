@@ -114,13 +114,24 @@ body {
   -webkit-text-stroke-fill: white;
   -webkit-text-stroke-width: 14px;
   -webkit-text-stroke-color: transparent;
-  transition: border-bottom .5s ease; }
+  transition: border-bottom .5s ease;
+  transition: background .1s ease; }
 
 .nav-item:hover {
-  border-bottom: 4px solid deepskyblue; }
+  border-bottom: 4px solid #ff409b;
+  background: deepskyblue;
+  color: whitesmoke; }
+
+.nav-item a {
+  display: inline-block;
+  height: 100%; }
+
+.nav-item a:hover {
+  color: whitesmoke; }
 
 .current-page-highlight {
-  border-bottom: 4px solid #ff409b; }
+  border-bottom: 4px solid #ff409b;
+  background: white; }
 
 #to-top {
   position: fixed;
@@ -249,8 +260,10 @@ pre.code {
   position: absolute;
   left: 40px;
   height: 12vw;
+  min-height: 80px;
   width: 12vw;
-  transform: rotate(45deg); }
+  min-width: 80px;
+  -webkit-transform: rotate(45deg); }
 
 .diamond:nth-child(1) {
   background: lightgray;
