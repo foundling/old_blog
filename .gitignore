@@ -1,3 +1,6 @@
 /env
-*.pyc
+*/**/*.pyc
 push.sh
+.DS_Store
+config.py
+

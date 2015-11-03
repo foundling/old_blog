@@ -1,29 +1,24 @@
-ROUTES for alexramsdell.com
+major site components:
 
-::LANDING::
+blog
+projects
+guides
+etc
 
-/index [last 5 posts]
-/
+routes:
 
-:: BLOG ::
+/archive
 
-/blog []
-/blog/<post_id>
-/blog/archive
+/blog/tutorials/<title>
+/blog/articles/<title>
 
-:: ABOUT ::
+/projects/<project name>
 
-/about
+/guides/python  (single page app)
+/guides/javascript  (single page app)
+/guides/linux  (single page app) 
 
-:: GUIDES ::
-
-/guides
-/guides/<guide_name>
-
-:: PROJECTS ::
-/projects
-/project/<project_name>
-
-
+/etc/music (single page app)
+/etc/design (single page app)
 
 
