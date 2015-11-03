@@ -3,5 +3,4 @@
 */**/*.pyc
 push.sh
 .DS_Store
-config.py
-
+*/**/config.py
