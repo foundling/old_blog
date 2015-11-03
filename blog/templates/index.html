@@ -5,7 +5,7 @@
     {% for post in posts %}
       <h1>{{post.title}}</h1>
       <div class="color-block"></div>
-      <h4>by {{post.author}} {{post.date | human_readable_date }}</h4>
+      <h4 class="byline">by {{post.author}} {{post.date | human_readable_date }}</h4>
       <p class="post-body">{{ post.short_text | markdown }}
       </p>
       <p>
