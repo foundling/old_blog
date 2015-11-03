@@ -186,9 +186,12 @@ body {
   padding-right: 10px; }
 
 /* CONTENT */
-h4.byline {
+.byline {
   display: inline-block;
-  padding-left: 10px; }
+  font-family: Verdana;
+  font-weight: 100;
+  padding-left: 10px;
+  padding-bottom: 3em; }
 
 .content, .content p, .content h1 {
   margin: 0 auto; }
@@ -206,17 +209,26 @@ h4.byline {
   padding-bottom: 10px;
   width: 100%; }
 
+.content p a:hover {
+  background: #ff409b;
+  color: white; }
+
+.content p a {
+  color: deepskyblue; }
+
 .content h1 {
   width: 100%;
   font-size: 3em;
   font-family: Verdana;
   font-weight: 600;
-  margin-top: 1.4em; }
+  margin-top: 1.4em;
+  margin-bottom: 0.5em; }
 
 .content ol li {
   list-style-type: decimal;
-  font-size: 18px;
-  margin: 20px auto; }
+  font-size: 1.5em;
+  margin: 20px auto;
+  width: 80%; }
 
 img {
   text-align: center;
