@@ -1,2 +1,2 @@
 # blog
-The code for alexramsdell.com
+This repo contains the code for alexramsdell.com.

@@ -4,13 +4,13 @@ import os
 
 from flask import Flask
 from flask.ext.misaka import Misaka
-from filters import human_readable_date
+from lib import filters 
 
 app = Flask(__name__)
-app.jinja_env.filters['human_readable_date'] = human_readable_date
+
+app.config['FREEZER_RELATIVE_URLS'] = True
+app.config['MONGODB_DATABASE_URI'] = 'mongodb://localhost:27017'
+app.jinja_env.filters['human_readable_date'] = filters.human_readable_date
 Misaka(app)
 
-
-from blog import views 
-
-print __path__
+import views 
