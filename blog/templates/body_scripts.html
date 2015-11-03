@@ -1,0 +1,12 @@
+{% block body_scripts %}
+  <script src="{{url_for('static',filename='js/prism.js')}}"></script>
+  <script src="{{url_for('static',filename='js/underline_nav_links.js')}}"></script>
+  <script src="{{url_for('static',filename='js/media_toggle.js')}}"></script>
+  <script>
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
+    }
+  </script>
+{% endblock %}

@@ -1,7 +1,7 @@
 from flask.ext.frozen import Freezer
 from blog import app
 
-FREEZER_IGNORE_MIMETYPE_WARNINGS = True
+#FREEZER_IGNORE_MIMETYPE_WARNINGS = True
 FREEZER_BASE_URL = '/data/web/blog'
 
 freezer = Freezer(app)

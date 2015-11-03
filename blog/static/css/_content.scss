@@ -1,0 +1,57 @@
+/* CONTENT */
+
+.content, .content p, .content h1 {
+  margin: 0 auto;
+}
+
+.content {
+  padding-top: 40px;
+  width: 680px;
+  padding-left: 20px;
+  padding-bottom: 80px;
+}
+
+
+.content p {
+  font-size: 1.5em;
+  font-family: Baskerville;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.content h1 {
+  width: 100%;
+  font-size: 3em;
+  font-family: Verdana;
+  font-weight: 600;
+  margin-top: 1.4em;
+}
+
+.content ol li {
+  list-style-type: decimal;
+  font-size: 18px;
+  margin: 20px auto;
+}
+
+img {
+  text-align: center;
+  margin: 40px 10%;
+  width: 80%;
+  max-width: 500px;
+}
+
+/* PRISM OVERRIDE STYLES */ 
+pre[class*="language-"] { 
+  background: white;
+  border: 1px solid black;
+  margin-top: 40px;
+  padding-top: 30px;
+  padding-left: 30px;
+}
+
+pre.code
+{
+  overflow: hidden;    
+}
+

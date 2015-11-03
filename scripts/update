@@ -3,155 +3,60 @@
 ''' This script updates a post '''
 
 import datetime
-import json
 import os 
-import pprint
-import subprocess
 import sys
-import tempfile
 
-from lib.helpers import usage
+from lib import db
+from lib import utils
 
-try:
-    import pymongo
+db = db.Database('mongodb://localhost:27017')
 
-except ImportError as err:
-    msg = 'You probably didn\'t source your virtualenv. Do that and try again.'
-    usage(msg=msg, err=err) 
-
-
-def pipe_to_vim():
-    with tempfile.NamedTemporaryFile(suffix='task') as tempfile:
-        tempfile.write(content)
-        tempfile.flush()
-        subprocess.call(['vim', tempfile.name])
-        text = open(temp.name, 'r').read()
-
-def usage(msg=None, err=None):
-    if err:
-        print "\nThe following Modules were not Imported:"
-        print '\n\n'.join( ''.join(['  ' + e + '\n']) for e in err)
-        sys.exit()
-    msg = msg if msg else 'usage: publish <FILENAME>'
-    print msg
-
-def get_short_text(file_content):
-    max_chars  = 80 
-    first_sentence = file_content.split('.')[0]
-    return first_sentence + '.' if len(first_sentence) <= max_chars else first_sentence + ' ... ' 
-
-
-def append_user_values(post):
-    prompt_questions = {
-                            'title':'Title:',
-                            'author':'Author:',
-                            'keywords':'Keywords:',
-                            'published':'Publish? (y/Y) [default: no/draft]:',
-                       }
-
-    for category in prompt_questions:
-
-        raw_string = raw_input(prompt_questions[category])
-
-        if category == 'keywords':
-            ''' process keywords by splitting string, stripping, lowercasing words'''
-            post[category] = [ kw.strip().lower() for kw in raw_string.split(',') ] 
-
-        elif category == 'published':
-            ''' map text to boolean values '''
-            post[category] = True if raw_string.strip() in ('y','Y') else False
-
-        else:
-            post[category] = raw_string.strip()
-
-    return post
-
-def append_automatic_values(post):
-    post['date_published'] = datetime.datetime.now() 
-    post['content'] = open(sys.argv[1]).read().decode('utf-8')
-    post['short_text'] = get_short_text(post['content'])
-
-    return post
-
-def move_to_published_dir(filename):
-    cmd = '\mv {} {}'.format(filename,config['published_dir'])
-    if filename in os.listdir(config['published_dir']):
-        print "Can't move {} to {} because a file by that name already exists there. Quitting...".format(
-                filename,config['published_dir'])
-        sys.exit(1)
-    else:
-        print 'publishing {} and \nmoving it to {}'.format(filename,config['published_dir'])
-        os.system(cmd)
-
-
-def connect(host='localhost',port='27017'):
-
-    serverIsRunning = os.system('pgrep -q mongod') == 0
-
-    if not serverIsRunning:
-        print 'mongod server is not running. start it and run the script again'
-        sys.exit(1)
-
-    try:
-        client = pymongo.MongoClient(''.join([
-                                        'mongodb://',
-                                        host,
-                                        ':',
-                                        port,
-                                        '/',
-                                        ]),
-                                        connectTimeoutMS=1000
-                                     )
-    except pymongo.errors.ConnectionFailure:
-        return False
-
-    return client
-
+def backup_file(name, content, directory='/data/web/blog/blog/static/posts/versions'):
+  os.listdir(directory)
 
 def main():
-
-    # Overall process
-
-    # query mongo for one or more titles that match a regex
-    # get back ids and titles for matches, or alert no match (try again) 
-    # display the results in a list to the user
-    # let user choose which file
-    # the id of the chosen file is then used to get the post content from mongo 
-    # use tempfile library to create a named tempfile
-    # write post content to temp file
-    # open temp file in vim with process.call(['vim',tempfilefile.name])
-    # open tempfile.name, read content (as utf-8)
-    # update post content field associated with that id with new content
-
-    
-    client = connect() or sys.exit(1)
-    blog_posts = client.blog.posts
-    title = [ word\
-              for word in raw_input('Post Title: ').strip().split(' ') 
-              if len(word) > 2 ]
-
-    # map each title to a case insensitive regex expression
-    # look them up in mongodb, getting only titles and ids
-    # put results in a set (by id) to eliminate duplicates
-    # present user with titles corresponding to set ids 
-
-    # if the user choses an id, that's a match, fetch the whole
-    # thing in mongodb
-    print 'exiting with sys.exit'
-    sys.exit()
+    ''' 
+    schema 
+      author: string, hardcoded to be 'alex'
+      post_id: int
+      tags: array of lowercase strings
+      content: string
+      short_text: string
+      permalink: url encoded string
+      title: String
+      date: isoformat datetime.datetime.now()
     '''
-    for post in blog_posts.find({"name":{"$regex":title}}).
-    client.blog.posts.find({name:post)
-    client.close()
-    move_to_published_dir(sys.argv[1])
-    '''
+
+    answer = None
+    targets = [] # potential posts to edit, delivered in a list
+    while (answer not in ('y','Y')):
+      title = raw_input('Enter the Title of the Post You Want to Edit:').strip()
+      exact_match = db.find_one({'title':title})
+      if exact_match:
+        targets.append(exact_match)
+      else:
+        longest_word_in_title = reduce(lambda x,y: x if len(x) > len(y) else y, title.split())
+        fuzzy_matches = db.find_all({"title":{"$regex": longest_word_in_title}})
+        for post in fuzzy_matches: 
+          targets.append(post)
+
+      print 'Is one of these what you are looking for?'
+      print '*'*24
+      for num, post in enumerate(targets): 
+        print '{}: {}'.format(num, post['title'])
+      print '*'*24
+
+      choice = int(raw_input('').strip())
+      if targets[choice]:
+        content = targets[choice].get('content','')
+        post_title = targets[choice].get('title')
+        updated_text = utils.edit_in_vim(content)
+        backup_file(title, content)
+        result = db.update_one({'title':post_title},{'$set': {'content':updated_text}})
+        break
+
+    # write this also to published posts in /data/web/blog/blog/static/posts/versions
+    print 'UPDATE RESULT: ',result
 
 if __name__ == '__main__':
-
-    if len(sys.argv) < 2:
-        import sys
-        usage()
-        sys.exit()
-
-    else:
         main()

@@ -1,0 +1,5 @@
+guard 'livereload' do
+  watch(%r{^static/css/.+\.(scss|css|js|ejs|html)})
+  watch(%r{^static/js/.+\.(js)})
+  watch(%r{^templates/.+\.(html)})
+end

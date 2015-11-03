@@ -1,0 +1,31 @@
+@import "base";
+@import "header";
+@import "content";
+@import "projects";
+
+
+
+@media (max-width: 900px ) {
+  .content {width: 500px;}
+}
+
+@media (max-width: 800px ) {
+  .content {width: 380px; margin: 0 auto; padding-bottom: 80px;}
+  .content h1 {width: 380px; font-size: 26px;}
+}
+
+
+@media (max-width: 690px) {
+  .content {width: 300px;}
+  .content h1 {width: 300px;}
+  .content p {width: 300px; margin: 0; padding: 0;} 
+  #social-media {position: absolute; top:90px; left: 0px;}
+  .main-menu {height: $mobileHeaderHeight}
+
+  .nav-item, .nav-item:hover {border-bottom: none}
+  .nav-item:hover {background: $pink}
+  .nav-item {display: block !important; height: 20%; line-height: calc(#{$mobileHeaderHeight} / 5)}
+}
+@media (max-width: 690px) {
+  
+}
