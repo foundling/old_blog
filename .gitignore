@@ -1,4 +1,5 @@
 /env
+/db
 */**/*.pyc
 push.sh
 .DS_Store
