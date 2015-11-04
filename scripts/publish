@@ -19,11 +19,14 @@ def get_short_text(file_content, max_chars=160):
     ''' this should be revised to include as many paragraphs that fit into 160 chars '''
     return file_content.split('\n')[0] 
 
-def append_user_values(post):
+def append_user_values(post, collection):
+
     prompt_questions = {
-                            'title'   :'Title: ',
-                            'tags'  :'Tags: ',
-                       }
+      'title'     :'Title: ',
+    }
+
+    if collection == 'posts': 
+      prompt_questions['tags'] = 'Tags: '
 
     for category in prompt_questions:
 
@@ -37,14 +40,16 @@ def append_user_values(post):
 
     return post
 
-def append_automatic_values(client, post):
+def append_automatic_values(client, post, collection):
 
-    post['author'] = 'alex'
     post['content'] = open(sys.argv[1]).read().decode('utf-8')
-    post['short_text'] = get_short_text(post['content'])
-    post['permalink'] = slugify.slugify(post['title'])
-    post['post_id'] = db.count() + 1
+    post['author'] = 'alex'
     post['date'] = datetime.datetime.now() 
+
+    if collection == 'posts':
+        post['short_text'] = get_short_text(post['content'])
+        post['post_id'] = db.count() + 1
+        post['permalink'] = slugify.slugify(post['title'])
 
     return post
 
@@ -60,22 +65,24 @@ def save_to_versions(post):
   content = post['content']
   current_date = datetime.datetime.isoformat(datetime.datetime.now())
   f = open(''.join([\
-                   config['SAVED_VERSIONS_DIR'],
-                   '/',
-                   new_filename.replace(' ','_'),
-                   '_',current_date])
+                     config['SAVED_VERSIONS_DIR'],
+                     '/',
+                     new_filename.replace(' ','_'),
+                     '_',current_date])
            ,'w')
-  f.write(content)
+  f.write(content.encode('utf-8'))
   f.flush()
   f.close()
 
 def main(db):
 
+    userChoice = raw_input('Post type?\n0: regular post\n1: static\n').strip()
+    collection = 'posts' if userChoice == '0' else 'static' 
     post = {}
-    post = append_user_values(post)
-    post = append_automatic_values(db, post)
+    post = append_user_values(post, collection)
+    post = append_automatic_values(db, post, collection)
     save_to_versions(post)
-    db.insert_one(post)
+    db.insert_one(post, collection=collection)
 
 
 

@@ -50,8 +50,8 @@ def projects_all():
 
 @app.route('/about')
 def about_me():
-
-  return render_template('about.html')
+  about_me = db.find_one({'title':'About Me'},collection='static')
+  return render_template('about.html', about_me=about_me)
 
 @app.route('/fun')
 def fun():

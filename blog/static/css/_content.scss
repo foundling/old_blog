@@ -28,11 +28,11 @@
   width: 100%;
 }
 
-.content p a:hover {
+.content a:hover {
   background: $pink;
   color: white;
 }
-.content p a {
+.content a {
   color: $blue;
 
 }
@@ -46,7 +46,9 @@
   margin-bottom: 0.5em;
 }
 
-.content ol li {
+.content li
+{
+  font-family: Baskerville;
   list-style-type: decimal;
   font-size: 1.5em;
   margin: 20px auto;

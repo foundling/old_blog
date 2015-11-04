@@ -209,11 +209,11 @@ body {
   padding-bottom: 10px;
   width: 100%; }
 
-.content p a:hover {
+.content a:hover {
   background: #ff409b;
   color: white; }
 
-.content p a {
+.content a {
   color: deepskyblue; }
 
 .content h1 {
@@ -224,7 +224,8 @@ body {
   margin-top: 1.4em;
   margin-bottom: 0.5em; }
 
-.content ol li {
+.content li {
+  font-family: Baskerville;
   list-style-type: decimal;
   font-size: 1.5em;
   margin: 20px auto;

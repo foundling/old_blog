@@ -11,9 +11,6 @@ from lib import utils
 
 db = db.Database('mongodb://localhost:27017')
 
-def backup_file(name, content, directory='/data/web/blog/blog/static/posts/versions'):
-  os.listdir(directory)
-
 def main():
     ''' 
     schema 
@@ -27,16 +24,19 @@ def main():
       date: isoformat datetime.datetime.now()
     '''
 
+    userChoice = raw_input('Post type?\n0: regular post\n1: static\n').strip()
+    collection = 'posts' if userChoice == '0' else 'static' 
+
     answer = None
     targets = [] # potential posts to edit, delivered in a list
     while (answer not in ('y','Y')):
       title = raw_input('Enter the Title of the Post You Want to Edit:').strip()
-      exact_match = db.find_one({'title':title})
+      exact_match = db.find_one({'title':title},collection=collection)
       if exact_match:
         targets.append(exact_match)
       else:
         longest_word_in_title = reduce(lambda x,y: x if len(x) > len(y) else y, title.split())
-        fuzzy_matches = db.find_all({"title":{"$regex": longest_word_in_title}})
+        fuzzy_matches = db.find_all({"title":{"$regex": longest_word_in_title}},collection=collection)
         for post in fuzzy_matches: 
           targets.append(post)
 
@@ -51,11 +51,11 @@ def main():
         content = targets[choice].get('content','')
         post_title = targets[choice].get('title')
         updated_text = utils.edit_in_vim(content)
-        backup_file(title, content)
-        result = db.update_one({'title':post_title},{'$set': {'content':updated_text}})
+        query = {'title':post_title}
+        update = {'$set': {'content':updated_text}}
+        result = db.update_one(query, update, collection=collection)
         break
 
-    # write this also to published posts in /data/web/blog/blog/static/posts/versions
     print 'UPDATE RESULT: ',result
 
 if __name__ == '__main__':

@@ -19,9 +19,9 @@ def edit_in_vim(content):
     import tempfile
 
     with tempfile.NamedTemporaryFile(suffix='blogpost') as tempfile:
-        tempfile.write(content)
+        tempfile.write(content.encode('utf-8'))
         tempfile.flush()
         subprocess.call(['vim', tempfile.name])
-        text = open(tempfile.name, 'r').read()
+        text = open(tempfile.name, 'r').read().decode('utf-8')
         return text
 
