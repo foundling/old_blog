@@ -27,5 +27,6 @@
   .nav-item {display: block !important; height: 20%; line-height: calc(#{$mobileHeaderHeight} / 5)}
 }
 @media (max-width: 400px) {
-  .content p {width: 100%; margin: 0; padding: 0;} 
+  .content p {width: 100%; margin: 0; padding: 0; } 
+  code {word-break: break-word;}
 }

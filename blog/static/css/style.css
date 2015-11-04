@@ -379,6 +379,9 @@ h2.project-name {
   .content p {
     width: 100%;
     margin: 0;
-    padding: 0; } }
+    padding: 0; }
+
+  code {
+    word-break: break-word; } }
 
 /*# sourceMappingURL=style.css.map */
