@@ -161,8 +161,7 @@ body {
   color: whitesmoke; }
 
 .current-page-highlight {
-  border-bottom: 4px solid #ff409b;
-  background: white; }
+  border-bottom: 4px solid #ff409b; }
 
 #to-top {
   position: fixed;
@@ -213,6 +212,9 @@ body {
   padding-right: 10px; }
 
 /* CONTENT */
+.full-article, .more-posts {
+  font-family: Verdana; }
+
 .content, .content p, .content h1, .content img {
   margin: 0 auto;
   max-width: 100%; }
@@ -231,11 +233,11 @@ body {
   width: 100%; }
 
 .content a:hover {
+  padding: 5px;
   background: #ff409b;
   color: white; }
 
 .content a {
-  padding: 5px;
   color: deepskyblue; }
 
 .content h1 {
@@ -273,7 +275,7 @@ pre.code {
 
 .projects-header {
   display: block;
-  padding-top: 30px;
+  padding-top: 90px;
   padding-bottom: 80px; }
 
 .project-name {
@@ -281,7 +283,7 @@ pre.code {
 
 h2.project-name {
   font-family: Verdana;
-  font-size: 2em; }
+  font-size: 22px; }
 
 .projects-menu-list {
   padding-top: 30px;
@@ -298,7 +300,8 @@ h2.project-name {
   width: 49%; }
 
 .projects-illustration-container {
-  position: relative; }
+  position: relative;
+  top: -85px; }
 
 .diamond {
   position: absolute;
@@ -369,15 +372,19 @@ h2.project-name {
     border-bottom: none; }
 
   .nav-item:hover {
-    background: #ff409b; }
+    color: #ff409b; }
 
   .nav-item {
+    background: white;
+    text-align: center;
+    margin-left: 17%;
+    padding-left: 7%;
     display: block !important;
     height: 20%;
     line-height: calc(317.99px / 5); } }
 @media (max-width: 400px) {
   .content {
-    width: 90%;
+    width: 70%;
     margin: 0 auto;
     padding: 0; }
 

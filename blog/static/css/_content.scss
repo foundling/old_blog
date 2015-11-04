@@ -1,5 +1,9 @@
 /* CONTENT */
 
+.full-article, .more-posts {
+  font-family: Verdana;
+}
+
 .content, .content p, .content h1, .content img {
   margin: 0 auto;
   max-width: 100%;
@@ -12,7 +16,6 @@
   padding-left: 20px;
 }
 
-
 .content p {
   font-size: 1.5em;
   font-family: Baskerville;
@@ -22,11 +25,12 @@
 }
 
 .content a:hover {
+  padding: 5px;
   background: $pink;
   color: white;
 }
+
 .content a {
-  padding: 5px;
   color: $blue;
 
 }
@@ -70,4 +74,3 @@ pre.code
 {
   overflow: hidden;    
 }
-

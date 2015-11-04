@@ -36,7 +36,7 @@ def projects_by_name(post_name):
 
   return render_template('single_project.html')
 
-@app.route('/projects.html')
+@app.route('/projects')
 def projects_all():
   projects = [
     {'name':'this website'},
@@ -55,11 +55,15 @@ def about_me():
 
 @app.route('/fun')
 def fun():
-  return render_template('fun.html')
+  return 'not implemented' 
+
+@app.route('/fun/music')
+def music():
+  return 'not implemented' 
 
 @app.route('/guides')
 def guides():
-  return render_template('guides.html')
+  return 'not implemented' 
 
 @app.route('/guides/<guide_name>')
 def guides_by_name(guide_name):

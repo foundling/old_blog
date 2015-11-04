@@ -13,7 +13,6 @@
   .content h1 {width: 380px; font-size: 26px;}
 }
 
-
 @media (max-width: 690px) {
   .content { width: 300px; margin: 0 auto;}
   pre[class*="language-"] {margin: 40px 0px; }
@@ -23,10 +22,13 @@
   .main-menu {height: $mobileHeaderHeight}
 
   .nav-item, .nav-item:hover {border-bottom: none}
-  .nav-item:hover {background: $pink}
-  .nav-item {display: block !important; height: 20%; line-height: calc(#{$mobileHeaderHeight} / 5)}
+  .nav-item:hover {color: $pink}
+  .nav-item {background: white; text-align: center; margin-left: 17%; padding-left: 7%; display: block !important; height: 20%; line-height: calc(#{$mobileHeaderHeight} / 5)}
 }
+
 @media (max-width: 400px) {
-  .content {width: 90%; margin: 0 auto; padding: 0; } 
+  .content {width: 70%; margin: 0 auto; padding: 0; } 
   code {word-break: break-word;}
 }
+
+
