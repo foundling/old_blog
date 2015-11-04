@@ -4,13 +4,15 @@
 
     {% for post in posts %}
       <h1>{{post.title}}</h1>
-      <div class="color-block"></div>
-      <h4 class="byline">by {{post.author}} {{post.date | human_readable_date }}</h4>
+      <span class="byline"> 
+        <div class="color-block"></div><h4 class="byline-text">by {{post.author}} {{post.date | human_readable_date }}</h4> 
+      </span>
       <p class="post-body">{{ post.short_text | markdown }}
       </p>
       <p>
       <span class="link-to-fulltext">
-        <a href="/posts/{{post.post_id}}">> full article</a>
+        <div class="triangle-right"></div>
+        <a href="/posts/{{post.post_id}}">full article</a>
       </span>
       </p>
     {% endfor %}

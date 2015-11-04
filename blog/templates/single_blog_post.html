@@ -2,10 +2,10 @@
 
 {% block content %}
   <h1>{{post.title}}</h1>
-  <div class="color-block"></div> <h4 class="byline">by {{post.author}} {{post.date | human_readable_date}}</h4>
-
+  <span class="byline"> 
+    <div class="color-block"></div><h4 class="byline-text">by {{post.author}} {{post.date | human_readable_date }}</h4> 
+  </span>
   <span class="post">{{ post.content | markdown }}</span>
-
 {% endblock %}
 
 

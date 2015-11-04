@@ -1,0 +1,30 @@
+/* Byline component */
+.byline {
+  display: block;
+  font-family: Verdana;
+  padding-top: 1.2em;
+  padding-bottom: 1em;
+}
+
+.byline-text {
+  display: inline-block;
+  font-weight: 100;
+  margin-left: 10px;
+}
+
+.color-block {
+  background: $blue;
+  height: 10px;
+  width: 10px;
+  display: inline-block;
+}
+
+.triangle-right {
+  display: inline-block;
+  vertical-align: bottom;
+  height: 0;
+  width: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left:10px solid $blue;
+}

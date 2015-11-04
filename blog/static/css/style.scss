@@ -1,4 +1,5 @@
 @import "base";
+@import "components";
 @import "header";
 @import "content";
 @import "projects";
@@ -14,9 +15,10 @@
 
 
 @media (max-width: 690px) {
-  .content {width: 300px;}
-  .content h1 {width: 300px;}
-  .content p {width: 300px; margin: 0; padding: 0;} 
+  .content { width: 300px; margin: 0 auto;}
+  pre[class*="language-"] {margin: 40px 0px; }
+  .content h1, img, p {width: 100%; }
+  .content img {width: 100%; max-width: 100%; margin: 40px auto;}
   #social-media {position: absolute; top:90px; left: 0px;}
   .main-menu {height: $mobileHeaderHeight}
 
@@ -24,6 +26,6 @@
   .nav-item:hover {background: $pink}
   .nav-item {display: block !important; height: 20%; line-height: calc(#{$mobileHeaderHeight} / 5)}
 }
-@media (max-width: 690px) {
-  
+@media (max-width: 400px) {
+  .content p {width: 100%; margin: 0; padding: 0;} 
 }

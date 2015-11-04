@@ -1,22 +1,15 @@
 /* CONTENT */
 
-.byline {
-  display: inline-block;
-  font-family: Verdana;
-  font-weight: 100;
-  padding-left: 10px;
-  padding-bottom: 3em;
-}
-
-.content, .content p, .content h1 {
+.content, .content p, .content h1, .content img {
   margin: 0 auto;
+  max-width: 100%;
 }
 
 .content {
   padding-top: 40px;
+  padding-bottom: 80px;
   width: 680px;
   padding-left: 20px;
-  padding-bottom: 80px;
 }
 
 
@@ -33,6 +26,7 @@
   color: white;
 }
 .content a {
+  padding: 5px;
   color: $blue;
 
 }
@@ -69,6 +63,7 @@ pre[class*="language-"] {
   margin-top: 40px;
   padding-top: 30px;
   padding-left: 30px;
+  max-width: 100%;
 }
 
 pre.code
