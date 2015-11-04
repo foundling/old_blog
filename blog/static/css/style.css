@@ -376,9 +376,9 @@ h2.project-name {
     height: 20%;
     line-height: calc(317.99px / 5); } }
 @media (max-width: 400px) {
-  .content p {
-    width: 100%;
-    margin: 0;
+  .content {
+    width: 90%;
+    margin: 0 auto;
     padding: 0; }
 
   code {
