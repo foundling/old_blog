@@ -211,6 +211,13 @@ body {
 #search-icon {
   padding-right: 10px; }
 
+.about ul li,
+.about ol li {
+  list-style-type: initial;
+  margin-left: 30px;
+  font-size: 1.5em;
+  font-family: Baskerville; }
+
 /* CONTENT */
 .full-article, .more-posts {
   font-family: Verdana; }
@@ -224,10 +231,8 @@ body {
   max-width: 100%; }
 
 .content {
-  padding-top: 40px;
-  padding-bottom: 80px;
   width: 680px;
-  padding-left: 20px; }
+  padding: 40px 0px 80px 20px; }
 
 .content p {
   font-size: 1.5em;
@@ -238,13 +243,13 @@ body {
   line-height: 150%; }
 
 .content a {
-  color: deepskyblue; }
+  color: deepskyblue;
+  padding: 2px 5px; }
 
 .content a:hover {
   color: white;
   background: #ff409b;
-  padding: 0px 5px;
-  border-radius: 2px; }
+  padding: 0px 5px; }
 
 a.title-link:hover,
 a.title-link {
@@ -292,11 +297,12 @@ pre.code {
   padding-top: 90px;
   padding-bottom: 80px; }
 
-.project-name {
-  font-family: "Verdana"; }
+.project-list-name {
+  font-family: "Verdana";
+  margin-left: 5px; }
 
-h2.project-name {
-  font-family: Verdana;
+.project-name {
+  font-family: "Verdana";
   font-size: 22px; }
 
 .projects-menu-list {
@@ -406,7 +412,7 @@ h2.project-name {
   .content {
     width: 80%;
     margin: 40px auto;
-    padding: 0; }
+    padding: 15px 0px; }
 
   .projects-menu-list {
     font-family: Verdana;

@@ -16,10 +16,8 @@
 }
 
 .content {
-  padding-top: 40px;
-  padding-bottom: 80px;
   width: 680px;
-  padding-left: 20px;
+  padding: 40px 0px 80px 20px;
 }
 
 .content p {
@@ -33,13 +31,13 @@
 
 .content a {
   color: $blue;
+  padding: 2px 5px;
 }
 
 .content a:hover {
   color: white;
   background: $pink;
   padding: 0px 5px;
-  border-radius: 2px;
 }
 
 a.title-link:hover,
