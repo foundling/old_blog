@@ -4,11 +4,13 @@
   font-family: Verdana;
 }
 
-.link-to-full-article,
-.link-to-more-posts {
+.link-to-full-article {
   padding: 15px 5px 0px;
-};
+}
 
+.link-to-more-posts {
+  padding: 15px 0px 0px;
+}
 
 .content, .content p, .content h1, .content img {
   margin: 0 auto;
