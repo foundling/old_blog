@@ -40,14 +40,7 @@ def projects_by_name(post_name):
 
 @app.route('/projects')
 def projects_all():
-  projects = [
-    {'name':'this website'},
-    {'name':'node-help'},
-    {'name':'list'},
-    {'name':'coaster'},
-    {'name':'task'},
-    {'name':'billing interface'}
-  ]
+  projects = db.find_all({}, collection='projects')
   return render_template('projects.html', projects=projects)
 
 @app.route('/about')

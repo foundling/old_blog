@@ -1,0 +1,13 @@
+    [{
+      "name": "node-help",
+      "description" : "node-help is a node module that integrates the standard node REPL with documentation and colors. Our sources currently include the Mozilla Developer Network JavaScript language references for ECMAScript5 and part of the Node api docs for your node version.",
+      "image_filenames" : [ "node-help-main.png", "node-help-info.png", "node-help-docs.png" ],
+      "github_repository" : "https://github.com/foundling/node-help"
+
+    },
+    {
+      "name" : "task",
+      "description" :  "task is a fully tabbable task-list app leveraging the HTML5 Local Storage API. I wrote it using vanilla JavaScript, HTML and CSS.",
+      "image_filenames": ["task-main.png"],
+      "github_repository" : "https://github.com/foundling/task"
+    }]
