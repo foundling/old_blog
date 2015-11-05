@@ -24,15 +24,26 @@
   width: 100%;
 }
 
-.content a:hover {
-  padding: 5px;
-  background: $pink;
-  color: white;
-}
+
 
 .content a {
   color: $blue;
+}
 
+.content a:hover {
+  color: white;
+  background: $pink;
+  padding: 0px 5px;
+  border-radius: 2px;
+}
+
+a.title-link:hover,
+a.title-link {
+  background: transparent;
+  color: black;
+  background: initial;
+  padding: initial;
+  border-radius: initial;
 }
 
 .content h1 {
@@ -48,7 +59,6 @@
 {
   font-family: Baskerville;
   list-style-type: decimal;
-  font-size: 1.5em;
   margin: 20px auto;
   width: 80%;
 }

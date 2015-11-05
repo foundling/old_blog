@@ -3,13 +3,15 @@
 import os
 import sys
 
-from flask import url_for, render_template, redirect, request
+from flask import jsonify, render_template, redirect, request, url_for 
 from pymongo import MongoClient
 
 from blog import app
 from lib import db, utils
 
 db = db.Database(app.config['MONGODB_DATABASE_URI']) 
+
+## Blog Views 
 
 @app.route('/')
 @app.route('/index/')
@@ -68,3 +70,11 @@ def guides():
 @app.route('/guides/<guide_name>')
 def guides_by_name(guide_name):
   return render_template('single_guide.html')
+
+## REST API 
+
+@app.route('/api/<string:guide>/<int:chapter>')
+def get(guide,chapter,collection='guides'):
+  db.find_one()
+  data = {'msg':'h1'}
+  return jsonify(**data)

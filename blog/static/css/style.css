@@ -150,15 +150,15 @@ body {
 
 .nav-item:hover {
   border-bottom: 4px solid #ff409b;
-  background: deepskyblue;
-  color: whitesmoke; }
+  background: deepskyblue; }
 
 .nav-item a {
   display: inline-block;
   height: 100%; }
 
 .nav-item a:hover {
-  color: whitesmoke; }
+  color: whitesmoke;
+  color: #fdff3f; }
 
 .current-page-highlight {
   border-bottom: 4px solid #ff409b; }
@@ -232,13 +232,22 @@ body {
   padding-bottom: 10px;
   width: 100%; }
 
-.content a:hover {
-  padding: 5px;
-  background: #ff409b;
-  color: white; }
-
 .content a {
   color: deepskyblue; }
+
+.content a:hover {
+  color: white;
+  background: #ff409b;
+  padding: 0px 5px;
+  border-radius: 2px; }
+
+a.title-link:hover,
+a.title-link {
+  background: transparent;
+  color: black;
+  background: initial;
+  padding: initial;
+  border-radius: initial; }
 
 .content h1 {
   width: 100%;
@@ -251,7 +260,6 @@ body {
 .content li {
   font-family: Baskerville;
   list-style-type: decimal;
-  font-size: 1.5em;
   margin: 20px auto;
   width: 80%; }
 
@@ -279,7 +287,7 @@ pre.code {
   padding-bottom: 80px; }
 
 .project-name {
-  font-family: "Baskerville"; }
+  font-family: "Verdana"; }
 
 h2.project-name {
   font-family: Verdana;
@@ -332,13 +340,19 @@ h2.project-name {
   top: 160px;
   background: #fdff3f; }
 
+@media (max-width: 1000px) {
+  .content {
+    width: 600px; }
+
+  .content li {
+    list-style-type: none; } }
 @media (max-width: 900px) {
   .content {
     width: 500px; } }
 @media (max-width: 800px) {
   .content {
     width: 380px;
-    margin: 0 auto;
+    margin: 40px auto;
     padding-bottom: 80px; }
 
   .content h1 {
@@ -347,10 +361,7 @@ h2.project-name {
 @media (max-width: 690px) {
   .content {
     width: 300px;
-    margin: 0 auto; }
-
-  pre[class*="language-"] {
-    margin: 40px 0px; }
+    margin: 40px auto; }
 
   .content h1, img, p {
     width: 100%; }
@@ -359,6 +370,9 @@ h2.project-name {
     width: 100%;
     max-width: 100%;
     margin: 40px auto; }
+
+  pre[class*="language-"] {
+    margin: 40px 0px; }
 
   #social-media {
     position: absolute;
@@ -384,9 +398,30 @@ h2.project-name {
     line-height: calc(317.99px / 5); } }
 @media (max-width: 400px) {
   .content {
-    width: 70%;
-    margin: 0 auto;
+    width: 80%;
+    margin: 40px auto;
     padding: 0; }
+
+  .projects-menu-list {
+    font-family: Verdana;
+    width: 300px;
+    padding-left: 0px;
+    padding-top: 40px; }
+
+  .projects-illustration-container {
+    top: -45px; }
+
+  .diamond:nth-child(1) {
+    top: 20px; }
+
+  .diamond:nth-child(2) {
+    top: 40px; }
+
+  .diamond:nth-child(3) {
+    top: 60px; }
+
+  .diamond:nth-child(4) {
+    top: 80px; }
 
   code {
     word-break: break-word; } }

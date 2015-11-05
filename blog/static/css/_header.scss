@@ -69,7 +69,6 @@
 .nav-item:hover {
   border-bottom: 4px solid $pink;
   background: $blue;
-  color: whitesmoke;
 }
 .nav-item a {
   display: inline-block;
@@ -77,6 +76,7 @@
 }
 .nav-item a:hover {
   color: whitesmoke;
+  color: $yellow;
 }
 
 // indication of current page

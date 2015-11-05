@@ -3,18 +3,23 @@
   {% block content %}
 
     {% for post in posts %}
-      <h1>{{post.title}}</h1>
+
+      <a class="title-link" href="/posts/{{post.post_id}}#top">
+        <h1>{{post.title}}</h1>
+      </a>
+
       <span class="byline"> 
-        <div class="color-block"></div><h4 class="byline-text">by {{post.author}} {{post.date | human_readable_date }}</h4> 
+        <div class="color-block"></div>
+        <h4 class="byline-text">by {{post.author}} {{post.date | human_readable_date }}</h4> 
       </span>
-      <p class="post-body">{{ post.short_text | markdown }}
-      </p>
-      <p>
+
+      <span class="post-body">{{ post.short_text | markdown }}</span>
+
       <span class="link-to-fulltext">
         <div class="triangle-right"></div>
         <a class="full-article" href="/posts/{{post.post_id}}#top">full article</a>
       </span>
-      </p>
+
     {% endfor %}
 
     <div>

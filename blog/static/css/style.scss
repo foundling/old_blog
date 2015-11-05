@@ -4,20 +4,25 @@
 @import "content";
 @import "projects";
 
+@media (max-width: 1000px ) {
+  .content {width: 600px;}
+  .content li {list-style-type: none}
+}
+
 @media (max-width: 900px ) {
   .content {width: 500px;}
 }
 
 @media (max-width: 800px ) {
-  .content {width: 380px; margin: 0 auto; padding-bottom: 80px;}
+  .content {width: 380px; margin: 40px auto; padding-bottom: 80px;}
   .content h1 {width: 380px; font-size: 26px;}
 }
 
 @media (max-width: 690px) {
-  .content { width: 300px; margin: 0 auto;}
-  pre[class*="language-"] {margin: 40px 0px; }
+  .content { width: 300px; margin: 40px auto;}
   .content h1, img, p {width: 100%; }
   .content img {width: 100%; max-width: 100%; margin: 40px auto;}
+  pre[class*="language-"] {margin: 40px 0px; }
   #social-media {position: absolute; top:90px; left: 0px;}
   .main-menu {height: $mobileHeaderHeight}
 
@@ -27,8 +32,30 @@
 }
 
 @media (max-width: 400px) {
-  .content {width: 70%; margin: 0 auto; padding: 0; } 
+  .content {width: 80%; margin: 40px auto; padding: 0; } 
+  .projects-menu-list {
+    font-family: Verdana;
+    width: 300px;
+    padding-left: 0px;
+    padding-top: 40px;
+  }
+  .projects-illustration-container {
+    top: -45px;
+  }
+  .diamond:nth-child(1) {
+    top: 20px;
+  }
+
+  .diamond:nth-child(2) {
+    top: 40px;
+  }
+
+  .diamond:nth-child(3) {
+    top: 60px;
+  }
+
+  .diamond:nth-child(4) {
+    top: 80px;
+  }
   code {word-break: break-word;}
 }
-
-
