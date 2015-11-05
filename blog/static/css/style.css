@@ -215,6 +215,10 @@ body {
 .full-article, .more-posts {
   font-family: Verdana; }
 
+.link-to-full-article,
+.link-to-more-posts {
+  padding: 15px 5px 0px; }
+
 .content, .content p, .content h1, .content img {
   margin: 0 auto;
   max-width: 100%; }
@@ -228,9 +232,10 @@ body {
 .content p {
   font-size: 1.5em;
   font-family: Baskerville;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  width: 100%; }
+  padding-top: 25px;
+  padding-bottom: 25px;
+  width: 100%;
+  line-height: 150%; }
 
 .content a {
   color: deepskyblue; }
@@ -257,11 +262,12 @@ a.title-link {
   margin-top: 1.4em;
   margin-bottom: 0.5em; }
 
-.content li {
+.content ol li {
   font-family: Baskerville;
   list-style-type: decimal;
   margin: 20px auto;
-  width: 80%; }
+  width: 90%;
+  font-size: 1.5em; }
 
 img {
   text-align: center;

@@ -8,22 +8,23 @@
         <h1>{{post.title}}</h1>
       </a>
 
-      <span class="byline"> 
+      <aside class="byline"> 
         <div class="color-block"></div>
         <h4 class="byline-text">by {{post.author}} {{post.date | human_readable_date }}</h4> 
-      </span>
+      </aside>
 
       <span class="post-body">{{ post.short_text | markdown }}</span>
 
-      <span class="link-to-fulltext">
+      <aside class="link-to-full-article">
         <div class="triangle-right"></div>
         <a class="full-article" href="/posts/{{post.post_id}}#top">full article</a>
-      </span>
+      </aside>
 
     {% endfor %}
 
-    <div>
-      <a class="more-posts" href="/blog/archive">MORE POSTS</a><div class="color-triangle"></div>
+    <div class="link-to-more-posts">
+      <a class="more-posts" href="/blog/archive">MORE POSTS</a>
+      <div class="color-triangle"></div>
     </div>
 
   {% endblock %}
