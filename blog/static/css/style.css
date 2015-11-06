@@ -154,7 +154,8 @@ li {
   background: deepskyblue; }
 
 .nav-item a {
-  height: 100%; }
+  height: 100%;
+  width: 100%; }
 
 .nav-item a:hover {
   color: whitesmoke;
@@ -181,12 +182,12 @@ li {
   transition: opacity 1s ease-in; }
 
 #carrot a {
-  background: rgba(245, 245, 245, 0.8);
+  background: rgba(245, 245, 245, 0.6);
   color: rgba(0, 191, 255, 0.44);
   width: 100%; }
 
 #carrot a:hover {
-  color: rgba(245, 245, 245, 0.8);
+  color: rgba(245, 245, 245, 0.6);
   background: rgba(0, 191, 255, 0.44); }
 
 .social-media-icon {
@@ -228,8 +229,14 @@ li {
   padding: 0px; }
 
 /* CONTENT */
-.full-article, .more-posts {
-  font-family: Verdana; }
+.full-article,
+.more-posts,
+.content h1 {
+  font-family: "Verdana", sans-serif; }
+
+.content p,
+.content li {
+  font-family: "Baskerville", serif; }
 
 .link-to-full-article {
   padding: 15px 5px 0px; }
@@ -237,7 +244,10 @@ li {
 .link-to-more-posts {
   padding: 15px 0px 0px; }
 
-.content, .content p, .content h1, .content img {
+.content,
+.content p,
+.content h1,
+.content img {
   margin: 0 auto;
   max-width: 100%; }
 
@@ -247,11 +257,10 @@ li {
 
 .content p {
   font-size: 1.5em;
-  font-family: Baskerville;
+  line-height: 140%;
   padding-top: 25px;
   padding-bottom: 25px;
-  width: 100%;
-  line-height: 150%; }
+  width: 100%; }
 
 .content a {
   color: deepskyblue;
@@ -273,13 +282,11 @@ a.title-link {
 .content h1 {
   width: 100%;
   font-size: 3em;
-  font-family: Verdana;
   font-weight: 600;
   margin-top: 1.4em;
   margin-bottom: 0.5em; }
 
 .content ol li {
-  font-family: Baskerville;
   list-style-type: decimal;
   margin: 20px auto;
   width: 90%;
@@ -303,30 +310,59 @@ pre[class*="language-"] {
 pre.code {
   overflow: hidden; }
 
-.top-link {
-  font-size: 12px;
-  display: inline-block; }
-
 .projects-header {
   display: block;
   padding-top: 90px;
   padding-bottom: 80px; }
 
+.project-name,
 .project-list-name {
-  font-family: "Verdana";
+  font-family: "Verdana", sans-serif; }
+
+.project-list-name {
   margin-left: 5px; }
 
 .project-list-name a {
   color: #282828; }
 
 .project-list-name a:hover,
-.top-link:hover {
+a.top-link {
+  color: #282828; }
+
+a.top-link {
+  background: transparent;
+  border-bottom: 2px solid transparent;
+  display: inline-block;
+  font-size: 0.7em;
+  padding: 0px 0px 4px 0px; }
+
+a.top-link:hover {
+  border-bottom: 2px solid deepskyblue;
+  background: transparent;
   color: #282828;
-  background: transparent; }
+  padding: 0px 0px 4px 0px; }
 
 .project-name {
-  font-family: "Verdana";
   font-size: 22px; }
+
+.project-name,
+.repo,
+.fa-github-alt,
+.top-link {
+  vertical-align: bottom;
+  display: inline-block; }
+
+a.repo,
+a.repo:hover {
+  color: deepskyblue;
+  background: transparent;
+  padding: 4px 5px 2px 5px; }
+
+a.repo {
+  border-bottom: 2px solid transparent; }
+
+a.repo:hover {
+  border-bottom: 2px solid deepskyblue; }
 
 .projects-menu-list {
   padding-top: 30px;

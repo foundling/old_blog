@@ -1,8 +1,3 @@
-.top-link {
-  font-size: 12px;
-  display: inline-block;
-}
-
 .projects-header {
   display: block;
   padding-top: 90px;
@@ -10,25 +5,65 @@
 
 }
 
+.project-name,
 .project-list-name {
-  font-family: "Verdana";
+  font-family: "Verdana", sans-serif;
+}
+
+.project-list-name {
   margin-left: 5px;
 }
 
 .project-list-name a {
   color: $black;
 }
+
 .project-list-name a:hover,
-.top-link:hover {
+a.top-link {
   color: $black;
+}
+
+a.top-link {
   background: transparent;
+  border-bottom: 2px solid transparent;
+  display: inline-block;
+  font-size: 0.7em;
+  padding: 0px 0px 4px 0px;
+}
+
+a.top-link:hover {
+  border-bottom: 2px solid $blue;
+  background: transparent;
+  color: $black;
+  padding: 0px 0px 4px 0px;
 }
 
 .project-name {
-  font-family: "Verdana";
   font-size: 22px;
-
 }
+
+.project-name,
+.repo,
+.fa-github-alt,
+.top-link {
+  vertical-align: bottom;
+  display: inline-block;
+}
+
+a.repo,
+a.repo:hover {
+  color: $blue;
+  background: transparent;
+  padding: 4px 5px 2px 5px;
+}
+
+a.repo {
+  border-bottom: 2px solid transparent;
+}
+a.repo:hover {
+  border-bottom: 2px solid $blue;
+}
+
 
 .projects-menu-list {
   padding-top: 30px;
