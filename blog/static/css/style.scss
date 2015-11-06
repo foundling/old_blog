@@ -4,6 +4,7 @@
 @import "about";
 @import "content";
 @import "projects";
+@import "archive";
 
 @media (max-width: 1000px ) {
   .content {
@@ -35,6 +36,9 @@
 }
 
 @media (max-width: 400px) {
+  #archive-search { width: 60%; margin: 30px auto; }
+  .archive-post {padding: 10px 0px}
+  span.archive-post-date {margin-right: 0px;}
   .content {
     width: 80%; 
     margin: 40px auto; 

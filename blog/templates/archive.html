@@ -1,10 +1,22 @@
 {% extends "base.html" %}
 
   {% block content %}
-    <h1>Archive</h1>
-    <ul>
+
+
+    <h1 class="archive-header">Archive</h1>
+
+    <input id="archive-search">
+
+    <ul class="archive-list">
       {% for post in posts %}
-      <li><a href="/blog/{{post.id}}">{{post.title}}</a></li>
+        <li class="archive-post">
+          <span class="archive-post-date">
+            {{ post.date | human_readable_date}}
+          </span>
+          <a class="archive-post-text" href="/posts/{{post.post_id}}">
+            {{post.title}}
+          </a>
+        </li>
       {% endfor %}
     </ul>
   {% endblock %}

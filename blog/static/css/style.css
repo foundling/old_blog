@@ -174,7 +174,7 @@ li {
 
 #carrot {
   position: relative;
-  line-height: 110px;
+  line-height: 90px;
   font-size: 90px;
   font-family: Verdana;
   height: 90px;
@@ -184,7 +184,9 @@ li {
 #carrot a {
   background: rgba(245, 245, 245, 0.6);
   color: rgba(0, 191, 255, 0.44);
-  width: 100%; }
+  width: 100%;
+  height: 80px;
+  padding-top: 10px; }
 
 #carrot a:hover {
   color: rgba(245, 245, 245, 0.6);
@@ -209,14 +211,22 @@ li {
   height: calc( (2 * 90px) + 48px );
   text-align: center; }
 
-#search-input {
-  border: 1px solid #282828;
-  vertical-align: middle;
-  height: 2em;
-  padding: 2px 0px 2px 5px; }
+#search-icon-input {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border: 4px solid #ff409b;
+  background: rgba(245, 245, 245, 0.6);
+  font-size: 1.5em;
+  padding-left: 5px;
+  color: #282828;
+  height: 45px;
+  width: 200px; }
 
-#search-icon {
-  padding-right: 10px; }
+input.visible {
+  display: inline-block; }
+
+input.invisible {
+  display: none; }
 
 .about ul li,
 .about ol li {
@@ -226,7 +236,12 @@ li {
   font-family: Baskerville; }
 
 .about ul li a {
-  padding: 0px; }
+  padding: 2px;
+  color: deepskyblue; }
+
+.about ul li a:hover {
+  background: #ff409b;
+  color: white; }
 
 /* CONTENT */
 .link-to-full-article,
@@ -273,7 +288,7 @@ a.link-to-more-posts {
 
 .content p {
   font-size: 1.5em;
-  line-height: 140%;
+  line-height: 150%;
   padding-top: 25px;
   padding-bottom: 25px;
   width: 100%; }
@@ -418,6 +433,28 @@ a.repo:hover {
   top: 160px;
   background: #fdff3f; }
 
+.archive-header {
+  text-align: center; }
+
+a.archive-post-text {
+  font-size: 1.4em; }
+
+span.archive-post-date {
+  color: deepskyblue;
+  font-size: 1.1em;
+  margin-right: 30px; }
+
+#archive-search {
+  display: block;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border: 1px solid #282828;
+  height: 25px;
+  width: 125px;
+  font-size: 100%;
+  padding-left: 5px;
+  color: #282828; }
+
 @media (max-width: 1000px) {
   .content {
     width: 600px; }
@@ -475,6 +512,16 @@ a.repo:hover {
     height: 20%;
     line-height: calc(317.99px / 5); } }
 @media (max-width: 400px) {
+  #archive-search {
+    width: 60%;
+    margin: 30px auto; }
+
+  .archive-post {
+    padding: 10px 0px; }
+
+  span.archive-post-date {
+    margin-right: 0px; }
+
   .content {
     width: 80%;
     margin: 40px auto;

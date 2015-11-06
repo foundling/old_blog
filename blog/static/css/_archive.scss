@@ -1,0 +1,25 @@
+.archive-header {
+  text-align: center;
+}
+
+a.archive-post-text {
+  font-size: 1.4em;
+}
+
+span.archive-post-date {
+  color: $blue;
+  font-size: 1.1em;
+  margin-right: 30px;
+}
+
+#archive-search {
+  display: block;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border: 1px solid $black;
+  height: 25px;
+  width: 125px;
+  font-size: 100%;
+  padding-left: 5px;
+  color: $black;
+}

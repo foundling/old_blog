@@ -20,9 +20,10 @@ def latest_posts():
     return render_template('index.html',posts=latest_posts)
 
 # all posts
-@app.route('/blog/archive')
+@app.route('/archive')
 def all_posts():
-    return render_template('archive.html')
+    posts = db.find_all()
+    return render_template('archive.html', posts=posts)
 
 # posts by id
 @app.route('/posts/<int:post_id>')
