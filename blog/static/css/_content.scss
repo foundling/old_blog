@@ -1,8 +1,8 @@
 /* CONTENT */
 
 // Verdana for non body font
-.full-article, 
-.more-posts, 
+.link-to-full-article, 
+.link-to-more-posts, 
 .content h1 {
   font-family: "Verdana", sans-serif;
 }
@@ -13,13 +13,33 @@
   font-family: "Baskerville", serif;
 }
 
-.link-to-full-article {
+.full-article, 
+.more-posts {
   padding: 15px 5px 0px;
 }
 
-.link-to-more-posts {
-  padding: 15px 0px 0px;
+a.link-to-full-article,
+a.link-to-more-posts {
+  border-bottom: 2px solid transparent;
+  color: $blue;
+  padding: 4px 5px 2px 5px;
 }
+
+a.link-to-more-posts {
+  margin-left: -5px;
+}
+
+a.link-to-full-article:hover,
+a.link-to-more-posts:hover {
+  background: $pink;
+  color: white;
+  border-bottom: 2px solid $blue;
+}
+
+a.link-to-more-posts {
+  border-bottom: 2px solid transparent;
+}
+
 
 .content,
 .content p,
@@ -42,16 +62,6 @@
   width: 100%;
 }
 
-.content a {
-  color: $blue;
-  padding: 2px 5px;
-}
-
-.content a:hover {
-  color: white;
-  background: $pink;
-  padding: 0px 5px;
-}
 
 a.title-link:hover,
 a.title-link {

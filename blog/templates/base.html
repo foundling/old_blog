@@ -1,19 +1,20 @@
 <!doctype html>
 <html lang="en"> 
-  <head> 
-    <title>Alex Ramsdell</title> 
-    <meta charset="utf-8"> 
-    <meta name="viewport" content="width=device-width, user-scalable=no"/> 
-    {% include "head_scripts.html" %}
-    {% include "styles.html" %}
-  </head>
-<body>
+<head> 
+  <title>Alex Ramsdell</title> 
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, user-scalable=no"/> 
+  {% include "head_scripts.html" %}
+  {% include "styles.html" %}
+</head>
+
+<body id="top">
 
 {% block header %}
   {% include "header.html" %}
 {% endblock %}
 
-<div id="focus" class="content">
+<div  class="content">
 {% block content %}
 
 {% endblock %}

@@ -7,15 +7,15 @@
       {% include "posts/post_title.html" %}
       <span class="post-body">{{ post.short_text | markdown }}</span>
 
-      <aside class="link-to-full-article">
+      <aside class="full-article">
         <div class="triangle-right"></div>
-        <a class="full-article" href="/posts/{{post.post_id}}#top">full article</a>
+        <a class="link-to-full-article" href="/posts/{{post.post_id}}#top">full article</a>
       </aside>
 
     {% endfor %}
 
-    <div class="link-to-more-posts">
-      <a class="more-posts" href="/blog/archive">MORE POSTS</a>
+    <div class="more-posts">
+      <a class="link-to-more-posts" href="/blog/archive">MORE POSTS</a>
       <div class="color-triangle"></div>
     </div>
 
