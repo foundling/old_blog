@@ -1,5 +1,16 @@
 /* LOGO */
 
+.logo-container,
+.main-menu,
+.logo-link,
+.nav-item,
+.nav-item a,
+#carrot a
+{
+  font-family: "Verdana";
+  display:inline-block;
+}
+
 .logo-container {
   background: $blue;
   height: $headerHeight;
@@ -8,10 +19,16 @@
   transition: background-color .5s linear;
 }
 
+.logolink:hover {
+  font-size: 42px;
+}
+.logo-container:hover {
+  background: $lightblue;
+}
+
 .logolink { 
   color: $yellow; 
   font-size: 32px;
-  font-family: "Verdana";
   line-height: $headerHeight;
   -webkit-text-fill-color: $yellow;
   -webkit-text-stroke-width: 14px;
@@ -24,18 +41,10 @@
   transition: font-size .5s ease;
 }
 
-.logolink:hover {
-  font-size: 42px;
-}
-.logo-container:hover {
-  background: $lightblue;
-}
 
 .logo-container,
 .main-menu
 {
-  font-family: Verdana;
-  display: inline-block;
   vertical-align: top;
 }
 
@@ -52,11 +61,10 @@
 
 .nav-item {
   border-bottom: 4px solid transparent;
-  padding-left: 10px;
-  padding-right: 10px;
-  display: inline-block;
   font-size: 1.1em;
   line-height: $headerHeight;
+  padding-left: 10px;
+  padding-right: 10px;
   text-shadow: -1px 1px transparent;
   -webkit-text-stroke-fill: white;
   -webkit-text-stroke-width: 14px;
@@ -70,24 +78,21 @@
   border-bottom: 4px solid $pink;
   background: $blue;
 }
+
 .nav-item a {
-  display: inline-block;
   height: 100%;
 }
+
 .nav-item a:hover {
   color: whitesmoke;
   color: $yellow;
 }
 
-// indication of current page
 .current-page-highlight {
   border-bottom: 4px solid $pink;
-  //background: white;
 }
 
 // TO TOP MODULAR ARROW
-
-
 #to-top {
   position: fixed;
   top: 0;
@@ -102,26 +107,33 @@
   line-height: 110px;  
   font-size: 90px;
   font-family: Verdana;
-  width: 90px;
-  height: 90px; 
+  height: $headerHeight;
+  width: $headerHeight;
   transition: opacity 1s ease-in;
 }
 
 #carrot a {
+  background: $whitesmoke;
   color: $lightblue;
+  width: 100%;
+}
+
+#carrot a:hover {
+  color: $whitesmoke;
+  background: $lightblue;
 }
 
 // SOCIAL MEDIA MENU / SEARCH
 .social-media-icon {
   margin-top: 25px;
-  transition: font .5s ease;
+  transition: font .3s ease;
   color: white;
   font-size: 1.6em;
 }
 
 .social-media-icon:hover {
   color: $yellow;
-  font-size: 2em;
+  font-size: 1.9em;
 }
 
 #social-media {

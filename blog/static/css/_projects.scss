@@ -1,3 +1,8 @@
+.top-link {
+  font-size: 12px;
+  display: inline-block;
+}
+
 .projects-header {
   display: block;
   padding-top: 90px;
@@ -10,6 +15,14 @@
   margin-left: 5px;
 }
 
+.project-list-name a {
+  color: $black;
+}
+.project-list-name a:hover,
+.top-link:hover {
+  color: $black;
+  background: transparent;
+}
 
 .project-name {
   font-family: "Verdana";

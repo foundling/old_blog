@@ -6,8 +6,8 @@
 
     },
     {
-      "name" : "task",
-      "description" :  "task is a fully tabbable task-list app leveraging the HTML5 Local Storage API. I wrote it using vanilla JavaScript, HTML and CSS.",
-      "image_filenames": ["task-main.png"],
-      "github_repository" : "https://github.com/foundling/task"
+      "name" : "list",
+      "description" :  "list is a fully tabbable task-list app leveraging the HTML5 Local Storage API. I wrote it using vanilla JavaScript, HTML and CSS.",
+      "image_filenames": ["list-main.png"],
+      "github_repository" : "https://github.com/foundling/list"
     }]

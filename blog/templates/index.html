@@ -4,15 +4,7 @@
 
     {% for post in posts %}
 
-      <a class="title-link" href="/posts/{{post.post_id}}#top">
-        <h1>{{post.title}}</h1>
-      </a>
-
-      <aside class="byline"> 
-        <div class="color-block"></div>
-        <h4 class="byline-text">by {{post.author}} {{post.date | human_readable_date }}</h4> 
-      </aside>
-
+      {% include "posts/post_title.html" %}
       <span class="post-body">{{ post.short_text | markdown }}</span>
 
       <aside class="link-to-full-article">
