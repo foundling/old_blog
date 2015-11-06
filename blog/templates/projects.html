@@ -30,10 +30,10 @@
       {% for project in projects %}
         <!-- title and github repo link -->
         <h2 id="{{project.name}}" class="project-name">{{project.name}}
-          <a href="{{project.github_repository}}">
+          <a class="repo" href="{{project.github_repository}}">
             <i class="fa fa-github-alt"></i>
           </a>
-          <a class="top-link" href="#top">( top )</a>
+          <a class="top-link" href="#top">[top]</a>
 
         </h2>
 
