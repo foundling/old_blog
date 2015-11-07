@@ -1,5 +1,8 @@
 #!/usr/env/bin python
 
+from bson import json_util
+from json import dumps
+
 import os
 import sys
 
@@ -67,8 +70,8 @@ def guides_by_name(guide_name):
 
 ## REST API 
 
-@app.route('/api/<string:guide>/<int:chapter>')
-def get(guide,chapter,collection='guides'):
-    db.find_one()
-    data = {'msg':'h1'}
-    return jsonify(**data)
+@app.route('/archive/all_posts')
+def get():
+    result = db.find_all()
+    post = dumps(result, default=json_util.default)
+    return jsonify(msg=post)

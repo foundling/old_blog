@@ -7,7 +7,7 @@
 
     <input id="archive-search">
 
-    <ul class="archive-list">
+    <ul ng-app="ArchiveApp" class="archive-list">
       {% for post in posts %}
         <li class="archive-post">
           <span class="archive-post-date">
@@ -19,4 +19,6 @@
         </li>
       {% endfor %}
     </ul>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular.js"></script>
+    <script src="{{url_for('static',filename='js/archiveApp/app.js')}}"></script>
   {% endblock %}

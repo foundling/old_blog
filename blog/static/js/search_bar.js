@@ -25,4 +25,5 @@ var toggleSearch = function (e) {
 };
 
 body.addEventListener('click', toggleSearch);
+body.addEventListener('keydown',toggleSearch);
 
