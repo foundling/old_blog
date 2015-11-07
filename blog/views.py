@@ -25,8 +25,9 @@ def latest_posts():
 # all posts
 @app.route('/archive')
 def all_posts():
+    query = request.args.get('query')
     posts = db.find_all()
-    return render_template('archive.html', posts=posts)
+    return render_template('archive.html', query=query, posts=posts)
 
 # posts by id
 @app.route('/posts/<int:post_id>')
@@ -73,5 +74,5 @@ def guides_by_name(guide_name):
 @app.route('/archive/all_posts')
 def get():
     result = db.find_all()
-    post = dumps(result, default=json_util.default)
-    return jsonify(msg=post)
+    posts = dumps(result, default=json_util.default)
+    return jsonify(data=posts)

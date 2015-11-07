@@ -27,7 +27,12 @@ var currentWindowLocation = window.location.pathname.slice(1).split('/')[0];
 // look it up and get the corresponding id
 var targetElementId = routes[currentWindowLocation];
 
-// target the element with that id
-var targetElement = document.getElementById(targetElementId);
+if (targetElementId) {
+  var targetElement = document.getElementById(targetElementId);
+  targetElement.className += ' current-page-highlight';
+}
 
-targetElement.className += ' current-page-highlight';
+else if (currentWindowLocation in routes) {
+  console.log('you have an incorrectly configured script');
+}
+// target the element with that id

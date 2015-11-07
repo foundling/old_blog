@@ -6,7 +6,10 @@ from flask import Flask
 from flask.ext.misaka import Misaka
 from lib import filters 
 
+from flask.ext.cors import CORS
+
 app = Flask(__name__)
+CORS(app)
 
 app.config['FREEZER_RELATIVE_URLS'] = True
 app.config['MONGODB_DATABASE_URI'] = 'mongodb://localhost:27017'
