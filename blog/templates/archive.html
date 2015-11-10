@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
   {% block content %}
-  <div data-ng-app="blogArchive" data-ng-controller="ArchiveCtrl">
+  <div data-ng-app="blogArchive" data-ng-controller="ArchiveCtrl" data-ng-cloak>
 
     <h1 class="archive-header">Archive</h1>
     <input data-ng-model="query" id="archive-search" value="{{query}}">

@@ -1,13 +1,33 @@
     [{
       "name": "node-help",
+      "directory_name": "node_help",
       "description" : "node-help is a node module that integrates the standard node REPL with documentation and colors. Our sources currently include the Mozilla Developer Network JavaScript language references for ECMAScript5 and part of the Node api docs for your node version.",
-      "image_filenames" : [ "node-help-main.png", "node-help-info.png", "node-help-docs.png" ],
+      "image_filenames" : [ 
+          "node-help-main.png", 
+          "node-help-info.png", 
+          "node-help-docs.png" 
+      ],
       "github_repository" : "https://github.com/foundling/node-help"
 
     },
     {
-      "name" : "list",
+      "name": "list",
+      "directory_name": "list",
       "description" :  "list is a fully tabbable task-list app leveraging the HTML5 Local Storage API. I wrote it using vanilla JavaScript, HTML and CSS.",
-      "image_filenames": ["list-main.png"],
+      "image_filenames": [
+        "list-main.png"
+      ],
       "github_repository" : "https://github.com/foundling/list"
+    },
+    {
+      "name": "billing interface",
+      "directory_name": "billing_interface",
+      "description": "This is a billing interface that I designed for the Hooker Lab at the Martinos Center in Charlestown, MA. After working with the group to determine the data flow, I distilled this into a set of compontents and composed the site from those.  Additionally, I provided a style guide to demonstrate the range of available components and guide with future change.",
+      "image_filenames": [
+        "billing-interface-production.png",
+        "billing-interface-production-alt.png",
+        "billing-interface-submit.png",
+        "billing-interface-style-guide1.png",
+        "billing-interface-style-guide2.png"
+      ] 
     }]

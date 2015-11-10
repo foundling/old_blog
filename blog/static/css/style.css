@@ -379,7 +379,8 @@ a.top-link:hover {
   padding: 0px 0px 4px 0px; }
 
 .project-name {
-  font-size: 22px; }
+  font-size: 22px;
+  width: 100%; }
 
 .project-name,
 .repo,

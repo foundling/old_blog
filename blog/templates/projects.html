@@ -44,7 +44,7 @@
 
         <!-- screenshots -->
         {% for filename in project.image_filenames %}
-        <img src="{{url_for('static',filename='img/projects/' + project.name + '/' + filename)}}">
+        <img src="{{url_for('static',filename='img/projects/' + project.directory_name + '/' + filename)}}">
         {% endfor %}
 
       {% endfor %}
