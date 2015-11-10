@@ -5,6 +5,7 @@
   <!-- PROJECTS HEADER -->
   <div id="projects">
     <section class="projects-header">
+
       <nav class="projects-menu">
         <h1>Projects</h1>
         <ul class="projects-menu-list">
@@ -27,32 +28,32 @@
     </section>
 
     <!-- Project Descriptions -->
-    <ul>
       {% for project in projects %}
-        <!-- title and github repo link -->
-        <h2 id="{{project.name}}" class="project-name">{{project.name}}
-          <a class="repo" href="{{project.github_repository}}">
-            <i class="repo-icon fa fa-github-alt"></i>
-          </a>
-          <a class="top-link" href="#top">[top]</a>
 
-        </h2>
+        <div class="single-project">
+          <!-- title and github repo link -->
+          <h2 id="{{project.name}}" class="project-name">{{project.name}}
+            <a class="repo" href="{{project.github_repository}}">
+              <i class="repo-icon fa fa-github-alt"></i>
+            </a>
+            <a class="top-link" href="#top">[top]</a>
+          </h2>
 
-        <!-- description -->
-        <p class="project-description">
-          {{project.description}}
-        </p>
+          <!-- description -->
+          <p class="project-description">
+            {{project.description}}
+          </p>
 
-        <!-- screenshots -->
-        {% for filename in project.image_filenames %}
-        <img 
-          class="project-screenshot" 
-          src="{{url_for('static',filename='img/projects/' + project.directory_name + '/' + filename)}}" 
-        />
-        {% endfor %}
+          <!-- screenshots -->
+          {% for filename in project.image_filenames %}
+            <img 
+              class="project-screenshot" 
+              src="{{url_for('static',filename='img/projects/' + project.directory_name + '/' + filename)}}" 
+            />
+          {% endfor %}
 
+        </div>
       {% endfor %}
-    </ul>
 
   </div>
   {% endblock %}

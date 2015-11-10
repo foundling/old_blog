@@ -1,3 +1,4 @@
+
 .projects-header {
   display: block;
   padding-top: 90px;
@@ -76,6 +77,10 @@ a.repo:hover {
   font-size: 1.2em;
 }
 
+.single-project:not(:first-child) {
+  padding-bottom: 40px;
+}
+
 .projects-menu,
 .projects-illustration-container
 { 
@@ -122,3 +127,4 @@ a.repo:hover {
   top: 160px;
   background: $yellow;
 }
+

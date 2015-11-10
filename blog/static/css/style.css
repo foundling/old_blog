@@ -296,6 +296,9 @@ a.link-to-more-posts {
   margin: 20px auto;
   max-width: 100%; }
 
+.content img {
+  width: 100%; }
+
 .content {
   width: 680px;
   padding: 40px 0px 80px 20px; }
@@ -408,6 +411,9 @@ a.repo:hover {
 .projects-menu-item {
   margin: 10px 0px 10px 0px;
   font-size: 1.2em; }
+
+.single-project:not(:first-child) {
+  padding-bottom: 40px; }
 
 .projects-menu,
 .projects-illustration-container {
