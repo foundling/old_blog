@@ -7,6 +7,19 @@
   font-family: Baskerville;
 }
 
+#about a {
+  color: $blue;
+}
+
+#about a:hover {
+  background: $pink;
+  color: white;
+}
+
+#about li {
+  padding: 2px;
+}
+
 #about ul li a {
   padding: 2px;
   color: $blue;

@@ -249,6 +249,16 @@ input.invisible {
   font-size: 1.5em;
   font-family: Baskerville; }
 
+#about a {
+  color: deepskyblue; }
+
+#about a:hover {
+  background: #ff409b;
+  color: white; }
+
+#about li {
+  padding: 2px; }
+
 #about ul li a {
   padding: 2px;
   color: deepskyblue; }
