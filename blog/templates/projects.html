@@ -3,6 +3,7 @@
   {% block content %}
 
   <!-- PROJECTS HEADER -->
+  <div id="projects">
     <section class="projects-header">
       <nav class="projects-menu">
         <h1>Projects</h1>
@@ -44,9 +45,14 @@
 
         <!-- screenshots -->
         {% for filename in project.image_filenames %}
-        <img src="{{url_for('static',filename='img/projects/' + project.directory_name + '/' + filename)}}">
+        <img 
+          class="project-screenshot" 
+          src="{{url_for('static',filename='img/projects/' + project.directory_name + '/' + filename)}}" 
+        />
         {% endfor %}
 
       {% endfor %}
     </ul>
+
+  </div>
   {% endblock %}

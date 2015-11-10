@@ -25,7 +25,6 @@
 @media (max-width: 690px) {
   .content { width: 300px; margin: 40px auto;}
   .content h1, img, p {width: 100%; }
-  .content img {width: 100%; max-width: 100%; margin: 40px auto;}
   pre[class*="language-"] {margin: 40px 0px; }
   #social-media {position: absolute; top:90px; left: 0px;}
   .main-menu {height: $mobileHeaderHeight}

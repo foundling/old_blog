@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <span class="about post">{{ about_me.content | markdown }}</span>
+  <div id="about">
+    <span class="about post">{{ about_me.content | markdown }}</span>
+  </div>
 {% endblock %}
 
 

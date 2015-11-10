@@ -242,18 +242,18 @@ input.visible {
 input.invisible {
   display: none; }
 
-.about ul li,
-.about ol li {
+#about ul li,
+#about ol li {
   list-style-type: initial;
   margin-left: 30px;
   font-size: 1.5em;
   font-family: Baskerville; }
 
-.about ul li a {
+#about ul li a {
   padding: 2px;
   color: deepskyblue; }
 
-.about ul li a:hover {
+#about ul li a:hover {
   background: #ff409b;
   color: white; }
 
@@ -293,7 +293,7 @@ a.link-to-more-posts {
 .content p,
 .content h1,
 .content img {
-  margin: 0 auto;
+  margin: 20px auto;
   max-width: 100%; }
 
 .content {
@@ -495,11 +495,6 @@ span.archive-post-date {
 
   .content h1, img, p {
     width: 100%; }
-
-  .content img {
-    width: 100%;
-    max-width: 100%;
-    margin: 40px auto; }
 
   pre[class*="language-"] {
     margin: 40px 0px; }

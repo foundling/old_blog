@@ -2,6 +2,7 @@
 
   {% block content %}
 
+  <div id="index">
     {% for post in posts %}
 
       {% include "posts/post_title.html" %}
@@ -18,5 +19,6 @@
       <a class="link-to-more-posts" href="/blog/archive">MORE POSTS</a>
       <div class="color-triangle"></div>
     </div>
+  </div>
 
   {% endblock %}

@@ -1,18 +1,18 @@
 // the selectors are relative because i'm working off of a markdown file
-.about ul li,
-.about ol li {
+#about ul li,
+#about ol li {
   list-style-type: initial;
   margin-left: 30px;
   font-size: 1.5em;
   font-family: Baskerville;
 }
 
-.about ul li a {
+#about ul li a {
   padding: 2px;
   color: $blue;
 }
 
-.about ul li a:hover {
+#about ul li a:hover {
   background: $pink;
   color: white;
 
