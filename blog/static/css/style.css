@@ -112,15 +112,29 @@ li {
   color: #fdff3f;
   font-size: 32px;
   line-height: 90px;
-  -webkit-text-fill-color: #fdff3f;
-  -webkit-text-stroke-width: 14px;
+  text-stroke-color: transparent;
   -webkit-text-stroke-color: transparent;
+  -moz-text-stroke-color: transparent;
+  text-fill-color: #fdff3f;
+  -webkit-text-fill-color: #fdff3f;
+  -moz-text-fill-color: #fdff3f;
+  -o-text-fill-color: #fdff3f;
+  -ms-text-fill-color: #fdff3f;
+  text-stroke-width: 14px;
+  -webkit-text-stroke-width: 14px;
+  -moz-text-stroke-width: 14px;
+  -o-text-stroke-width: 14px;
+  -ms-text-stroke-width: 14px;
   text-shadow: -3px 2px #ff409b;
+  -webkit-text-shadow: -3px 2px #ff409b;
+  -moz-text-shadow: -3px 2px #ff409b;
+  -o-text-shadow: -3px 2px #ff409b;
+  -ms-text-shadow: -3px 2px #ff409b;
+  transition: font-size .5s ease;
   -webkit-transition: font-size .5s ease;
   -moz-transition: font-size .5s ease;
   -o-transition: font-size .5s ease;
-  -ms-transition: font-size .5s ease;
-  transition: font-size .5s ease; }
+  -ms-transition: font-size .5s ease; }
 
 .logo-container,
 .main-menu {

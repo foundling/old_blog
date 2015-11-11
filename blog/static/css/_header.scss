@@ -30,15 +30,34 @@
   color: $yellow; 
   font-size: 32px;
   line-height: $headerHeight;
-  -webkit-text-fill-color: $yellow;
-  -webkit-text-stroke-width: 14px;
+
+  text-stroke-color: transparent;
   -webkit-text-stroke-color: transparent;
+  -moz-text-stroke-color: transparent;
+
+  text-fill-color: $yellow;
+  -webkit-text-fill-color: $yellow;
+  -moz-text-fill-color: $yellow;
+  -o-text-fill-color: $yellow;
+  -ms-text-fill-color: $yellow;
+
+  text-stroke-width: 14px;
+  -webkit-text-stroke-width: 14px;
+  -moz-text-stroke-width: 14px;
+  -o-text-stroke-width: 14px;
+  -ms-text-stroke-width: 14px;
+
   text-shadow: -3px 2px $pink;
+  -webkit-text-shadow: -3px 2px $pink;
+  -moz-text-shadow: -3px 2px $pink;
+  -o-text-shadow: -3px 2px $pink;
+  -ms-text-shadow: -3px 2px $pink;
+
+  transition: font-size .5s ease;
   -webkit-transition: font-size .5s ease;
   -moz-transition: font-size .5s ease;
   -o-transition: font-size .5s ease;
   -ms-transition: font-size .5s ease;
-  transition: font-size .5s ease;
 }
 
 
