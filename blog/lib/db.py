@@ -10,7 +10,7 @@ class Database(object):
   def connect(self,uri):
       ''' returns client or exits '''
 
-      server_running = os.system('pgrep -q mongod') == 0
+      server_running = os.system('pgrep mongod > /dev/null') == 0
       if not server_running:
           print '''
             The mongod server is not running. Try starting it and run the script again

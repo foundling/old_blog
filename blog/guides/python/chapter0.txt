@@ -1,6 +1,0 @@
-Introduction
-
-Welcome to my Python guide. It focuses on Python 2.7.8 because that is what I work with daily and know the best.
-
-My method here is generally to introduce topics in such a way as to require you to do a little bit of thinking before I fully explain them. My hope is that you'll *start* as a critical programmer rather than as a flailing programmer who later on needs to learn good habits. Always try to find an answer the questions you have.  
-
