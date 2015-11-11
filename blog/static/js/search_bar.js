@@ -12,8 +12,10 @@ var body = document.body;
 
 var toggleSearch = function (e) {
   if (e.target.id === 'search-icon') {
+    e.preventDefault();
     searchIcon.className = 'invisible';
     searchIconInput.className = 'visible';
+    searchIconInput.focus();
     inputEngaged = true;
   }
   else if (inputEngaged && e.target.id != 'search-icon-input') {
