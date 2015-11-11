@@ -10,34 +10,76 @@
   .content {
     width: 600px;
   }
-  .content li {list-style-type: none}
+  .content li {
+    list-style-type: none;
+  }
 }
 
 @media (max-width: 900px ) {
-  .content {width: 500px;}
+  .content {
+    width: 500px;
+  }
 }
 
 @media (max-width: 800px ) {
-  .content {width: 380px; margin: 40px auto; padding-bottom: 80px;}
-  .content h1 {width: 380px; font-size: 26px;}
+  .content {
+    width: 380px;
+    margin: 40px auto;
+    padding-bottom: 80px;
+  }
+  .content h1 {
+    width: 380px;
+    font-size: 26px;
+  }
 }
 
 @media (max-width: 690px) {
-  .content { width: 300px; margin: 40px auto;}
-  .content h1, img, p {width: 100%; }
-  pre[class*="language-"] {margin: 40px 0px; }
-  #social-media {position: absolute; top:90px; left: 0px;}
-  .main-menu {height: $mobileHeaderHeight}
-
-  .nav-item, .nav-item:hover {border-bottom: none}
-  .nav-item:hover {color: $pink}
-  .nav-item {background: white; text-align: center; margin-left: 17%; padding-left: 7%; display: block !important; height: 20%; line-height: calc(#{$mobileHeaderHeight} / 5)}
+  .content { 
+    width: 300px;
+    margin: 40px auto;
+  }
+  .content h1, img, p {
+    width: 100%;
+  }
+  pre[class*="language-"] {
+    margin: 40px 0px; 
+  }
+  #social-media {
+    position: absolute; 
+    top: 90px; 
+    left: 0px;
+  }
+  .main-menu {
+    height: $mobileHeaderHeight
+  }
+  .nav-item, .nav-item:hover {
+    border-bottom: none;
+  }
+  .nav-item:hover {
+    color: $pink;
+  }
+  .nav-item {
+    background: white;
+    text-align: center;
+    margin-left: 17%;
+    padding-left: 7%;
+    display: block !important; 
+    height: 20%; 
+    line-height: calc(#{$mobileHeaderHeight} / 5)}
 }
+  .nav-item a {
+  }
 
 @media (max-width: 400px) {
-  #archive-search { width: 60%; margin: 30px auto; }
-  .archive-post {padding: 10px 0px}
-  span.archive-post-date {margin-right: 0px;}
+  #archive-search {
+    width: 60%; margin: 30px auto;
+ }
+  .archive-post {
+    padding: 10px 0px;
+  }
+  span.archive-post-date {
+    margin-right: 0px;
+  }
   .content {
     width: 80%; 
     margin: 40px auto; 
@@ -67,5 +109,7 @@
   .diamond:nth-child(4) {
     top: 80px;
   }
-  code {word-break: break-word;}
+  code {
+    word-break: break-word;
+  }
 }

@@ -3,7 +3,10 @@
   padding: 0;
 }
 
-body {max-width: 100%; background: rgb(253,253,253)}
+body {
+  max-width: 100%; background: rgb(253,253,253);
+  line-height: 1.4;
+}
 
 /* VARIABLES */
 
@@ -54,10 +57,6 @@ body
 }
 
 a,
-a:link,
-a:hover,
-a:visited,
-a:active 
 {
   text-decoration:none; 
   color: $black;

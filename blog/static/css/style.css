@@ -4,7 +4,8 @@
 
 body {
   max-width: 100%;
-  background: #fdfdfd; }
+  background: #fdfdfd;
+  line-height: 1.4; }
 
 /* VARIABLES */
 /* layout */
@@ -43,11 +44,7 @@ body {
 body {
   background-color: white; }
 
-a,
-a:link,
-a:hover,
-a:visited,
-a:active {
+a {
   text-decoration: none;
   color: #282828; }
 
