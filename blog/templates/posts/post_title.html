@@ -1,9 +1,9 @@
 <a class="title-link" href="/posts/{{post.post_id}}">
   <h1>
   {% if 'news' in post.tags %}
-    <span class="title-news-prefix">news:</span>  
+    <span class="title-news-prefix">[news]</span>  
   {% endif %}
-  {{post.title}}
+  <span class="title-text">{{post.title}}</span>
   </h1>
 </a>
 <span class="byline"> 

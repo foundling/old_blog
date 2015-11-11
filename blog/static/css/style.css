@@ -331,6 +331,21 @@ a.link-to-more-posts {
   padding-bottom: 25px;
   width: 100%; }
 
+.title-news-prefix,
+.title-text {
+  display: inline-block; }
+
+.title-news-prefix {
+  color: deepskyblue;
+  font-size: .6em;
+  margin-bottom: 10px; }
+
+.title-text {
+  vertical-align: middle; }
+
+a.title-link {
+  position: relative; }
+
 a.title-link:hover,
 a.title-link {
   background: transparent;

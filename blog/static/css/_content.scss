@@ -67,6 +67,24 @@ a.link-to-more-posts {
 }
 
 
+.title-news-prefix,
+.title-text {
+  display: inline-block;
+}
+
+.title-news-prefix {
+  color: $blue;
+  font-size: .6em;
+  margin-bottom: 10px;
+}
+.title-text {
+  vertical-align: middle;
+}
+
+a.title-link {
+
+  position: relative;
+}
 a.title-link:hover,
 a.title-link {
   background: transparent;
@@ -83,7 +101,6 @@ a.title-link {
   margin-top: 1.4em;
   margin-bottom: 0.5em;
 }
-
 
 .content ol li
 {
