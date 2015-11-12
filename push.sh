@@ -10,8 +10,8 @@ find  /data/web/blog -name '*.pyc' -delete
 if [ "$1" == "-n" ]
 then
   echo 'mock syncing changes with the server ... (you passed the -n flag)'
-  rsync -auvnP --exclude={rsync_exclude.txt,*push.sh,*.pyc,.sass-cache,*.scss,.gitignore,db,.git,.etc,env,freeze.py,docs} /data/web/blog/ alexr@$box:/home/alexr/alexramsdell.com/ 
+  rsync -auvnP --exclude={pushcontent.sh,rsync_exclude.txt,*push.sh,*.pyc,.sass-cache,*.scss,.gitignore,db,.git,.etc,env,freeze.py,docs} /data/web/blog/ alexr@$box:/home/alexr/alexramsdell.com/ 
 else
-  rsync -auvP --exclude={rsync_exclude.txt,*push.sh,*.pyc,.sass-cache,*.scss,.gitignore,db,.git,.etc,env,freeze.py,docs} /data/web/blog/ alexr@$box:/home/alexr/alexramsdell.com/ 
+  rsync -auvP --exclude={pushcontent.sh,rsync_exclude.txt,*push.sh,*.pyc,.sass-cache,*.scss,.gitignore,db,.git,.etc,env,freeze.py,docs} /data/web/blog/ alexr@$box:/home/alexr/alexramsdell.com/ 
 fi
 
