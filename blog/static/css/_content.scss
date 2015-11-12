@@ -118,7 +118,7 @@ img {
 }
 
 /* PRISM OVERRIDE STYLES */ 
-pre[class*="language-"] { 
+.content pre[class*="language-"] { 
   background: white;
   border: 1px solid black;
   margin-top: 40px;
@@ -127,8 +127,8 @@ pre[class*="language-"] {
   max-width: 100%;
 }
 
-pre.code,
-pre
+.content span.post pre.code,
+.content span.post pre
 {
   overflow-x: scroll;    
 }
@@ -137,27 +137,25 @@ pre
 }
 
 .tag-list .tag {
-  font-size: 1.2em;
-  border-radius: 5px;
-  background: $blue;
-  display: inline-block;
-  font-family: "Verdana";
-  padding: 10px;
-  border: 4px solid transparent;
 }
 .tag-list .tag:hover {
-  border: 4px solid $black;
-  background: white;
+}
+.tag {
+  display: inline-block;
 }
 
 .tag a { 
-  display: inline-block;
   color: white;
-  height: 100%;
+  font-size: 1.2em;
+  border-radius: 5px;
+  background: $blue;
+  font-family: "Verdana";
+  padding: 10px;
+  border: 4px solid transparent;
+  border: 4px solid $black;
 }
 .tag a:hover { 
-  color: $blue;
+  background: white;
+  color: black;
 }
 
-.tag-list {
-}
