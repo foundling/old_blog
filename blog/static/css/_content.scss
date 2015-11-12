@@ -134,6 +134,7 @@ img {
 }
 
 .tag-list  {
+  padding-top: 40px;
 }
 
 .tag-list .tag {
@@ -151,8 +152,7 @@ img {
   background: $blue;
   font-family: "Verdana";
   padding: 10px;
-  border: 4px solid transparent;
-  border: 4px solid $black;
+  border: 3px solid $black;
 }
 .tag a:hover { 
   background: white;
