@@ -7,7 +7,7 @@
     <input data-ng-model="query" id="archive-search" value="{{query}}">
 
     <ul data-ng-init="getAllPosts(); getQueryParams()" class="archive-list">
-        <li ng-repeat="post in posts | filter:query:title " class="archive-post">
+        <li ng-repeat="post in posts | filter : query : post.title " class="archive-post">
         <span class="archive-post-date">{[ post.date['$date'] | date:'MMMM d, yyyy' : 'UTC' ]}</span>
         <a class="archive-post-text" data-ng-href="/posts/{[post.post_id]}">{[post.title]}</a>
         </li>

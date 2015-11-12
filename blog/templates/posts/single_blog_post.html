@@ -3,6 +3,9 @@
 {% block content %}
   {% include "posts/post_title.html" %}
   <span class="post">{{ post.content | markdown }}</span>
+  <ul class="tag-list">
+    {% for tag in post.tags %}
+    <li class="tag"><a href="http://www.alexramsdell.com/archive?query={{tag}}">{{tag}}</a></li>
+    {% endfor %}
+  </ul>
 {% endblock %}
-
-

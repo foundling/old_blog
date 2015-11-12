@@ -6,6 +6,20 @@
 @import "projects";
 @import "archive";
 
+@media (min-width: 1240px) {
+  .content { 
+    width: 1000px;
+  }
+}
+@media (max-width: 1240px ) {
+  .content {
+    width: 700px;
+  }
+  .content li {
+    list-style-type: none;
+  }
+}
+
 @media (max-width: 1000px ) {
   .content {
     width: 500px;

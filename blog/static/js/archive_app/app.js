@@ -24,7 +24,7 @@ archiveApp.controller('ArchiveCtrl', function($scope,$route,$http,$location) {
           });
       }; 
       $scope.getQueryParams = function() {
-          $scope.query = $location.search().query || 'Narrow Results';
+          $scope.query = $location.search().query;
           console.log($location.search());
       };
       $scope.makeUtcReadable = function(utcStamp) {

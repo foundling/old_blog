@@ -10,17 +10,26 @@ var cachedClassInfo = {
 
 var body = document.body;
 
-var toggleSearch = function (e) {
-  if (e.target.id === 'search-icon') {
+var toggleOut = function(e) {
     e.preventDefault();
     searchIcon.className = 'invisible';
     searchIconInput.className = 'visible';
     searchIconInput.focus();
     inputEngaged = true;
-  }
-  else if (inputEngaged && e.target.id != 'search-icon-input') {
+};
+
+var toggleIn = function(e) {
     searchIcon.className = cachedClassInfo['searchIcon'];
     searchIconInput.className = cachedClassInfo['searchIconInput'];
+    searchIconInput.blur();
+};
+
+var toggleSearch = function (e) {
+  if (e.target.id === 'search-icon') {
+    toggleOut(e);
+  }
+  else if (inputEngaged && e.target.id != 'search-icon-input') {
+    toggleIn(e);
   }
  
 
@@ -28,4 +37,3 @@ var toggleSearch = function (e) {
 
 body.addEventListener('click', toggleSearch);
 body.addEventListener('keydown',toggleSearch);
-
