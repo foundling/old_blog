@@ -6,18 +6,19 @@
 @import "projects";
 @import "archive";
 
-@media (min-width: 1240px) {
+@media (min-width: 1300px) {
   .content { 
-    width: 1000px;
+    width: 800px;
   }
 
 }
 @media (max-width: 1240px ) {
   .content {
-    width: 700px;
+    width: 600px;
   }
   .content li {
     list-style-type: none;
+    margin-left: 0;
   }
 }
 

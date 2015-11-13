@@ -387,18 +387,19 @@ img {
   overflow-x: scroll; }
 
 .tag-list {
-  padding-top: 40px; }
+  padding-top: 0px; }
 
 .tag {
   display: inline-block; }
 
 .tag a {
   color: white;
-  font-size: 1.2em;
+  font-size: 1.0em;
   border-radius: 5px;
   background: deepskyblue;
   font-family: "Verdana";
-  padding: 10px;
+  padding: 2px 6px;
+  margin-right: 10px;
   border: 2px solid #282828; }
 
 .tag a:hover {
@@ -532,15 +533,16 @@ span.archive-post-date {
   padding-left: 5px;
   color: #282828; }
 
-@media (min-width: 1240px) {
+@media (min-width: 1300px) {
   .content {
-    width: 1000px; } }
+    width: 800px; } }
 @media (max-width: 1240px) {
   .content {
-    width: 700px; }
+    width: 600px; }
 
   .content li {
-    list-style-type: none; } }
+    list-style-type: none;
+    margin-left: 0; } }
 @media (max-width: 1000px) {
   .content {
     width: 500px; }
