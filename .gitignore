@@ -4,3 +4,5 @@ db
 push.sh
 .DS_Store
 */**/config.py
+push.sh
+pushcontent.sh
