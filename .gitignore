@@ -1,8 +1,8 @@
 env
 db
-*/**/*.pyc
-push.sh
+*pyc
+*/config.py
+*.jpg
 .DS_Store
-*/**/config.py
 push.sh
 pushcontent.sh
