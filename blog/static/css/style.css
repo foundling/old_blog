@@ -533,6 +533,14 @@ span.archive-post-date {
   padding-left: 5px;
   color: #282828; }
 
+#photos img {
+  margin: 20px auto;
+  width: 40vw;
+  height: auto; }
+
+#gallery {
+  text-align: center; }
+
 @media (min-width: 1300px) {
   .content {
     width: 800px; } }
@@ -608,6 +616,9 @@ span.archive-post-date {
 
   span.archive-post-date {
     margin-right: 0px; }
+
+  #photos img {
+    width: 100%; }
 
   .content {
     width: 80%;

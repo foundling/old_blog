@@ -5,6 +5,7 @@
 @import "content";
 @import "projects";
 @import "archive";
+@import "photos";
 
 @media (min-width: 1300px) {
   .content { 
@@ -97,6 +98,9 @@
     margin-right: 0px;
   }
 
+  #photos img {
+    width: 100%;
+  }
   .content {
     width: 80%; 
     margin: 40px auto; 
