@@ -2,8 +2,8 @@
   <h2 class="photos-title">Photos</h2>
   <h4 class="photos-subtitle"></h4>
   <ul class="photos-menu">
-    <li><a href="/fun/photos/the_drive_from_boston_to_seattle">The Drive From Boston to Seattle</a></li>
-    <li><a href="/fun/photos/iceland">Iceland</a></li>
+      <li><a href="{{ url_for('photos', collection_name='the_drive_from_boston_to_seattle') }}">The Drive From Boston to Seattle</a></li>
+      <li><a href="{{ url_for('photos', collection_name='iceland') }}">Iceland</a></li>
   </ul>
 
   <div id="gallery">

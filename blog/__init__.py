@@ -1,8 +1,6 @@
 #!/usr/env/bin python
 
 import os
-import os
-
 
 from flask import Flask
 from flask.ext.misaka import Misaka

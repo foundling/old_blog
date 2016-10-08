@@ -5,7 +5,7 @@
   <span class="post">{{ post.content | markdown }}</span>
   <ul class="tag-list">
     {% for tag in post.tags %}
-    <li class="tag"><a href="http://www.alexramsdell.com/archive?query={{tag}}">{{tag}}</a></li>
+    <li class="tag"><a href="{{url_for('all_posts', query=tag)}}">{{tag}}</a></li>
     {% endfor %}
   </ul>
 {% endblock %}

@@ -1,16 +1,16 @@
   <!-- logo -->
   <h1 class="logo-container">
-      <a tabindex="1" class="logolink" href="/">AR</a>
+      <a tabindex="1" class="logolink" href="{{ url_for('latest_posts') }}">AR</a>
   </h1>
 
   <!-- menu -->
   <nav class="main-menu">
     <ul>
-      <li class="nav-item" id="blog"><a tabindex="2" href="/">Blog</a></li>
-      <li class="nav-item" id="projects"><a  tabindex="3" href="/projects">Projects</a></li>
-      <li class="nav-item" id="guides"><a tabindex="4" href="/guides">Guides</a></li>
-      <li class="nav-item" id="fun"><a tabindex="5" href="/fun/photos/iceland">Fun</a></li>
-      <li class="nav-item" id="about-me"><a tabindex="6" href="/about">About Me</a></li>
+        <li class="nav-item" id="blog"><a tabindex="2" href="{{ url_for('latest_posts') }}">Blog</a></li>
+      <li class="nav-item" id="projects"><a  tabindex="3" href="{{ url_for('projects_all') }}">Projects</a></li>
+      <li class="nav-item" id="guides"><a tabindex="4">Guides</a></li>
+      <li class="nav-item" id="fun"><a tabindex="5" href="{{ url_for('photos', collection_name='iceland') }}">Fun</a></li>
+      <li class="nav-item" id="about-me"><a tabindex="6" href="{{ url_for('about_me') }}">About Me</a></li>
     </ul>
   </nav>
 

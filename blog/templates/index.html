@@ -10,13 +10,13 @@
 
       <aside class="full-article">
         <div class="triangle-right"></div>
-        <a class="link-to-full-article" href="/posts/{{post.post_id}}#top">full article</a>
+        <a class="link-to-full-article" href="{{ url_for('single_blog_post', post_id=post.post_id) }}">full article</a>
       </aside>
 
     {% endfor %}
 
     <div class="more-posts">
-      <a class="link-to-more-posts" href="/blog/archive">MORE POSTS</a>
+        <a class="link-to-more-posts" href="{{ url_for('all_posts') }}">MORE POSTS</a>
       <div class="color-triangle"></div>
     </div>
   </div>
