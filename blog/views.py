@@ -15,7 +15,7 @@ from lib import db, utils
 db = db.Database(application.config['MONGODB_DATABASE_URI']) 
 
 @application.route('/')
-@application.route('/index/')
+@application.route('/index.html')
 def latest_posts():
     latest_posts = db.find_n_most_recent(5)
     return render_template('index.html',posts=latest_posts)
@@ -24,9 +24,7 @@ def latest_posts():
 def single_blog_post(post_id):
       # so add a layer that splits on - and rejoins / manipulates the text however the db needs it
     post = db.find_one({'post_id': post_id})
-    print type(post_id)
     return render_template('posts/single_blog_post.html', post=post)
-
 
 @application.route('/archive/')
 def all_posts():
@@ -52,10 +50,8 @@ def about_me():
 
 @application.route('/fun/photos/<collection_name>/')
 def photos(collection_name):
-    print collection_name
     collection = {
         'name' : collection_name,
         'photos': os.listdir(os.path.join(application.config['BASE_DIR'],'static/img/static/' + collection_name + '/med'))
     }
-    print 'PHOTOS: ', photos
     return render_template('fun.html',collection=collection) 
