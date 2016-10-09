@@ -3,6 +3,9 @@ var arrowEl = document.getElementById('to-top');
 var header = document.querySelector('ul.header');
 var headerHeight = header.offsetHeight;
 var arrowEngaged = window.pageYOffset > headerHeight;
+if (arrowEngaged) {
+    arrowEl.className = '';
+}
 var offsetTop;
 
 arrowEl.onclick = function() { 
