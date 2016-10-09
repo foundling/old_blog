@@ -18,7 +18,7 @@ db = db.Database(application.config['MONGODB_DATABASE_URI'])
 @application.route('/index.html')
 def latest_posts():
     latest_posts = db.find_n_most_recent(5)
-    return render_template('index.html',posts=latest_posts)
+    return render_template('index.html',posts=reversed(latest_posts))
  
 @application.route('/posts/<int:post_id>/')
 def single_blog_post(post_id):

@@ -34,11 +34,8 @@
       </a>
       </li>
       <li>
-        <a >
-          <form action="/archive" method="GET">
-            <input placeholder="search the blog" name="query" id="search-icon-input" class="invisible">
-          </form> 
-          <i tabindex="10" id="search-icon" class="fa fa-search social-media-icon"></i>
+        <a href="{{ url_for('all_posts') }}">
+          <i tabindex="10" id="archive-icon" class="fa fa-archive social-media-icon"></i>
         </a>
       </li>
     </ul>
