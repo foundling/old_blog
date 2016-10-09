@@ -1,6 +1,7 @@
 echo copying files to remote server ...
 
-rsync -auvP ./blog/build/ alex@138.68.49.132:/home/alex/alexramsdell.com/public_html --exclude=static 
+#rsync -auvP ../blog/build/ alex@138.68.49.132:/home/alex/alexramsdell.com/public_html --exclude=static 
+rsync -auvP ../blog/build/ alex@138.68.49.132:/home/alex/alexramsdell.com/public_html --exclude=img 
 
 echo done
 

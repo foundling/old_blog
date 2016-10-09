@@ -1,28 +1,34 @@
-// distance from top of document
-// window distance from top
-// state change occurs when window offset from top of doc is greater than the element's distance from top, which is fixed 
 var socialMedia = document.getElementById('social-media');
-var headerHeight = 90;
-var pastHeader = false;
 var arrowEl = document.getElementById('to-top');
+var header = document.querySelector('ul.header');
+var headerHeight = header.offsetHeight;
+var arrowEngaged = window.pageYOffset > headerHeight;
+var offsetTop;
 
 arrowEl.onclick = function() { 
   window.scrollTo(0,0);
 };
 
+var checkOffsetTop = function(event) {
 
-var checkWindowOffsetFromTop = function(event) {
-  var windowOffsetY = window.pageYOffset;
-  if (windowOffsetY > headerHeight) {
-    pastHeader = true;
-    console.log('past header');  
-    arrowEl.className = arrowEl.className.replace('hidden','').trim(' ');
+  offsetTop = window.pageYOffset;
+
+  if (offsetTop >= headerHeight) {
+      if (arrowEngaged) {
+          return;
+      }
+      console.log('flipped');
+      arrowEngaged = true;
+      arrowEl.className = '';
   }
   else {
-    console.log('not past header');  
-    pastHeader = false;
-    arrowEl.className += ' hidden';
+      if (!arrowEngaged) {
+          return;
+      }
+      console.log('flipped');
+      arrowEngaged = false;
+      arrowEl.className = 'hidden';
   }
 };
 
-window.onscroll = checkWindowOffsetFromTop;
+window.onscroll = checkOffsetTop;

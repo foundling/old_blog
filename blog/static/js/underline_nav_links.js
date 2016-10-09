@@ -4,8 +4,6 @@
  *
  */
 
-console.log('pathname!: ', window.location.pathname);
-
 var routes = {
   '' :                    'blog',
   'index.html'      :     'blog',
@@ -33,6 +31,5 @@ if (targetElementId) {
 }
 
 else if (currentWindowLocation in routes) {
-  console.log('you have an incorrectly configured script');
 }
 // target the element with that id
