@@ -22,7 +22,6 @@ def latest_posts():
  
 @application.route('/posts/<int:post_id>/')
 def single_blog_post(post_id):
-      # so add a layer that splits on - and rejoins / manipulates the text however the db needs it
     post = db.find_one({'post_id': post_id})
     return render_template('posts/single_blog_post.html', post=post)
 
@@ -31,12 +30,6 @@ def all_posts():
     query = request.args.get('query')
     posts = db.find_all()
     return render_template('archive.html', query=query, posts=posts)
-
-@application.route('/archive/all_posts/')
-def get():
-    result = db.find_all()
-    posts = dumps(result, default=json_util.default)
-    return jsonify(data=posts)
 
 @application.route('/projects/')
 def projects_all():

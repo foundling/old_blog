@@ -4,18 +4,14 @@
   <div id="archive" data-ng-app="blogArchive" data-ng-controller="ArchiveCtrl" ng-cloak>
 
     <h1 class="archive-header">Archive</h1>
-    <input data-ng-model="query" id="archive-search" value="{{query}}">
 
-    <ul data-ng-init="getAllPosts(); getQueryParams()" class="archive-list">
-        <li ng-repeat="post in posts | filter : query : post.title " class="archive-post">
-        <span class="archive-post-date">{[ post.date['$date'] | date:'MMMM d, yyyy' : 'UTC' ]}</span>
-        <a class="archive-post-text" data-ng-href="/posts/{[post.post_id]}">{[post.title]}</a>
-        </li>
+    <ul>
+        {% for post in posts %}
+            <li class="archive-post">
+            <span class="archive-post-date">{{ post.date.strftime('%m-%d-%Y') }}</span>
+                <a class="archive-post-text" href="{{ url_for('single_blog_post', post_id=post.post_id) }}">{{post.title}}</a>
+            </li>
+        {% endfor %}
     </ul>
   </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular-route.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.10.3/angular-moment.js"></script>
-    <script src="{{url_for('static',filename='js/archive_app/app.js')}}"></script>
   {% endblock %}
