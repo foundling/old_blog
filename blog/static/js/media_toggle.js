@@ -20,7 +20,6 @@ var checkOffsetTop = function(event) {
       if (arrowEngaged) {
           return;
       }
-      console.log('flipped');
       arrowEngaged = true;
       arrowEl.className = '';
   }
@@ -28,7 +27,6 @@ var checkOffsetTop = function(event) {
       if (!arrowEngaged) {
           return;
       }
-      console.log('flipped');
       arrowEngaged = false;
       arrowEl.className = 'hidden';
   }
