@@ -24,35 +24,44 @@ def main():
       date: isoformat datetime.datetime.now()
     '''
 
-    userChoice = raw_input('Post type?\n0: regular post\n1: static\n').strip()
-    collection = 'posts' if userChoice == '0' else 'static' 
-
-    answer = None
+    user_choice = raw_input('Post type?\n0: regular post\n1: static\n').strip()
+    collection = 'posts' if user_choice == '0' else 'static' 
     targets = [] # potential posts to edit, delivered in a list
+    answer = None
+    exact_match = None
+
     while (answer not in ('y','Y')):
+
       title = raw_input('Enter the Title of the Post You Want to Edit:').strip()
-      exact_match = db.find_one({'title':title},collection=collection)
+
+      exact_match = db.find_one({ 'title': title }, collection=collection)
+
       if exact_match:
         targets.append(exact_match)
       else:
         longest_word_in_title = reduce(lambda x,y: x if len(x) > len(y) else y, title.split())
-        fuzzy_matches = db.find_all({"title":{"$regex": longest_word_in_title}},collection=collection)
+        fuzzy_matches = db.find_all({"title":{"$regex": longest_word_in_title}}, collection=collection)
+
         for post in fuzzy_matches: 
           targets.append(post)
 
       print 'Is one of these what you are looking for?'
       print '*'*24
+
       for num, post in enumerate(targets): 
         print '{}: {}'.format(num, post['title'])
+
       print '*'*24
 
       choice = int(raw_input('').strip())
+
       if targets[choice]:
         content = targets[choice].get('content','')
         post_title = targets[choice].get('title')
         updated_text = utils.edit_in_vim(content)
-        query = {'title':post_title}
-        update = {'$set': {'content':updated_text}}
+        short_text = utils.get_short_text(updated_text)
+        query = {'title': post_title}
+        update = {'$set': {'content':updated_text, 'short_text': short_text}}
         result = db.update_one(query, update, collection=collection)
         break
 

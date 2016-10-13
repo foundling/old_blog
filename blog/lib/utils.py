@@ -1,3 +1,8 @@
+def get_short_text(file_content, max_chars=160):
+    ''' this should be revised to include as many paragraphs that fit into 160 chars '''
+
+    return file_content.split('\n')[0] 
+
 def usage(msg=None, err=None):
 
     import sys

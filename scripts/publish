@@ -1,23 +1,18 @@
 #!/usr/bin/env python
 
-config = {}
-config['SAVED_VERSIONS_DIR'] = '/data/web/blog/blog/static/posts/versions'
-
-import slugify
-import arrow
 import datetime
 import json
-import os 
+import os
 import pprint
 import re
 import sys
+
+import arrow
 import pymongo
+import slugify
+
+from config import config
 from lib import db, utils
-
-
-def get_short_text(file_content, max_chars=160):
-    ''' this should be revised to include as many paragraphs that fit into 160 chars '''
-    return file_content.split('\n')[0] 
 
 def append_user_values(post, collection):
 
@@ -47,7 +42,7 @@ def append_automatic_values(client, post, collection):
     post['date'] = datetime.datetime.now() 
 
     if collection == 'posts':
-        post['short_text'] = get_short_text(post['content'])
+        post['short_text'] = utils.get_short_text(post['content'])
         post['post_id'] = db.count() + 1
         post['permalink'] = slugify.slugify(post['title'])
 
