@@ -82,14 +82,13 @@
   border-bottom: 4px solid transparent;
   font-size: 1.1em;
   line-height: $headerHeight;
-  padding-left: 10px;
-  padding-right: 10px;
   text-shadow: -1px 1px transparent;
+  padding: 0% 2%;
   -webkit-text-stroke-fill: white;
   -webkit-text-stroke-width: 14px;
   -webkit-text-stroke-color: transparent;
-  transition: border-bottom .5s ease;
-  transition: background .1s ease;
+  transition:   border-bottom .5s ease, 
+                background .5s ease;
 }
 
 // hover stuff for nav items
@@ -101,11 +100,13 @@
 .nav-item a {
   height: 100%;
   width: 100%;
+  text-shadow: 1px 1px 0px white;  
+  transition: 0.5s ease text-shadow;
 }
 
 .nav-item a:hover {
-  color: whitesmoke;
   color: $yellow;
+  text-shadow: 1px 1px 0px black;  
 }
 
 .current-page-highlight {

@@ -10,15 +10,16 @@
 @media (min-width: 1300px) {
   .content { 
     width: 800px;
+    padding-left: 90px;
   }
 
 }
 @media (max-width: 1240px ) {
   .content {
-    width: 600px;
+    width: 65vw;
+    padding-left: 90px;
   }
   .content li {
-    list-style-type: none;
     margin-left: 0;
   }
 }
@@ -26,6 +27,7 @@
 @media (max-width: 1000px ) {
   .content {
     width: 500px;
+    padding-left: 90px;
   }
   .content li {
     list-style-type: none;
@@ -37,6 +39,7 @@
     width: 380px;
     margin: 40px auto;
     padding-bottom: 80px;
+    padding-left: 90px;
   }
   .content h1 {
     width: 100%;
@@ -48,6 +51,7 @@
   .content { 
     width: 300px;
     margin: 40px auto;
+    padding-left: 0px;
   }
   .content h1, img, p {
     width: 100%;
@@ -70,10 +74,7 @@
     color: $pink;
   }
   .nav-item {
-    background: white;
     text-align: center;
-    margin-left: 17%;
-    padding-left: 7%;
     display: block !important; 
     height: 20%; 
     line-height: calc(#{$mobileHeaderHeight} / 5);
@@ -102,7 +103,7 @@
     width: 100%;
   }
   .content {
-    width: 80%; 
+    width: 90%; 
     margin: 40px auto; 
     padding: 15px 0px;
   }

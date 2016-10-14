@@ -3,7 +3,8 @@
 // Verdana for non body font
 .link-to-full-article, 
 .link-to-more-posts, 
-.content h1 {
+.content h1,
+.content h2 {
   font-family: "Verdana", sans-serif;
 }
 
@@ -55,13 +56,11 @@ a.link-to-more-posts {
 
 .content {
   width: 680px;
-  padding: 40px 0px 80px 20px;
 }
 
 .content p {
   font-size: 1.5em;
   line-height: 150%;
-  padding-top: 25px;
   padding-bottom: 25px;
   width: 100%;
 }
@@ -82,8 +81,8 @@ a.link-to-more-posts {
 }
 
 a.title-link {
-
   position: relative;
+  text-shadow: 2px 4px 0px lightgray;
 }
 a.title-link:hover,
 a.title-link {
@@ -98,7 +97,6 @@ a.title-link {
   width: 100%;
   font-size: 3em;
   font-weight: 600;
-  margin-top: 1.4em;
   margin-bottom: 0.5em;
 }
 

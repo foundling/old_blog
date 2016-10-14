@@ -43,7 +43,7 @@ class Database(object):
     return [result for result in result_set]
 
   def find_n_most_recent(self, n, collection='posts'):
-    result_set = self.db[collection].find().sort('title', pymongo.DESCENDING)
+    result_set = self.db[collection].find().sort('date', pymongo.ASCENDING)
     return [result for result in result_set]
 
   def insert_one(self, document, collection='posts'):
