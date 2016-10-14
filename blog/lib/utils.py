@@ -1,7 +1,23 @@
 def get_short_text(file_content, max_chars=160):
     ''' this should be revised to include as many paragraphs that fit into 160 chars '''
 
-    return file_content.split('\n')[0][:160] + ' ... ' 
+    short_text = ''
+    walk_index = max_chars
+
+    # content shorter than cut-off
+    if len(file_content) < max_chars:
+        short_text = file_content
+    else:
+        # cut-off point is on a space 
+        if file_content[max_chars - 1] == ' ':
+            short_text = ''.join(file_content[:max_chars])
+        else:
+            # cut-off point isn't a space. walk back until we find one or return empty string.
+            while walk_index > -1 and file_content[walk_index] != ' ':
+                walk_index -= 1
+            short_text = ''.join(file_content[:walk_index])
+
+    return short_text
 
 def usage(msg=None, err=None):
 
