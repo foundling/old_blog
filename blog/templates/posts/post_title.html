@@ -1,14 +1,15 @@
-<a class="title-link" href="{{ url_for('single_blog_post', post_id=post.post_id) }}">
-  <h1>
-  {% if 'news' in post.tags %}
-    <span class="title-news-prefix">[news]</span>  
-  {% endif %}
-  <span class="title-text">{{post.title}}</span>
+<a 
+    class="title-link" 
+    href="{{ url_for('single_blog_post', post_id=post.post_id) }}">
+    <h1>
+        {% if 'news' in post.tags %}
+        <span class="title-news-prefix">[news]</span>  
+        {% endif %}
+        <span class="title-text">{{post.title}}</span>
   </h1>
 </a>
+
 <span class="byline"> 
-  <div class="color-block"></div>
-  <h4 class="byline-text">
-    by {{post.author}} {{post.date | human_readable_date }}
-  </h4> 
+    <div class="color-block"></div>
+    <h4 class="byline-text">by {{post.author}} {{post.date | human_readable_date }}</h4> 
 </span>
