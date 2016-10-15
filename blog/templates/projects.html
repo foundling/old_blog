@@ -4,56 +4,73 @@
 
   <!-- PROJECTS HEADER -->
   <div id="projects">
+
     <section class="projects-header">
 
-      <nav class="projects-menu">
-        <h1>Projects</h1>
-        <ul class="projects-menu-list">
-          {% for project in projects %}
-          <li class="projects-menu-item">
-            <div class="color-block"></div>
-            <span class="project-list-name">
-              <a href="#{{project.name}}">{{project.name}}</a>
-            </span>
-          </li>
-          {% endfor %}
-        </ul>
+        <nav class="projects-menu">
+
+            <h1>Projects</h1>
+
+            <ul class="projects-menu-list">
+
+                {% for project in projects %}
+
+                    <li class="projects-menu-item">
+                        <div class="color-block"></div>
+                        <span class="project-list-name">
+                            <a href="#{{project.name}}">{{project.name}}</a>
+                        </span>
+                    </li>
+
+                {% endfor %}
+
+            </ul>
+
       </nav>
+
       <aside class="projects-illustration-container">
+
           <div class="diamond"></div>
           <div class="diamond"></div>
           <div class="diamond"></div>
           <div class="diamond"></div>
+
       </aside>
+
     </section>
 
     <!-- Project Descriptions -->
-      {% for project in projects %}
+    {% for project in projects %}
 
         <div class="single-project">
-          <!-- title and github repo link -->
-          <h2 id="{{project.name}}" class="project-name">{{project.name}}
-            <a class="repo" href="{{project.github_repository}}">
-              <i class="repo-icon fa fa-github-alt"></i>
-            </a>
-            <a class="top-link" href="#top">[top]</a>
-          </h2>
 
-          <!-- description -->
-          <p class="project-description">
-            {{project.description}}
-          </p>
+            <!-- title and github repo link -->
+            <h2 id="{{project.name}}" class="project-name">{{project.name}}
 
-          <!-- screenshots -->
-          {% for filename in project.image_filenames %}
-            <img 
-              class="project-screenshot" 
-              src="{{url_for('static',filename='img/projects/' + project.directory_name + '/' + filename)}}" 
-            />
-          {% endfor %}
+                <a class="repo" href="{{project.github_repository}}">
+                    <i class="repo-icon fa fa-github-alt"></i>
+                </a>
+                <a class="top-link" href="#top">[top]</a>
+
+            </h2>
+
+            <!-- description -->
+            <p class="project-description">
+                {{project.description}}
+            </p>
+
+            <!-- screenshots -->
+            {% for filename in project.image_filenames %}
+            
+                <img 
+                class="project-screenshot" 
+                src="{{url_for('static',filename='img/projects/' + project.directory_name + '/' + filename)}}"/>
+
+            {% endfor %}
 
         </div>
-      {% endfor %}
+
+    {% endfor %}
 
   </div>
   {% endblock %}

@@ -1,24 +1,24 @@
 {% extends "base.html" %}
 
-    {% block content %}
-
+{% block content %}
     <div id="index">
 
         {% for post in posts %}
-        {% include "posts/post_title.html" %}
-        <p class="short-text">
-            {{ post.short_text }}
-            <a 
-                class="link-to-full-article" 
-                href="{{ url_for('single_blog_post', post_id=post.post_id) }}">[ full article ]</a>
-        </p>
+            {% include "posts/post_title.html" %}
+            <p class="short-text">
+                {{ post.short_text }}
+                <a 
+                    class="link-to-full-article" 
+                    href="{{ url_for('single_blog_post', post_id=post.post_id) }}">[ full article ]</a>
+            </p>
         {% endfor %}
 
         <div class="more-posts">
-            <a class="link-to-more-posts" href="{{ url_for('all_posts') }}">[ More Posts ]</a>
+            <a 
+                class="link-to-more-posts" 
+                href="{{ url_for('all_posts') }}">[ More Posts ]</a>
             <div class="color-triangle"></div>
         </div>
 
     </div>
-
-  {% endblock %}
+{% endblock %}
