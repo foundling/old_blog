@@ -1,11 +1,11 @@
 /* LOGO */
 
-.logo-container,
-.main-menu,
-.logo-link,
-.nav-item,
-.nav-item a,
-#carrot a
+h1.logo-container,
+nav.main-menu,
+a.logolink,
+li.nav-item,
+li.nav-item a,
+a#caret
 {
   font-family: "Verdana";
   display:inline-block;
@@ -47,7 +47,7 @@
   -o-text-stroke-width: 14px;
   -ms-text-stroke-width: 14px;
 
-  text-shadow: -3px 2px $pink;
+  text-shadow: 3px 2px 0px $pink;
   -webkit-text-shadow: -3px 2px $pink;
   -moz-text-shadow: -3px 2px $pink;
   -o-text-shadow: -3px 2px $pink;
@@ -97,51 +97,48 @@
   background: $blue;
 }
 
-.nav-item a {
+li.nav-item a {
   height: 100%;
   width: 100%;
-  text-shadow: 1px 1px 0px white;  
+  text-shadow: 1px 2px 0px lightgray;  
   transition: 0.5s ease text-shadow;
 }
 
-.nav-item a:hover {
+li.nav-item a:hover {
   color: $yellow;
-  text-shadow: 1px 1px 0px black;  
+  text-shadow: 2px 2px 0px black;  
 }
 
-.current-page-highlight {
+li.current-page-highlight {
   border-bottom: 4px solid $pink;
 }
 
 // TO TOP MODULAR ARROW
-#to-top {
+aside#to-top {
   position: fixed;
   top: 0;
   left: 0;
   height: $headerHeight;
   width: $headerHeight;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#carrot {
-  position: relative;
-  line-height: $headerHeight;  
-  font-size: $headerHeight;
-  font-family: Verdana;
-  height: $headerHeight;
+a#caret {
   width: $headerHeight;
-  transition: opacity 1s ease-in;
-}
-
-#carrot a {
-  background: $whitesmoke;
+  height: $headerHeight;
+  line-height: $headerHeight;  
+  font-size: 50px;
+  font-family: Verdana;
   color: $lightblue;
-  width: 100%;
-  height: 80px; 
-  padding-top: 10px;
+  background: $whitesmoke;
+  text-align: center;
+  transition: opacity 1s ease-in;
+  padding-top: 5px; // to offset the natural space below the caret
 }
 
-#carrot a:hover {
+a#caret:hover {
   color: $whitesmoke;
   background: $lightblue;
 }
