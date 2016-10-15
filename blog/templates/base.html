@@ -10,18 +10,20 @@
 
 <body name="top">
 
-{% block header %}
-  {% include "header.html" %}
-{% endblock %}
+    <!-- HEADER & NAVIGATION -->
+    {% block header %}
+      {% include "header.html" %}
+    {% endblock %}
 
-<div  class="content">
-{% block content %}
+    <!-- ALL CONTENT (POSTS, ARCHIVES, ABOUT ME, ETC ..) -->
+    <div  class="content">
+        {% block content %}{% endblock %}
+    </div>
 
-{% endblock %}
-</div>
+    <!-- BODY SCRIPTS -->
+    {% block body_scripts %}
+      {% include "body_scripts.html" %}
+    {% endblock %}
 
-{% block body_scripts %}
-  {% include "body_scripts.html" %}
-{% endblock %}
 </body>
 </html>
