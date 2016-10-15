@@ -11,6 +11,15 @@ from lib import utils
 
 db = db.Database('mongodb://localhost:27017')
 
+def prompt_for(question=""):
+    pass
+
+def is_static_or_post():
+    pass
+
+def get_post_title():
+    pass
+
 def main():
     ''' 
     schema 
@@ -59,9 +68,12 @@ def main():
         content = targets[choice].get('content','')
         post_title = targets[choice].get('title')
         updated_text = utils.edit_in_vim(content)
-        short_text = utils.get_short_text(updated_text)
-        query = {'title': post_title}
-        update = {'$set': {'content':updated_text, 'short_text': short_text}}
+        short_text = raw_input("Short text for '{}': \n".format(post_title)).strip()
+        query = { 'title': post_title }
+        if short_text:
+            update = {'$set': {'content':updated_text, 'short_text': short_text}}
+        else:
+            update = {'$set': {'content':updated_text}}
         result = db.update_one(query, update, collection=collection)
         break
 
