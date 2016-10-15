@@ -1,25 +1,25 @@
 /* Byline component */
-.byline {
+span.byline {
   display: block;
   font-family: Verdana;
   padding-top: 1.2em;
   padding-bottom: 1em;
 }
 
-.byline-text {
+h4.byline-text {
   display: inline-block;
   font-weight: 100;
   margin-left: 10px;
 }
 
-.color-block {
+div.color-block {
   background: $blue;
   height: 10px;
   width: 10px;
   display: inline-block;
 }
 
-.triangle-right {
+div.triangle-right {
   display: inline-block;
   vertical-align: bottom;
   height: 0;
