@@ -1,13 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  max-width: 100%; background: rgb(253,253,253);
-  line-height: 1.4;
-}
-
 /* VARIABLES */
 
 /* layout */
@@ -40,39 +30,36 @@ $whitesmoke:  rgba(245,245,245,.6);
 
 /* GENERAL ELEMENTS */
 
+body * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 html,
-body 
-{
-  font-size: 100%;
-  height: 100%;
-  width:100%;
-  max-width:100%;
-  margin:0;
-  padding:0;
+body {
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    max-width:100%;
+    margin:0;
+    padding:0;
 }
 
-body
-{
-  background-color: white;
+body {
+  background: rgb(253,253,253);
 }
 
-a,
-{
+a {
   text-decoration:none; 
   color: $black;
 }
 
-ul 
-{
+ul {
   margin: 0; padding: 0;
 }
 
-li 
-{
-}
-
-a, i.fa {
+a, 
+i.fa {
     outline: none !important;
 }
-
-
