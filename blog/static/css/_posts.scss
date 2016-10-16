@@ -1,24 +1,24 @@
-// all posts
+// all post-related stuff
+
+
 div#single-post,
 div#latest-posts {
 
-    margin: 5% auto;
-    width: 65vw;
-    ul.post-tags {
-        display: inline-block;
-        margin-top: 25px;
-        width: auto;
+    li a {
+        color: $blue;
     }
+    margin: 10% auto 5% auto;
+
     li.post-tag {
         border: 1px solid rgba(0, 191, 255, 0.17);
         background: whitesmoke;
         display: inline-block;
-        padding: 5px;
+        padding: 0px 5px;
         margin-right: 5px;
         color: rgba(255, 64, 155, 0.33);
     }
     li.post-tag:hover {
-        border: 1px solid transparent;
+        border: 1px solid rgba(255, 64, 155, 0.83);
         background: $blue;
         display: inline-block;
         color: white;
@@ -26,6 +26,42 @@ div#latest-posts {
     h1 {
         font-size: 3em;
         text-shadow: 2px 4px 0px lightgray;
+    }
+    p {
+        padding: 20px 0px;
+    }
+
+    ul {
+        padding: 20px 0px 20px 30px;
+    }
+
+    ul.post-tags {
+        width: auto;
+        display: inline-block;
+        margin-top: 25px;
+        padding-left: 0px;
+    }
+    ul li p {
+        padding: none;
+    }
+
+    code,
+    pre {
+        overflow-x: scroll;
+    }
+
+    li > code,
+    p > code,
+    h2 > code {
+        color: deeppink;
+        background: whitesmoke;
+        padding: 2px 5px;
+    } 
+
+    ul li {
+        padding: 5px 0px;
+        font-size: 1.5em;
+        line-height: 1.5em;
     }
 }
 
@@ -48,7 +84,7 @@ div#single-post {
 div#latest-posts {
 
     div.recent-post {
-        margin: 10% 0px; 
+        margin: 0 0px 10% 0px;
     }
 
     h1,

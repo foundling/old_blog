@@ -9,3 +9,4 @@ pushcontent.sh
 blog/build
 db/blog.0
 db/local.0
+db/journal*

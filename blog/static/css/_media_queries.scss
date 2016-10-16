@@ -1,11 +1,21 @@
+@media(min-width: 700px) {
+    div.content {
+        padding-left: 0px;
+        & > div {
+            width: 65vw;
+        } 
+    }
+
+}
+
 @media(max-width: 700px) {
 
     // drop the side menu, adjust content width
     div.content {
         padding-left: 0px;
-        div#latest-posts {
+        & > div {
             width: 90vw;
-        }
+        } 
 
     }
 

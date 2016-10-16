@@ -200,7 +200,7 @@ a#caret:hover {
   background: rgba(0, 191, 255, 0.44); }
 
 .social-media-icon {
-  text-shadow: 1px 1px darkgray;
+  text-shadow: 2px 2px #252525;
   padding: 15px;
   color: white;
   font-size: 1.6em; }
@@ -294,24 +294,21 @@ div.content {
 
 div#single-post,
 div#latest-posts {
-  margin: 5% auto;
-  width: 65vw; }
-  div#single-post ul.post-tags,
-  div#latest-posts ul.post-tags {
-    display: inline-block;
-    margin-top: 25px;
-    width: auto; }
+  margin: 10% auto 5% auto; }
+  div#single-post li a,
+  div#latest-posts li a {
+    color: deepskyblue; }
   div#single-post li.post-tag,
   div#latest-posts li.post-tag {
     border: 1px solid rgba(0, 191, 255, 0.17);
     background: whitesmoke;
     display: inline-block;
-    padding: 5px;
+    padding: 0px 5px;
     margin-right: 5px;
     color: rgba(255, 64, 155, 0.33); }
   div#single-post li.post-tag:hover,
   div#latest-posts li.post-tag:hover {
-    border: 1px solid transparent;
+    border: 1px solid rgba(255, 64, 155, 0.83);
     background: deepskyblue;
     display: inline-block;
     color: white; }
@@ -319,6 +316,40 @@ div#latest-posts {
   div#latest-posts h1 {
     font-size: 3em;
     text-shadow: 2px 4px 0px lightgray; }
+  div#single-post p,
+  div#latest-posts p {
+    padding: 20px 0px; }
+  div#single-post ul,
+  div#latest-posts ul {
+    padding: 20px 0px 20px 30px; }
+  div#single-post ul.post-tags,
+  div#latest-posts ul.post-tags {
+    width: auto;
+    display: inline-block;
+    margin-top: 25px;
+    padding-left: 0px; }
+  div#single-post ul li p,
+  div#latest-posts ul li p {
+    padding: none; }
+  div#single-post code,
+  div#single-post pre,
+  div#latest-posts code,
+  div#latest-posts pre {
+    overflow-x: scroll; }
+  div#single-post li > code,
+  div#single-post p > code,
+  div#single-post h2 > code,
+  div#latest-posts li > code,
+  div#latest-posts p > code,
+  div#latest-posts h2 > code {
+    color: deeppink;
+    background: whitesmoke;
+    padding: 2px 5px; }
+  div#single-post ul li,
+  div#latest-posts ul li {
+    padding: 5px 0px;
+    font-size: 1.5em;
+    line-height: 1.5em; }
 
 div#single-post div.single-post-content ul {
   padding-left: 2em; }
@@ -329,7 +360,7 @@ div#single-post div.single-post-content pre[class*="language-"] {
   margin-bottom: 25px; }
 
 div#latest-posts div.recent-post {
-  margin: 10% 0px; }
+  margin: 0 0px 10% 0px; }
 div#latest-posts h1,
 div#latest-posts h2,
 div#latest-posts h4.byline-text,
@@ -506,10 +537,15 @@ a.archive-post-text {
 #gallery {
   text-align: center; }
 
+@media (min-width: 700px) {
+  div.content {
+    padding-left: 0px; }
+    div.content > div {
+      width: 65vw; } }
 @media (max-width: 700px) {
   div.content {
     padding-left: 0px; }
-    div.content div#latest-posts {
+    div.content > div {
       width: 90vw; }
 
   aside#social-media {
