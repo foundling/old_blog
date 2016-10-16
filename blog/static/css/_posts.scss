@@ -1,22 +1,9 @@
+// all posts
+div#single-post,
 div#latest-posts {
 
     margin: 5% auto;
     width: 65vw;
-
-    div.recent-post {
-        margin: 10% 0px; 
-    }
-
-    h1,
-    h2,
-    h4.byline-text,
-    a.link-to-full-article {
-        font-family: "Verdana", sans-serif;
-    }
-    p,
-    a.link-to-full-article {
-        font-family: "Baskerville";
-    }
     ul.post-tags {
         display: inline-block;
         margin-top: 25px;
@@ -36,6 +23,45 @@ div#latest-posts {
         display: inline-block;
         color: white;
     }
+    h1 {
+        font-size: 3em;
+        text-shadow: 2px 4px 0px lightgray;
+    }
+}
+
+
+div#single-post {
+    div.single-post-content {
+        ul {
+            padding-left: 2em;
+        }
+        p {
+            font-size: 1.5em;
+            line-height: 1.5em;
+        }
+        pre[class*="language-"] {
+            margin-bottom: 25px;
+        }
+    }
+}
+
+div#latest-posts {
+
+    div.recent-post {
+        margin: 10% 0px; 
+    }
+
+    h1,
+    h2,
+    h4.byline-text,
+    a.link-to-full-article {
+        font-family: "Verdana", sans-serif;
+    }
+    p,
+    a.link-to-full-article {
+        font-family: "Baskerville";
+    }
+
     p.short-text {
         font-size: 1.5em;
         line-height: 1.5em;
@@ -61,6 +87,7 @@ div#latest-posts {
     }
     a.link-to-full-article {
         margin-top: 20px;
+        border: 1px solid rgba(255, 64, 155, 0.33);
         padding: 4px 9px;
         background: whitesmoke;
         white-space: nowrap;
@@ -75,12 +102,7 @@ div#latest-posts {
     a.link-to-more-posts:hover {
         background: $pink;
         color: white;
-        border: none;
-    }
-
-    h1 {
-        font-size: 3em;
-        text-shadow: 2px 4px 0px lightgray;
+        border: 1px solid transparent;
     }
 
     div.more-posts {

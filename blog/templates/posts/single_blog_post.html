@@ -1,19 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <div id="single-post">
 
-    {% include "posts/post_title.html" %}
+        {% include "posts/post_title.html" %}
 
-    <div id="single-post">{{ post.content | markdown }}</div>
+        <div class="single-post-content">{{ post.content | markdown }}</div>
 
-    <ul class="tag-list">
+        <ul class="post-tags">
 
-        {% for tag in post.tags %}
-            <li class="tag">
-                <a href="{{url_for('all_posts', query=tag)}}">{{tag}}</a>
-            </li>
-        {% endfor %}
+            {% for tag in post.tags %}
+                <li class="post-tag">
+                    <a href="{{url_for('all_posts', query=tag)}}">{{tag}}</a>
+                </li>
+            {% endfor %}
 
-    </ul>
+        </ul>
+    </div>
 
 {% endblock %}
