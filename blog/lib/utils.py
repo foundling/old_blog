@@ -1,6 +1,8 @@
 def get_short_text(file_content, max_chars=160):
     ''' this should be revised to include as many paragraphs that fit into 160 chars '''
 
+    file_content = file_content.strip()
+
     short_text = ''
     walk_index = max_chars
 

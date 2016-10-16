@@ -22,6 +22,7 @@ def append_user_values(post, collection):
 
     if collection == 'posts': 
       prompt_questions['tags'] = 'Tags: '
+      prompt_questions['short_text'] = 'Short-Text: '
 
     for category in prompt_questions:
 
@@ -33,6 +34,8 @@ def append_user_values(post, collection):
         if category == 'title':
             post[category] = raw_string.strip().encode('utf-8')
 
+
+
     return post
 
 def append_automatic_values(client, post, collection):
@@ -42,7 +45,6 @@ def append_automatic_values(client, post, collection):
     post['date'] = datetime.datetime.now() 
 
     if collection == 'posts':
-        post['short_text'] = utils.get_short_text(post['content'])
         post['post_id'] = db.count() + 1
         post['permalink'] = slugify.slugify(post['title'])
 

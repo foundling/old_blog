@@ -1,0 +1,10 @@
+def prompt(header=None, choices=None):
+
+    if header:
+        print header
+
+    for index, q in enumerate(choices):
+        print '{}: {}\n'.format(index + 1, q) 
+    answer = raw_input(q).strip() 
+
+    return answer

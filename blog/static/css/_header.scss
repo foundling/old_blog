@@ -11,6 +11,7 @@ a#caret
   display:inline-block;
 }
 
+
 .logo-container {
   background: $blue;
   height: $headerHeight;
@@ -19,7 +20,10 @@ a#caret
   transition: background-color .5s linear;
 }
 
-.logolink:hover {
+a.logolink {
+    transition: font-size 0.5s ease;
+}
+a.logolink:hover {
   font-size: 42px;
 }
 .logo-container:hover {
@@ -52,23 +56,17 @@ a#caret
   -moz-text-shadow: -3px 2px $pink;
   -o-text-shadow: -3px 2px $pink;
   -ms-text-shadow: -3px 2px $pink;
-
-  transition: font-size .5s ease;
-  -webkit-transition: font-size .5s ease;
-  -moz-transition: font-size .5s ease;
-  -o-transition: font-size .5s ease;
-  -ms-transition: font-size .5s ease;
 }
 
 
 .logo-container,
-.main-menu
+nav.main-menu
 {
   vertical-align: top;
 }
 
 // Navigation Bar
-.main-menu {
+nav.main-menu {
   width: calc(100% - 90px);
   margin-left: -4px;
   height: $headerHeight; 
@@ -76,31 +74,35 @@ a#caret
   text-align: center;
 }
 
-.main-menu ul {height: 100%;}
+ul.header {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-.nav-item {
-  border-bottom: 4px solid transparent;
-  font-size: 1.1em;
-  line-height: $headerHeight;
-  text-shadow: -1px 1px transparent;
-  padding: 0% 2%;
-  -webkit-text-stroke-fill: white;
-  -webkit-text-stroke-width: 14px;
-  -webkit-text-stroke-color: transparent;
-  transition:   border-bottom .5s ease, 
-                background .5s ease;
+li.nav-item {
+    box-sizing: initial;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 4px solid transparent;
+    width: 25%;
+    height: calc(100% - 4px);
 }
 
 // hover stuff for nav items
-.nav-item:hover {
-  border-bottom: 4px solid $pink;
-  background: $blue;
+li.nav-item:hover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 4px solid lightgray;
+    background: $blue;
 }
 
 li.nav-item a {
-  height: 100%;
-  width: 100%;
-  text-shadow: 1px 2px 0px lightgray;  
+  text-shadow: 2px 2px 0px lightgray;  
   transition: 0.5s ease text-shadow;
 }
 
@@ -145,25 +147,36 @@ a#caret:hover {
 
 // SOCIAL MEDIA MENU / SEARCH
 .social-media-icon {
-  margin-top: 25px;
-  transition: font .3s ease;
+  text-shadow: 1px 1px darkgray;
+  padding: 15px;
   color: white;
   font-size: 1.6em;
 }
 
 .social-media-icon:hover {
   color: $yellow;
-  font-size: 1.9em;
 }
 
-#social-media {
-  display: inline-block;
+aside#social-media ul {
+    list-style-type: none;
+}
+
+aside#social-media li,
+aside#social-media li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+aside#social-media {
   position: fixed;
   top: 90px; 
   left: 0px;
   width: $headerHeight;
-  height: calc( (2 * #{$headerHeight}) + 48px );
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #search-icon-input,

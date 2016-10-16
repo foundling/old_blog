@@ -1,16 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div id="index">
+    <div id="latest-posts">
 
         {% for post in posts %}
+        <div class="recent-post">
             {% include "posts/post_title.html" %}
+
             <p class="short-text">
                 {{ post.short_text }}
+            </p>
                 <a 
                     class="link-to-full-article" 
-                    href="{{ url_for('single_blog_post', post_id=post.post_id) }}">[ full article ]</a>
-            </p>
+                    href="{{ url_for('single_blog_post', post_id=post.post_id) }}">full article</a>
+        </div>
         {% endfor %}
 
         <div class="more-posts">
