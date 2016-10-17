@@ -259,6 +259,18 @@ input.visible {
 input.invisible {
   display: none; }
 
+div#about {
+  margin-top: 5%; }
+
+#about h1 {
+  font-size: 3em;
+  text-shadow: 2px 4px 0px lightgray; }
+
+#about p {
+  padding: 20px 0px;
+  font-size: 1.5em;
+  line-height: 1.5em; }
+
 #about ul li,
 #about ol li {
   list-style-type: initial;
@@ -536,13 +548,37 @@ span.archive-post-date {
 a.archive-post-text {
   margin-left: 30px; }
 
+h1.photos-title {
+  text-align: center;
+  font-size: 3em;
+  text-shadow: 2px 4px 0px lightgray;
+  padding: 30px 0px; }
+
 #photos img {
   margin: 20px auto;
-  width: 40vw;
-  height: auto; }
+  width: 95vw;
+  max-width: 450px;
+  height: auto;
+  display: block; }
 
 #gallery {
   text-align: center; }
+
+ul.photos-menu {
+  text-align: center;
+  max-width: 450px;
+  margin: 0 auto;
+  list-style-type: none; }
+
+ul.photos-menu > li {
+  height: 1.5em;
+  line-height: 1.5em; }
+
+li.active:before {
+  text-align: left;
+  content: '>';
+  color: deepskyblue;
+  font-weight: bold; }
 
 @media (min-width: 700px) {
   div.content {
