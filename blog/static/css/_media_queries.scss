@@ -1,4 +1,4 @@
-@media(min-width: 700px) {
+@media(min-width: 701px) {
     div.content {
         padding-left: 0px;
         & > div {
@@ -17,9 +17,26 @@
         padding-left: 0px;
         & > div {
             width: 90vw;
-            margin: 5% auto;
+            //margin: 5% auto;
+            margin: 10% auto 5% auto; 
         } 
 
+    }
+
+    div#archive {
+        span.archive-post-date {
+            display: block;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+        a.archive-post-text {
+            display: block;
+            text-align: center;
+            margin: 0 auto;
+        }
+        li.archive-post {
+            padding: 20px;
+        }
     }
 
     // set side bar to inline block

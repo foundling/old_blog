@@ -28,7 +28,7 @@ def single_blog_post(post_id):
 @application.route('/archive/')
 def all_posts():
     query = request.args.get('query')
-    posts = db.find_all()
+    posts = reversed(db.find_all())
     return render_template('archive.html', query=query, posts=posts)
 
 @application.route('/projects/')

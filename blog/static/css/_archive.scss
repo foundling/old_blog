@@ -1,15 +1,36 @@
-h1.archive-header {
-  text-align: center;
-}
+div#archive {
 
-a.archive-post-text {
-  font-size: 1.4em;
-}
+    li {
+        list-style-type: none;
+    }
 
-span.archive-post-date {
-  color: $blue;
-  font-size: 1.1em;
-}
-a.archive-post-text {
-  margin-left: 30px;
+    ul {
+        padding-top: 60px;
+    }
+    h1.archive-header {
+      text-align: center;
+      font-size: 3em;
+      text-shadow: 2px 4px 0px lightgray;
+    }
+
+    a.archive-post-text {
+      font-size: 1.4em;
+    }
+
+    span.archive-post-date {
+      font-size: 1.1em;
+    }
+
+    a.archive-post-text {
+      color: $blue;
+      margin-left: 30px;
+      padding: 2px 5px;
+    }
+    a.archive-post-text:hover {
+      background: $pink;
+      color: whitesmoke;
+      margin-left: 30px;
+      padding: 2px 5px;
+    }
+
 }

@@ -535,18 +535,30 @@ section.projects-illustration-container {
   left: 160px;
   background: #fdff3f; }
 
-h1.archive-header {
-  text-align: center; }
-
-a.archive-post-text {
+div#archive li {
+  list-style-type: none; }
+div#archive ul {
+  padding-top: 60px; }
+div#archive h1.archive-header {
+  text-align: center;
+  font-size: 3em;
+  text-shadow: 2px 4px 0px lightgray; }
+div#archive a.archive-post-text {
   font-size: 1.4em; }
-
-span.archive-post-date {
-  color: deepskyblue;
+div#archive span.archive-post-date {
   font-size: 1.1em; }
+div#archive a.archive-post-text {
+  color: deepskyblue;
+  margin-left: 30px;
+  padding: 2px 5px; }
+div#archive a.archive-post-text:hover {
+  background: #ff409b;
+  color: whitesmoke;
+  margin-left: 30px;
+  padding: 2px 5px; }
 
-a.archive-post-text {
-  margin-left: 30px; }
+div#photos {
+  margin: 10% auto 5% auto; }
 
 h1.photos-title {
   text-align: center;
@@ -580,7 +592,7 @@ li.active:before {
   color: deepskyblue;
   font-weight: bold; }
 
-@media (min-width: 700px) {
+@media (min-width: 701px) {
   div.content {
     padding-left: 0px; }
     div.content > div {
@@ -591,7 +603,18 @@ li.active:before {
     padding-left: 0px; }
     div.content > div {
       width: 90vw;
-      margin: 5% auto; }
+      margin: 10% auto 5% auto; }
+
+  div#archive span.archive-post-date {
+    display: block;
+    text-align: center;
+    padding-bottom: 10px; }
+  div#archive a.archive-post-text {
+    display: block;
+    text-align: center;
+    margin: 0 auto; }
+  div#archive li.archive-post {
+    padding: 20px; }
 
   aside#social-media {
     position: static;
