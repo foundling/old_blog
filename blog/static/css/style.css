@@ -164,7 +164,8 @@ li.nav-item:hover {
 
 li.nav-item a {
   text-shadow: 2px 2px 0px lightgray;
-  transition: 0.5s ease text-shadow; }
+  transition: 0.5s ease text-shadow;
+  padding: 30% 25%; }
 
 li.nav-item a:hover {
   color: #fdff3f;
@@ -407,18 +408,24 @@ div#latest-posts a.link-to-more-posts:hover {
 div#latest-posts div.more-posts {
   margin-top: 4%; }
 
-div.projects {
-  width: 100%; }
-
 section.projects-header {
   width: 100%;
   display: block;
-  padding-top: 90px;
-  padding-bottom: 80px; }
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
+img.project-screenshot {
+  width: 100%;
+  max-width: 100%; }
 
 .project-name,
 .project-list-name {
   font-family: "Verdana", sans-serif; }
+
+.project-description {
+  padding: 20px 0px;
+  font-size: 1.5em;
+  line-height: 1.5em; }
 
 .project-list-name {
   margin-left: 5px; }
@@ -466,33 +473,33 @@ a.repo {
 a.repo:hover {
   border-bottom: 2px solid deepskyblue; }
 
-.projects-menu-list {
+section.projects-header h1 {
   padding-top: 30px;
-  padding-left: 30px; }
+  text-align: center;
+  font-size: 3em;
+  text-shadow: 2px 4px 0px lightgray; }
 
-.projects-menu-item {
+ul.projects-menu-list {
+  padding-top: 30px; }
+
+li.projects-menu-item {
   margin: 10px 0px 10px 0px;
-  font-size: 1.2em; }
+  font-size: 1.2em;
+  list-style-type: none; }
 
 .single-project:not(:first-child) {
   padding-bottom: 40px; }
 
-.projects-menu,
-.projects-illustration-container {
-  display: inline-block;
-  vertical-align: top;
-  width: 49%; }
-
-.projects-illustration-container {
+section.projects-illustration-container {
+  width: 100%;
   position: relative;
-  top: -85px; }
+  display: block; }
 
 .diamond {
   position: absolute;
-  left: 40px;
   height: 12vw;
-  min-height: 80px;
   width: 12vw;
+  min-height: 80px;
   min-width: 80px;
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
@@ -502,18 +509,18 @@ a.repo:hover {
 
 .diamond:nth-child(1) {
   background: lightgray;
-  top: 40px; }
+  left: 40px; }
 
 .diamond:nth-child(2) {
   background: deepskyblue;
-  top: 80px; }
+  left: 80px; }
 
 .diamond:nth-child(3) {
-  top: 120px;
+  left: 120px;
   background: #ff409b; }
 
 .diamond:nth-child(4) {
-  top: 160px;
+  left: 160px;
   background: #fdff3f; }
 
 h1.archive-header {
@@ -541,12 +548,14 @@ a.archive-post-text {
   div.content {
     padding-left: 0px; }
     div.content > div {
-      width: 65vw; } }
+      width: 65vw;
+      margin: 10% auto 5% auto; } }
 @media (max-width: 700px) {
   div.content {
     padding-left: 0px; }
     div.content > div {
-      width: 90vw; }
+      width: 90vw;
+      margin: 5% auto; }
 
   aside#social-media {
     position: static;
