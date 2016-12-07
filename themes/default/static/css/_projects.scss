@@ -1,0 +1,146 @@
+div.projects {
+}
+
+section.projects-header {
+  width: 100%;
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+}
+
+img.project-screenshot {
+    width: 100%;
+    max-width: 100%;
+
+}
+
+.project-name,
+.project-list-name {
+  font-family: "Verdana", sans-serif;
+}
+
+.project-description {
+    padding: 20px 0px;
+    font-size: 1.5em;
+    line-height: 1.5em;
+}
+
+
+.project-list-name {
+  margin-left: 5px;
+}
+
+.project-list-name a {
+  color: $black;
+}
+
+.project-list-name a:hover,
+a.top-link {
+  color: $black;
+}
+
+a.top-link {
+  background: transparent;
+  border-bottom: 2px solid transparent;
+  display: inline-block;
+  font-size: 0.7em;
+  padding: 0px 0px 4px 0px;
+}
+
+a.top-link:hover {
+  border-bottom: 2px solid $blue;
+  background: transparent;
+  color: $black;
+  padding: 0px 0px 4px 0px;
+}
+
+.project-name {
+  font-size: 22px;
+  width: 100%;
+}
+
+.project-name,
+.repo,
+.fa-github-alt,
+.top-link {
+  vertical-align: bottom;
+  display: inline-block;
+}
+
+a.repo,
+a.repo:hover {
+  color: $blue;
+  background: transparent;
+  padding: 4px 5px 2px 5px;
+}
+
+a.repo {
+  border-bottom: 2px solid transparent;
+}
+a.repo:hover {
+  border-bottom: 2px solid $blue;
+}
+
+section.projects-header {
+    h1 {
+        padding-top: 30px;
+        text-align: center;
+        font-size: 3em;
+        text-shadow: 2px 4px 0px lightgray;
+    }
+}
+ul.projects-menu-list {
+  padding-top: 30px;
+}
+
+li.projects-menu-item {
+  margin: 10px 0px 10px 0px;
+  font-size: 1.2em;
+  list-style-type: none;
+}
+
+.single-project:not(:first-child) {
+  padding-bottom: 40px;
+}
+
+section.projects-illustration-container
+{ 
+  width: 100%;
+  position: relative;
+  display: block;
+}
+
+
+.diamond {
+  position: absolute;
+  height: 12vw;
+  width: 12vw;
+  min-height: 80px;
+  min-width: 80px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.diamond:nth-child(1) {
+  background: lightgray;
+  left: 40px;
+}
+
+.diamond:nth-child(2) {
+  background: $blue;
+  left: 80px;
+}
+
+.diamond:nth-child(3) {
+  left: 120px;
+  background: $pink;
+}
+
+.diamond:nth-child(4) {
+  left: 160px;
+  background: $yellow;
+}

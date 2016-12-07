@@ -1,5 +1,0 @@
-1. css elements explained in depth, and the specificity rules
-2. async JavaScript Testing in Node and in the Browser
-3. a simple chat client in Python and Bash
-
-

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="archive">
+    <h1 class="archive-header">Archive</h1>
+    <ul>
+        {% for post in posts %}
+        <li class="archive-post">
+            <span class="archive-post-date">{{ post.date.strftime('%m.%d.%y') }}</span>
+            <a class="archive-post-text" href="{{ url_for('single_blog_post', post_id=post.post_id) }}">{{post.title}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

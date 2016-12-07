@@ -11,6 +11,7 @@ from pymongo import MongoClient
 
 from blog import application
 from lib import db, utils
+from themes import themes
 
 db = db.Database(application.config['MONGODB_DATABASE_URI']) 
 
