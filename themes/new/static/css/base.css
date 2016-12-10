@@ -1,0 +1,80 @@
+html, body {
+
+
+    font-family: "Helvetica Neue";
+    color: rgb(70,70,70);
+}
+
+html, body, body * {
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
+body {
+    background: whitesmoke;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(70,70,70);
+}
+
+p {
+    line-height: 1.6em;
+}
+
+
+div.main {
+
+    width: 100vw;
+    padding: 0% 2% 0% 2%;
+
+}
+
+div.main {
+    display: inline-block;
+    vertical-align: top;
+}
+
+header.site-header {
+    width: 100%;
+    background: white;
+    padding: 2%;
+    border-bottom: 2px solid lightgreen;
+}
+
+
+nav.blog-nav h1, 
+nav.blog-nav ul,
+nav.blog-nav li {
+    display: inline-block; 
+    vertical-align: middle;
+}
+nav.blog-nav h1 {
+    margin-right: 10px;
+}
+
+footer {
+    font-size: 0.7em;
+    background: white;
+    border-top: 1px solid lightgreen;
+    padding: 1% 0% 1% 2%;
+}
+
+footer p {
+    height: 5vh;
+    line-height: 5vh;
+}
+
+footer a {
+    color: initial;
+
+}
+
+li {
+    list-style-type: none;
+    padding: 0.5em;
+}

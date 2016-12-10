@@ -9,8 +9,8 @@ themes = {
         'static': make_path('default','static'), 
         'templates': make_path('default','templates') 
     },
-    'test': {
-        'static': make_path('test', 'static'),
-        'templates': make_path('test', 'templates'),
+    'new': {
+        'static': make_path('new', 'static'),
+        'templates': make_path('new', 'templates'),
     }
 }

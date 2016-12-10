@@ -1,0 +1,53 @@
+/*
+ * Header
+ */
+
+nav.blog-nav h1,
+nav.blog-nav ul,
+nav.blog-nav li {
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+/* 
+ * Recent Post List
+ */
+
+
+section.recent-posts-list {
+    margin: 2% 0%;
+    text-align: left;
+}
+
+article.recent-post {
+    width: 70%;
+    padding: 5px 0px;
+}
+
+ul.post-keywords {
+}
+
+li.post-keyword {
+    padding: 0;
+}
+
+div.byline {
+    margin: 5px 0px;    
+    padding: 0px 2px;
+    font-size: .9em;
+    background: white;
+    display: inline-block;
+}
+
+p.recent-post-stub {
+    text-align: left;
+}
+
+.more-posts {
+    padding: 5% 0% 3% 0%;
+}
+.more-posts a {
+    padding: 10px;
+    background: lightgreen;
+    border-radius: 5px;
+}
