@@ -15,13 +15,13 @@ nav.blog-nav li {
 
 
 section.recent-posts-list {
-    margin: 2% 0%;
+    margin: 3% 0%;
     text-align: left;
 }
 
 article.recent-post {
     width: 70%;
-    padding: 5px 0px;
+    padding: 10px 0px;
 }
 
 ul.post-keywords {
@@ -44,7 +44,7 @@ p.recent-post-stub {
 }
 
 .more-posts {
-    padding: 5% 0% 3% 0%;
+    padding: 5% 0% 1% 0%;
 }
 .more-posts a {
     padding: 10px;
