@@ -15,7 +15,7 @@ nav.blog-nav li {
 
 
 section.recent-posts-list {
-    margin: 3% 5%;
+    margin: 5% 0%;
     text-align: left;
 }
 
@@ -34,6 +34,7 @@ ul.social-media-icons,
 
 ul.social-media-icons {
     background: white;
+    margin-left: 5px;
 }
 .social-media-icons li {
     padding: 5px;
@@ -69,6 +70,7 @@ div.byline {
 
 .pencil-icon {
     color: rgba(255, 0, 0, 0.62);
+    margin-right: 5px;
 }
 
 p.recent-post-stub {
@@ -77,6 +79,10 @@ p.recent-post-stub {
     padding: 15px 0px;
     text-align: left;
 
+}
+
+.link-to-full-article i {
+    vertical-align: bottom;
 }
 
 .more-posts {

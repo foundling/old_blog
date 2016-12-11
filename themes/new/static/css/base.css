@@ -5,6 +5,7 @@ html, body {
 
     font-family: "Helvetica Neue";
     color: rgb(70,70,70);
+
 }
 
 html, body, body * {
@@ -16,16 +17,22 @@ html, body, body * {
 }
 
 body {
+
     background: whitesmoke;
+
 }
 
 a {
+
     text-decoration: none;
     color: rgb(70,70,70);
+
 }
 
 p {
+
     line-height: 1.6em;
+
 }
 
 
@@ -37,47 +44,61 @@ div.main {
 }
 
 header.site-header {
-    text-align: center;
+    
+    text-align: left;
     width: 100%;
     background: white;
-    padding: 3% 5%;
-    border-bottom: 2px solid lightgreen;
+    padding: 3% 20%;
+
 }
 
 
 nav.blog-nav h1, 
 nav.blog-nav ul,
 nav.blog-nav li {
+
     display: inline-block; 
     vertical-align: middle;
+
 }
 nav.blog-nav h1 {
+
     margin-right: 10px;
+
 }
 
 a:hover {
+
     color: rgba(255, 0, 0, 0.62);
+
 }
 
 
 footer {
-    padding: 1% 5%;
+
+    padding: 1% 20%;
     font-size: 0.7em;
     background: white;
     border-top: 1px solid lightgreen;
+
 }
 
 footer p {
+
     height: 5vh;
     line-height: 5vh;
+
 }
 
 footer a {
+
     color: initial;
 
 }
 
 li {
+
     list-style-type: none;
-    padding: 0.5em;
+    padding: 0.5em 0.5em 0.5em 0em;
+
 }
