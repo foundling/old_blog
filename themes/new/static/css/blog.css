@@ -15,13 +15,13 @@ nav.blog-nav li {
 
 
 section.recent-posts-list {
-    margin: 5% 0%;
+    margin: 5% 20%;
     text-align: left;
 }
 
 article.recent-post {
     margin: 0 auto;
-    width: 60%;
+    width: 100%;
     padding: 1% 0%;
 }
 
@@ -59,6 +59,11 @@ div.byline {
     padding: 0px 2px;
     font-size: .9em;
     display: inline-block;
+    width: 100%;
+}
+
+p.published-info {
+    display: inline-block;
 }
 
 .post-published,
@@ -87,11 +92,13 @@ p.recent-post-stub {
 
 .more-posts {
     padding: 3% 0% 1% 0%;
-    width: 60%;
+    width: 100%;
     margin: 0 auto;
 }
 .more-posts a {
     padding: 10px;
     background: lightgreen;
-    border-radius: 5px;
+    opacity: 0.8;
+    color: white;
+    font-weight: 400;
 }
