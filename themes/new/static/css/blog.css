@@ -25,10 +25,20 @@ article.recent-post {
     padding: 1% 0%;
 }
 
-.social-media-icons,
+ul.social-media-icons,
+.social-media-icons li,
 .recent-post-title {
     display: inline-block;
+    vertical-align: middle;
 }
+
+ul.social-media-icons {
+    background: white;
+}
+.social-media-icons li {
+    padding: 5px;
+}
+
 
 ul.post-keywords {
     display: inline-block;
