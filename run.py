@@ -1,7 +1,7 @@
-from blog import application
+from app import blog
 
 if __name__ == '__main__':
-    application.run(
+    blog.run(
         host='0.0.0.0',
         debug=True,
         extra_files=['reload']

@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en"> 
+<head> 
+  <title>Alex Ramsdell</title> 
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, user-scalable=no"/> 
+  <script src=../../static/js/fastclick.js></script>
+<script type="application/javascript">
+  if ('addEventListener' in document) {
+      document.addEventListener('DOMContentLoaded', function() {
+          FastClick.attach(document.body);
+      }, false);
+  }
+</script>
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> --> 
+<link href='https://fonts.googleapis.com/css?family=Lora|Lato|Source+Serif+Pro|Old+Standard+TT' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="../../static/css/lib/font-awesome.min.css">
+<link rel="stylesheet" href=../../static/css/lib/prism.css>
+<link rel="stylesheet" href=../../static/css/style.css>
+</head>
+
+<body name="top">
+
+    <!-- HEADER & NAVIGATION -->
+    
+      <!-- logo -->
+<!-- social media bar -->
+<aside id="social-media" class="pink media-up">
+   <ul>
+      <li>
+          <a href="https://github.com/foundling">
+              <i class="fa fa-github-alt social-media-icon"></i>
+          </a>
+      </li>
+      <li>
+          <a href="https://linkedin.com/in/alexramsdell">
+              <i class="fa fa-linkedin social-media-icon"></i>
+          </a>
+      </li>
+      <li>
+          <a href="https://stackoverflow.com/users/2446351/foundling">
+            <i class="fa fa-stack-overflow social-media-icon"></i>
+          </a>
+      </li>
+      <li>
+        <a href="../../archive/index.html">
+          <i id="archive-icon" class="fa fa-archive social-media-icon"></i>
+        </a>
+      </li>
+
+      <li>
+          <a href="../../about/index.html">
+              <i class="fa fa-question-circle social-media-icon"></i>
+          </a>
+      </li>
+
+    </ul>
+</aside>
+<h1 class="logo-container">
+    <a 
+        class="logolink" 
+        href="../../index.html">AR</a>
+</h1>
+
+<!-- menu -->
+<nav class="main-menu">
+    <ul class="header">
+
+        <li class="nav-item" id="blog">
+            <a href="../../index.html">Blog</a>
+        </li>
+        <li class="nav-item" id="projects">
+            <a href="../../projects/index.html">Projects</a>
+        </li>
+        <li class="nav-item" id="guides">
+            <a>Guides</a>
+        </li>
+        <li class="nav-item" id="fun">
+            <a href="../../fun/photos/iceland/index.html">Fun</a>
+        </li>
+
+    </ul>
+</nav>
+
+<!-- hidden 'to top' button, unhides on scroll down -->
+<aside class="hidden" id="to-top">
+    <a id="caret" href="#top">^</a>
+</aside>
+
+
+    
+
+    <!-- ALL CONTENT (POSTS, ARCHIVES, ABOUT ME, ETC ..) -->
+    <div  class="content">
+        
+    <div id="single-post">
+
+        <a 
+    class="title-link" 
+    href="index.html">
+    
+    <h1 class="title-text">CanJS: App Setup and Data Binding</h1>
+</a>
+
+<ul class="post-tags">
+    
+    <li class="post-tag">canjs</li>
+    
+    <li class="post-tag">stealjs</li>
+    
+</ul>
+<span class="byline"> 
+    <div class="color-block"></div>
+    <h4 class="byline-text">by alex 3 days ago</h4> 
+</span>
+
+        <div class="single-post-content"><p>In this first part of a 4 part series on CanJS, I&#39;m going to cover the process of building a simple app from scratch using the <a href="http://stealjs.com/">StealJS</a> module loader. Additionally, for the sake of fun, I&#39;ll cover data-binding.</p>
+
+<h2>StealJS, the Futuristic Module Loader</h2>
+
+<p>We will start with StealJS.  Why start with module loading? To get the hard part out of the way, so you can build apps that scale right away.  But here are some more reasons as to why module loading is important:</p>
+
+<ul>
+<li>Organization: Modules are beneficial for complex architectures because they allow you to write isolated units of code and inject them easily into different parts of your application. This affords you greater organization and testability. Before module loaders were available, it was a best practice for JavaScript developers to wrap a module in an <a href="https://en.wikipedia.org/wiki/Immediately-invoked_function_expression">IIFE</a> to isolate it from the global namespace, giving it module-like functionality. StealJS is one of many libraries that provide first-class module support in a JavaScript environment (StealJS can do a lot more than this, though).<br></li>
+<li>Dependency Management: a complex application will require dependencies that require other dependencies that require other dependencies, etc. As the number of modules grow, the app&#39;s dependency relationships become increasingly difficult to maintain. A module loader will take care of the dependency tree for you, so you can focus on building your app instead of constantly having to re-order script tags. </li>
+<li>Speed: In the case of StealJS, which is an asynchronous module loader, the app is able to start executing sooner because the module loading process is non-blocking, so modules can be loaded in &#39;parallel&#39;. </li>
+</ul>
+
+<h2>The Demo Application</h2>
+
+<p>In terms of functionality, the demo app will be very simple, merely demonstrating how to sync a view with an underlying data object. We will use CanJS&#39;s declarative event binding syntax to demonstrate that interactions with the view change the data model, which in turn syncs with the view.</p>
+
+<p>The emphasis here is much more on StealJS and the central role of the <code>package.json</code> file when building an app with StealJS. I&#39;ll also cover the asynchronous structure of the steal function as well as the syntax for importing various types of modules.</p>
+
+<h2>Installing Node and npm</h2>
+
+<p>If you don&#39;t have node on your platform, you can download it from the <a href="https://nodejs.org/en/download/">NodeJS website</a>. The platform-specific installations currently ship with <code>npm</code>, so if you use one of those, there is no need to install <code>npm</code>.</p>
+
+<p>Make sure npm is upgraded to its latest version by running <code>npm install npm -g</code>.</p>
+
+<h2>Installing Node Version Manager</h2>
+
+<p>Node Version Manager (nvm) lets you switch between NodeJS versions without any hassle. Nvm isn&#39;t a hard requirement for this tutorial, but it will make using Node in the future a little easier. If you are running OS X or Linux, follow the installation instructions for nvm <a href="https://github.com/creationix/nvm/blob/master/README.markdown">here</a>. If you are running Windows, the previous link has some links to Windows-friendly nvm alternatives. Also, note that the <code>nvm</code> package installable through the <code>npm</code> command is not the correct package. </p>
+
+<h2>App Directory Structure</h2>
+
+<p>Here is what our folder structure will look like:</p>
+
+<pre class="language-bash">
+<code>demo_app/
+    app/
+        app.js
+        app.stache
+        app.less
+    index.html
+    node_modules/
+        # modules downloaded via 'npm install [module name]' command
+    package.json</code>
+</pre>
+
+<p>We will manually create everything except for the  <code>node_modules</code> directory and the <code>package.json</code> file.</p>
+
+<h2>Create our application directories and files</h2>
+
+<p>Change to the directory where you want to put this application and run the following commands:</p>
+
+<pre class="language-bash">
+<code>mkdir -p demo_app/app
+touch demo_app/{index.html,app/app{.stache,.js,.less,_test.js}}
+tree demo_app # to verify you have the right structure</code>
+</pre>
+
+<h2>Change directory into your application root, <code>demo_app</code></h2>
+
+<p>Type <code>cd demo_app</code> so you are now in the <code>demo_app</code> directory. If you run <code>pwd</code>, it should show you a filepath ending with &#39;demo_app&#39;.</p>
+
+<h2>Initialize your app as a package</h2>
+
+<p>Before you start installing modules, it&#39;s important to create a <code>package.json</code> file so our installations are automatically tracked. We can do that easily with this command:</p>
+
+<pre class="language-bash"><code>npm init</code></pre>
+
+<p>It will present you with a lot of options, none of which are important for this application. So, press <code>Enter</code> to accept each default, then type <code>yes</code> to accept them and write the <code>package.json</code> file to your application&#39;s root directory, which should be your current directory. </p>
+
+<h2><code>npm install</code> commands explained</h2>
+
+<p>Here are the commands we will use to install packages</p>
+
+<ul>
+<li><code>npm install [module]</code> (install module in our local <code>node_modules</code> folder)</li>
+<li><code>npm install [module] -g</code> (install module globally)</li>
+<li><code>npm install [module] --save</code> (install module and save it to our package.json as an application dependency)</li>
+<li><code>npm install [module] --save-dev</code> (install module and save it to our package.json as a developer dependency)</li>
+</ul>
+
+<p>A dependency is a module that the application must have in order to run.  A developer dependency is a module that isn&#39;t strictly necessary to run the app, but is useful development tool for building the app with (for example, testing tools like Mocha and Chai).</p>
+
+<h2>Install the essential project dependencies</h2>
+
+<p>Let&#39;s install <code>can</code> and <code>steal</code> as regular application dependencies:</p>
+
+<p><code>npm install --save can steal</code></p>
+
+<h2>Install a global development server if you don&#39;t already have it</h2>
+
+<p><code>npm install -g http-server</code></p>
+
+<h2>Setting up the <code>index.html</code> and the <code>app/app.js</code> files</h2>
+
+<p>Open the <code>index.html</code> file and add the following tag to the body tag, just before it closes, like this:</p>
+
+<pre><code>&lt;body&gt;
+    &lt;script src=&quot;node_modules/steal/steal.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p>This references the <code>steal.js</code> loading script. On the page load, <code>steal.js</code> will look in our <code>package.json</code> file for information about where to find the main application file and which dependencies it should treat as node modules when load the dependencies we specify in our code.</p>
+
+<p>Open the <code>package.json</code> file and set the <code>main</code> entrypoint (the default is <code>index.js</code>) to <code>app/app</code>. This indicates that the application entrypoint is <code>app.js</code> inside of the <code>app</code> directory. The <code>.js</code> extension isn&#39;t necessary.</p>
+
+<h2>Testing that everything loads correctly</h2>
+
+<p>Run <code>http-server</code> from the root of your project directory, <code>demo_app</code>, and copy the <code>localhost</code> port location it outputs into your web-browser (StealJS needs a server to handle its request and won&#39;t load from the filesystem).  With no arguments, <code>http-server</code> should load at <code>localhost:8080</code>. If you need a different port, you can use the <code>-p</code> flag to specify an alternate.</p>
+
+<p>Once you&#39;ve loaded that page (which should be blank, we haven&#39;t added any code), open your web browser&#39;s developer console and ensure there are no <code>steal.js</code> or <code>app.js</code> errors. You can ignore <code>favicon.ico</code> 404 errors.</p>
+
+<h2>Using StealJS</h2>
+
+<p>StealJS is exposed as a single function that accepts as arguments:</p>
+
+<ul>
+<li>a list of file paths as strings</li>
+<li>a final callback function whose arguments are the loaded dependencies found at filepaths. </li>
+</ul>
+
+<p>It loads the modules located at the paths asynchronously but waits until they&#39;re all loaded.  At that point, you access them via the callback under the name spaces that you are able to  use them in a callback.  Here is a conceptual sketch demonstrating the conventions for specifying the three types of dependencies: </p>
+
+<ul>
+<li>node modules</li>
+<li>absolute user module </li>
+<li>relative user module</li>
+</ul>
+
+<p><strong>Note</strong>: <code>steal</code> is also callable as a Promise, but that isn&#39;t covered in this tutorial.</p>
+
+<p>Here is a conceptual <code>steal</code> call to demonstrate the three conventions above.  Note two things:</p>
+
+<ul>
+<li>the order of the dependency paths is consistent with the order of the arguments passed into the callaback, except in the case of the <code>.less</code> file, which is not given a namespace because it would provide no benefit. </li>
+<li>The <code>!</code> at the end of the <code>.stache</code> and <code>.less</code> filepaths indicates that <code>steal</code> should not try to load them as JavaScript files.</li>
+</ul>
+
+<pre>
+<code class="language-javascript">
+steal(
+
+    'nodemodule',
+    'absolute/user_module.js',
+    './relative_user_module.js',
+    './app.stache!',
+    './app.less!',
+
+    function(
+
+        nodeModule,
+        absoluteUserModule,
+        relativeUserModule,
+        appTemplate
+        appStyle 
+        
+    ) {
+        // code goes here
+    }
+);
+</code>
+</pre>
+
+<h2>Things to note about StealJS paths</h2>
+
+<ul>
+<li>We use <code>npm install can --save</code> because even if you installed <code>can</code> and it&#39;s in the <code>node_modules</code> directory, you will still get an error from <code>steal</code> if it&#39;s not listed in your <code>package.json</code> file as well.  This is because StealJS uses this file to specifically resolve dependencies in your <code>node_modules</code> directory. This is why it&#39;s important to run <code>npm init</code> before you start installing anything, and to use the <code>--save</code> and <code>--save-dev</code> flags to track those dependencies for <code>steal</code>.</li>
+<li>Node modules are specified by name, not as file paths. </li>
+<li>Paths that start with &#39;./&#39; are relative to the directory of the file you&#39;re working in.</li>
+<li>Paths that do not start with &#39;./&#39; are relative to the directory containing your application&#39;s <code>package.json</code> file</li>
+<li>non-JavaScript files should be suffixed with a &#39;!&#39;.</li>
+<li>Stache files require a namespace in the steal callback in order to be used, but less/css files take effect whether you give them a namespace or not (and, in fact, you can&#39;t access the less/css file&#39;s contents this way).</li>
+</ul>
+
+<h2>The Demo Application</h2>
+
+<p>Now, let&#39;s get to work!</p>
+
+<p>Open your <code>app/app.js</code> file and add the following:</p>
+
+<pre>
+<code class='language-javascript'>
+steal(
+    'can',
+    function(can){
+        console.log(can);
+    }
+);
+</code>
+</pre>
+
+<p>Here, I&#39;m just logging the <code>can</code> object to confirm it&#39;s present. When I run this in google Chrome, I see this in the console:</p>
+
+<pre>
+<code class='language-javascript'>
+Object {global: Window, VERSION: "@EDGE", isNode: false, isBrowserWindow: true, isWebWorker: false…}  
+</code>
+</pre>
+
+<h2>Creating and loading a stache template</h2>
+
+<p>To add a stache template, we need to create a <code>.stache</code> file. Earlier, we created a file called <code>app.stache</code> inside of the <code>app</code> directory. Open that file and add the following:</p>
+
+<pre><code class='language-html'>&lt;p>Hey &lt;span>{{ name }}&lt;/span>, you are &lt;span>{{ description }}&lt;/span>!&lt;/p></code></pre>
+
+<p>Now open <code>app/app.js</code> and add a reference our  <code>app.stache</code> file:</p>
+
+<pre>
+<code class='language-javascript'>
+steal(
+    'can',
+    'app.stache!',
+    function(can, appTemplate){
+        console.log(appTemplate);
+    }
+);
+</code>
+</pre>
+
+<p>Here i&#39;m logging the <code>appTemplate</code> object to see what it is.  In the console, you&#39;ll see it&#39;s a function.  That is because when we reference a <code>.stache</code> file, what is returned is a function that now includes the template and is looking for a data object to merge with the template&#39;s parameters. This data argument is considered the &#39;context&#39; in which the view file lives.</p>
+
+<h2>Attaching the stache template to our page</h2>
+
+<p>Let&#39;s use jQuery to attach the template to the <code>div</code> in our <code>index.html</code> with an id of <code>app</code>.</p>
+
+<pre>
+<code class='language-javascript'>
+steal(
+    'can',
+    'stache',
+    function(can, appTemplate){
+        $('#app').append(appTemplate);
+    }
+);
+</code>
+</pre>
+
+<p>Consider this a gotcha.  The template renders (with notable blanks where the variable substitution should happen), but we haven&#39;t injected any data into it the template. We need to do that in order for the <code>.stache</code> file to make the variable substitions.  </p>
+
+<pre>
+<code class='language-javascript'>
+steal(
+    'can',
+    'stache',
+    function(can, appTemplate){
+
+        var data = {
+            name: 'Alex',  
+            adjective: 'cool',
+            altAdjective: 'excellent'
+        };
+
+        var compiledTemplate = appTemplate(data); 
+        $('#app').append(compiledTemplate);
+    }
+);
+</code>
+</pre>
+
+<p>Consider this another gotcha! We see the data being merged with the template, so that&#39;s a success.  But what we&#39;ve done wrong is compile the <code>appTemplate</code> rendering function with a vanilla JavaScript object.  It won&#39;t cause an error, but we also won&#39;t be able to achieve our goal of modifying the data underlying the view via interactions with view. We want to pass an object to <code>.stache</code> whose values are observable so that when an event happens to an element, and the handler function in our code modifies the data we&#39;ve provided, we can see the result instantly in our view.</p>
+
+<p>CanJS provides us with a few data structures for this, but I&#39;m only going to talk about the <code>can.Map</code> in this part.  A <code>can.Map</code> is a data structure that wraps observable behavior around an ordinary JavaScript object.  By observability, I mean that a change in the model is reflected in the view, and a change in the view is reflected in the model. </p>
+
+<p>Let&#39;s make the following modifications to our code:</p>
+
+<pre>
+<code class='language-javascript'>
+steal(
+    'can',
+    'stache',
+    function(can, appTemplate){
+
+        // data is now an instantiated can.Map object
+        var data = new can.Map({
+            name: 'Alex',  
+            description: 'very cool',
+            altDescription: 'quite excellent'
+        });
+
+        var compiledTemplate = appTemplate(data); 
+        $('#app').append(compiledTemplate);
+    }
+);
+</code>
+</pre>
+
+<p>Now we are out of gotcha land! But we still have to add some behavior to our page. </p>
+
+<h2>Adding description-swapping behavior to your view</h2>
+
+<p>If you reload your browser, nothing should have changed since the last modification we made. That is because we haven&#39;t attached any behavior to our view data.  So let&#39;s add a function called <code>swap</code> that swaps the <code>description</code> and <code>altDescription</code> properties on our <code>can.Map</code>. </p>
+
+<p>Open your <code>app/app_template.stache</code> file and add a <code>can-click</code> attribute to the <code>&lt;span&gt;</code> tag that holds the <code>attribute</code> parameter, giving it an event handler name of <code>swap</code>. It should look like this:</p>
+
+<pre>
+<code class='language-html'>
+<p>Hey <span>{{ name }}</span>, you are <span can-click="swap">{{ description }}</span>!</p>
+</code>
+</pre>
+
+<p>Now in your <code>app/app.js</code> file, add a function to the <code>data</code> map, just below <code>altDescription</code>, that swaps <code>description</code> with <code>altDescription</code>:</p>
+
+<pre>
+<code class='language-javascript'>
+steal(
+    'can',
+    'stache',
+    function(can, appTemplate){
+
+        // data is now an instantiated can.Map object
+        var data = new can.Map({
+            name: 'Alex',  
+            description: 'very cool',
+            altDescription: 'quite excellent',
+            swap: function() {
+                var tmp = this.attr('description'); 
+                this.attr('description', this.attr('altDescription'));
+                this.attr('altDescription', tmp);
+            }
+
+        });
+
+        var compiledTemplate = appTemplate(data); 
+        $('#app').append(compiledTemplate);
+    }
+);
+</code>
+</pre>
+
+<h2>The arguments that <code>swap</code> receives</h2>
+
+<p>We didn&#39;t explicitly pass any parameters to <code>swap</code>, but if you add this line into your swap function,</p>
+
+<pre>
+<code class='language-javascript'>
+console.log(arguments);
+</code>
+</pre>
+
+<p>you should see output that includes <code>Object</code>, <code>jQuery.fn.init[1]</code>, and <code>j…y.Event</code> in the output of your console. This indicates that three arguments are passed to can DOM event handlers: </p>
+
+<ul>
+<li>The data &#39;context&#39; of your event handler<br></li>
+<li>The jQuery-wrapped element</li>
+<li>The jQuery-wrapped event</li>
+</ul>
+
+<p>It is important to note that the data &#39;context&#39; of the event handler is not a <code>can.Map</code>, so you unfortunately cannot modify it via the <code>attr</code> method or expect it to reflect any changes in your view.  It is a vanilla JavaScript object. However, you can do some useful things with it which we will explore in future tutorials (hint, call the <code>.indexOf</code> method on a <code>can.List</code> to get its index, should you wish to splice it).</p>
+
+<h2>What is <code>this</code> ?</h2>
+
+<p>We are accessing the values in <code>data</code> using <code>this</code>.  Because <code>can.Map</code> is a constructor function, the execution context for its event handling method <code>swap</code> will be the object itself, so <code>this</code> will accordingly refer to the <code>data</code> object itself. So that is why we use <code>this</code> to refer to the properties on our <code>data</code> object.</p>
+
+<h2>Using <code>attr</code></h2>
+
+<p>Forgetting to use <code>attr</code> is a common CanJS gotcha.</p>
+
+<p>We use the <code>attr</code> method to access the <em>observed</em> values that the <code>can.Map</code> data structure provides for us.  Remember to <em>always</em> use <code>attr</code> when working with CanJS  data structures, or you will implicitly lose that observability and be stuck wondering why your view isn&#39;t updating. </p>
+
+<h2>The final result</h2>
+
+<p>Reload your browser and click on the description. If all goes well, you should see a the description alternate between the value of the <code>description</code> property and the <code>altDescription</code> property as they were defined on the first instantiation. </p>
+</div>
+
+        <ul class="post-tags">
+
+            
+                <li class="post-tag">
+                    <a href="../../archive/index.html?query=canjs">canjs</a>
+                </li>
+            
+                <li class="post-tag">
+                    <a href="../../archive/index.html?query=stealjs">stealjs</a>
+                </li>
+            
+
+        </ul>
+    </div>
+
+
+    </div>
+
+    <!-- BODY SCRIPTS -->
+    
+      
+  <script src="../../static/js/prism.js"></script>
+  <script src="../../static/js/underline_nav_links.js"></script>
+  <script src="../../static/js/media_toggle.js"></script>
+  <script src="../../static/js/to_top.js"></script>
+  <script>
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
+    }
+  </script>
+
+    
+
+</body>
+</html>

@@ -96,6 +96,12 @@ footer a {
 
 }
 
+footer a.creator-link:hover {
+
+    color: rgba(255, 0, 0, 0.62);
+
+}
+
 li {
 
     list-style-type: none;

@@ -101,4 +101,11 @@ p.recent-post-stub {
     opacity: 0.8;
     color: white;
     font-weight: 400;
+    font-size: 0.9em;
+}
+
+.more-posts a:hover {
+    color: rgba(255, 0, 0, 0.62);
+    background: whitesmoke;
+    border: 1px solid lightgreen;
 }

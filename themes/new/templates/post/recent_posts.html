@@ -1,0 +1,22 @@
+<section class="recent-posts-list"> 
+
+    {% for post in posts %}
+
+        <article class="recent-post"> 
+
+            {% include 'post/title.html' %}
+            {% include 'general/byline.html' %}
+
+            <p class="recent-post-stub">
+                {{ post['short_text'] }} <a href="full_article"><i class="fa fa-send"></i></a>
+            </p>
+
+        </article> 
+
+    {% endfor %}
+
+    <h3 class="more-posts">
+        <a href="archive">More Posts</a>
+    </h3>
+
+</section> 

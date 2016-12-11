@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en"> 
+<head> 
+  <title>Alex Ramsdell</title> 
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, user-scalable=no"/> 
+  <script src=../../static/js/fastclick.js></script>
+<script type="application/javascript">
+  if ('addEventListener' in document) {
+      document.addEventListener('DOMContentLoaded', function() {
+          FastClick.attach(document.body);
+      }, false);
+  }
+</script>
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> --> 
+<link href='https://fonts.googleapis.com/css?family=Lora|Lato|Source+Serif+Pro|Old+Standard+TT' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="../../static/css/lib/font-awesome.min.css">
+<link rel="stylesheet" href=../../static/css/lib/prism.css>
+<link rel="stylesheet" href=../../static/css/style.css>
+</head>
+
+<body name="top">
+
+    <!-- HEADER & NAVIGATION -->
+    
+      <!-- logo -->
+<!-- social media bar -->
+<aside id="social-media" class="pink media-up">
+   <ul>
+      <li>
+          <a href="https://github.com/foundling">
+              <i class="fa fa-github-alt social-media-icon"></i>
+          </a>
+      </li>
+      <li>
+          <a href="https://linkedin.com/in/alexramsdell">
+              <i class="fa fa-linkedin social-media-icon"></i>
+          </a>
+      </li>
+      <li>
+          <a href="https://stackoverflow.com/users/2446351/foundling">
+            <i class="fa fa-stack-overflow social-media-icon"></i>
+          </a>
+      </li>
+      <li>
+        <a href="../../archive/index.html">
+          <i id="archive-icon" class="fa fa-archive social-media-icon"></i>
+        </a>
+      </li>
+
+      <li>
+          <a href="../../about/index.html">
+              <i class="fa fa-question-circle social-media-icon"></i>
+          </a>
+      </li>
+
+    </ul>
+</aside>
+<h1 class="logo-container">
+    <a 
+        class="logolink" 
+        href="../../index.html">AR</a>
+</h1>
+
+<!-- menu -->
+<nav class="main-menu">
+    <ul class="header">
+
+        <li class="nav-item" id="blog">
+            <a href="../../index.html">Blog</a>
+        </li>
+        <li class="nav-item" id="projects">
+            <a href="../../projects/index.html">Projects</a>
+        </li>
+        <li class="nav-item" id="guides">
+            <a>Guides</a>
+        </li>
+        <li class="nav-item" id="fun">
+            <a href="../../fun/photos/iceland/index.html">Fun</a>
+        </li>
+
+    </ul>
+</nav>
+
+<!-- hidden 'to top' button, unhides on scroll down -->
+<aside class="hidden" id="to-top">
+    <a id="caret" href="#top">^</a>
+</aside>
+
+
+    
+
+    <!-- ALL CONTENT (POSTS, ARCHIVES, ABOUT ME, ETC ..) -->
+    <div  class="content">
+        
+    <div id="single-post">
+
+        <a 
+    class="title-link" 
+    href="index.html">
+    
+    <h1 class="title-text">Getting Started with the Raspberry Pi</h1>
+</a>
+
+<ul class="post-tags">
+    
+    <li class="post-tag">raspberry pi</li>
+    
+    <li class="post-tag">linux</li>
+    
+</ul>
+<span class="byline"> 
+    <div class="color-block"></div>
+    <h4 class="byline-text">by alex a year ago</h4> 
+</span>
+
+        <div class="single-post-content"><p>In this tutorial, I’m going to show you how to install and configure a Raspberry Pi model B running the Raspbian Linux distribution. The goal is to get your pi ready for an as-of-yet undetermined but fun purpose. By the end of this you should have an SSH-accessible system configured with a static IP for your home LAN network.  </p>
+
+<p>In follow-up posts, I’ll demonstrate a few practical uses I’ve found for it, such as a samba share, a web server, a webcam, a server for a python network game, and I&#39;ll share some system administration tips as well.</p>
+
+<p>I&#39;ll show GUI options when appropriate but the command-line is going to be the main focus here.  </p>
+
+<h2>What You Need</h2>
+
+<ul>
+<li><p>A raspberry Pi model with a 5V microUSB power supply <a href="#raspi_b"><i class="fa fa-camera-retro"></i></a></p></li>
+<li><p>An extra Ethernet cable <i class="fa fa-camera-retro"></i></p></li>
+<li><p>A Wifi Router and Internet Access <i class="fa fa-camera-retro"></i></p></li>
+<li><p>An SD card or a microSD card and a microUSB adapter that is 4GB or larger in size.  If you are going to purchase one, do some research on quality, not all SD cards yield good results. <i class="fa fa-camera-retro"></i></p></li>
+<li><p>An SD card reader (if you have a MacBook, iMac or Mac Mini, it may be built into your computer) <i class="fa fa-camera-retro"></i></p></li>
+<li><p>A Mac on which you have administrative privileges, preferably one with data that other people don&#39;t depend on or hold dear <i class="fa fa-camera-retro"></i></p></li>
+</ul>
+
+<h2>Formatting the SD Card</h2>
+
+<p>Before you insert the SD card, open the Terminal (tip: Cmd spacebar type ‘Termi…’ hit Enter)</p>
+
+<p>Type <code>diskutil list</code> and note the device output. If no other disks are attached at this time, you will likely see just the <code>/dev/disk0</code> device and its partitions, <code>/dev/disk0s1</code>, <code>/dev/disk0s2</code>, etc.  These are the BSD device labels.</p>
+
+<p>After we insert the SD card, <code>diskutil list</code> should reveal an additional mounted device, most likely at <code>/dev/disk1</code>. You want to make sure you reformat this disk, which is why we taking a safer route and comparing the output list before and after we insert the card. If you reverse the source and destination of the copy utility we will use, you will erase the data on your hard drive.</p>
+
+<p>Insert the SD card into a card reader or into your Mac.</p>
+
+<p>Type <code>diskutil list</code> again.</p>
+
+<p>Note the newly added disk’s device name.  For me, it was <code>/dev/disk1</code>.</p>
+
+<p>Understand the difference between <code>/dev/disk1</code> and <code>/dev/disk1s0</code> or <code>/dev/disk1s1</code>, etc.  The first describes the physical device, the latter examples refer to the logical partitions on that device. We will be writing a group of filesystems that comprise the Raspbian OS to the new <code>/dev/disk1</code> device.</p>
+
+<p>Open Disk Utility.</p>
+
+<p>You should see your disk in the left pane. Mine says 7.86GB Apple SDXC Reader.</p>
+
+<p>Find the erase Tab and change the format to MS-DOS(FAT).</p>
+
+<p>Name your disk, e.g. RASPI.</p>
+
+<p>Hit Erase.</p>
+
+<p>Unmount the disk but don’t eject it.  You can do this with the terminal command </p>
+
+<pre><code>sudo diskutil unmount /dev/disk1
+</code></pre>
+
+<h2>Getting and Preparing the Raspberry Pi Operating System Image</h2>
+
+<p>Download the latest Raspbian image from the Raspberry Pi website in either 
+<a class="article-link" href="http://downloads.raspberrypi.org/raspbian_latest">ZIP format</a> or as
+<a class="article-link" href="http://downloads.raspberrypi.org/raspbian_latest.torrent">a torrent</a>.</p>
+
+<p>If you downloaded a ZIP file, unzip it. If you torrented it, you most likely got an IMG file.</p>
+
+<p>I’m assuming the unzipped Raspbian .img file is located in your <code>~/Downloads</code> folder, aka <code>/Users/&lt;USERNAME&gt;/Downloads</code>, but if it is in a different location, adjust the upcoming <code>dd</code> commands to reflect that.</p>
+
+<p>Recall the device name of the SD card that you recently reformatted. In my case, it is <code>/dev/disk1</code>.  You will write the Raspbian image to this device with the BSD utility, <code>dd</code>. <code>dd</code> is a low-level block copying utility that comes in extremely handy in Unix/BSD-related tasks, but it is nick-named ‘disk destroyer’ for a reason.  Be careful to get the source (designated by <code>if</code>, the input file) and destination (designated by <code>of</code>, the output file) file paths correct.</p>
+
+<p>We want to use dd in this way:</p>
+
+<pre><code>dd  if=&lt;RPI IMAGE FILE&gt; of=&lt;DESTINATION DEVICE&gt; bs=&lt;block size&gt;
+</code></pre>
+
+<p>This command copied the raspbian image to the FAT32-formatted SD device named ‘RASPI’ on my Mac.  It took me just under 35 minutes for the image writing process to complete.</p>
+
+<pre><code>sudo dd if=~/Downloads/2014-09-09-wheezy-raspbian.img of=/dev/disk1 bs=1m
+</code></pre>
+
+<h2>Getting a Read on the Progress of <code>dd</code></h2>
+
+<p><code>dd</code> doesn’t give you any visible indication of its progress, but you can figure this out yourself by pressing <code>CTRL T</code> in the terminal where the dd copy is presently working.  <code>CTRL T</code> sends the <code>dd</code> process a <code>SIGINFO</code> signal that will return cpu load information to the console, as well as a read on how many bytes have been transferred by <code>dd</code> and the duration in seconds of the copy thus far.</p>
+
+<p>The output is something like this:</p>
+
+<pre><code>309329920 bytes transferred in 195.748521 secs ( 1580241 bytes/sec)
+</code></pre>
+
+<p>With a little math, we can get the progress so far: </p>
+
+<p>bytes copied / disk image size = % done</p>
+
+<p>309,329,920 / 3,100,000,000 or roughly 1 % done.</p>
+
+<pre><code>user@host:~ $ du -sh ~/Downloads/2014-09-09-wheezy-raspbian.img
+3.1G    /data/ISO/2014-09-09-wheezy-raspbian.img
+</code></pre>
+
+<p>disk image size = 3.1 GB</p>
+
+<p>progress = .31GB/3.1GB = .1 = 10% done</p>
+
+<h2>Network Setup</h2>
+
+<p>Now that your raspberry pi is properly imaged, connect it to an ethernet port on your wifi router.</p>
+
+<p>Connect the micro-usb power source and plug it in. You should see a red light that indicates power.  Soon after you should see a few other lights (yellow and green), that indicate that the system is booting and that the network connection is active.</p>
+
+<p>If this doesn’t happen for you, you can look at the light labels on the board and troubleshoot accordingly.  They are as follows:</p>
+
+<p><strong>ACT</strong> — SD Card Access</p>
+
+<p><strong>PWR(RED)</strong> - The device is powered</p>
+
+<p><strong>FDX</strong> - Full Duplex mode is enabled</p>
+
+<p><strong>LNK</strong> -  The Ethernet LINK is present</p>
+
+<p><strong>100</strong> - a 100MBit connection is active </p>
+
+<p>If all has gone well, the raspberry pi should have booted up and received an ip address from your wifi router.
+You can find the raspberry pi with the Terminal application in a few ways:</p>
+
+<h3>Method 1: Find it through your Wi-Fi Router</h3>
+
+<p>Log into the admin panel of your wifi router and look for connected devices.  It may reveal the hostname and IP address of the pi.  It showed mine as hostname raspberrypi with the IP address 192.168.1.10.  However, if your wireless router&#39;s firmware is old, it software may not show you this information.  </p>
+
+<h3>Method 2: Use nmap for MAC/BSD</h3>
+
+<p>Download and install nmap for mac, run <code>sudo nmap -sP 192.168.0.0/24</code> from your Mac Terminal.</p>
+
+<h3>Method 3: Brute Force</h3>
+
+<p>If you can’t or don’t want to download any extra tools and you’re on your own network, you can try a brute-force approach by pinging all of the possible IP addresses on your network once, and with a brief timeout setting. This is how you’d do it in bash:</p>
+
+<pre><code>for i in {1..254}; do ping -c1 -t1 192.168.1.$i; done | grep -B 1 &quot; 0.0% packet loss&quot;
+</code></pre>
+
+<p>This will ping every ip address on your network once and wait a second before moving on, regardless of the result.  We are looking for a ping that results in %0.0 packet loss, and getting that line of text plus the previous line, where I know the IP address is usually output.</p>
+
+<p>It should reveal the IP address of any system that respond to ping, but not the hostname.  But if you have only a handful of devices connected to your router, then the process of elimination shouldn&#39;t be too hard.</p>
+
+<p>If you think you&#39;ve found the pi&#39;s address, you can cancel the for loop by typing CTRL \ into the terminal.  This sends a SIGQUIT signal to the bash process running the loop.</p>
+
+<p>Note: this method is permissable on your private network, but I don’t recommend doing it on a monitored network where such activity might be flagged as suspicious.</p>
+
+<p>If you’ve found the IP address of the pi, then type <code>ssh pi@raspberrypi</code>. You will likely see a message that says:</p>
+
+<pre><code>- `‘The authenticity of the host ‘xxx.xxx.xxx.xxx’ can’t be established. Are you sure you want to continue connecting (yes/no)?’.`
+</code></pre>
+
+<p>Type ‘yes’ and enter ‘raspberry’ as the password.</p>
+
+<p>If you end up at a command prompt that says ‘pi@raspberrypi’, then congratulations! You got your pi online! </p>
+
+<p>… but we have more to do. :]</p>
+
+<h2>Resetting the Password</h2>
+
+<p>Type <code>sudo raspi-config</code> and select item #2, &quot;Change User Password&quot;</p>
+
+<p>Enter your new password twice.</p>
+
+<p>Try logging out and then back in.  Your new password should work with the user <code>pi</code>, and you shouldn’t see the previous message regarding the questionable authenticity of this system&#39;s RSA key.</p>
+
+<h2>Updating Current Packages</h2>
+
+<p>Run <code>sudo apt-get update</code> and wait a bit</p>
+
+<h2>Leaving the Pi on DHCP (the default)</h2>
+
+<p>Setting a static IP allows you to know the address of the PI at boot time, but it requires a little work.  If you don&#39;t want to set up a static IP on your WIFI network, you can avoid the tedious process of looking for the pi each time by creating a boot script that pings your router when the PI starts up.  What this does is tell the router about its IP address, which gets passed to you when you run <code>arp -a</code> on Linux/BSD/MAC system that is connected the router.  From there, you can deduce the proper IP.  For obvious reasons, a static IP is probably a better route, as your WIFI router&#39;s lease may expire and the IP may change.</p>
+
+<p>You can create a boot script called <code>pingrouter</code> on the Pi by creating a file called <code>/etc/init.d/pingrouter</code> with the following lines:</p>
+
+<pre><code>#!/bin/bash
+# This command will unconditionally run at boot
+ping -c1 192.168.1.1
+</code></pre>
+
+<p>Then run these commands:</p>
+
+<pre><code>user@host:~ $ sudo chmod 755 /etc/init.d/pingrouter 
+user@host:~ $ sudo update-rc.d pingrouter defaults
+</code></pre>
+
+<h2>Assigning the System a Static IP</h2>
+
+<p>It is better to understand the IP address <code>192.168.1.10</code> as consisting of two addresses, a network address and a host address.  The network address identifies the internet that the host is on, e.g.,  <code>192.168.1</code>.  The host address indicates <em>which</em> host on that network, e.g.  <code>10</code>.</p>
+
+<p>To assign the pi a static IP so that it boots with the same IP address each time, we need to figure out 5 things:</p>
+
+<ul>
+<li><p>The DHCP range of the WIFI router</p></li>
+<li><p>The Netmask</p></li>
+<li><p>The Network Address</p></li>
+<li><p>The Broadcast Address</p></li>
+<li><p>The Gateway Address</p></li>
+</ul>
+
+<p>In a terminal, run <code>ifconfig</code>.  This lists your network devices and the IP address information obtained by them.  Not all will have an IP address, so we need to look for an <code>inet</code> entry.  </p>
+
+<p>This is the output of <code>ifconfig</code> on my system from my private LAN:</p>
+
+<pre><code>en0: flags=8863&lt;UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST&gt; mtu 1500
+    options=27&lt;RXCSUM,TXCSUM,VLAN_MTU,TSO4&gt;
+    ether 34:15:9e:13:0c:4e 
+    nd6 options=1&lt;PERFORMNUD&gt;
+    media: autoselect
+    status: inactive
+en1: flags=8863&lt;UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST&gt; mtu 1500
+    ether f8:1e:df:e4:e3:3e 
+    inet6 fe80::fa1e:dfff:fee4:e33e%en1 prefixlen 64 scopeid 0x5 
+    inet 192.168.1.6 netmask 0xffffff00 broadcast 192.168.1.255
+    nd6 options=1&lt;PERFORMNUD&gt;
+    media: autoselect
+    status: active
+fw0: flags=8863&lt;UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST&gt; mtu 4078
+    lladdr 34:15:9e:ff:fe:13:0c:4e 
+    nd6 options=1&lt;PERFORMNUD&gt;
+    media: autoselect &lt;full-duplex&gt;
+    status: inactive
+p2p0: flags=8843&lt;UP,BROADCAST,RUNNING,SIMPLEX,MULTICAST&gt; mtu 2304
+    ether 0a:1e:df:e4:e3:3e 
+    media: autoselect
+    status: inactive
+</code></pre>
+
+<p>Notice that the <code>en1</code> device has an <code>inet</code> address.  We&#39;ll use this section to determine the necessary addresses for the pi&#39;s static IP.</p>
+
+<h3>Netmask</h3>
+
+<p>The output for <code>en1</code> indicates (in hexidecimal) that the Netmask is <code>0xffffff00</code>, which is <code>255.255.255.0</code> in dotted decimal, the IP address notation you are probably most familiar with. The Netmask tells you where in the ip address the network address ends and the IP address space begins. A network with the netmask <code>255.255.255.0</code> reserves the first 3 dot-separated numbers for representation of the network. The last number, excluding 3 special addresses, indicates the total possible host addresses on that network, so 256-3, or 253.</p>
+
+<p>What We Have So Far (<strong>Netmask</strong>)</p>
+
+<pre><code>DHCP RANGE:  
+The Network Address: 
+The Gateway Address: 
+The Netmask: 255.255.255.0
+</code></pre>
+
+<p>Network Address: the netmask <code>255.255.255.0</code> indicates a network address of 3 &#39;octets&#39; in length. The Network address is simply the first 3 octets of the inet address you found in the <code>ifconfig</code> output, with a 0 as the last octet.</p>
+
+<p>What We Have So Far (<strong>Netmask</strong> and <strong>Network Address</strong>)</p>
+
+<pre><code>DHCP RANGE:
+The Network Address: 192.168.1.0
+The Gateway Address:
+The Netmask: 255.255.255.0
+</code></pre>
+
+<p>Gateway: since we know the Network Address now, the gateway is simply the second possible address in ascending order, so <code>192.168.1.1</code>.  This Gateway is also your WIFI router&#39;s address.</p>
+
+<p>What We Have So Far (<strong>Network Address</strong>, <strong>Gateway Address</strong> and <strong>Netmask</strong>)</p>
+
+<pre><code>DHCP RANGE:
+The Network Address: 192.168.1.0
+The Gateway Address: 192.168.1.0
+The Netmask: 255.255.255.0
+</code></pre>
+
+<h2>Your Router&#39;s DHCP range</h2>
+
+<p>When we set a static IP, we don&#39;t want it to conflict with an address reserved for automatic/dynamic assignment, which the WIFI router takes care of.  We need to log into our WIFI router&#39;s administration panel and find the DHCP range.  Since I have no idea what your WIFI router model is, I can only advise that you look for the DHCP range settings in the LAN Administration in your WIFI Admin panel, or look that information up in the manual for your router (can probably be found online if it&#39;s at least somewhat recent).  My WIFI router reserves addressess <code>192.168.1.2</code> through <code>192.168.1.100</code> for DHCP addresses.  This means that anything from <code>192.168.1.101</code> through <code>192.168.1.254</code> is technicially available, assuming I configured any other static IP devices on this network.</p>
+
+<p>What We Have So Far (<strong>Network Address</strong>, <strong>Gateway Address</strong> and <strong>Netmask</strong>, <strong>Broadcast Address</strong> and <strong>DHCP range</strong>)</p>
+
+<pre><code>DHCP RANGE: 192.168.1.2 thru 192.168.1.100
+The Network Address: 192.168.1.0
+The Gateway Address: 192.168.1.1
+Broadcast Address 192.168.1.255
+The Netmask: 255.255.255.0
+</code></pre>
+
+<p>We have all of the relevant information to configure a static IP. Let&#39;s edit our network settings file,  <code>/etc/network/interfaces</code> to give the pi a fixed IP address . </p>
+
+<p>But first, let’s back that up that so  we can modify it while keeping the original in tact. In a Terminal window, run </p>
+
+<pre><code>sudo cp /etc/network/interfaces /etc/network/interfaces.orig
+</code></pre>
+
+<p>Now lets modify the contents of <code>/etc/network/interfaces</code>. The default file looks like this:</p>
+
+<pre><code>auto lo
+
+iface lo inet loopback
+iface eth0 inet dhcp
+
+allow-hotplug wlan0
+iface wlan0 inet manual
+wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+iface default inet dhcp
+</code></pre>
+
+<p>We need to change it to this (note the arrows, which do not actually go in the file)</p>
+
+<pre><code>bash
+allow-hotplug wlan0
+iface wlan0 inet manual
+wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+iface default inet static &lt;--
+
+address 192.168.1.10
+--&gt; gateway 192.168.1.1
+--&gt; netmask 255.255.255.0
+--&gt; network 192.168.1.0
+--&gt; broadcast 192.168.1.255
+
+allow-hotplug wlan0
+iface wlan0 inet manual
+wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+iface default inet dhcp
+</code></pre>
+
+<h2>Starting and restarting network services</h2>
+
+<p>This part should be completed soon.</p>
+
+<h2>Expanding the root partition</h2>
+
+<p>We wrote a 2.9GB root filesystem to the SD card, but that means whatever space is left on the card isn’t presently usable. For me, that’s about 5GB of space.  Fortunately, the Raspbian Image developers have provided us with a convenient ‘Expand Filesystem’ option in the same <code>raspi-config</code> panel we just used to set our password.</p>
+
+<p>Type <code>sudo raspi-config</code> again</p>
+
+<p>choose option #1</p>
+
+<p>It should say, “Root partition has been resized … ”. Hit OK, choose Finish at the bottom, and say yes to the reboot option.  Since we’ve already set a static ip for the pi, rebooting won’t mean we have to go looking for the ip again.</p>
+</div>
+
+        <ul class="post-tags">
+
+            
+                <li class="post-tag">
+                    <a href="../../archive/index.html?query=raspberry+pi">raspberry pi</a>
+                </li>
+            
+                <li class="post-tag">
+                    <a href="../../archive/index.html?query=linux">linux</a>
+                </li>
+            
+
+        </ul>
+    </div>
+
+
+    </div>
+
+    <!-- BODY SCRIPTS -->
+    
+      
+  <script src="../../static/js/prism.js"></script>
+  <script src="../../static/js/underline_nav_links.js"></script>
+  <script src="../../static/js/media_toggle.js"></script>
+  <script src="../../static/js/to_top.js"></script>
+  <script>
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
+    }
+  </script>
+
+    
+
+</body>
+</html>

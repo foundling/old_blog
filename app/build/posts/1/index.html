@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en"> 
+<head> 
+  <title>Alex Ramsdell</title> 
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, user-scalable=no"/> 
+  <script src=../../static/js/fastclick.js></script>
+<script type="application/javascript">
+  if ('addEventListener' in document) {
+      document.addEventListener('DOMContentLoaded', function() {
+          FastClick.attach(document.body);
+      }, false);
+  }
+</script>
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> --> 
+<link href='https://fonts.googleapis.com/css?family=Lora|Lato|Source+Serif+Pro|Old+Standard+TT' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="../../static/css/lib/font-awesome.min.css">
+<link rel="stylesheet" href=../../static/css/lib/prism.css>
+<link rel="stylesheet" href=../../static/css/style.css>
+</head>
+
+<body name="top">
+
+    <!-- HEADER & NAVIGATION -->
+    
+      <!-- logo -->
+<!-- social media bar -->
+<aside id="social-media" class="pink media-up">
+   <ul>
+      <li>
+          <a href="https://github.com/foundling">
+              <i class="fa fa-github-alt social-media-icon"></i>
+          </a>
+      </li>
+      <li>
+          <a href="https://linkedin.com/in/alexramsdell">
+              <i class="fa fa-linkedin social-media-icon"></i>
+          </a>
+      </li>
+      <li>
+          <a href="https://stackoverflow.com/users/2446351/foundling">
+            <i class="fa fa-stack-overflow social-media-icon"></i>
+          </a>
+      </li>
+      <li>
+        <a href="../../archive/index.html">
+          <i id="archive-icon" class="fa fa-archive social-media-icon"></i>
+        </a>
+      </li>
+
+      <li>
+          <a href="../../about/index.html">
+              <i class="fa fa-question-circle social-media-icon"></i>
+          </a>
+      </li>
+
+    </ul>
+</aside>
+<h1 class="logo-container">
+    <a 
+        class="logolink" 
+        href="../../index.html">AR</a>
+</h1>
+
+<!-- menu -->
+<nav class="main-menu">
+    <ul class="header">
+
+        <li class="nav-item" id="blog">
+            <a href="../../index.html">Blog</a>
+        </li>
+        <li class="nav-item" id="projects">
+            <a href="../../projects/index.html">Projects</a>
+        </li>
+        <li class="nav-item" id="guides">
+            <a>Guides</a>
+        </li>
+        <li class="nav-item" id="fun">
+            <a href="../../fun/photos/iceland/index.html">Fun</a>
+        </li>
+
+    </ul>
+</nav>
+
+<!-- hidden 'to top' button, unhides on scroll down -->
+<aside class="hidden" id="to-top">
+    <a id="caret" href="#top">^</a>
+</aside>
+
+
+    
+
+    <!-- ALL CONTENT (POSTS, ARCHIVES, ABOUT ME, ETC ..) -->
+    <div  class="content">
+        
+    <div id="single-post">
+
+        <a 
+    class="title-link" 
+    href="index.html">
+    
+    <h1 class="title-text">Good Joke, Great Joke</h1>
+</a>
+
+<ul class="post-tags">
+    
+    <li class="post-tag">jokes</li>
+    
+    <li class="post-tag">recursion</li>
+    
+    <li class="post-tag">mr. show</li>
+    
+    <li class="post-tag">javascript</li>
+    
+</ul>
+<span class="byline"> 
+    <div class="color-block"></div>
+    <h4 class="byline-text">by alex a year ago</h4> 
+</span>
+
+        <div class="single-post-content"><p>If you&#39;re familiar with Mr. Show, you may know the technique common to many of their most successful sketches: assiduous repetition of a single idea. It&#39;s the key to &#39;The Story of Everest&#39; and &#39;The Audition&#39;, where the same thing happens again and again, and things gets exponentially funnier.</p>
+
+<p>The sketch <a href="https://www.youtube.com/watch?v=cGuT97v4pv0">&#39;Change for a Dollar&#39;</a> uses this tight repetition to play a good joke on the fate of value in the hands of pure bureaucracy. Oddly, the structure is legimately recursive and I think serves as a good (if not highly alternative) illustration of the winding-and-unwinding process of a recursive program.</p>
+
+<p><img src="https://i.vimeocdn.com/video/199532043_640.jpg" alt="Mr. Show&#39;s Bob and David"></p>
+
+<p>The gist of the sketch is that a man asks a convenience store clerk to exchange a dollar for four quarters. Instead of just saying yes or no, the clerk, after some delay, has to ask his boss for permission, and it turns out his boss must also, after some delay, ask <em>his</em> boss for permission. This continues until the original request reaches an employee with the credentials to say yes or no. At that point, the answer propagates back through each boss to the requesting underling. When that underling is the store clerk, he can tell the customer the answer.</p>
+
+<p>In terms related to recursion, each scene is the execution context of a new function placed on top of the call stack that stores the state of this <code>change_for_a_dollar</code> program. If the arguments to the function are <code>employee</code> and <code>boss</code>, then at the end of the function call, we call the function again with <code>employee.boss</code> and  In each scene, the employee seeks authorization from his boss to make change for a dollar. If the employee&#39;s boss isn&#39;t able to authorize, he has to call <em>his</em> boss.</p>
+
+<p>Below, I&#39;ve created a basic model to represent the chain of command in this haplessly bureaucratic corporation (notice that employee5 is the only one who has the <code>authorize</code> method, meaning only he can sign off on the &#39;change for a dollar&#39; request): </p>
+
+<pre>
+<code class='language-javascript'>
+var employee5 = {
+  name: 'President of the United States',
+  boss: null,
+  authorize: function() {
+    return 'no';
+  }
+};
+var employee4 = {
+  name: 'Corporate Executive',
+  boss: employee5,
+};
+var employee3 = {
+  name:'Regional Manager',
+  boss: employee4,
+};
+var employee2 = {
+  name:'Store Manager',
+  boss: employee3,
+};
+var employee1 = {
+  name:'Store Clerk',
+  boss: employee2,
+};
+</code>
+</pre>
+
+<p>The five employee objects make up a singly-linked-list where each employee save the last has a reference to his boss, who has a reference to his boss, etc. We can use this structure to recurse through the list until an employee with an <code>authorize</code> method is found.</p>
+
+<pre>
+<code class='language-javascript'>
+var customer = {
+  name: 'customer',
+  say: function(phrase) { console.log(phrase)},
+  getChangeForADollar: function(employee) {
+    if (employee.authorize) {
+      var answer = employee.authorize();
+      return 'the answer is ' + answer +'.'; 
+    }
+    else {
+      return this.getChangeForADollar(employee.boss);
+    }
+  }
+};
+</code>
+</pre>
+
+<p>When the <code>authorize</code> method is found on an employee, the results of that method call are returned. This is our base case, and causes each function on the call stack to resolve its return value until the original caller is reached. </p>
+
+<pre>
+<code class='language-javascript'>
+customer.say('Can I get change for a dollar?');
+console.log(customer.getChangeForADollar(employee1));
+</code>
+</pre>
+
+<p>Why is this not iterative?</p>
+
+<p>Just in case you were wondering why I&#39;m making a big deal about this being a good example of recursion instead of iteration using a while loop, there are two reasons:</p>
+
+<ol>
+<li>The context for each authorization check is a totally new location relative to the specific employee and boss involved. If the sketch demonstrated iteration (like &#39;Story of Everest&#39; and &#39;The Audition&#39; mentioned above), the context of the employee traversal process would be the <code>customer.getChangeForADollar</code> method throughout, aka, the whole sketch would have to take place in the convenience store. </li>
+<li>The sketch demonstrates an explicit &#39;unwinding&#39; phase where the ultimate answer is relayed from the top of the command-chain, through each boss and underling, to the caller and in exactly the reverse order of the recursive calls. I&#39;d go so far as to say that this unwinding phase contains the punchline of the joke.<br></li>
+</ol>
+
+<p>All of this is just to demonstrate that while a <em>good</em> joke may use repetition, it is the rare comedic gem that implements it recursively! In any case, I&#39;m sure that my analysis eventually breaks down, so if <em>you</em> are interested in telling me exactly where it does, I would be flattered. You can call me on my twitterphone, the number is <a href="https://twitter.com/drlolzrofl">@drlolzrofl</a>. </p>
+
+<p>[note: there are almost exclusively gendered pronouns in this post and the reason is simply that the relevant roles in the sketch are played by David Cross and Bob Odenkirk, who in fact play all of the employees and bosses.]</p>
+</div>
+
+        <ul class="post-tags">
+
+            
+                <li class="post-tag">
+                    <a href="../../archive/index.html?query=jokes">jokes</a>
+                </li>
+            
+                <li class="post-tag">
+                    <a href="../../archive/index.html?query=recursion">recursion</a>
+                </li>
+            
+                <li class="post-tag">
+                    <a href="../../archive/index.html?query=mr.+show">mr. show</a>
+                </li>
+            
+                <li class="post-tag">
+                    <a href="../../archive/index.html?query=javascript">javascript</a>
+                </li>
+            
+
+        </ul>
+    </div>
+
+
+    </div>
+
+    <!-- BODY SCRIPTS -->
+    
+      
+  <script src="../../static/js/prism.js"></script>
+  <script src="../../static/js/underline_nav_links.js"></script>
+  <script src="../../static/js/media_toggle.js"></script>
+  <script src="../../static/js/to_top.js"></script>
+  <script>
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
+    }
+  </script>
+
+    
+
+</body>
+</html>
