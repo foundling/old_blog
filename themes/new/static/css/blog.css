@@ -15,36 +15,59 @@ nav.blog-nav li {
 
 
 section.recent-posts-list {
-    margin: 3% 0%;
+    margin: 3% 5%;
     text-align: left;
 }
 
 article.recent-post {
-    width: 70%;
-    padding: 10px 0px;
+    width: 60%;
+    padding: 1% 0%;
 }
 
-ul.post-keywords {
-}
-
-li.post-keyword {
-    padding: 0;
-}
-
-div.byline {
-    margin: 5px 0px;    
-    padding: 0px 2px;
-    font-size: .9em;
-    background: white;
+.social-media-icons,
+.recent-post-title {
     display: inline-block;
 }
 
+ul.post-keywords {
+    display: inline-block;
+    padding-left: 5px;
+}
+
+li.post-keyword {
+    display: inline-block;
+    padding: 2px 5px;
+    background: lightgreen;
+    opacity: 0.8;
+    color: white;
+}
+
+div.byline {
+    margin: 15px 0px 5px 0px;    
+    padding: 0px 2px;
+    font-size: .9em;
+    display: inline-block;
+}
+
+.post-published,
+.pencil-icon,
+.post-updated {
+    padding: 2px;
+    background: white;
+}
+
+.pencil-icon {
+    color: rgba(255, 0, 0, 0.62);
+}
+
 p.recent-post-stub {
+    margin: 5px 0px 5px 0px;
     text-align: left;
+
 }
 
 .more-posts {
-    padding: 5% 0% 1% 0%;
+    padding: 3% 0% 1% 0%;
 }
 .more-posts a {
     padding: 10px;

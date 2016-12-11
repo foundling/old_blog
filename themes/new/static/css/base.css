@@ -32,11 +32,6 @@ p {
 div.main {
 
     width: 100vw;
-    padding: 0% 2% 0% 2%;
-
-}
-
-div.main {
     display: inline-block;
     vertical-align: top;
 }
@@ -44,7 +39,7 @@ div.main {
 header.site-header {
     width: 100%;
     background: white;
-    padding: 2%;
+    padding: 3% 5%;
     border-bottom: 2px solid lightgreen;
 }
 
@@ -59,11 +54,16 @@ nav.blog-nav h1 {
     margin-right: 10px;
 }
 
+a:hover {
+    color: rgba(255, 0, 0, 0.62);
+}
+
+
 footer {
+    padding: 1% 5%;
     font-size: 0.7em;
     background: white;
     border-top: 1px solid lightgreen;
-    padding: 1% 0% 1% 2%;
 }
 
 footer p {
