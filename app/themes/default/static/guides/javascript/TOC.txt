@@ -1,0 +1,20 @@
+JavaScript 
+
+what you can expect to get out of this book
+my assumptions and style
+
+0. practical stuff: how you can write and run your JavaScript programs
+1. solving problems
+2. data types
+3. functions: built-in functions
+4. operation on strings 
+
+review 
+
+5. naming and storing data
+6. functions: custom functions
+3. collections: array
+4. iteration 
+6. transforming data with functions
+7. 
+8. 

@@ -1,9 +1,0 @@
-I will venture to define name and names now:
-
-names is a list of human names. you can think of it as a container for a particular sequence of values.
-
-I'm using list in a technical way and in a colloquial way. Python calls this [] a list.
-
-
-
-

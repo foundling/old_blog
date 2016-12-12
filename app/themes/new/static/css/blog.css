@@ -1,0 +1,114 @@
+/*
+ * Header
+ */
+
+nav.blog-nav h1,
+nav.blog-nav ul,
+nav.blog-nav li {
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+/* 
+ * Recent Post List
+ */
+
+
+section.recent-posts-list {
+    margin: 5% 20%;
+    text-align: left;
+}
+
+article.recent-post {
+    margin: 0 auto;
+    width: 100%;
+    padding: 1% 0%;
+}
+
+ul.social-media-icons,
+.social-media-icons li,
+.recent-post-title {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+ul.social-media-icons {
+    background: white;
+    margin-left: 5px;
+}
+.social-media-icons li {
+    padding: 5px;
+}
+
+
+ul.post-keywords {
+    display: inline-block;
+    padding-left: 5px;
+}
+
+li.post-keyword {
+    display: inline-block;
+    padding: 2px 5px;
+    background: lightgreen;
+    opacity: 0.8;
+    color: white;
+}
+
+div.byline {
+    margin: 15px 0px 5px 0px;    
+    padding: 0px 2px;
+    font-size: .9em;
+    display: inline-block;
+    width: 100%;
+}
+
+p.published-info {
+    display: inline-block;
+}
+
+.post-published,
+.pencil-icon,
+.post-updated {
+    padding: 2px;
+    background: white;
+}
+
+.pencil-icon {
+    color: rgba(255, 0, 0, 0.62);
+    margin-right: 5px;
+}
+
+p.recent-post-stub {
+    background: rgba(255,255,255,0.0);
+    margin: 5px 0px 5px 0px;
+    padding: 15px 0px;
+    text-align: left;
+}
+
+span.recent-post-text {
+    padding-right: 10px;
+}
+
+.link-to-full-article i {
+    vertical-align: bottom;
+}
+
+.more-posts {
+    padding: 3% 0% 1% 0%;
+    width: 100%;
+    margin: 0 auto;
+}
+.more-posts a {
+    padding: 10px;
+    background: lightgreen;
+    opacity: 0.8;
+    color: white;
+    font-weight: 400;
+    font-size: 0.9em;
+}
+
+.more-posts a:hover {
+    color: rgba(255, 0, 0, 0.62);
+    background: whitesmoke;
+    border: 1px solid lightgreen;
+}

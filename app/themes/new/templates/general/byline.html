@@ -1,0 +1,23 @@
+<div class="byline">
+
+    <p class="published-info">
+
+        <i class="pencil-icon fa fa-pencil"></i> 
+        <span 
+            data-numeric-date="{{ post['date'] | clean_date }}"
+            title="{{ post['date'] | clean_date }}" 
+            class="post-published">
+            {{ post['date'] | human_readable_date }}
+        </span>
+
+    </p>
+
+    <ul class="post-keywords">
+
+        {% for tag in post['tags'] %}
+        <li class="post-keyword">#{{tag}}</li>
+        {% endfor %}
+
+    </ul>
+
+</div>

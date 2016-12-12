@@ -1,0 +1,42 @@
+div#photos {
+    margin: 10% auto 5% auto;
+}
+
+h1.photos-title {
+    text-align: center;
+    font-size: 3em;
+    text-shadow: 2px 4px 0px lightgray;
+    padding: 30px 0px;
+}
+
+#photos img {
+  margin: 20px auto;
+  width: 95vw;
+  max-width: 450px;
+  height: auto;
+  display: block;
+
+}
+
+#gallery {
+  text-align: center;
+}
+
+ul.photos-menu {
+    text-align: center;
+    max-width: 450px;
+    margin: 0 auto;
+    list-style-type: none;
+}
+
+ul.photos-menu > li {
+    height: 1.5em;
+    line-height: 1.5em;
+}
+
+li.active:before {
+    text-align: left;
+    content: '>';
+    color: $blue;
+    font-weight: bold;
+}

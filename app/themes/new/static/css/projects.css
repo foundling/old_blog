@@ -1,0 +1,32 @@
+.project-name,
+ul.project-links,
+ul.project-links > li {
+    display: inline-block;
+}
+
+section.project-list {
+    margin: 5% 20%;
+}
+
+section.project {
+    padding: 3% 0%;
+    line-height: 1.5em;
+    text-align: center;
+}
+
+.project-header {
+    text-align: left;
+}
+.project-name {
+    padding-right: 5px;
+}
+
+article.project-description {
+    padding: 5% 0% 10% 0%;
+    text-align: left;
+}
+
+img.project-image {
+    padding: 0% 0% 2% 0%;
+    margin: 0 auto;
+}

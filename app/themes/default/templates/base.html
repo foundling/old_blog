@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"> 
+<head> 
+  <title>Alex Ramsdell</title> 
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, user-scalable=no"/> 
+  {% include "head_scripts.html" %}
+  {% include "styles.html" %}
+</head>
+
+<body name="top">
+
+    <!-- HEADER & NAVIGATION -->
+    {% block header %}
+      {% include "header.html" %}
+    {% endblock %}
+
+    <!-- ALL CONTENT (POSTS, ARCHIVES, ABOUT ME, ETC ..) -->
+    <div  class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- BODY SCRIPTS -->
+    {% block body_scripts %}
+      {% include "body_scripts.html" %}
+    {% endblock %}
+
+</body>
+</html>

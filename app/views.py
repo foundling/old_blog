@@ -19,8 +19,7 @@ db = db.Database(blog.config['MONGODB_DATABASE_URI'])
 @blog.route('/index.html')
 def latest_posts():
     latest_posts = db.find_n_most_recent(5)
-    print('\n'.join(latest_posts[0].keys()))
-    return render_template('index.html',posts=reversed(latest_posts))
+    return render_template('index.html', posts=reversed(latest_posts))
  
 @blog.route('/posts/<int:post_id>/')
 def single_blog_post(post_id):
@@ -36,7 +35,6 @@ def all_posts():
 @blog.route('/projects/')
 def projects_all():
     projects = db.find_all({}, collection='projects')
-    print('\n'.join(projects[0].keys()))
     return render_template('projects.html', projects=projects)
 
 @blog.route('/about/')
