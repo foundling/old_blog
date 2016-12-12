@@ -8,4 +8,5 @@ fi
 . env/bin/activate
 
 mongod --dbpath=app/db >/dev/null &
+echo $THEME
 THEME=$THEME python start.py
