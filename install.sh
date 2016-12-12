@@ -1,4 +1,4 @@
 virtualenv env
 . env/bin/activate
 pip install -r requirements.txt
-THEME=NEW python run.py
+THEME=DEFAULT python run.py

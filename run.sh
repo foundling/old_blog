@@ -1,4 +1,5 @@
-mkdir -p app/db
-mongod --dbpath=app/db &
+THEME="$1"
+
 . env/bin/activate
-THEME='new' python start.py
+mongod --dbpath=app/db &
+THEME=( THEME || 'default') python start.py
