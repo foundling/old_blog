@@ -27,7 +27,6 @@ blog.jinja_env.filters['clean_date'] = filters.clean_date
 
 import views 
 
-
 print '''
 Running on theme {}. To develop on an alternate theme, run: 
 

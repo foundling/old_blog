@@ -24,7 +24,7 @@ def latest_posts():
 @blog.route('/posts/<int:post_id>/')
 def single_blog_post(post_id):
     post = db.find_one({'post_id': post_id})
-    return render_template('posts/single_blog_post.html', post=post)
+    return render_template('post/single_blog_post.html', post=post)
 
 @blog.route('/archive/')
 def all_posts():

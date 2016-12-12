@@ -1,1 +1,13 @@
-Make page for edits. 
+Backend stuff:
+    
+    Consider using postgres for database instead of mongo.
+
+frontend stuff:
+
+    Make page/section to show article edit dates. 
+    Figure out a reasonable markdown -> html compilation flow.
+    Navigation Menu component that parses Markdown structure and builds a menu.
+        Sould be easy to style/ flexible. 
+    Add this menu to the left hand side of the articles.
+    Also use this for projects page.
+

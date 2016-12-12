@@ -14,7 +14,8 @@ nav.blog-nav li {
  */
 
 
-section.recent-posts-list {
+section.recent-posts-list,
+section.single-post {
     margin: 5% 20%;
     text-align: left;
 }
@@ -78,6 +79,7 @@ p.published-info {
     margin-right: 5px;
 }
 
+p.full-post-content,
 p.recent-post-stub {
     background: rgba(255,255,255,0.0);
     margin: 5px 0px 5px 0px;
