@@ -5,9 +5,19 @@ Backend stuff:
 frontend stuff:
 
     Make page/section to show article edit dates. 
+
     Figure out a reasonable markdown -> html compilation flow.
+       
+        each article has its on dir. 
+        dir contains <postname>.md and a dir of code snippets, numbered in order of appearance. 
+        code snippet extension tells which lang.
+        
+Keep code snippets in separate files, extension is important. 
+        For any code block, in markdown, put '%CODE%' or something in the code where it should go. 
+
     Navigation Menu component that parses Markdown structure and builds a menu.
         Sould be easy to style/ flexible. 
     Add this menu to the left hand side of the articles.
     Also use this for projects page.
+
 

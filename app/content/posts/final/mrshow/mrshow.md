@@ -10,62 +10,15 @@ In terms related to recursion, each scene is the execution context of a new func
 
 Below, I've created a basic model to represent the chain of command in this haplessly bureaucratic corporation (notice that employee5 is the only one who has the `authorize` method, meaning only he can sign off on the 'change for a dollar' request): 
 
-<pre>
-<code class='language-javascript'>
-var employee5 = {
-  name: 'President of the United States',
-  boss: null,
-  authorize: function() {
-    return 'no';
-  }
-};
-var employee4 = {
-  name: 'Corporate Executive',
-  boss: employee5,
-};
-var employee3 = {
-  name:'Regional Manager',
-  boss: employee4,
-};
-var employee2 = {
-  name:'Store Manager',
-  boss: employee3,
-};
-var employee1 = {
-  name:'Store Clerk',
-  boss: employee2,
-};
-</code>
-</pre>
+%CODE%
 
 The five employee objects make up a singly-linked-list where each employee save the last has a reference to his boss, who has a reference to his boss, etc. We can use this structure to recurse through the list until an employee with an `authorize` method is found.
 
-<pre>
-<code class='language-javascript'>
-var customer = {
-  name: 'customer',
-  say: function(phrase) { console.log(phrase)},
-  getChangeForADollar: function(employee) {
-    if (employee.authorize) {
-      var answer = employee.authorize();
-      return 'the answer is ' + answer +'.'; 
-    }
-    else {
-      return this.getChangeForADollar(employee.boss);
-    }
-  }
-};
-</code>
-</pre>
+%CODE%
 
 When the `authorize` method is found on an employee, the results of that method call are returned. This is our base case, and causes each function on the call stack to resolve its return value until the original caller is reached. 
 
-<pre>
-<code class='language-javascript'>
-customer.say('Can I get change for a dollar?');
-console.log(customer.getChangeForADollar(employee1));
-</code>
-</pre>
+%CODE%
 
 Why is this not iterative?
 
