@@ -1,5 +1,5 @@
 env
-db
+app/db
 *pyc
 */config.py
 *.jpg

@@ -6,19 +6,23 @@
     {% for project in projects %}
 
         <section class="project">
+
             <header class="project-header">
                 {% include 'project/name.html' %}
                 {% include 'project/links.html' %}
             </header>
+
             <article class="project-description">
                 {{ project['description'] }}
             </article>
+
             <article>
                 {% for image_filename in project['image_filenames'] %}
                 <img class="project-image"
                      src="{{ url_for('static', filename='img/projects/' +  project['directory_name'] + '/' + image_filename) }}"/>
                 {% endfor %}
             </article>
+
         </section>
 
     {% endfor %}

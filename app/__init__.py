@@ -11,6 +11,7 @@ from flask.ext.cors import CORS
 
 theme = os.environ.get('THEME', 'default')
 
+print themes
 blog = Flask(
     __name__,
     static_folder = themes[theme]['static'],
@@ -28,10 +29,5 @@ blog.jinja_env.filters['clean_date'] = filters.clean_date
 import views 
 
 print '''
-Running on theme {}. To develop on an alternate theme, run: 
-
-    THEME='<THEME_NAME>' python run.py
-
-Available themes: {}
-
+Running on theme {}. THEME='<THEME_NAME>' python run.py
 '''.format(theme, ', '.join(themes.keys()))
