@@ -19,11 +19,17 @@ db = db.Database(blog.config['MONGODB_DATABASE_URI'])
 @blog.route('/index.html')
 def latest_posts():
     latest_posts = db.find_n_most_recent(5)
+    print latest_posts[0]['permalink']
     return render_template('index.html', posts=reversed(latest_posts))
  
 @blog.route('/posts/<int:post_id>/')
-def single_blog_post(post_id):
+def single_blog_post_by_id(post_id):
     post = db.find_one({'post_id': post_id})
+    return render_template('post/single_blog_post.html', post=post)
+
+@blog.route('/posts/<permalink>')
+def single_blog_post_by_permalink(permalink):
+    post = db.find_one({'permalink': permalink})
     return render_template('post/single_blog_post.html', post=post)
 
 @blog.route('/archive/')
