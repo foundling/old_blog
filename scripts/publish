@@ -27,7 +27,7 @@ prompts = {
         'prompts': OrderedDict([
             ('tags', lambda s: [kw.strip().lower() for kw in s.split(',')]), 
             ('title', lambda s: s.strip().encode('utf-8')),
-            ('short text', lambda s: s),
+            ('short_text', lambda s: s),
             ('permalink', lambda s: s),
         ]),
 
@@ -46,7 +46,7 @@ def generate_prompt_text(header=None, prompt_lines=None):
 
     prompt_lines = [
 
-        '\n{}: {}'.format(index, prompt)
+        '\n{}: {}'.format(index, prompt.replace(' ','_'))
         for index, prompt
         in enumerate(prompt_lines)
 
@@ -102,9 +102,6 @@ def save_to_versions(filepath, post):
 
     ])
 
-    print(new_filepath)
-    sys.exit()
-
     with open(new_filepath,'w') as f:
         f.write(post['content'].encode('utf-8'))
 
@@ -133,8 +130,7 @@ def main(db, filepath):
 
     print(post)
     save_to_versions(filepath, post)
-    #db.insert_one(post, collection=collection)
-
+    db.insert_one(post, collection=collection)
 
 if __name__ == '__main__':
 
