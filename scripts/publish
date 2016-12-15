@@ -28,7 +28,6 @@ prompts = {
             ('tags', lambda s: [kw.strip().lower() for kw in s.split(',')]), 
             ('title', lambda s: s.strip().encode('utf-8')),
             ('short_text', lambda s: s),
-            ('permalink', lambda s: s),
         ]),
 
         'automatic': OrderedDict([
