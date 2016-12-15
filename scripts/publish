@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
+from collections import OrderedDict
 import datetime
 import json
 import os
 import pprint
-import re
 import sys
 
 import arrow
@@ -14,74 +14,126 @@ import slugify
 from config import config
 from lib import db, utils
 
-def append_user_values(post, collection):
+prompts = {
 
-    prompt_questions = {
-      'title'     :'Title: ',
+    'collection': OrderedDict([
+        ('0', 'posts'), 
+        ('1', 'projects'),
+        ('2', 'about me')
+    ]),
+
+    'posts': {
+
+        'prompts': OrderedDict([
+            ('tags', lambda s: [kw.strip().lower() for kw in s.split(',')]), 
+            ('title', lambda s: s.strip().encode('utf-8')),
+            ('short text', lambda s: s),
+            ('permalink', lambda s: s),
+        ]),
+
+        'automatic': OrderedDict([
+            ('content', lambda s: open(sys.argv[1]).read().decode('utf-8')),
+            ('author', lambda s: 'alex'),
+            ('date', lambda s: datetime.datetime.now()) 
+        ])
+
+    }
+}
+
+def generate_prompt_text(header=None, prompt_lines=None):
+
+    ''' return a string of user prompt lines. '''
+
+    prompt_lines = [
+
+        '\n{}: {}'.format(index, prompt)
+        for index, prompt
+        in enumerate(prompt_lines)
+
+    ]
+
+    return ''.join([ header ] + prompt_lines if header else prompt_lines) + '\n'
+
+def get_user_values(collection):
+
+    ''' Get post metadata that the user can supply. '''
+
+    user_values = {}
+    for prompt, fn in prompts[collection]['prompts'].iteritems():
+
+        prompt_text = '{}:'.format(prompt)
+        answer = raw_input(prompt_text)
+        user_values[prompt] = fn(answer)
+
+    return user_values
+
+def get_automatic_values(filepath, post_title, collection):
+
+    ''' Get post metadata that the user shouldn't need to supply. '''
+
+    automatic_values = {
+
+        'content': open(filepath).read().decode('utf-8'),
+        'author': 'alex',
+        'date': datetime.datetime.now()
+
     }
 
-    if collection == 'posts': 
-      prompt_questions['tags'] = 'Tags: '
-      prompt_questions['short_text'] = 'Short-Text: '
-
-    for category in prompt_questions:
-
-        raw_string = raw_input(prompt_questions[category])
-
-        if category == 'tags':
-            post[category] = [ kw.strip().lower() for kw in raw_string.split(',') ] 
-
-        if category == 'title':
-            post[category] = raw_string.strip().encode('utf-8')
-
-
-
-    return post
-
-def append_automatic_values(client, post, collection):
-
-    post['content'] = open(sys.argv[1]).read().decode('utf-8')
-    post['author'] = 'alex'
-    post['date'] = datetime.datetime.now() 
-
     if collection == 'posts':
-        post['post_id'] = db.count() + 1
-        post['permalink'] = slugify.slugify(post['title'])
 
-    return post
+        automatic_values['post_id'] = db.count() + 1
+        automatic_values['permalink'] = slugify.slugify(post_title)
 
-def save_to_versions(post):
-  ''' 
-    take current title entered to update
-    find version titles of which the name is a subset
-    get the largest version number
-    increment it and save a new file with the current name and the incremented version
-  '''
+    return automatic_values
 
-  new_filename = post['title']
-  content = post['content']
-  current_date = datetime.datetime.isoformat(datetime.datetime.now())
-  f = open(''.join([\
-                     config['SAVED_VERSIONS_DIR'],
-                     '/',
-                     new_filename.replace(' ','_'),
-                     '_',current_date])
-           ,'w')
-  f.write(content.encode('utf-8'))
-  f.flush()
-  f.close()
+def save_to_versions(filepath, post):
 
-def main():
+    current_date = datetime.datetime.isoformat(datetime.datetime.now())
+    filename = os.path.basename(filepath)
+    parts = filename.rsplit('.', 1)
+    new_filepath = ''.join([ 
 
-    db = db.Database('mongodb://localhost:27017')
-    userChoice = raw_input('Post type?\n0: regular post\n1: static\n').strip()
-    collection = 'posts' if userChoice == '0' else 'static' 
+        config['SAVED_VERSIONS_DIR'], 
+        '/',
+        parts[0],
+        '_', 
+        current_date, 
+        '.' + parts[1] if len(parts) > 1 else '.no_extension'  
+
+    ])
+
+    print(new_filepath)
+    sys.exit()
+
+    with open(new_filepath,'w') as f:
+        f.write(post['content'].encode('utf-8'))
+
+def main(db, filepath):
+
+    user_choice = None
+    while not user_choice:
+
+        prompt_text = generate_prompt_text(
+
+            header = 'Choose a Document Type to Publish:', 
+            prompt_lines = prompts['collection'].values()
+
+        )
+
+        user_choice = raw_input(prompt_text).strip()
+
+    collection = prompts['collection'][user_choice]
+
+    user_values = get_user_values(collection)
+    automatic_values = get_automatic_values(filepath, user_values['title'], collection)
+
     post = {}
-    post = append_user_values(post, collection)
-    post = append_automatic_values(db, post, collection)
-    save_to_versions(post)
-    db.insert_one(post, collection=collection)
+    post.update(user_values)
+    post.update(automatic_values)
 
+    print(post)
+    save_to_versions(filepath, post)
+    #db.insert_one(post, collection=collection)
 
 
 if __name__ == '__main__':
@@ -89,7 +141,9 @@ if __name__ == '__main__':
 
     if len(sys.argv) < 2:
 
-      utils.usage()
-      sys.exit(1)
+        utils.usage()
+        sys.exit(1)
 
-    main()
+    filepath = sys.argv[1]
+    db = db.Database('mongodb://localhost:27017')
+    main(db, filepath)
