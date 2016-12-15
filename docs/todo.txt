@@ -2,7 +2,7 @@ Backend stuff:
     
     Consider using postgres for database instead of mongo.
 
-frontend stuff:
+Frontend stuff:
 
     Make page/section to show article edit dates. 
 

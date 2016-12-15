@@ -71,8 +71,9 @@ def save_to_versions(post):
   f.flush()
   f.close()
 
-def main(db):
+def main():
 
+    db = db.Database('mongodb://localhost:27017')
     userChoice = raw_input('Post type?\n0: regular post\n1: static\n').strip()
     collection = 'posts' if userChoice == '0' else 'static' 
     post = {}
@@ -85,12 +86,10 @@ def main(db):
 
 if __name__ == '__main__':
 
-    db = db.Database('mongodb://localhost:27017')
 
     if len(sys.argv) < 2:
 
       utils.usage()
       sys.exit(1)
 
-    else:
-        main(db)
+    main()

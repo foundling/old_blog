@@ -16,14 +16,12 @@ nav.blog-nav li {
 
 section.recent-posts-list,
 section.single-post {
-    margin: 5% 20%;
     text-align: left;
 }
 
 article.recent-post {
     margin: 0 auto;
     width: 100%;
-    padding: 1% 0%;
 }
 
 ul.social-media-icons,
@@ -31,11 +29,12 @@ ul.social-media-icons,
 .recent-post-title {
     display: inline-block;
     vertical-align: middle;
+    margin-right: 5px;
 }
 
 ul.social-media-icons {
     background: white;
-    margin-left: 5px;
+    margin: 2% 0%; 0% 0%
 }
 .social-media-icons li {
     padding: 5px;
@@ -56,7 +55,6 @@ li.post-keyword {
 }
 
 div.byline {
-    margin: 15px 0px 5px 0px;    
     padding: 0px 2px;
     font-size: .9em;
     display: inline-block;
@@ -65,6 +63,7 @@ div.byline {
 
 p.published-info {
     display: inline-block;
+    margin: 5px 0px 5px 0px;
 }
 
 .post-published,
@@ -113,4 +112,11 @@ span.recent-post-text {
     color: rgba(255, 0, 0, 0.62);
     background: whitesmoke;
     border: 1px solid lightgreen;
+}
+
+@media(max-width:750px) {
+    .more-posts {
+        text-align: center;
+        padding-bottom: 20px;
+    }
 }
