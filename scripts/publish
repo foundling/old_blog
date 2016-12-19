@@ -127,7 +127,6 @@ def main(db, filepath):
     post.update(user_values)
     post.update(automatic_values)
 
-    print(post)
     save_to_versions(filepath, post)
     db.insert_one(post, collection=collection)
 

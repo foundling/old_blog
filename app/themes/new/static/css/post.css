@@ -1,0 +1,21 @@
+/* markdown styles */
+
+section.single-post h1,
+section.single-post p {
+    padding: 2% 0%;
+}
+
+section.single-post p {
+    line-height: 30px;
+}
+
+section.single-post h3.recent-post-title {
+    /* fix this */
+    font-size: 1.7em;
+}
+section.single-post h1, 
+section.single-post h2 {
+    font-size: 2em;
+} 
+
+

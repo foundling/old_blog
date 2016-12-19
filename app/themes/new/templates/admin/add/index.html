@@ -1,0 +1,14 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+    {% if post %}
+        {% include 'admin/add/add_post.html' %}
+    {% else %}
+        {% include 'admin/add/add_project.html' %}
+    {% endif %}
+
+    {% include 'admin/add/controls.html' %}
+    {% include 'admin/add/body_scripts.html' %}
+
+{% endblock %}

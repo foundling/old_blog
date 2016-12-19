@@ -1,0 +1,19 @@
+<section class="edit-post">
+
+    <form method="post" action="/admin/edit/posts/update">
+
+        <input 
+        name="title" 
+        class="title"  
+        value="{{ post['title'] }}" />
+
+        <textarea 
+        name="content" 
+        class="content">{{ post['content'] }}</textarea> 
+
+        {% include 'admin/edit/controls.html' %}
+
+    <form>
+</section>
+
+

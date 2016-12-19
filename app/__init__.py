@@ -27,6 +27,7 @@ blog.jinja_env.filters['human_readable_date'] = filters.human_readable_date
 blog.jinja_env.filters['clean_date'] = filters.clean_date
 
 import views 
+import admin 
 
 print '''
 Running on theme {}. THEME='<THEME_NAME>' python run.py

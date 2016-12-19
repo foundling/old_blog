@@ -15,11 +15,14 @@ from themes import themes
 
 db = db.Database(blog.config['MONGODB_DATABASE_URI']) 
 
+@blog.errorhandler(404)
+def page_not_found(error):
+    return render_template('404/404.html'), 404
+
 @blog.route('/')
 @blog.route('/index.html')
 def latest_posts():
     latest_posts = db.find_n_most_recent(5)
-    print latest_posts[0]['permalink']
     return render_template('index.html', posts=reversed(latest_posts))
  
 @blog.route('/posts/<int:post_id>/')
@@ -52,6 +55,12 @@ def about_me():
 def photos(collection_name):
     collection = {
         'name' : collection_name,
-        'photos': os.listdir(os.path.join(blog.config['BASE_DIR'],'static/img/static/' + collection_name + '/med'))
+        'photos': os.listdir(
+            os.path.join(
+                blog.config['BASE_DIR'],
+                'static/img/static',
+                collection_name, 'med'
+            )
+        )
     }
     return render_template('fun.html',collection=collection) 

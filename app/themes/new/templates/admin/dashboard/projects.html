@@ -1,0 +1,20 @@
+<article class="projects">
+
+    <h2>Projects</h2>
+    <ul>
+
+        {% for project in projects %} 
+
+        <li class="project">
+
+            <h3>{{ project['name'] }}</h3>
+
+            <button id="{{ project['post_id'] }}-projects" class="edit-project" >edit</button> 
+            <button id="" class="read-project">read post</button>
+
+        </li>
+
+        {% endfor %} 
+    </ul>
+
+</article>

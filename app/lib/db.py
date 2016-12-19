@@ -8,13 +8,12 @@ class Database(object):
     self.db = self.connect(uri)[db_name]
 
   def connect(self,uri):
+
       ''' returns client or exits '''
 
       server_running = os.system('pgrep mongod > /dev/null') == 0
       if not server_running:
-          print '''
-            The mongod server is not running. Try starting it and run the script again
-          '''
+          print 'The mongod server is not running. Try starting it and run the script again.'
           sys.exit(1)
 
       try:
@@ -27,10 +26,7 @@ class Database(object):
       return client
 
   def close_connection(self):
-
       self.db.close()
-
-
 
   def find_one(self, query, collection='posts'):
     return self.db[collection].find_one(query)
@@ -55,7 +51,7 @@ class Database(object):
       user passes in objects
     '''
 
-    result = self.db[collection].update_one(query, update)
+    result = self.db[collection].update_one({ '$set': query }, update)
     return result.matched_count
 
 if __name__ == '__main__':

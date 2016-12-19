@@ -1,0 +1,22 @@
+<article class="posts">
+
+    <h2 class"posts">Posts</h2>
+        <a 
+            class="add-post" 
+            href="/admin/add/posts">+ New Post</a>
+    <ul>
+        {% for post in posts %}
+
+        <li class="post">
+
+            <h1>{{ post['title'] }}</h1> 
+            <span>post date: {{ post['date'] | clean_date }}</span>
+            <a href="/admin/edit/posts/{{ post['post_id'] }}" class="edit-post">edit</a> 
+            <button class="read-post">read post</button>
+
+        </li>
+
+        {% endfor %}
+    </ul>
+
+</article>
