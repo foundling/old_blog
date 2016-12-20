@@ -3,6 +3,7 @@
     <form method="post" action="/admin/post/save">
 
         <input type="hidden" name="is_update" value="yes">
+        <input type="hidden" name="_id" value="{{ post['_id'] }}">
         <input 
             name="title" 
             value="{{ post['title'] }}"

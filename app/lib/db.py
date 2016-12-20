@@ -55,6 +55,8 @@ class Database(object):
       note, this uses $set to update one or more fields without replacing entire doc 
       user passes in objects
     '''
+    print query
+    print update
 
     # RESUME HERE
     result = self.db[collection].update_one(query, {'$set': update})
