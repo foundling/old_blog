@@ -4,10 +4,10 @@
 
         <i class="pencil-icon fa fa-pencil"></i> 
         <span 
-            data-numeric-date="{{ post['date'] | clean_date }}"
-            title="{{ post['date'] | clean_date }}" 
+            data-numeric-date="{{ post['date_published'] | clean_date }}"
+            title="{{ post['date_published'] | clean_date }}" 
             class="post-published">
-            {{ post['date'] | human_readable_date }}
+            {{ post['date_published'] | human_readable_date }}
         </span>
 
     </p>

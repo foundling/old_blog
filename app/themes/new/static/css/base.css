@@ -18,10 +18,13 @@ html, body, body * {
 
 }
 
-body {
+html {
 
     background: whitesmoke;
 
+}
+
+body {
 }
 
 li {

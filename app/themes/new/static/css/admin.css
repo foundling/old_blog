@@ -1,11 +1,28 @@
+html, body, body * {
+    box-sizing: border-box;
+}
+
+body * { 
+    font-family: sans-serif;
+}
+
 html, body {
     height: 100%;
     border: 0;
     margin: 0;
 }
 
+/* dashboard */
+
+h2,
+.add-post {
+    display: inline-block;
+}
+
+/* create inputs */
 textarea,
 input {
+    width: 100vw;
     border: 3px solid lightgray;
     background: whitesmoke;
     outline: none;
@@ -17,30 +34,42 @@ input:focus {
     background: lightblue;
 }
 
-textarea.content {
-    width: 100%;
-    height: 100vh;
-    font-size: 1.5em;
-}
-
 input.title {
-    width: 100%;
+    height: 10vh;
     font-size: 1.5em;
 }
 
-html, body, body * {
-    box-sizing: border-box;
+textarea.short-text {
+    height: 10vh;
 }
-body * { 
-    font-family: sans-serif;
+
+input.keywords {
+    height: 10vh;
+    width: 75vw;
 }
-h1 {
+
+select.collection {
+    height: 5vh;
+}
+
+textarea.content {
+    height: 65vh;
+    font-size: 1.5em;
+}
+
+
+section.controls {
+    position: absolute;
+    bottom: 20px;
+    right: 0px;
+    width: 25vw;
 }
 
 button.save:hover,
 button.markdown-preview:hover {
     background: lightgreen;
 }
+
 button.save,
 button.markdown-preview {
     border: none;
@@ -48,16 +77,5 @@ button.markdown-preview {
     width: 120px;
     display: inline-block;
     vertical-align: bottom;
-}
-
-section.edit-controls {
-    position: absolute;
-    bottom: 25px;
-    right: 25px;
-}
-
-h2,
-.add-post {
-    display: inline-block;
 }
 

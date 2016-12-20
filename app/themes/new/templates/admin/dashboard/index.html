@@ -2,7 +2,51 @@
 
 {% block content %}
 
-    {% include 'admin/dashboard/posts.html' %}
-    {% include 'admin/dashboard/projects.html' %}
+
+    <article class="posts">
+
+        <h2 class"posts">Posts</h2>
+            <a 
+                class="add-post" 
+                href="/admin/post/create">+ New Post</a>
+
+        <ul>
+        {% for post in posts %}
+            <li class="post">
+
+                <h1>{{ post['title'] }}</h1> 
+                <span>post date: {{ post['date_published'] | clean_date }}</span>
+                <a href="/admin/post/{{ post['permalink'] }}/edit" class="edit-post">edit</a> 
+                <button class="read-post">read post</button>
+
+            </li>
+        {% endfor %}
+        </ul>
+
+    </article>
+
+    <article class="projects">
+
+        <h2>Projects</h2>
+            <a 
+                class="add-project" 
+                href="/admin/project/create">+ New Post</a>
+        <ul>
+
+            {% for project in projects %} 
+
+            <li class="project">
+
+                <h3>{{ project['name'] }}</h3>
+
+                <button id="{{ project['post_id'] }}-projects" class="edit-project" >edit</button> 
+                <button id="" class="read-project">read post</button>
+
+            </li>
+
+            {% endfor %} 
+        </ul>
+
+    </article>
 
 {% endblock %}

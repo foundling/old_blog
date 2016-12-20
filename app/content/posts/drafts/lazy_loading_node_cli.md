@@ -4,9 +4,8 @@ Recently, I've been building a command-line application to manage the data-acqui
  
 The app has the standard sub-command structure: 
 
-````
-cmd sub-cmd [ arguments ... ] [ options ... ]
-````
+`cmd sub-cmd [ arguments ... ] [ options ... ]`
+
 e.g.
 
 ````

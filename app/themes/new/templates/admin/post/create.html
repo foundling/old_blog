@@ -1,0 +1,37 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+    <form method='post' action='/admin/post/save'>
+
+        <input type="hidden" name="is_update" value="">
+
+        <input 
+            name="title" 
+            placeholder="Title"
+            value="title"
+            class="title"></input>
+
+        <textarea 
+            name="short_text" 
+            placeholder="Short Text"
+            value="short text"
+            class="short-text"></textarea> 
+
+        <textarea 
+            name="content" 
+            placeholder="Content"
+            value="content"
+            class="content"></textarea> 
+
+        <input 
+            name="tags" 
+            placeholder="Tags"
+            value="tags"
+            class="tags"></input>
+
+        {% include 'admin/controls.html' %}
+    </form>
+
+
+{% endblock %}

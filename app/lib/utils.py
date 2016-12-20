@@ -1,3 +1,22 @@
+import datetime
+
+import slugify
+
+def build_post(document, update=False):
+
+    ''' build a document to insert/update in the nosql db. '''
+
+    date_now = datetime.datetime.now()
+
+    document['author'] = 'alex' 
+    document['permalink'] = slugify.slugify(document['title'])
+
+    if not update:
+        document['date_published'] = date_now
+
+    return document
+
+
 def get_short_text(file_content, max_chars=160):
     ''' this should be revised to include as many paragraphs that fit into 160 chars '''
 

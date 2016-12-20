@@ -1,0 +1,38 @@
+<section class="edit-post">
+
+    <form method="post" action="/admin/post/save">
+
+        <input type="hidden" name="is_update" value="yes">
+        <input 
+            name="title" 
+            value="{{ post['title'] }}"
+            placeholder="Title"
+            class="title">
+            </input>
+
+        <textarea 
+            name="short_text" 
+            placeholder="Short Text"
+            class="short-text">{{ post['short_text'] }}</textarea> 
+
+        <textarea 
+            name="content" 
+            placeholder="Content"
+            class="content">{{ post['content'] }}</textarea> 
+
+        <input 
+            name="tags" 
+            placeholder="Tags"
+            value="{{ post['tags'] }}"
+            class="tags" />
+
+        <section class="controls">
+            <button 
+                type="submit" 
+                class="save">Update</button>
+            <button class="markdown-preview">Markdown Preview</button>
+        </section>
+
+    <form>
+
+</section>
