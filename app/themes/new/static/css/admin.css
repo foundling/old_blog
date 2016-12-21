@@ -22,8 +22,7 @@ h2,
 /* create inputs */
 textarea,
 input {
-    width: 100vw;
-    border: 3px solid lightgray;
+    border: 1px solid black;
     background: whitesmoke;
     outline: none;
     padding: 20px;
@@ -35,15 +34,17 @@ input:focus {
 }
 
 input.title {
+    width: 100vw;
     height: 10vh;
     font-size: 1.5em;
 }
 
 textarea.short-text {
+    width: 100vw;
     height: 10vh;
 }
 
-input.keywords {
+input.tags {
     height: 10vh;
     width: 75vw;
 }
@@ -53,7 +54,8 @@ select.collection {
 }
 
 textarea.content {
-    height: 65vh;
+    width: 100vw;
+    height: 70vh;
     font-size: 1.5em;
 }
 
@@ -66,16 +68,30 @@ section.controls {
 }
 
 button.save:hover,
-button.markdown-preview:hover {
+button.markdown-preview:hover,
+button.delete-post:hover {
     background: lightgreen;
 }
 
 button.save,
-button.markdown-preview {
+button.delete-post {
+    position: fixed;
+    bottom: 0px;
     border: none;
-    height: 40px;
-    width: 120px;
+    height: 8vh;
+    width: calc(25vw / 2);
     display: inline-block;
     vertical-align: bottom;
 }
 
+button.save {
+    right: 0px;
+}
+button.delete-post {
+    right: calc(25vw / 2);
+}
+
+form.delete-post {
+    right: 300px;
+    display: inline-block;
+}

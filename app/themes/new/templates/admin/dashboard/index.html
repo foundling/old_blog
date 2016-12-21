@@ -17,7 +17,7 @@
                 <h1>{{ post['title'] }}</h1> 
                 <span>post date: {{ post['date_published'] | clean_date }}</span>
                 <a href="/admin/post/{{ post['_id'] }}/edit" class="edit-post">edit</a> 
-                <button class="read-post">read post</button>
+                <a href="/blog/{{ post['permalink'] }}"><button class="read-post">read post</button></a>
 
             </li>
         {% endfor %}

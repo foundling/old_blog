@@ -1,3 +1,6 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
 <section class="edit-post">
 
     <form method="post" action="/admin/post/{{ post['_id'] }}/save">
@@ -33,13 +36,14 @@
             <button 
             type="submit" 
             class="save">Update</button>
-            <button 
-            class="markdown-preview">Markdown Preview</button>
         </section>
 
     </form>
 
-    <form action="/admin/post/{{ post['_id'] }}/delete" method="post">
+    <form 
+    class="delete-post" 
+    action="/admin/post/{{ post['_id'] }}/delete" 
+    method="post">
         <button 
         type="submit" 
         class="delete-post">Delete</button>
@@ -47,3 +51,4 @@
 
 
 </section>
+{% endblock %}

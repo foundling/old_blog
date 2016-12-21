@@ -54,10 +54,14 @@ p {
 
 /* Components */
 
+div.main {
+    margin: 5% 20%;
+}
+
 header.site-header {
     
     width: 100%;
-    padding: 8%;
+    padding: 8% 20%;
 
     text-align: left;
     background: white;
@@ -80,9 +84,6 @@ nav > h1 {
 }
 
 
-div.main {
-    margin: 5% 20%;
-}
 
 
 footer {
@@ -110,8 +111,11 @@ footer a.creator-link:hover {
 @media(max-width: 750px) {
 
 
+    header.site-header {
+        padding: 8% 10%;
+    }
     div.main {
-        margin: 8%;
+        margin: 8% 10%;
     }
 
     footer {
@@ -127,5 +131,7 @@ footer a.creator-link:hover {
 
 
 @media(max-width: 400px) {
-
+    header.site-header {
+        text-align: center;
+    }
 }
