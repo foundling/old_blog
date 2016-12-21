@@ -2,13 +2,13 @@
 
     <p class="published-info">
 
-        <i class="pencil-icon fa fa-pencil"></i> 
+        <i 
+        title="last edited: {{ post['last_edited'] | human_readable_date or 'never' }}" 
+        class="pencil-icon fa fa-pencil"></i> 
         <span 
-            data-numeric-date="{{ post['date_published'] | clean_date }}"
-            title="{{ post['date_published'] | clean_date }}" 
-            class="post-published">
-            {{ post['date_published'] | human_readable_date }}
-        </span>
+        data-numeric-date="{{ post['date_published'] | clean_date }}"
+        title="{{ post['date_published'] | clean_date }}" 
+        class="post-published">{{ post['date_published'] | human_readable_date }}</span>
 
     </p>
 

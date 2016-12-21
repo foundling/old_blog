@@ -5,7 +5,12 @@ pre {
     overflow-x: scroll;
 }
 
-p > code {
+p > code,
+li > code {
     padding: 2px 5px;
     background: rgba(144,238,144,0.8); 
+}
+
+pre  {
+    margin: 2% 0%;
 }
