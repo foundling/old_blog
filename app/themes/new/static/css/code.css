@@ -1,5 +1,11 @@
-code, pre {
+pre {
+    background: rgba(144,238,144,0.8); 
+    padding: 20px;
+    max-width: 100%;
+    overflow-x: scroll;
+}
 
-    background: lightgreen; 
-
+p > code {
+    padding: 2px 5px;
+    background: rgba(144,238,144,0.8); 
 }
