@@ -9,6 +9,7 @@ import slugify
 from lib import utils
 from app import blog
 
+# Admin Root
 @blog.route('/admin')
 def admin_root():
     ''' populate dashboard view with posts and projects in date-descending order. '''
@@ -18,34 +19,43 @@ def admin_root():
 
     return render_template('admin/dashboard/index.html', posts=posts, projects=projects)
 
+# Create A New Post
 @blog.route('/admin/post/create')
 def admin_create_post():
     ''' return view to create a new post '''
 
     return render_template('admin/post/create.html')
 
-@blog.route('/admin/post/<_id>/edit')
-def admin_edit_post(_id):
+# Edit Existing Post
+@blog.route('/admin/post/<id>/edit')
+def admin_edit_post(id):
     ''' return view populated with target post values for editing. '''
 
-    document = g.db.find_one({ '_id': ObjectId(_id) })
+    document = g.db.find_one({ '_id': ObjectId(id) })
     return render_template('admin/post/edit.html', post=document)
 
-@blog.route('/admin/post/save', methods=['POST'])
-def admin_add_post():
+# Save New Post
+@blog.route('/admin/post/new/save', methods=['POST'])
+def admin_save_new_post():
     ''' gather form post submission values into a dict, save to post collection in db. ''' 
-
-    is_update = bool(request.form['is_update'])
-    form_values = dict((name, value) for name, value in request.form.iteritems())
-    complete_post = utils.build_post(form_values, update=is_update)
-    id = complete_post.pop('_id', None);
-
-    if is_update:
-        # not working because you're looking for the old post title, but 'title' here is the new one
-        # so the query part of update returns nothing.
-        g.db.update_one({ '_id': ObjectId(id) }, complete_post, collection='post')
-    else:
-        g.db.insert_one(complete_post, collection='post')
-
+    
+    fields = ['title', 'short_text', 'content', 'tags']
+    document = dict((field, request.form[field]) for field in fields)
+    complete_post = utils.add_metadata(document)
+    g.db.insert_one(complete_post, collection='post')
 
     return redirect('/admin')
+
+# Save Existing Post
+@blog.route('/admin/post/<id>/save', methods=['POST'])
+def admin_save_existing_post(id):
+
+    fields = ['title', 'short_text', 'content', 'tags']
+    document = dict((field, request.form[field]) for field in fields)
+    updates = utils.add_metadata(document, update=True)
+    query = { '_id': ObjectId(id) }
+    g.db.update_one(query, updates, collection='post')
+
+    return redirect('/admin')
+
+

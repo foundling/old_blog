@@ -1,8 +1,7 @@
 import datetime
-
 import slugify
 
-def build_post(document, update=False):
+def add_metadata(document, update=False):
 
     ''' build a document to insert/update in the nosql db. '''
 
@@ -10,8 +9,12 @@ def build_post(document, update=False):
 
     document['author'] = 'alex' 
     document['permalink'] = slugify.slugify(document['title'])
+    document['tags'] = document['tags'].split(',')
+    document['last_edited'] = None
 
-    if not update:
+    if update:
+        document['last_edited'] = date_now
+    else:
         document['date_published'] = date_now
 
     return document
