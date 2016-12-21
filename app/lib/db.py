@@ -50,6 +50,10 @@ class Database(object):
     print document, collection
     self.db[collection].insert_one(document);
 
+  def remove(self, query, collection='post'):
+    print query
+    self.db[collection].remove(query) 
+
   def update_one(self, query, update, collection='post'):
     ''' 
       note, this uses $set to update one or more fields without replacing entire doc 

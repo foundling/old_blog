@@ -20,13 +20,11 @@ def latest_posts():
 #
 #@blog.route('/blog/<id>')
 #def single_blog_post_by_id(id):
-#    print 'matched id'
 #    post = g.db.find_one({'_id': ObjectId(id)})
 #    return render_template('post/single_blog_post.html', post=post)
 
 @blog.route('/blog/<permalink>')
 def single_blog_post_by_permalink(permalink):
-    print 'matched permalink'
     post = g.db.find_one({'permalink': permalink})
     return render_template('post/single_blog_post.html', post=post)
 

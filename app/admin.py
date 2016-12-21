@@ -12,7 +12,7 @@ from app import blog
 # Admin Root
 @blog.route('/admin')
 def admin_root():
-    ''' populate dashboard view with posts and projects in date-descending order. '''
+    ''' Populate dashboard view with posts and projects in date-descending order. '''
 
     posts = reversed( g.db.find_all(collection='post') )
     projects = reversed( g.db.find_all(collection='project') )
@@ -22,14 +22,14 @@ def admin_root():
 # Create A New Post
 @blog.route('/admin/post/create')
 def admin_create_post():
-    ''' return view to create a new post '''
+    ''' Return view to create a new post '''
 
     return render_template('admin/post/create.html')
 
 # Edit Existing Post
 @blog.route('/admin/post/<id>/edit')
 def admin_edit_post(id):
-    ''' return view populated with target post values for editing. '''
+    ''' Return view populated with target post values for editing. '''
 
     document = g.db.find_one({ '_id': ObjectId(id) })
     return render_template('admin/post/edit.html', post=document)
@@ -37,7 +37,7 @@ def admin_edit_post(id):
 # Save New Post
 @blog.route('/admin/post/new/save', methods=['POST'])
 def admin_save_new_post():
-    ''' gather form post submission values into a dict, save to post collection in db. ''' 
+    ''' Gather form post submission values into a dict, save to post collection in db. ''' 
     
     fields = ['title', 'short_text', 'content', 'tags']
     document = dict((field, request.form[field]) for field in fields)
@@ -49,6 +49,7 @@ def admin_save_new_post():
 # Save Existing Post
 @blog.route('/admin/post/<id>/save', methods=['POST'])
 def admin_save_existing_post(id):
+    ''' Save an existing post. '''
 
     fields = ['title', 'short_text', 'content', 'tags']
     document = dict((field, request.form[field]) for field in fields)
@@ -58,4 +59,12 @@ def admin_save_existing_post(id):
 
     return redirect('/admin')
 
+# Delete Existing Post
+@blog.route('/admin/post/<id>/delete', methods=['POST'])
+def admin_delete_post(id):
+    ''' Delete post by id. '''
+
+    query = { '_id': ObjectId(id) }
+    g.db.remove(query)
+    return redirect('/admin')
 
