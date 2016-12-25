@@ -31,8 +31,24 @@ li {
 
 }
 
+a::selection,
+p::selection,
+li::selection,
+ul::selection,
+span::selection,
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
+h6::selection
+{
+    background: rgba(255, 0, 0, 0.62);
+}
+
 a {
 
+    -webkit-tap-highlight-color: rgba(255, 0, 0, 0.62);
     text-decoration: none;
     color: rgb(70,70,70);
 
