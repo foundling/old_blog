@@ -59,6 +59,9 @@ textarea.content {
     font-size: 1.5em;
 }
 
+textarea.short-text {
+    font-size: 1em;
+}
 
 section.controls {
     position: absolute;

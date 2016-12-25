@@ -8,9 +8,9 @@ pre {
 p > code,
 li > code {
     padding: 2px 5px;
-    background: rgba(144,238,144,0.8); 
+    background: white;
+    color: rgba(255, 0, 0, 0.8);
 }
 
 pre  {
-    margin: 2% 0%;
 }

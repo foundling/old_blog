@@ -15,7 +15,9 @@
     <ul class="post-keywords">
 
         {% for tag in post['tags'] %}
-        <li class="post-keyword">#{{tag}}</li>
+        <li class="post-keyword">
+            <a href="/blog/search/{{ tag | trim }}">#{{tag}}</a>
+        </li>
         {% endfor %}
 
     </ul>

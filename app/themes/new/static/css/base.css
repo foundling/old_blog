@@ -119,19 +119,17 @@ footer a.creator-link:hover {
     }
 
     footer {
+        padding: 1% 8%;
         line-height: 10vh;
         height: 12vh;
     }
 
     footer > p {
-        text-align: center;
+        text-align: left;
     }
 
 }
 
 
-@media(max-width: 400px) {
-    header.site-header {
-        text-align: center;
-    }
+@media(max-width: 450px) {
 }

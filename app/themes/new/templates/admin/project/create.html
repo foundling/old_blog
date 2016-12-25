@@ -2,27 +2,31 @@
 
 {% block content %}
 
-    <form method='post' action='/admin/post/create/save'>
+    <form method='post' action='/admin/post/new/save'>
 
         <input 
-            name="title" 
+            name="project-title" 
             placeholder="Title"
-            class="title"></input>
+            value="project-title"
+            class="project-title"></input>
 
         <textarea 
-            name="short_text" 
-            placeholder="Short Text"
-            class="short-text"></textarea> 
+            name="project-description" 
+            placeholder="Description"
+            value="project-description"
+            class="project-description"></textarea> 
 
         <textarea 
-            name="content" 
+            name="project-content" 
             placeholder="Content"
-            class="content"></textarea> 
+            value="project-content"
+            class="project-content"></textarea> 
 
         <input 
-            name="keywords" 
-            placeholder="Keywords"
-            class="keywords"></input>
+            name="project-tags" 
+            placeholder="Tags"
+            value="test"
+            class="project-tags"></input>
 
         {% include 'admin/controls.html' %}
     </form>

@@ -17,12 +17,6 @@ def latest_posts():
     latest_posts = g.db.find_n_most_recent(5)
     return render_template('index.html', posts=reversed(latest_posts))
  
-#
-#@blog.route('/blog/<id>')
-#def single_blog_post_by_id(id):
-#    post = g.db.find_one({'_id': ObjectId(id)})
-#    return render_template('post/single_blog_post.html', post=post)
-
 @blog.route('/blog/<permalink>')
 def single_blog_post_by_permalink(permalink):
     post = g.db.find_one({'permalink': permalink})

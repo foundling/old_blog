@@ -4,19 +4,23 @@ Recently, I've been building a command-line application to manage the data-acqui
  
 The app has the standard sub-command structure: 
 
-    cmd sub-cmd [ arguments ... ] [ options ... ]
+`cmd sub-cmd [ arguments ... ] [ options ... ]`
 
 e.g.
 
-    npm install commander
+````
+npm install commander
+````
 
 Sub-commands are the items of interest, but otherwise there's nothing that complicated going on from an interface standpoint. The app exposes exactly five, mutually-exclusive sub-commands:
 
-    cmd stats                       # hits an slqite3 database
-    cmd run                         # starts web server, opens Google Chrome, hits a database
-    cmd show <project metric>       # hits a database, outputs colored text
-    cmd query <name> <date-range>   # launches an API client, hits a database, makes a round of requests
-    cmd update                      # does a git pull from the master branch on the remote repo
+````
+cmd stats                       # hits an slqite3 database
+cmd run                         # starts web server, opens Google Chrome, hits a database
+cmd show <project metric>       # hits a database, outputs colored text
+cmd query <name> <date-range>   # launches an API client, hits a database, makes a round of requests
+cmd update                      # does a git pull from the master branch on the remote repo
+````
 
 ## Enter Commander.js 
 
@@ -28,35 +32,37 @@ Wanting to keep this application modular, I was breaking the functionality into 
 
 Here is roughly what my `index.js` looked like: 
 
-    const cli = require('commander');
-    const { stats, run, query, health, update } = require('./commands');
+````
+const cli = require('commander');
+const { stats, run, query, health, update } = require('./commands');
 
-    cli
-        .command('stats')
-        .description('gives you stats.')
-        .action(stats);
+cli
+    .command('stats')
+    .description('gives you stats.')
+    .action(stats);
 
-    cli
-        .command('run')
-        .description('runs the app')
-        .action(run);
+cli
+    .command('run')
+    .description('runs the app')
+    .action(run);
 
-    cli
-        .command('query')
-        .description('queries the API')
-        .action(query);
+cli
+    .command('query')
+    .description('queries the API')
+    .action(query);
 
-    cli
-        .command('health')
-        .description('checks the health of various things')
-        .action(health);
+cli
+    .command('health')
+    .description('checks the health of various things')
+    .action(health);
 
-    cli
-        .command('update')
-        .description('updates the app')
-        .action(update);
+cli
+    .command('update')
+    .description('updates the app')
+    .action(update);
 
-    cli.parse(process.argv);
+cli.parse(process.argv);
+````
 
 ## I'm Loading Everything Every Time
 
@@ -66,30 +72,36 @@ Once I started registering these modules with `commander`, the execution time fo
 
 We want to restrict the loading of dependencies to the just those required by the sub-command we're running. More fundamentally, we want to gain a little more control over *when* we load our dependencies.  At the very least, this can be achieved by putting our require call inside of a function.
 
-    function delayedRequire() {
+````
+function delayedRequire() {
 
-        require('dependency-name');
+    require('dependency-name');
 
-    }
+}
+````
 
 Woo! Problem solved. We can just pass something like this to commander's `.command` registration:
 
-    cli
-        .command('stats')
-        .description('gets stats')
-        .command(delayedRequire);
+````
+cli
+    .command('stats')
+    .description('gets stats')
+    .command(delayedRequire);
+````
 
 
 Well ... almost.  Commander is going to pass the parsed arguments to the function registered by `.command`. So our `delayedRequire` function should do something with these arguments. Lets try that out.
 
-    function requireStats(...args) {
-        
-        // require returns the sub-command function
-        // and we call the functions .apply method on the original arguments.
+````
+function requireStats(...args) {
+    
+    // require returns the sub-command function
+    // and we call the functions .apply method on the original arguments.
 
-        require('./commands/stats').apply(this, args);
+    require('./commands/stats').apply(this, args);
 
-    }
+}
+````
 
 If you've never used the `.apply` method of a JavaScript function, it offers finer-grained control over how a function invocation. In this case, you first specify the context for the invocation and you second specify an array of arguments (supplied from `delayedRequire` function in this case).
 
@@ -97,67 +109,71 @@ At this point, we might be tempted to start using our function, as it does the e
 
 We can wrap a function like `requireStats` in an outer function that takes the dependencyName that you'd pass to `require`. This way, you can pass it a single argument, like require, and be done. 
 
-    function makeLoader(dependencyName) {
+````
+function makeLoader(dependencyName) {
 
-        return function(...args) {
-            require(dependencyName).apply(this, args);
-        }
-
+    return function(...args) {
+        require(dependencyName).apply(this, args);
     }
+
+}
+````
 
 So that's the solution! Here's what I came up with (including a few additional variations):
 
 
-    const cli = require('commander');
-    const basepath = './commands';
-    const makeLoader = function(name) {
+````
+const cli = require('commander');
+const basepath = './commands';
+const makeLoader = function(name) {
 
-        return function(...args) {
+    return function(...args) {
 
-            require(`${basepath}/${name}`).apply(this, args);
-
-        };
+        require(`${basepath}/${name}`).apply(this, args);
 
     };
 
-    const callbacks = [
+};
 
-        'stats', 'run', 'query', 'health', 'update'
+const callbacks = [
 
-    ]
-    .reduce((o, dep) => {
+    'stats', 'run', 'query', 'health', 'update'
 
-       o[dep] = makeLoader(dep);
-       return o;
+]
+.reduce((o, dep) => {
 
-    }, {});
+   o[dep] = makeLoader(dep);
+   return o;
 
-    { stats, run, query, health, update } = callbacks; 
+}, {});
 
-    cli
-        .command('stats')
-        .description('gives you stats.')
-        .action(stats);
+{ stats, run, query, health, update } = callbacks; 
 
-    cli
-        .command('run')
-        .description('runs the app')
-        .action(run);
+cli
+    .command('stats')
+    .description('gives you stats.')
+    .action(stats);
 
-    cli
-        .command('query')
-        .description('queries the API')
-        .action(query);
+cli
+    .command('run')
+    .description('runs the app')
+    .action(run);
 
-    cli
-        .command('health')
-        .description('checks the health of various things')
-        .action(health);
+cli
+    .command('query')
+    .description('queries the API')
+    .action(query);
 
-    cli
-        .command('update')
-        .description('updates the app')
-        .action(update);
+cli
+    .command('health')
+    .description('checks the health of various things')
+    .action(health);
+
+cli
+    .command('update')
+    .description('updates the app')
+    .action(update);
 
 
-    cli.parse(process.argv);
+cli.parse(process.argv);
+````

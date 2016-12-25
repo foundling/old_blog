@@ -6,7 +6,7 @@ from bson.objectid import ObjectId
 from flask import flash, g, redirect, render_template, request, url_for
 import slugify
 
-from lib import utils
+from lib import utils, md_to_menu
 from app import blog
 
 # Admin Root
@@ -28,14 +28,12 @@ def admin_create_post():
 
     return render_template('admin/post/create.html')
 
-# Edit Existing Post
-@blog.route('/admin/post/<id>/edit')
-def admin_edit_post(id):
 
-    ''' Return view populated with target post values for editing. '''
+# Create A New Project 
+@blog.route('/admin/project/create')
+def admin_create_project():
 
-    document = g.db.find_one({ '_id': ObjectId(id) })
-    return render_template('admin/post/edit.html', post=document)
+    return 'project'
 
 # Save New Post
 @blog.route('/admin/post/new/save', methods=['POST'])
@@ -52,6 +50,15 @@ def admin_save_new_post():
     g.db.insert_one(complete_post, collection='post')
 
     return redirect('/admin')
+
+# Edit Existing Post
+@blog.route('/admin/post/<id>/edit')
+def admin_edit_post(id):
+
+    ''' Return view populated with target post values for editing. '''
+
+    document = g.db.find_one({ '_id': ObjectId(id) })
+    return render_template('admin/post/edit.html', post=document)
 
 # Save Existing Post
 @blog.route('/admin/post/<id>/save', methods=['POST'])
@@ -83,4 +90,5 @@ def admin_delete_post(id):
     g.db.remove(query)
 
     return redirect('/admin')
+
 
