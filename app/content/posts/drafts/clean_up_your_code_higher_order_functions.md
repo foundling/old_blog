@@ -51,13 +51,72 @@ or like this:
 
     fnA(3)(2);
 
-The order would depend on the actual thing you need to get done. Let's try this out with our `hasX` function, which we'll be calling `has` from now on:
+The order would depend on the actual thing you need to get done. Let's try this out with our `hasX` function, which we'll be calling `has` from now on. Since we need to ultimately pass this function to `filter`, it needs to return a function that accepts a piece of data from the pipeline. If we start with the function that `filter` will apply to the dataset, we can reason backward to the definition of the entire function. 
+
+        return (datum) => {
+            return datum.includes(x);
+        }
+
+We now need to wrap this in an outer function that returns this function when called:
 
     const has = (x) => {
         return (datum) => {
             return datum.includes(x);
         }
-    };
+    }
+
+
+And finally, we can use it like this:
+
+    dataset
+        .filter(has('a'))
+        .map(transformTo('b'))
+        .filter(compact)
+        .length();
+
+
+## A Real Example
+
+Imagine I have a list of filenames that have a name and a date:
+
+    alice_2016-12-07.json
+    alice_2016-12-04.json
+    alice_2016-12-09.json
+    alice_2016-12-01.json
+    alice_2016-12-03.json
+    alice_2016-12-11.json
+    bob_2016-12-03.json
+    bob_2016-12-09.json
+    bob_2016-12-02.json
+    ...
+
+And let's say I want to find any files for any person in a list for whom there is missing data in some date range. Let's say the date range is '2016-12-01' through '2016-12-15' and it is inclusive. And let's say that the names I care about are 'bob','alice', and 'fred'. Here's how I could use this technique (which is a limited case of currying by the way):
+
+    const moment = require('moment');
+    const filenames = [
+
+        'alice_2016-12-07.json',
+        'alice_2016-12-04.json',
+        'alice_2016-12-09.json',
+        'alice_2016-12-01.json',
+        'alice_2016-12-03.json'
+        'alice_2016-12-11.json'
+        'bob_2016-12-03.json',
+        'bob_2016-12-09.json',
+        'bob_2016-12-02.json'
+
+    ];
+
+    const inRange = (start, stop) => {
+
+        return moment(date) {
+            return moment(date).isBetween(moment(start),moment(stop));
+        }
+
+    }
+
+    filenames
+        .filter()
 
 Note that I'm using anonymous functions here because it keeps the names introduced into the program to a minimum. Since from the calling standpoint you only really need to name that outermost function, it's not any benefit to you to name the inner function. 
 
@@ -76,32 +135,81 @@ And now, when you get around to using `has`, you can write this:
         .map(transformToY)
         .some(isZ);
 
-That is clean af! And why don't we, in good aesthetic taste, rename the function to `has`:
 
-    const has = (thing) => {
-       
-        return (datum) => {
-            return datum.includes(thing);
-        }
+## A Real Example
+
+    const moment = require('moment');
+    const assert = require('assert');
+    const users = [ 'alice', 'bob', 'fred' ];
+    const filenames = [ 
+
+        'alice_2016-12-07.json',
+        'alice_2016-12-04.json',
+        'alice_2016-12-09.json',
+        'alice_2016-12-01.json',
+        'alice_2016-12-03.json',
+        'alice_2016-12-11.json',
+        'alice_2016-12-31.json',
+        'bob_2016-12-03.json',
+        'bob_2016-12-09.json',
+        'bob_2016-12-02.json'
+
+    ];
+
+    const range = (max) => [ ...Array(max).keys() ];
+    const parseDateString = (filename) => filename.split('_')[1].split('.')[0];
+    const belongsTo = (user) => (filename) => filename.split('_')[0] === user;
+    const inDateRange = (start, stop) => (dateString) => moment(dateString).isBetween(moment(start), moment(stop), null, '[]');
+    const generateDateRange = (start, stop) => {
+
+        let [ startDate, stopDate ] = [ moment(start), moment(stop) ];
+        let diff = moment.duration(stopDate.diff(startDate)).days();
+
+        return range(diff + 1).map(offset => startDate.clone().add({ days: offset }).format('YYYY-MM-DD'));
+        
+    };
+    const getMissingDates = (user, filenames, { start, stop }) => {
+
+        const idealDates = generateDateRange(start, stop);
+
+        const userFilesInRange = filenames
+            .filter( belongsTo(user) )
+            .filter( filename => inDateRange(start, stop)(parseDateString(filename)) );
+
+        return idealDates
+            .filter(idealDate => !userFilesInRange.map(parseDateString).includes(idealDate));
+
+    };
+    const missingDataReport = (users, filenames, dateRange) => {
+
+        const reportSchema = {
+            dateRange: null,
+            users: {}
+        };
+
+        console.log();
+
+        const run = () => { 
+
+            let data = users.reduce((obj, user) => {
+
+                obj['dateRange'] = dateRange; 
+                obj['users'][user] = { 
+                    'missingDates': getMissingDates(user, filenames, dateRange),
+                    'files': filenames.filter(belongsTo(user))
+                };
+
+                return obj;
+
+            }, reportSchema);
+
+            return data;
+
+        };
+
+        return { run };
+
     };
 
-    dataset
-        .filter(has(Z))
-        .map(transformToY)
-        .some(isZ);
-
-
-Conclusions:
-
-- can make your code much more readable
-- a special, limited case of currying
-- avoid globals
-
-By the way, this method in its more general sense [3] is called partial application currying, a technique named after the mathematician Haskell Curry. Haskell was named after him as well, and in Haskell, functions, as a matter of course, curry their values. Currying is a technique for evaluating function arguments where, instead of passing all of the arguments you have into a single function, you call a function on one argument and receive a new function that accepts the next one, which returns a new function that accepts the next one, and so on, until there are no more arguments left and a value is returned. That's right, I tricked you into learning what currying was! The benefit, as we can see, is that your function becomes more flexible, independent of outer context and globals, and more expressive if you use it in the right context. 
-
-
-[0] Technically, the first arg to hasX is in its execution context, the second depends on the type, and third is from an outer context?
-
-[1]
-
-[2]
+    const data = missingDataReport(users, filenames, { start: '2016-12-01', stop: '2016-12-15' }).run();
+    console.log(JSON.stringify(data, null, 2));
