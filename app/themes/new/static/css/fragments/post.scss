@@ -1,27 +1,7 @@
-/* markdown styles */
-
-
-section.single-post h1 {
-    padding: 4% 0%;
-}
-section.single-post > p:first-of-type {
-    padding: 3% 0%;
-}
-
 pre {
     padding: 20px;
     margin: 0% 0% 3% 0%;
 }
-
-section.single-post > p {
-    padding: 0% 0% 3% 0%;
-}
-
-section.single-post h2,
-section.single-post h3,
-section.single-post h4 {
-    margin-bottom: 2%;
-} 
 
 .post-keyword > a {
     color: white;
@@ -30,6 +10,7 @@ section.single-post h4 {
 li.post-keyword {
     border: 1px solid transparent;
 }
+
 li.post-keyword:hover {
     border: 1px solid transparent;
     background: rgba(144,238,144,0.4);
@@ -40,28 +21,51 @@ li.post-keyword > a:hover {
     color: rgb(70,70,70);
 }
 
-@media(max-width: 750px) {
+section.single-post {
 
-    section.single-post h1 {
-        padding: 4% 0%;
+    >p:first-of-type {
+        padding: 3% 0%;
+    }
+    >p {
+        padding: 0% 0% 3% 0%;
     }
 
-    section.single-post > p:first-of-type {
-        padding: 8% 0%;
+    h1 {
+        padding: 4% 0%;
+    }
+    h2, h3, h4 {
+        margin-bottom: 2%;
+    }
+}
+
+
+
+
+@media(max-width: 750px) {
+
+    section.single-post {
+
+        >p:first-of-type {
+            padding: 8% 0%;
+        }
+
+        >p {
+            padding: 0% 0% 8% 0%;
+        }
+
+        h1 {
+            padding: 4% 0%;
+        }
+
+        h2,h3,h4 {
+            margin-bottom: 8%;
+        }
+
     }
 
     pre {
         padding: 20px;
         margin: 0% 0% 8% 0%;
     }
-    section.single-post > p {
-        padding: 0% 0% 8% 0%;
-    }
-
-    section.single-post h2,
-    section.single-post h3,
-    section.single-post h4 {
-        margin-bottom: 8%;
-    } 
 
 }
