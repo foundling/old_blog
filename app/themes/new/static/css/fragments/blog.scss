@@ -1,17 +1,11 @@
-/*
- * Header
- */
+nav.blog-nav {
 
-nav.blog-nav h1,
-nav.blog-nav ul,
-nav.blog-nav li {
-    display: inline-block;
-    vertical-align: baseline;
+    h1, ul, li {
+        display: inline-block;
+        vertical-align: baseline;
+    }
+
 }
-
-/* 
- * Recent Post List
- */
 
 section.recent-posts-list,
 section.single-post {

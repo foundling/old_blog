@@ -179,18 +179,10 @@ footer a.creator-link:hover {
 
   footer > p {
     text-align: left; } }
-/*
- * Header
- */
-nav.blog-nav h1,
-nav.blog-nav ul,
-nav.blog-nav li {
+nav.blog-nav h1, nav.blog-nav ul, nav.blog-nav li {
   display: inline-block;
   vertical-align: baseline; }
 
-/* 
- * Recent Post List
- */
 section.recent-posts-list,
 section.single-post {
   text-align: left; }
