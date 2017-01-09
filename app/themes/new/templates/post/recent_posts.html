@@ -7,11 +7,13 @@
             {% include 'post/title.html' %}
             {% include 'general/byline.html' %}
 
-            <p class="recent-post-stub">
+            <div class="recent-post-stub">
                 <!-- bug: can't nest markdown filter inside of a paragraph. -->
-                <span class="recent-post-text">{{ post['short_text'] | markdown }}</span>
-                <a href="/blog/{{ post['permalink'] }}"><i class="fa fa-send"></i></a>
-            </p>
+                <div class="recent-post-text">
+                    {{ post['short_text'] | markdown }}
+                    <a href="/blog/{{ post['permalink'] }}"><i class="fa fa-send"></i></a>
+                </div>
+            </div>
 
         </article> 
 

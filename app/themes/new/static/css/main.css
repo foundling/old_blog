@@ -204,11 +204,12 @@ ul.social-media-icons,
 .recent-post-title {
   display: inline-block;
   vertical-align: middle;
-  margin-right: 5px; }
+  margin-right: 5px;
+  margin: 2% 0% 0% 0%; }
 
 ul.social-media-icons {
   background: white;
-  margin: 2% 0% 0% 0%; }
+  margin: 2% 0% 0% 2%; }
 
 .social-media-icons li {
   padding: 5px; }
@@ -248,14 +249,17 @@ span.post-published {
   margin-right: 5px; }
 
 p.full-post-content,
-p.recent-post-stub {
+div.recent-post-stub {
   background: rgba(255, 255, 255, 0);
   margin: 5px 0px 5px 0px;
-  padding: 15px 0px;
+  padding: 0px 0px 15px 0px;
   text-align: left; }
 
-span.recent-post-text {
+div.recent-post-text {
   padding-right: 10px; }
+
+div.recent-post-text > p:first-of-type {
+  display: inline; }
 
 .link-to-full-article i {
   vertical-align: bottom; }
@@ -319,7 +323,7 @@ section.single-post > p {
 section.single-post h1 {
   padding: 4% 0%; }
 section.single-post h2, section.single-post h3, section.single-post h4 {
-  margin-bottom: 2%; }
+  margin-top: 2%; }
 
 @media (max-width: 750px) {
   section.single-post > p:first-of-type {
