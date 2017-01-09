@@ -22,10 +22,21 @@ Well, a first step would be to simply refer to an outer parameter from within th
 
 It uses closure to refer to an x from an outer scope. This isn't any good, though. Here's why:
 
-+ Legibility: When you look at the `hasX` definition, the only thing that's clear about where `x` comes from is ... somewhere else. This means you have to go looking for it. We want to avoid this sort of cognitive noise. 
-+ Flexibility: We still don't have any greater control over the property-specifying code, since `X` is effectively still hard-coded into the functon. 
-+ Portability: `hasX` is like your difficult friend `Y`.  You can't just take him *anywhere* because he's always going on about something that no one's ever heard of and he prefers it that way.
-+ Testability: I'd like to drop `hasX` off at my test suite, but the value to which `thing` refers is lexically scoped, so if I export the function from a module, I have to make sure that the satellite datum, `x`, is in that module.
+#### Legibility
+
+When you look at the `hasX` definition, the only thing that's clear about where `x` comes from is ... somewhere else. This means you have to go looking for it. We want to avoid this sort of cognitive noise. 
+
+#### Flexibility
+
+We still don't have any greater control over the property-specifying code, since `X` is effectively still hard-coded into the functon. 
+
+#### Portability: 
+
+`hasX` is like your difficult friend `Y`.  You can't just take him *anywhere* because he's always going on about something that no one's ever heard of and he prefers it that way.
+
+#### Testability
+
+I'd like to drop `hasX` off at my test suite, but the value to which `thing` refers is lexically scoped, so if I export the function from a module, I have to make sure that the satellite datum, `x`, is in that module.
 
 ## Temporality, Execution Context
 
