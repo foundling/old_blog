@@ -2,7 +2,7 @@
 
 user=$1
 
-if [ -z "$1" ]
+if [ -z "$user" ]
 then
     echo 'usage: push [user] '
     exit 1
