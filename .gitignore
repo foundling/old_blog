@@ -1,5 +1,6 @@
 env
 app/db
+app/build
 *pyc
 */config.py
 *.jpg
