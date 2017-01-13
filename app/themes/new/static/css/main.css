@@ -199,9 +199,13 @@ ul.social-media-icons,
   margin-right: 5px;
   margin: 2% 0% 0% 0%; }
 
+.recent-post-title {
+  margin: 4% 0% 0% 0%; }
+
 ul.social-media-icons {
   background: white;
-  margin: 2% 0% 0% 2%; }
+  /* margin: 2% 0% 0% 2%; */
+  margin: 6% 0% 0% 1%; }
 
 .social-media-icons li {
   padding: 5px; }
@@ -308,17 +312,19 @@ li.post-keyword {
   li.post-keyword > a:hover {
     color: #464646; }
 
-section.single-post > p {
-  padding: 20px 0; }
-section.single-post > p:first-of-type {
-  padding: 4% 0px; }
-section.single-post > p {
-  padding: 0% 0% 3% 0%; }
-section.single-post h1 {
-  padding: 4% 0%; }
-section.single-post h2, section.single-post h3, section.single-post h4 {
-  margin-top: 2%;
-  margin-bottom: 2%; }
+section.single-post {
+  padding: 4% 0% 0% 0%; }
+  section.single-post > p {
+    padding: 20px 0; }
+  section.single-post > p:first-of-type {
+    padding: 4% 0px; }
+  section.single-post > p {
+    padding: 0% 0% 3% 0%; }
+  section.single-post h1.recent-post {
+    padding: 4% 0%; }
+  section.single-post h2, section.single-post h3, section.single-post h4 {
+    margin-top: 2%;
+    margin-bottom: 2%; }
 
 @media (max-width: 750px) {
   section.single-post > p:first-of-type {
