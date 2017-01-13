@@ -1,8 +1,8 @@
 #!/usr/env/bin python
 
+from bson.objectid import ObjectId
 import os
 import sys
-from bson.objectid import ObjectId
 
 from flask import g, render_template, redirect, request, url_for 
 from pymongo import MongoClient

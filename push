@@ -16,11 +16,11 @@ fi
 
 echo "generating a static version of alexramsdell.com ... "
 /usr/bin/env python ./freeze.py
-if test $?; then 
+if test $?
+then 
     echo "static site generated successfully."
     echo "copying static build to production ... " 
-    rsync -avP ./app/build/ alex@$box:/home/alex/alexramsdell.com/public_html/ --exclude=img 
-
+    rsync -avP ./app/build/ alex@$box:/home/alex/alexramsdell.com/public_html --exclude=img 
 else
     echo 'The frozen-flask build seems like it failed ... want to check and try again?' 
 fi
