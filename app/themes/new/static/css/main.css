@@ -308,8 +308,10 @@ li.post-keyword {
   li.post-keyword > a:hover {
     color: #464646; }
 
+section.single-post > p {
+  padding: 20px 0; }
 section.single-post > p:first-of-type {
-  padding: 3% 0%; }
+  padding: 4% 0px; }
 section.single-post > p {
   padding: 0% 0% 3% 0%; }
 section.single-post h1 {

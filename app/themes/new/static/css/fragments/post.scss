@@ -22,8 +22,11 @@ li.post-keyword {
 
 section.single-post {
 
+    >p {
+        padding: 20px 0;
+    }
     >p:first-of-type {
-        padding: 3% 0%;
+        padding: 4% 0px;
     }
     >p {
         padding: 0% 0% 3% 0%;
