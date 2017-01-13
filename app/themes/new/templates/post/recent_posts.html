@@ -11,7 +11,7 @@
                 <!-- bug: can't nest markdown filter inside of a paragraph. -->
                 <div class="recent-post-text">
                     {{ post['short_text'] | markdown }}
-                    <a href="/blog/{{ post['permalink'] }}"><i class="fa fa-send"></i></a>
+                    <a href="{{ url_for('single_post', permalink=post['permalink']) }}"><i class="fa fa-send"></i></a>
                 </div>
             </div>
 

@@ -3,18 +3,23 @@
 
     <h1><a href="/">Alex Ramsdell</a></h1>
         <ul class="nav-links">
-            <li class="projects">
-                <a href="/projects">projects</a>
-            </li>
             <li class="blog">
-                <a href="/blog">blog</a>
+                <a href="{{ url_for('blog_main') }}">blog</a>
             </li>
+            <li class="projects">
+                <a href="{{ url_for('projects') }}">projects</a>
+            </li>
+            <!--
+
+            build these parts!
+
             <li class="gitbooks">
                 <a href="/gitbooks">gitbooks</a>
             </li>
             <li class="fun">
                 <a href="/fun">fun</a>
             </li>
+            -->
         </ul>
 
     </nav>

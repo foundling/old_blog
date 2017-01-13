@@ -1,293 +1,60 @@
 <!doctype html>
-<html lang="en"> 
-<head> 
-  <title>Alex Ramsdell</title> 
-  <meta charset="utf-8"> 
-  <meta name="viewport" content="width=device-width, user-scalable=no"/> 
-  <script src=../static/js/fastclick.js></script>
-<script type="application/javascript">
-  if ('addEventListener' in document) {
-      document.addEventListener('DOMContentLoaded', function() {
-          FastClick.attach(document.body);
-      }, false);
-  }
-</script>
-  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> --> 
-<link href='https://fonts.googleapis.com/css?family=Lora|Lato|Source+Serif+Pro|Old+Standard+TT' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="../static/css/lib/font-awesome.min.css">
-<link rel="stylesheet" href=../static/css/lib/prism.css>
-<link rel="stylesheet" href=../static/css/style.css>
-</head>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <title>Alex Ramsdell</title>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+    </head>
+    <body>
 
-<body name="top">
+        <header class="site-header">
+    <nav class="blog-nav">
 
-    <!-- HEADER & NAVIGATION -->
-    
-      <!-- logo -->
-<!-- social media bar -->
-<aside id="social-media" class="pink media-up">
-   <ul>
-      <li>
-          <a href="https://github.com/foundling">
-              <i class="fa fa-github-alt social-media-icon"></i>
-          </a>
-      </li>
-      <li>
-          <a href="https://linkedin.com/in/alexramsdell">
-              <i class="fa fa-linkedin social-media-icon"></i>
-          </a>
-      </li>
-      <li>
-          <a href="https://stackoverflow.com/users/2446351/foundling">
-            <i class="fa fa-stack-overflow social-media-icon"></i>
-          </a>
-      </li>
-      <li>
-        <a href="../archive/index.html">
-          <i id="archive-icon" class="fa fa-archive social-media-icon"></i>
-        </a>
-      </li>
+    <h1><a href="/">Alex Ramsdell</a></h1>
+        <ul class="nav-links">
+            <li class="blog">
+                <a href="../blog/index.html">blog</a>
+            </li>
+            <li class="projects">
+                <a href="index.html">projects</a>
+            </li>
+            <!--
 
-      <li>
-          <a href="../about/index.html">
-              <i class="fa fa-question-circle social-media-icon"></i>
-          </a>
-      </li>
+            build these parts!
 
-    </ul>
-</aside>
-<h1 class="logo-container">
-    <a 
-        class="logolink" 
-        href="../index.html">AR</a>
-</h1>
+            <li class="gitbooks">
+                <a href="/gitbooks">gitbooks</a>
+            </li>
+            <li class="fun">
+                <a href="/fun">fun</a>
+            </li>
+            -->
+        </ul>
 
-<!-- menu -->
-<nav class="main-menu">
-    <ul class="header">
+    </nav>
+</header>
 
-        <li class="nav-item" id="blog">
-            <a href="../index.html">Blog</a>
-        </li>
-        <li class="nav-item" id="projects">
-            <a href="index.html">Projects</a>
-        </li>
-        <li class="nav-item" id="guides">
-            <a>Guides</a>
-        </li>
-        <li class="nav-item" id="fun">
-            <a href="../fun/photos/iceland/index.html">Fun</a>
-        </li>
-
-    </ul>
-</nav>
-
-<!-- hidden 'to top' button, unhides on scroll down -->
-<aside class="hidden" id="to-top">
-    <a id="caret" href="#top">^</a>
-</aside>
-
-
-    
-
-    <!-- ALL CONTENT (POSTS, ARCHIVES, ABOUT ME, ETC ..) -->
-    <div  class="content">
+        <div class="main">
         
+<section class="project-list"> 
 
-  <!-- PROJECTS HEADER -->
-  <div id="projects">
-
-    <section class="projects-header">
-
-        <h1>Projects</h1>
-
-        <nav class="projects-menu">
-            <ul class="projects-menu-list">
-
-                
-
-                    <li class="projects-menu-item">
-                        <div class="color-block"></div>
-                        <span class="project-list-name">
-                            <a href="#node-help">node-help</a>
-                        </span>
-                    </li>
-
-                
-
-                    <li class="projects-menu-item">
-                        <div class="color-block"></div>
-                        <span class="project-list-name">
-                            <a href="#list">list</a>
-                        </span>
-                    </li>
-
-                
-
-                    <li class="projects-menu-item">
-                        <div class="color-block"></div>
-                        <span class="project-list-name">
-                            <a href="#billing interface">billing interface</a>
-                        </span>
-                    </li>
-
-                
-
-            </ul>
-
-      </nav>
-
-    </section>
-
-    <!-- Project Descriptions -->
     
 
-        <div class="single-project">
-
-            <!-- title and github repo link -->
-            <h2 id="node-help" class="project-name">node-help
-
-                <a class="repo" href="https://github.com/foundling/node-help">
-                    <i class="repo-icon fa fa-github-alt"></i>
-                </a>
-                <a class="top-link" href="#top">[top]</a>
-
-            </h2>
-
-            <!-- description -->
-            <p class="project-description">
-                node-help is a node module that integrates the standard node REPL with documentation and colors. Our sources currently include the Mozilla Developer Network JavaScript language references for ECMAScript5 and part of the Node api docs for your node version.
-            </p>
-
-            <!-- screenshots -->
-            
-            
-                <img 
-                class="project-screenshot" 
-                src="../static/img/projects/node_help/node-help-main.png"/>
-
-            
-            
-                <img 
-                class="project-screenshot" 
-                src="../static/img/projects/node_help/node-help-info.png"/>
-
-            
-            
-                <img 
-                class="project-screenshot" 
-                src="../static/img/projects/node_help/node-help-docs.png"/>
-
-            
-
+</section>
+ 
         </div>
 
-    
+        <footer>
 
-        <div class="single-project">
+    <p>This site was forged out of psychedelic love by 
+        <a class="creator-link" href="https://github.com/foundling">@foundling</a> and
+        <a class="creator-link" href="https://twitter.com/drlolzrofl">@DrLolzRofl</a>.
+    </p>
 
-            <!-- title and github repo link -->
-            <h2 id="list" class="project-name">list
+</footer>
 
-                <a class="repo" href="https://github.com/foundling/list">
-                    <i class="repo-icon fa fa-github-alt"></i>
-                </a>
-                <a class="top-link" href="#top">[top]</a>
-
-            </h2>
-
-            <!-- description -->
-            <p class="project-description">
-                list is a fully tabbable task-list app leveraging the HTML5 Local Storage API. I wrote it using vanilla JavaScript, HTML and CSS.
-            </p>
-
-            <!-- screenshots -->
-            
-            
-                <img 
-                class="project-screenshot" 
-                src="../static/img/projects/list/list-main.png"/>
-
-            
-
-        </div>
-
-    
-
-        <div class="single-project">
-
-            <!-- title and github repo link -->
-            <h2 id="billing interface" class="project-name">billing interface
-
-                <a class="repo" href="">
-                    <i class="repo-icon fa fa-github-alt"></i>
-                </a>
-                <a class="top-link" href="#top">[top]</a>
-
-            </h2>
-
-            <!-- description -->
-            <p class="project-description">
-                This is a billing interface that I designed for the Hooker Lab at the Martinos Center in Charlestown, MA. After working with the group to determine the data flow, I distilled this into a set of compontents and composed the site from those.  Additionally, I provided a style guide to demonstrate the range of available components and guide with future change.
-            </p>
-
-            <!-- screenshots -->
-            
-            
-                <img 
-                class="project-screenshot" 
-                src="../static/img/projects/billing_interface/billing-interface-production.png"/>
-
-            
-            
-                <img 
-                class="project-screenshot" 
-                src="../static/img/projects/billing_interface/billing-interface-production-alt.png"/>
-
-            
-            
-                <img 
-                class="project-screenshot" 
-                src="../static/img/projects/billing_interface/billing-interface-submit.png"/>
-
-            
-            
-                <img 
-                class="project-screenshot" 
-                src="../static/img/projects/billing_interface/billing-interface-style-guide1.png"/>
-
-            
-            
-                <img 
-                class="project-screenshot" 
-                src="../static/img/projects/billing_interface/billing-interface-style-guide2.png"/>
-
-            
-
-        </div>
-
-    
-
-  </div>
-  
-    </div>
-
-    <!-- BODY SCRIPTS -->
-    
-      
-  <script src="../static/js/prism.js"></script>
-  <script src="../static/js/underline_nav_links.js"></script>
-  <script src="../static/js/media_toggle.js"></script>
-  <script src="../static/js/to_top.js"></script>
-  <script>
-    if ('addEventListener' in document) {
-        document.addEventListener('DOMContentLoaded', function() {
-            FastClick.attach(document.body);
-        }, false);
-    }
-  </script>
-
-    
-
-</body>
+    </body>
 </html>

@@ -1,273 +1,201 @@
 <!doctype html>
-<html lang="en"> 
-<head> 
-  <title>Alex Ramsdell</title> 
-  <meta charset="utf-8"> 
-  <meta name="viewport" content="width=device-width, user-scalable=no"/> 
-  <script src=static/js/fastclick.js></script>
-<script type="application/javascript">
-  if ('addEventListener' in document) {
-      document.addEventListener('DOMContentLoaded', function() {
-          FastClick.attach(document.body);
-      }, false);
-  }
-</script>
-  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> --> 
-<link href='https://fonts.googleapis.com/css?family=Lora|Lato|Source+Serif+Pro|Old+Standard+TT' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="static/css/lib/font-awesome.min.css">
-<link rel="stylesheet" href=static/css/lib/prism.css>
-<link rel="stylesheet" href=static/css/style.css>
-</head>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <title>Alex Ramsdell</title>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    </head>
+    <body>
 
-<body name="top">
+        <header class="site-header">
+    <nav class="blog-nav">
 
-    <!-- HEADER & NAVIGATION -->
+    <h1><a href="/">Alex Ramsdell</a></h1>
+        <ul class="nav-links">
+            <li class="blog">
+                <a href="blog/index.html">blog</a>
+            </li>
+            <li class="projects">
+                <a href="projects/index.html">projects</a>
+            </li>
+            <!--
+
+            build these parts!
+
+            <li class="gitbooks">
+                <a href="/gitbooks">gitbooks</a>
+            </li>
+            <li class="fun">
+                <a href="/fun">fun</a>
+            </li>
+            -->
+        </ul>
+
+    </nav>
+</header>
+
+        <div class="main">
+        
+    <section class="recent-posts-list"> 
+
     
-      <!-- logo -->
-<!-- social media bar -->
-<aside id="social-media" class="pink media-up">
-   <ul>
-      <li>
-          <a href="https://github.com/foundling">
-              <i class="fa fa-github-alt social-media-icon"></i>
-          </a>
-      </li>
-      <li>
-          <a href="https://linkedin.com/in/alexramsdell">
-              <i class="fa fa-linkedin social-media-icon"></i>
-          </a>
-      </li>
-      <li>
-          <a href="https://stackoverflow.com/users/2446351/foundling">
-            <i class="fa fa-stack-overflow social-media-icon"></i>
-          </a>
-      </li>
-      <li>
-        <a href="archive/index.html">
-          <i id="archive-icon" class="fa fa-archive social-media-icon"></i>
-        </a>
-      </li>
 
-      <li>
-          <a href="about/index.html">
-              <i class="fa fa-question-circle social-media-icon"></i>
-          </a>
-      </li>
+        <article class="recent-post"> 
 
-    </ul>
-</aside>
-<h1 class="logo-container">
-    <a 
-        class="logolink" 
-        href="index.html">AR</a>
+            <h1 class="recent-post-title">
+    <a href="/blog/cleaning-up-your-code-with-higher-order-functions"> <p>Cleaning Up Your Code With Higher-Order Functions</p>
+ </a>
 </h1>
+<ul class="social-media-icons">
+    <li>
+        <a href="">
+            <i class="fa fa-twitter"></i>
+        </a>
+    </li>
+    <li>
+        <a href="">
+            <i class="fa fa-reddit-alien"></i>
+        </a>
+    </li>
+    <li>
+        <a href="">
+            <i class="fa fa-comment"></i>
+        </a>
+    </li>
+</ul>
+            <div class="byline">
 
-<!-- menu -->
-<nav class="main-menu">
-    <ul class="header">
+    <p class="published-info">
 
-        <li class="nav-item" id="blog">
-            <a href="index.html">Blog</a>
+        <i 
+        title="last edited: 13 hours ago" 
+        class="pencil-icon fa fa-pencil"></i> 
+        <span 
+        data-numeric-date="12-21-2016"
+        title="12-21-2016" 
+        class="post-published">22 days ago</span>
+
+    </p>
+
+    <ul class="post-keywords">
+
+        
+        <li class="post-keyword">
+            <a href="/blog/search/tags">#tags</a>
         </li>
-        <li class="nav-item" id="projects">
-            <a href="projects/index.html">Projects</a>
-        </li>
-        <li class="nav-item" id="guides">
-            <a>Guides</a>
-        </li>
-        <li class="nav-item" id="fun">
-            <a href="fun/photos/iceland/index.html">Fun</a>
-        </li>
+        
 
     </ul>
-</nav>
 
-<!-- hidden 'to top' button, unhides on scroll down -->
-<aside class="hidden" id="to-top">
-    <a id="caret" href="#top">^</a>
-</aside>
+</div>
 
+            <div class="recent-post-stub">
+                <!-- bug: can't nest markdown filter inside of a paragraph. -->
+                <div class="recent-post-text">
+                    <p>Array methods like like <code>map</code>, <code>filter</code>, <code>reduce</code>, <code>some</code> and <code>all</code> can bring clarity and brevity to the parts of your code that transform data.</p>
+
+                    <a href="blog/cleaning-up-your-code-with-higher-order-functions/index.html"><i class="fa fa-send"></i></a>
+                </div>
+            </div>
+
+        </article> 
 
     
 
-    <!-- ALL CONTENT (POSTS, ARCHIVES, ABOUT ME, ETC ..) -->
-    <div  class="content">
-        
-    <div id="latest-posts">
+        <article class="recent-post"> 
 
-        
-        <div class="recent-post">
-            <a 
-    class="title-link" 
-    href="posts/4/index.html">
-    
-    <h1 class="title-text">CanJS: App Setup and Data Binding</h1>
-</a>
-
-<ul class="post-tags">
-    
-    <li class="post-tag">canjs</li>
-    
-    <li class="post-tag">stealjs</li>
-    
+            <h1 class="recent-post-title">
+    <a href="/blog/lazy-loading-node-js-modules-with-commander-js"> <p>Lazy-Loading Node.js Modules with Commander.js</p>
+ </a>
+</h1>
+<ul class="social-media-icons">
+    <li>
+        <a href="">
+            <i class="fa fa-twitter"></i>
+        </a>
+    </li>
+    <li>
+        <a href="">
+            <i class="fa fa-reddit-alien"></i>
+        </a>
+    </li>
+    <li>
+        <a href="">
+            <i class="fa fa-comment"></i>
+        </a>
+    </li>
 </ul>
-<span class="byline"> 
-    <div class="color-block"></div>
-    <h4 class="byline-text">by alex 3 days ago</h4> 
-</span>
+            <div class="byline">
 
-            <p class="short-text">
-                Let&#39;s get familiar with setting up a modular project with Steal and put it to use!
-            </p>
-                <a 
-                    class="link-to-full-article" 
-                    href="posts/4/index.html">full article</a>
-        </div>
+    <p class="published-info">
+
+        <i 
+        title="last edited: 4 days ago" 
+        class="pencil-icon fa fa-pencil"></i> 
+        <span 
+        data-numeric-date="12-21-2016"
+        title="12-21-2016" 
+        class="post-published">22 days ago</span>
+
+    </p>
+
+    <ul class="post-keywords">
+
         
-        <div class="recent-post">
-            <a 
-    class="title-link" 
-    href="posts/5/index.html">
-    
-    <h1 class="title-text">A 4-Part Series on Building Apps with CanJS</h1>
-</a>
-
-<ul class="post-tags">
-    
-    <li class="post-tag">canjs</li>
-    
-    <li class="post-tag">javascript</li>
-    
-</ul>
-<span class="byline"> 
-    <div class="color-block"></div>
-    <h4 class="byline-text">by alex 3 days ago</h4> 
-</span>
-
-            <p class="short-text">
-                Exploring the power of CanJS and the StealJS build tool. We&#39;ll start with a simple hello world and move up to a sortable table plugin.
-            </p>
-                <a 
-                    class="link-to-full-article" 
-                    href="posts/5/index.html">full article</a>
-        </div>
+        <li class="post-keyword">
+            <a href="/blog/search/lazy-loading">#lazy-loading</a>
+        </li>
         
-        <div class="recent-post">
-            <a 
-    class="title-link" 
-    href="posts/3/index.html">
-    
-        <span class="title-news-prefix">[news]</span>  
-    
-    <h1 class="title-text">Website Launch</h1>
-</a>
-
-<ul class="post-tags">
-    
-    <li class="post-tag">news</li>
-    
-</ul>
-<span class="byline"> 
-    <div class="color-block"></div>
-    <h4 class="byline-text">by alex 11 months ago</h4> 
-</span>
-
-            <p class="short-text">
-                Just gleefully stating the obvious ;]
-            </p>
-                <a 
-                    class="link-to-full-article" 
-                    href="posts/3/index.html">full article</a>
-        </div>
+        <li class="post-keyword">
+            <a href="/blog/search/node.js">#        node.js</a>
+        </li>
         
-        <div class="recent-post">
-            <a 
-    class="title-link" 
-    href="posts/2/index.html">
-    
-    <h1 class="title-text">Getting Started with the Raspberry Pi</h1>
-</a>
-
-<ul class="post-tags">
-    
-    <li class="post-tag">raspberry pi</li>
-    
-    <li class="post-tag">linux</li>
-    
-</ul>
-<span class="byline"> 
-    <div class="color-block"></div>
-    <h4 class="byline-text">by alex a year ago</h4> 
-</span>
-
-            <p class="short-text">
-                In this tutorial, I’m going to show you how to install and configure a Raspberry Pi model B running the Raspbian Linux distribution. The goal is to get your pi ready for an as of yet undetermined but fun purpose. By the end of this you should have an SSH-accessible system configured with a static IP for your home LAN network.  
-            </p>
-                <a 
-                    class="link-to-full-article" 
-                    href="posts/2/index.html">full article</a>
-        </div>
+        <li class="post-keyword">
+            <a href="/blog/search/javascript">#        javascript</a>
+        </li>
         
-        <div class="recent-post">
-            <a 
-    class="title-link" 
-    href="posts/1/index.html">
-    
-    <h1 class="title-text">Good Joke, Great Joke</h1>
-</a>
-
-<ul class="post-tags">
-    
-    <li class="post-tag">jokes</li>
-    
-    <li class="post-tag">recursion</li>
-    
-    <li class="post-tag">mr. show</li>
-    
-    <li class="post-tag">javascript</li>
-    
-</ul>
-<span class="byline"> 
-    <div class="color-block"></div>
-    <h4 class="byline-text">by alex a year ago</h4> 
-</span>
-
-            <p class="short-text">
-                If you&#39;re familiar with Mr. Show, you may know the technique common to many of their most successful sketches: assiduous repetition of a single idea. It&#39;s the key to &#39;The Story of Everest&#39; and &#39;The Audition&#39;, where the same thing happens again and again, and things gets exponentially funnier.
-            </p>
-                <a 
-                    class="link-to-full-article" 
-                    href="posts/1/index.html">full article</a>
-        </div>
+        <li class="post-keyword">
+            <a href="/blog/search/higher-order functions">#        higher-order functions</a>
+        </li>
         
 
-        <div class="more-posts">
-            <a 
-                class="link-to-more-posts" 
-                href="archive/index.html">[ More Posts ]</a>
-            <div class="color-triangle"></div>
+    </ul>
+
+</div>
+
+            <div class="recent-post-stub">
+                <!-- bug: can't nest markdown filter inside of a paragraph. -->
+                <div class="recent-post-text">
+                    <p>Command-line apps can get slow.  Require only the dependencies you need for the command path.</p>
+
+                    <a href="blog/lazy-loading-node-js-modules-with-commander-js/index.html"><i class="fa fa-send"></i></a>
+                </div>
+            </div>
+
+        </article> 
+
+    
+
+    <h3 class="more-posts">
+        <a href="archive">More Posts</a>
+    </h3>
+
+    
+</section> 
+ 
         </div>
 
-    </div>
+        <footer>
 
-    </div>
+    <p>This site was forged out of psychedelic love by 
+        <a class="creator-link" href="https://github.com/foundling">@foundling</a> and
+        <a class="creator-link" href="https://twitter.com/drlolzrofl">@DrLolzRofl</a>.
+    </p>
 
-    <!-- BODY SCRIPTS -->
-    
-      
-  <script src="static/js/prism.js"></script>
-  <script src="static/js/underline_nav_links.js"></script>
-  <script src="static/js/media_toggle.js"></script>
-  <script src="static/js/to_top.js"></script>
-  <script>
-    if ('addEventListener' in document) {
-        document.addEventListener('DOMContentLoaded', function() {
-            FastClick.attach(document.body);
-        }, false);
-    }
-  </script>
+</footer>
 
-    
-
-</body>
+    </body>
 </html>
