@@ -23,7 +23,6 @@ def blog_main():
     latest_posts = g.db.find_n_most_recent(5)
     return render_template('index.html', posts=reversed(latest_posts))
  
- 
 @blog.route('/blog/<permalink>/')
 def single_post(permalink):
     post = g.db.find_one({'permalink': permalink})

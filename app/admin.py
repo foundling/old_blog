@@ -10,7 +10,7 @@ from lib import utils, md_to_menu
 from app import blog
 
 # Admin Root
-@blog.route('/admin')
+@blog.route('/admin/')
 def admin_root():
 
     ''' Populate dashboard view with posts and projects in date-descending order. '''
@@ -21,7 +21,7 @@ def admin_root():
     return render_template('admin/dashboard/index.html', posts=posts, projects=projects)
 
 # Create A New Post
-@blog.route('/admin/post/create')
+@blog.route('/admin/post/create/')
 def admin_create_post():
 
     ''' Return view to create a new post '''
@@ -30,13 +30,13 @@ def admin_create_post():
 
 
 # Create A New Project 
-@blog.route('/admin/project/create')
+@blog.route('/admin/project/create/')
 def admin_create_project():
 
     return 'project'
 
 # Save New Post
-@blog.route('/admin/post/new/save', methods=['POST'])
+@blog.route('/admin/post/new/save/', methods=['POST'])
 def admin_save_new_post():
  
     ''' Gather form post submission values into a dict, save to post collection in db. ''' 
@@ -52,7 +52,7 @@ def admin_save_new_post():
     return redirect('/admin')
 
 # Edit Existing Post
-@blog.route('/admin/post/<id>/edit')
+@blog.route('/admin/post/<id>/edit/')
 def admin_edit_post(id):
 
     ''' Return view populated with target post values for editing. '''
@@ -61,7 +61,7 @@ def admin_edit_post(id):
     return render_template('admin/post/edit.html', post=document)
 
 # Save Existing Post
-@blog.route('/admin/post/<id>/save', methods=['POST'])
+@blog.route('/admin/post/<id>/save/', methods=['POST'])
 def admin_save_existing_post(id):
 
     ''' Save an existing post. '''
@@ -82,7 +82,7 @@ def admin_save_existing_post(id):
     return redirect('/admin')
 
 # Delete Existing Post
-@blog.route('/admin/post/<id>/delete', methods=['POST'])
+@blog.route('/admin/post/<id>/delete/', methods=['POST'])
 def admin_delete_post(id):
     ''' Delete post by id. '''
 
@@ -90,5 +90,3 @@ def admin_delete_post(id):
     g.db.remove(query)
 
     return redirect('/admin')
-
-
