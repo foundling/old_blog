@@ -60,7 +60,9 @@ a:hover {
 
 }
 
-
+img {
+    max-width: 100%;
+}
 
 p {
 
@@ -99,6 +101,9 @@ nav > h1 {
 
 }
 
+h1 {
+}
+
 
 
 
@@ -109,20 +114,21 @@ footer {
     background: white;
     border-top: 1px solid lightgreen;
 
+    a.creator-link:hover {
+        color: rgba(255, 0, 0, 0.62);
+    }
+
+    i.fa-heart {
+        color: rgba(255, 0, 0, 0.62);
+    }
+
+    p {
+        height: 5vh;
+        line-height: 5vh;
+    }
+
 }
 
-footer p {
-
-    height: 5vh;
-    line-height: 5vh;
-
-}
-
-footer a.creator-link:hover {
-
-    color: rgba(255, 0, 0, 0.62);
-
-}
 
 @media(max-width: 750px) {
 
@@ -131,7 +137,7 @@ footer a.creator-link:hover {
         padding: 8% 10%;
     }
     div.main {
-        margin: 8% 10%;
+        margin: 8% 5%;
     }
 
     footer {

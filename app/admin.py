@@ -30,13 +30,13 @@ def admin_create_post():
 
 
 # Create A New Project 
-@blog.route('/admin/project/create/')
+@blog.route('/admin/project/create')
 def admin_create_project():
 
     return 'project'
 
 # Save New Post
-@blog.route('/admin/post/new/save/', methods=['POST'])
+@blog.route('/admin/post/new/save', methods=['POST'])
 def admin_save_new_post():
  
     ''' Gather form post submission values into a dict, save to post collection in db. ''' 
@@ -52,7 +52,7 @@ def admin_save_new_post():
     return redirect('/admin')
 
 # Edit Existing Post
-@blog.route('/admin/post/<id>/edit/')
+@blog.route('/admin/post/<id>/edit')
 def admin_edit_post(id):
 
     ''' Return view populated with target post values for editing. '''
@@ -61,7 +61,7 @@ def admin_edit_post(id):
     return render_template('admin/post/edit.html', post=document)
 
 # Save Existing Post
-@blog.route('/admin/post/<id>/save/', methods=['POST'])
+@blog.route('/admin/post/<id>/save', methods=['POST'])
 def admin_save_existing_post(id):
 
     ''' Save an existing post. '''

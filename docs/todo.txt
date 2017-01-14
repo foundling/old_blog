@@ -1,23 +1,30 @@
-Backend stuff:
+[ features ]
+
+    news: 
+        backend code: create CRUD flow, 
+        design: distinguish it from posts with a badge
+
+    https:
+        implement it
+
+    site versioning:
+
+        backend
+        frontend
+
+    theming:
+
+        make views.py & admin.py part of each theme
+
+    githooks:
+
+        out: every time post or edit a post, a githook should update foundling/blog_posts.
+        in: on pull request/merge from someone else, that should pull in post to database.
+
+
+    design:
+        more alt/title tags
+        needs work. okay, but a little too basic so far.
+        small modal
     
-    Consider using postgres for database instead of mongo.
-
-Frontend stuff:
-
-    Make page/section to show article edit dates. 
-
-    Figure out a reasonable markdown -> html compilation flow.
-       
-        each article has its on dir. 
-        dir contains <postname>.md and a dir of code snippets, numbered in order of appearance. 
-        code snippet extension tells which lang.
-        
-Keep code snippets in separate files, extension is important. 
-        For any code block, in markdown, put '%CODE%' or something in the code where it should go. 
-
-    Navigation Menu component that parses Markdown structure and builds a menu.
-        Sould be easy to style/ flexible. 
-    Add this menu to the left hand side of the articles.
-    Also use this for projects page.
-
 

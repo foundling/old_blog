@@ -130,6 +130,9 @@ a {
 a:hover {
   color: rgba(255, 0, 0, 0.62); }
 
+img {
+  max-width: 100%; }
+
 p {
   line-height: 1.6em; }
 
@@ -157,20 +160,20 @@ footer {
   font-size: 0.7em;
   background: white;
   border-top: 1px solid lightgreen; }
-
-footer p {
-  height: 5vh;
-  line-height: 5vh; }
-
-footer a.creator-link:hover {
-  color: rgba(255, 0, 0, 0.62); }
+  footer a.creator-link:hover {
+    color: rgba(255, 0, 0, 0.62); }
+  footer i.fa-heart {
+    color: rgba(255, 0, 0, 0.62); }
+  footer p {
+    height: 5vh;
+    line-height: 5vh; }
 
 @media (max-width: 750px) {
   header.site-header {
     padding: 8% 10%; }
 
   div.main {
-    margin: 8% 10%; }
+    margin: 8% 5%; }
 
   footer {
     padding: 1% 8%;
@@ -188,7 +191,7 @@ section.single-post {
   text-align: left; }
 
 article.recent-post {
-  margin: 40px auto;
+  margin: 0px auto;
   width: 100%; }
 
 ul.social-media-icons,
@@ -200,12 +203,12 @@ ul.social-media-icons,
   margin: 2% 0% 0% 0%; }
 
 .recent-post-title {
-  margin: 4% 0% 0% 0%; }
+  margin: 4% 2% 0% 0%; }
 
 ul.social-media-icons {
   background: white;
   /* margin: 2% 0% 0% 2%; */
-  margin: 6% 0% 0% 1%; }
+  margin: 4% 0% 0% 0%; }
 
 .social-media-icons li {
   padding: 5px; }
@@ -257,8 +260,8 @@ div.recent-post-text {
 div.recent-post-text > p:first-of-type {
   display: inline; }
 
-.link-to-full-article i {
-  vertical-align: bottom; }
+a.full-article-link > i {
+  margin-left: 5px; }
 
 .more-posts {
   width: 100%;

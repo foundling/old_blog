@@ -14,13 +14,22 @@ then
     exit 1
 fi
 
+echo "deleting remote version of files ... "
+ssh alex@$box 'if [ -e alexramsdell.com/public_html ]; then ls && rm -rf alexramsdell.com/public_html/*; fi'
+
 echo "generating a static version of alexramsdell.com ... "
 /usr/bin/env python ./freeze.py
+
 
 if [ -e ./app/build/admin ]
 then
     echo "deleting the admin section of the static build"
     rm -rf ./app/build/admin
+    if test $?
+    then echo 'done' 
+    else echo 'fail?' 
+    fi
+
 fi
 
 if test $?

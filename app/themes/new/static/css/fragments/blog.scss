@@ -26,7 +26,7 @@ ul.social-media-icons,
     margin: 2% 0% 0% 0%;
 }
 .recent-post-title {
-    margin: 4% 0% 0% 0%;
+    margin: 4% 2% 0% 0%;
 }
 .recent-post-title {
 }
@@ -34,7 +34,7 @@ ul.social-media-icons,
 ul.social-media-icons {
     background: white;
     /* margin: 2% 0% 0% 2%; */
-    margin: 6% 0% 0% 1%;
+    margin: 4% 0% 0% 0%;
 }
 
 .social-media-icons li {
@@ -98,8 +98,8 @@ div.recent-post-text > p:first-of-type {
     display: inline;
 } 
 
-.link-to-full-article i {
-    vertical-align: bottom;
+a.full-article-link > i {
+    margin-left: 5px;
 }
 
 .more-posts {
