@@ -26,7 +26,7 @@ def blog_main():
 @blog.route('/blog/<permalink>/')
 def single_post(permalink):
     post = g.db.find_one({'permalink': permalink})
-    return render_template('post/single_blog_post.html', post=post)
+    return render_template('post/single_post.html', post=post)
 
 @blog.route('/archive/')
 def archive():

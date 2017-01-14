@@ -27,8 +27,30 @@ ul.social-media-icons,
 }
 .recent-post-title {
     margin: 4% 2% 0% 0%;
+    position: relative;
 }
-.recent-post-title {
+
+.news-badge {
+
+    position: absolute;
+    left: -2.5em;
+    top: -1.5em;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%; 
+
+    background: rgba(255, 0, 0, 0.62);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span { 
+        color: white;
+        font-size: 0.5em;
+        font-weight: 100;
+    }
+
 }
 
 ul.social-media-icons {

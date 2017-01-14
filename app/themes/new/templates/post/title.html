@@ -1,17 +1,6 @@
 <h1 class="recent-post-title">
     <a href="/blog/{{ post['permalink'] }}"> {{ post['title'] | markdown }} </a>
+    {% include 'post/news_badge.html' %}
 </h1>
-<ul class="social-media-icons">
-    <li>
+{% include 'post/social_media.html' %}
 
-    <a href="https://twitter.com/share?url=http%3A%2F%2Falexramsdell.com%2Fblog%2F{{post['permalink']}}&via=drlolzrofl">
-        <i class="fa fa-twitter"></i>
-    </a>
-        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </li>
-    <li>
-        <a href="https://github.com/foundling/blog_posts/pulls">
-            <i class="fa fa-github"></i>
-        </a>
-    </li>
-</ul>

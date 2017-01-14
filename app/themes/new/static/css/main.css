@@ -203,7 +203,24 @@ ul.social-media-icons,
   margin: 2% 0% 0% 0%; }
 
 .recent-post-title {
-  margin: 4% 2% 0% 0%; }
+  margin: 4% 2% 0% 0%;
+  position: relative; }
+
+.news-badge {
+  position: absolute;
+  left: -2.5em;
+  top: -1.5em;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  background: rgba(255, 0, 0, 0.62);
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .news-badge span {
+    color: white;
+    font-size: 0.5em;
+    font-weight: 100; }
 
 ul.social-media-icons {
   background: white;
