@@ -16,12 +16,12 @@ def index():
     ## consider adding news sction into this as well, reducing recent posts to 2
     ## blog would then be the full list
     latest_posts = g.db.find_n_most_recent(1)
-    return render_template('index.html', posts=reversed(latest_posts))
+    return render_template('index.html', posts=latest_posts)
 
 @blog.route('/blog/')
 def blog_main():
     latest_posts = g.db.find_n_most_recent(5)
-    return render_template('index.html', posts=reversed(latest_posts))
+    return render_template('index.html', posts=latest_posts)
  
 @blog.route('/blog/<permalink>/')
 def single_post(permalink):

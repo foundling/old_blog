@@ -69,11 +69,15 @@ ul.post-keywords {
 }
 
 li.post-keyword {
+
     display: inline-block;
-    padding: 2px 5px;
-    margin-top: 5px;
-    background: rgba(144,238,144,0.9);
-    color: white;
+    padding: 0.2em;
+    margin-bottom: 5px;
+    background: rgba(144, 238, 144, 0.9);
+
+    a { 
+        padding: 2px 5px;
+    }
 }
 
 div.byline {
@@ -116,11 +120,15 @@ div.recent-post-stub {
 div.recent-post-text {
     padding-right: 10px;
 }
+div.recent-post-text > p {
+    font-family: Georgia;
+
+}
 div.recent-post-text > p:first-of-type {
     display: inline;
 } 
 
-a.full-article-link > i {
+a.full-article-link {
     margin-left: 5px;
 }
 
@@ -149,10 +157,10 @@ a.full-article-link > i {
 
 @media(max-width:750px) {
     .more-posts {
-        text-align: left;
+        text-align: center;
     }
     .recent-post-title {
         font-size: 1.8em;
-        margin: 2% 0% 8% 0%;
+        margin: 2% 0% 0% 0%;
     }
 }

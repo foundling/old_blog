@@ -53,11 +53,15 @@ select.collection {
 
 textarea.content {
   width: 100vw;
-  height: 70vh;
+  height: 65vh;
   font-size: 1.5em; }
 
 textarea.short-text {
   font-size: 1em; }
+
+select.content-type {
+  width: 100vw;
+  height: 5vh; }
 
 section.controls {
   position: absolute;
@@ -235,10 +239,11 @@ ul.post-keywords {
 
 li.post-keyword {
   display: inline-block;
-  padding: 2px 5px;
-  margin-top: 5px;
-  background: rgba(144, 238, 144, 0.9);
-  color: white; }
+  padding: 0.2em;
+  margin-bottom: 5px;
+  background: rgba(144, 238, 144, 0.9); }
+  li.post-keyword a {
+    padding: 2px 5px; }
 
 div.byline {
   padding: 0px 2px;
@@ -274,10 +279,13 @@ div.recent-post-stub {
 div.recent-post-text {
   padding-right: 10px; }
 
+div.recent-post-text > p {
+  font-family: Georgia; }
+
 div.recent-post-text > p:first-of-type {
   display: inline; }
 
-a.full-article-link > i {
+a.full-article-link {
   margin-left: 5px; }
 
 .more-posts {
@@ -300,11 +308,11 @@ a.full-article-link > i {
 
 @media (max-width: 750px) {
   .more-posts {
-    text-align: left; }
+    text-align: center; }
 
   .recent-post-title {
     font-size: 1.8em;
-    margin: 2% 0% 8% 0%; } }
+    margin: 2% 0% 0% 0%; } }
 pre {
   background: rgba(144, 238, 144, 0.8);
   margin: 0% 0% 3% 0%;
@@ -318,24 +326,23 @@ li > code {
   background: white;
   color: rgba(255, 0, 0, 0.8); }
 
+code {
+  text-shadow: 0px 1px 0px white; }
+
 @media (max-width: 750px) {
   pre {
     margin: 0% 0% 8% 0%; } }
 li.post-keyword {
-  border: 1px solid transparent; }
-  li.post-keyword:hover {
-    border: 1px solid transparent;
-    background: rgba(144, 238, 144, 0.4);
-    color: #464646; }
-  li.post-keyword > a {
-    color: white; }
+  color: #464646; }
   li.post-keyword > a:hover {
     color: #464646; }
 
 section.single-post {
-  padding: 4% 0% 0% 0%; }
+  padding: 4% 0% 0% 0%;
+  font-family: "Droid Serif"; }
   section.single-post > p {
-    padding: 20px 0; }
+    padding: 20px 0;
+    font-family: Georgia; }
   section.single-post > p:first-of-type {
     padding: 4% 0px; }
   section.single-post > p {
@@ -348,7 +355,7 @@ section.single-post {
 
 @media (max-width: 750px) {
   section.single-post > p:first-of-type {
-    padding: 8% 0%; }
+    padding: 10% 0%; }
   section.single-post > p {
     padding: 0% 0% 8% 0%; }
   section.single-post h1 {

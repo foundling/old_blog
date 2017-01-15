@@ -8,7 +8,6 @@
             {% include 'general/byline.html' %}
 
             <div class="recent-post-stub">
-                <!-- bug: can't nest markdown filter inside of a paragraph. -->
                 <div class="recent-post-text">
                     {{ post['short_text'] | markdown }}
                     <a 

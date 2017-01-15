@@ -55,12 +55,17 @@ select.collection {
 
 textarea.content {
     width: 100vw;
-    height: 70vh;
+    height: 65vh;
     font-size: 1.5em;
 }
 
 textarea.short-text {
     font-size: 1em;
+}
+
+select.content-type {
+    width: 100vw;
+    height: 5vh;
 }
 
 section.controls {

@@ -5,6 +5,20 @@
 
     <form method="post" action="/admin/post/{{ post['_id'] }}/save">
 
+        <label>Content Type:</type>
+        <select 
+        name="content_type" 
+        selected="{{ post['content_type'] }}">
+            <option value="post">Post</option>
+            <option value="project">Project</option>
+        </select>
+
+        <label>News ?</type>
+        <input 
+        type="checkbox" 
+        name="is_news" 
+        {{ 'checked' if post['is_news'] else '' }} />
+
         <input 
         type="hidden" 
         name="_id" 

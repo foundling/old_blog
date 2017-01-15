@@ -39,11 +39,11 @@ class Database(object):
     return self.db[collection].count();
 
   def find_all(self, query={}, collection='post'):
-    result_set = self.db[collection].find(query).sort('date', pymongo.ASCENDING)
+    result_set = self.db[collection].find(query).sort('date', pymongo.DESCENDING)
     return [result for result in result_set]
 
   def find_n_most_recent(self, n, collection='post'):
-    result_set = self.db[collection].find().sort('date', pymongo.ASCENDING)
+    result_set = self.db[collection].find().sort('date', pymongo.DESCENDING)
     return [result for result in result_set]
 
   def insert_one(self, document, collection='post'):
