@@ -221,7 +221,7 @@ ul.social-media-icons,
   display: flex;
   justify-content: center;
   align-items: center; }
-  .news-badge span {
+  .news-badge a {
     color: white;
     font-size: 0.5em;
     font-weight: 100; }
@@ -243,7 +243,8 @@ li.post-keyword {
   margin-bottom: 5px;
   background: rgba(144, 238, 144, 0.9); }
   li.post-keyword a {
-    padding: 2px 5px; }
+    padding: 2px 5px;
+    text-shadow: -1px 0px 0px rgba(255, 255, 255, 0.7); }
 
 div.byline {
   padding: 0px 2px;

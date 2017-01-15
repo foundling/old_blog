@@ -13,8 +13,6 @@ from themes import themes
 
 @blog.route('/')
 def index():
-    ## consider adding news sction into this as well, reducing recent posts to 2
-    ## blog would then be the full list
     latest_posts = g.db.find_n_most_recent(1)
     return render_template('index.html', posts=latest_posts)
 
@@ -38,6 +36,11 @@ def archive():
 def projects():
     projects = g.db.find_all({}, collection='projects')
     return render_template('projects.html', projects=projects)
+
+@blog.route('/news/')
+def news():
+    posts = g.db.find_all(query={'is_news': 'on'})
+    return render_template('news.html', posts=posts)
 
 #@blog.route('/about')
 #def about_me():
