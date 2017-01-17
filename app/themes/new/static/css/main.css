@@ -243,8 +243,7 @@ li.post-keyword {
   margin-bottom: 5px;
   background: rgba(144, 238, 144, 0.9); }
   li.post-keyword a {
-    padding: 2px 5px;
-    text-shadow: -1px 0px 0px rgba(255, 255, 255, 0.7); }
+    padding: 2px 5px; }
 
 div.byline {
   padding: 0px 2px;
@@ -339,7 +338,7 @@ li.post-keyword {
     color: #464646; }
 
 section.single-post {
-  padding: 4% 0% 0% 0%;
+  padding: 0% 0% 0% 0%;
   font-family: "Droid Serif"; }
   section.single-post > p {
     padding: 20px 0;
@@ -359,8 +358,6 @@ section.single-post {
     padding: 10% 0%; }
   section.single-post > p {
     padding: 0% 0% 8% 0%; }
-  section.single-post h1 {
-    padding: 4% 0%; }
   section.single-post h2, section.single-post h3, section.single-post h4 {
     margin-bottom: 8%; } }
 .project-name,

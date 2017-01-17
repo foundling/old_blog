@@ -39,6 +39,6 @@ def before_request():
     g.db = connect_db()
 
 import views 
-import admin 
+#import admin 
 
 print "Running on theme {}. THEME='<THEME_NAME>' python run.py".format(theme, ', '.join(themes.keys()))

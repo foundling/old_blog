@@ -1,5 +1,14 @@
 #!/bin/sh
 
+echo "Did you remember to comment out the admin views import in /data/web/blog/app/__init__.py (y/N)?"
+read fixed_admin
+
+if [ ! $fixed_admin == 'y' ]
+then 
+    echo 'exiting ...'
+    exit 1
+fi
+
 user=$1
 
 if [ -z "$user" ]

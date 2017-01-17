@@ -66,7 +66,7 @@ def admin_save_existing_post(id):
 
     return redirect('/admin')
 
-@blog.route('/admin/post/<id>/delete/', methods=['POST'])
+@blog.route('/admin/post/<id>/delete', methods=['POST'])
 def admin_delete_post(id):
     ''' Delete post by id. '''
 

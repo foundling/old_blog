@@ -1,5 +1,3 @@
-# Dependency Loading in Node.js Command-Line Applications
-
 Recently, I've been building a command-line application to manage the data-acquisition process for a scientific study.  Today I admitted that it's just too slow to load and went about figuring out how to fix it.  The results were great! I'd like to write a little bit about how I created the problem and how I fixed it.
  
 The app has the standard sub-command structure: 
@@ -12,11 +10,11 @@ e.g.
 
 Sub-commands are the items of interest, but otherwise there's nothing that complicated going on from an interface standpoint. The app exposes exactly five, mutually-exclusive sub-commands:
 
-    cmd stats                       # hits an slqite3 database
-    cmd run                         # starts web server, opens Google Chrome, hits a database
-    cmd show <project metric>       # hits a database, outputs colored text
-    cmd query <name> <date-range>   # launches an API client, hits a database, makes a round of requests
-    cmd update                      # does a git pull from the master branch on the remote repo
+    cmd stats
+    cmd run
+    cmd show <project metric>
+    cmd query <name> <date-range>
+    cmd update
 
 ## Enter Commander.js 
 
