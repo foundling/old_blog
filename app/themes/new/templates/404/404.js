@@ -1,16 +1,14 @@
-const log = console.log;
-
 const Player = function(imgs, ctx, coordinates, mass) {
 
-    if (!imgs || !imgs.length) throw new Error('Player object must be instantiated with an image posessing a valid .src property.');
+    if (!imgs || !imgs.length) throw new Error('Player object needs one or more images with source properties.');
     if (!ctx || !ctx.canvas) throw new Error('Player object must be instantiated with a canvas object reference');
     if (!(coordinates.x && coordinates.y)) throw new Error('Player object must be instantiated with x and y coordinates.');
 
-    let imageDirection = 'right';
     let images = {
         left: imgs[0],
         right: imgs[1]
     };
+    let imageDirection = 'right';
     let img = images[imageDirection];
 
     let gravity = 0.5;
@@ -21,13 +19,13 @@ const Player = function(imgs, ctx, coordinates, mass) {
 
         switch(event.key) {
 
-            case 'ArrowUp':     jump()
+            case 'ArrowUp':     jump();
                                 break;
 
-            case 'ArrowLeft':   moveLeft()
+            case 'ArrowLeft':   moveLeft();
                                 break;
 
-            case 'ArrowRight':  moveRight()
+            case 'ArrowRight':  moveRight();
                                 break;
 
         }
@@ -63,15 +61,15 @@ const Player = function(imgs, ctx, coordinates, mass) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(img, coordinates.x, coordinates.y); 
     }
-    function update() {
-        velocity.y += gravity;
+    function updateState() {
+        velocity.y += GRAVITY;
         coordinates.y += velocity.y;
         coordinates.x += velocity.x;  
     }
     function animate() {
         let intervalHandle = setInterval(function() {
 
-            update()
+            updateState();
             redraw();
 
             if (coordinates.y >= 150) {
