@@ -29,7 +29,7 @@ blog.secret_key = 'test'
 
 @blog.errorhandler(404)
 def page_not_found(error):
-    return render_template('404/404.html'), 404
+    return render_template('404/index.html'), 404
 
 def connect_db():
     return db.Database(blog.config['MONGODB_DATABASE_URI']) 

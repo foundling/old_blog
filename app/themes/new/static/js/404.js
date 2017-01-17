@@ -1,3 +1,4 @@
+const log = console.log;
 const Player = function(imgs, ctx, coordinates, mass) {
 
     if (!imgs || !imgs.length) throw new Error('Player object needs one or more images with source properties.');
@@ -11,7 +12,7 @@ const Player = function(imgs, ctx, coordinates, mass) {
     let imageDirection = 'right';
     let img = images[imageDirection];
 
-    let gravity = 0.5;
+    const GRAVITY = 0.5;
     let velocity = { x: 0, y: 0 };
     let inAir = false;
 
@@ -107,7 +108,7 @@ const Player = function(imgs, ctx, coordinates, mass) {
 
     return {
         init,
-        update
+        updateState
     };
 
 };
@@ -123,8 +124,8 @@ function run() {
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    imgs[0].src = 'calvin-left.png';
-    imgs[1].src = 'calvin-right.png';
+    imgs[0].src = canvas.dataset.playerLeftSrc;
+    imgs[1].src = canvas.dataset.playerRightSrc;
 
     imgs.forEach(function(img) {
 
