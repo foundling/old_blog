@@ -1,3 +1,9 @@
+[ fixes ]
+
+    work out unicode conversion at borders of app 
+
+    url_encode byline keyword link parameter
+
 [ features ]
 
     site versioning:
