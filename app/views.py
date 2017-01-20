@@ -30,10 +30,10 @@ def single_post(permalink):
 def archive():
     return render_template('archive.html')
 
-@blog.route('/projects/')
-def projects():
-    projects = g.db.find_all({}, collection='projects')
-    return render_template('projects.html', projects=projects)
+#@blog.route('/projects/')
+#def projects():
+#    projects = g.db.find_all({}, collection='projects')
+#    return render_template('projects.html', projects=projects)
 
 @blog.route('/news/')
 def news():
