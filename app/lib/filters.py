@@ -12,3 +12,5 @@ def clean_date(datetime_object):
 
     return arrow.Arrow.fromdatetime(datetime_object).format('MM-DD-YYYY') if datetime_object else ''
 
+def urlencode(s):
+    pass

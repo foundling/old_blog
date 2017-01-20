@@ -1,14 +1,5 @@
 #!/bin/sh
 
-echo "Did you remember to comment out the admin views import in /data/web/blog/app/__init__.py (y/N)?"
-read fixed_admin
-
-if [ ! $fixed_admin == 'y' ]
-then 
-    echo 'exiting ...'
-    exit 1
-fi
-
 user=$1
 
 if [ -z "$user" ]
@@ -17,17 +8,37 @@ then
     exit 1
 fi
 
+echo "Did you remember to comment out the admin views import in /data/web/blog/app/__init__.py (y/N)?"
+read fixed_admin
+
+if [ ! $fixed_admin == 'y' ] && [ ! $fixed_admin == 'yes' ]
+then 
+    echo 'exiting ...'
+    exit 1
+fi
+
+
 if [ -z `pgrep mongod` ]
 then
     echo 'make sure mongod is running before you push'
     exit 1
 fi
 
+echo "generating a static version of alexramsdell.com ... "
+/usr/bin/env python ./freeze.py
+
+echo 'static build complete. Copy to server?'
+read copy_to_server
+
+if [ ! "$copy_to_server" == 'y' ]
+then
+    echo 'not copying to server. exiting ...'
+    exit 0
+fi
+
 echo "deleting remote version of files ... "
 ssh alex@$box 'if [ -e alexramsdell.com/public_html ]; then ls && rm -rf alexramsdell.com/public_html/*; fi'
 
-echo "generating a static version of alexramsdell.com ... "
-/usr/bin/env python ./freeze.py
 
 
 if [ -e ./app/build/admin ]
@@ -45,7 +56,7 @@ if test $?
 then 
     echo "static site generated successfully."
     echo "copying static build to production ... " 
-    rsync -avP --delete ./app/build/ alex@$box:/home/alex/alexramsdell.com/public_html/ --exclude=img 
+    rsync -avP --delete ./app/build/ alex@$box:/home/alex/alexramsdell.com/public_html/ #--exclude=img 
 else
     echo 'The frozen-flask build seems like it failed ... want to check and try again?' 
 fi

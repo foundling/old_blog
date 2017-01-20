@@ -58,6 +58,7 @@ def admin_save_existing_post(id):
     document = dict((field, request.form.get(field)) for field in fields)
     collection = document['content_type']
 
+    print(document['tags'])
 
     updates = utils.add_metadata(document, update=True) # todo: add mixin argument object to add_metadata 
     query = { '_id': ObjectId(id) }

@@ -1,16 +1,22 @@
 [ features ]
 
-    news: 
+    site versioning:
+        
+        make build a repo itself.
+        after creation of a new build, update repo locally and pull on server side.
+
+    [X] news: 
+
         backend code: create CRUD flow, 
         design: distinguish it from posts with a badge
 
+    quicktip design 
+
+        design
+        database stucture and CRUD flow
+
     https:
         implement it
-
-    site versioning:
-
-        backend
-        frontend
 
     theming:
 

@@ -41,4 +41,5 @@ def before_request():
 import views 
 #import admin 
 
-print "Running on theme {}. THEME='<THEME_NAME>' python run.py".format(theme, ', '.join(themes.keys()))
+print ''' Running on theme {}. '''.format(theme)
+

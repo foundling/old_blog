@@ -16,7 +16,7 @@
 
         {% for tag in post['tags'] %}
         <li class="post-keyword">
-        <a href="/">{{tag}}</a>
+            <a href="{{ url_for('search', search_query=tag) }}">{{tag}}</a>
         </li>
         {% endfor %}
 

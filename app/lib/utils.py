@@ -9,7 +9,9 @@ def add_metadata(document, update=False):
 
     document['author'] = 'alex' 
     document['permalink'] = slugify.slugify(document['title'])
-    document['tags'] = document['tags'].split(',')
+    document['tags'] = [    tag.strip() 
+                            for tag 
+                            in document['tags'].split(',') ]
     document['last_edited'] = None
 
     if update:

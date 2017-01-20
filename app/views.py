@@ -28,9 +28,7 @@ def single_post(permalink):
 
 @blog.route('/archive/')
 def archive():
-    query = request.args.get('query')
-    posts = reversed(g.db.find_all())
-    return render_template('archive.html', query=query, posts=posts)
+    return render_template('archive.html')
 
 @blog.route('/projects/')
 def projects():
@@ -42,10 +40,22 @@ def news():
     posts = g.db.find_all(query={'is_news': 'on'})
     return render_template('news.html', posts=posts)
 
-#@blog.route('/about')
-#def about_me():
-#    about_me = g.db.find_one({'title':'About Me'},collection='static')
-#    return render_template('about.html', about_me=about_me)
+@blog.route('/about/')
+def about_me():
+    return render_template('about.html', about_me=about_me)
+
+@blog.route('/search/<search_query>/')
+def search(search_query):
+
+    db_query = {
+        '$or': [
+            {'content': {'$regex': search_query}}, 
+            {'title': {'$regex': search_query}},
+            {'tags': {'$regex': search_query}}
+        ]
+    }
+    matched = g.db.find_all(query=db_query)
+    return render_template('search.html', posts=matched); 
 
 #@blog.route('/fun/photos/<collection_name>/')
 #def photos(collection_name):
