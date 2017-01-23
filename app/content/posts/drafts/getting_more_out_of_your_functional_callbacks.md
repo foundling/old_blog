@@ -12,15 +12,17 @@ See how clear that is? I've filtered a dataset to just the items that have X, tu
 
 There are two important things to note here:
 
-On an idiomatic level, I'm taking advantage of the orthoganality in the functional array methods that JavaScript offers (note that `sort`, which mutates its input, is not one of these). Each array method accepts an array and each method callback accepts a single item from that array. After the array method is invoked on each array item in its input, it is passed to the next array method in the chain.
+On an idiomatic level, I'm taking advantage of the orthoganality in the functional array methods that JavaScript offers (note that `sort`, although useful, mutates its input and is not one of these). Each array method accepts an array and each method callback accepts a single item from that array. After the array method is invoked on each array item in its input, it is passed to the next array method in the chain.
 
-On a code-hygiene level, I'm giving each callback a name that expresses the computational nature of the method that invokes it. The `filter` callback name, `hasX`, resembles a proposition and fittingly returns `true` or `false`. `map`'s callback name indicates what that item will be turned into. The goal here is to not only transform data in a pipeline, but to communicate any nuances in that overall transformation with great clarity.
+On an aesthetic level, I'm giving each callback a name that expresses the computational nature of the work that it does. The `filter` callback name, `hasX`, resembles a proposition and fittingly returns `true` or `false`. `map`'s callback name, `toY`, indicates what that item will be turned into. The goal here is to not only transform data in a pipeline, but to communicate any nuances in that overall transformation with great clarity.
 
 ## I want more!
 
-This code is clear enough, but sometimes we might want more out of our callbacks. `filter`'s callback can only work on a single input that filter hands to it. Let's imagine that the `X` in `hasX` or the `Y` in `toY` could be parameterized. Then we could separate the property-checking code (the `has` part) from the property-specificying code (the `X` part). But so far, everything `hasX` uses to do its work is contained within a single execution context. How can we parameterize `X`?
+This code is clear enough, but sometimes I need more out of my callbacks.  What if I want to filter, say, a list of dates based on whether they are within a specific date range? `filter`'s callback can only work on a single input that filter hands to it, a date from a list of dates.  So how to filter using additional criteria?
 
-# Enter Scope
+Let's imagine that the `X` in `hasX` or the `Y` in `toY` could be parameterized. Then we could separate the property-checking code (the `has` part) from the property-specificying code (the `X` part). But so far, everything `hasX` uses to do its work is contained within the `hasX` function definition. We'll need to figure out how to compose definitions. 
+
+## Enter Scope
 
 A first step would be to simply refer to an outer parameter from within the `hasX` function definition. Like this:
 
@@ -28,9 +30,7 @@ A first step would be to simply refer to an outer parameter from within the `has
     // ... code ...
     const hasX = (datum) => datum.includes(x);
 
-It takes advantage of scoping rules to refer to an `x` from an outer scope in the module. This isn't any good, though, and here's why: When you look at the `hasX` definition, the only thing that is immediately clear about where `x` comes from is ... somewhere else. The `// ... code ... ` section could be a bunch of lines, which means a lot of reading of code that you shouldn't have to read, just to find `x`.  The growth of a codebase introduces entropy that will likely widen that gap. If we could parameterize `x`, we'd entirely skip having to go look for it in the file where `hasX` is defined, as it will be in the function arguments. 
-
-We also haven't managed to increase our control over how `X` is specified, since it's still effectively hard-coded into the function. 
+It takes advantage of scoping rules to refer to an `x` from an outer scope in the module. This isn't any good, though, and here's why: When you look at the `hasX` definition, the only thing that is immediately clear about where `x` comes from is ... somewhere else. This means you'll have to go looking for it when it's time to debug. When we parameterize `x`, we entirely skip having to go look for it in the file where `hasX` is defined, as it will be in the function arguments. 
 
 So let's make our callback a truly great, capable, adaptable citizen in our code. If we think about the order of events in our functional pipeline, `hasX` accepts a single value at any point in `filter`'s iteration cycle. So whatever we hand `filter` has to be a function that accepts a single item from the array that is being filtered.  But if we break `hasX` into two separate functions, one which returns the other, then we just have to make sure to pass the correct one to `filter`.
 
@@ -40,104 +40,90 @@ We'll still need to take advantage of scope, but we can drastically improve the 
 
 Let's think about a function returning a function for a second and just get clear on the temporality in this technique:
 
-    fnA(x) {
+    fn(x) {
         return fnB(y) {
-            return y.method(x);
+            console.log(x,y);
         }
     }
 
 I hope it is not a surprise to you that you will need to call `fnA` before you can call `fnB`. We could call these two functions like this:
 
-    fnA('test string')(arrayOfWords);
+    fn('hello')('world');
 
 Knowing that the inner function is returned last, let's try this out with our `hasX` function, which I'll refer to as `has` from now on (the `X` part is now a function). If we first focus on the callback that `filter` will receive directly, we can work backward to the definition of the compound function. 
 
-    const hasX (datum) => datum.includes(x);
+    function (x) {
+        return list.includes(x);
+    }
 
 We now need to wrap this in an outer function that returns this function when called:
 
-    function has(x) {
-        return function(datum) {
-            return datum.includes(x);
+    function has(list) {
+
+        /* filter receives this function */
+        return function(x) {
+            return list.includes(x);
         }
+
     }
 
-I'm more fond of using the fat arrow anonymous functions from ES6 for computations like this, as they can make your code more succinct.  Here is how that would look:
+### ES6 arrow functions: a gateway drug
 
-    const has = (x) => (datum) => datum.includes(x);
+I'm fond of using ES6's fat arrow/lambda functions [[1]] (#references) for specifying steps in a computation because they can really pare the syntax down to reveal just the semantics.  Here is the same composition done with arrow functions: 
 
-And finally, we can use it like this:
+    const has = (list) => (item) => list.includes(item);
+
+These arrows can be nested arbitrarily, so this is just as valid:
+
+    const wat = (arg1) => (arg2) => (arg3) => (arg4) => Math.max(arg1, arg2, arg3, arg4);
+
+You can read this as: '`wat` is a function that takes in `arg1` and returns a function that takes in `arg2`, which returns a function that takes in `arg3`, which returns a function that takes in `arg4`, which returns the max of `arg1`, `arg2`, `arg3` and `arg4`.
+
+Anyway, I encourage you to dive down this rabbit hole head first :]
+
+## We did it!
+
+Finally, we can use this new approach like this:
 
     dataset
-        .filter(has('a'))
-        .map(transformTo('b'))
+        .filter(has(x))
+        .map(transformTo(Y))
         .filter(compact)
         .length();
 
-This is just as readable as the snippet I originally offered, but it's more capable. The trick here is that I'm calling `has` inside of the invocation of filter, which gets evaluated and then passed to filter. `has(a)` will become a function that now contains `a` in its internal environment and can still accept the proper and final argument from filter as filter iterates through the input array.  In a figurative sense, I like to think of this as compiling two execution contexts into one. 
-
-## Benefits for Testing
-
-I should mention that if you are working with objects like dates, this method becomes especially useful because all of your input is passed in as parameters.  I hope to demonstrate this below in a real-life example of this technique for expanding your callbacks.
+This is just as readable as the snippet I originally offered, but it's more capable. The trick here is that I'm calling `has` inside of the invocation of filter, which gets evaluated and then passed to filter. `has(a)` will become a function that now contains `a` in its internal environment and can still accept the proper and final argument from `filter` as `filter` iterates through the input array.  In a figurative sense, I like to think of this as compiling two execution contexts into one. 
 
 ## A Real Example
 
-I find myself using this technique quite often when I have to work with 
-Imagine I have a list of filenames that have a name and a date:
+Let's try this technique with a real example. Let's imagine I have the following:
 
-    alice_2016-12-07.json
-    alice_2016-12-04.json
-    alice_2016-12-09.json
-    alice_2016-12-01.json
-    alice_2016-12-03.json
-    alice_2016-12-11.json
-    bob_2016-12-03.json
-    bob_2016-12-09.json
-    bob_2016-12-02.json
-    ...
+A list of filenames that have the format `<name>_<datestring>.json`. 
 
-And let's say I want to find any files for any person in a list for whom there is missing data in some date range. Let's say the date range is '2016-12-01' through '2016-12-15' and it is inclusive. And let's say that the names I care about are 'bob','alice', and 'fred'. Here's how I could use this technique (which is a limited case of currying by the way):
-
-    const moment = require('moment');
     const filenames = [
-
         'alice_2016-12-07.json',
         'alice_2016-12-04.json',
         'alice_2016-12-09.json',
-        'alice_2016-12-01.json',
-        'alice_2016-12-03.json',
-        'alice_2016-12-11.json',
-        'bob_2016-12-03.json',
+        'alice_2016-12-31.json',        
         'bob_2016-12-09.json',
         'bob_2016-12-02.json'
-
+        // ....
     ];
+ 
+And list of users: 
 
-    const inRange = (start, stop) => (date) => moment(date).isBetween(moment(start),moment(stop));
+    const users = [
+        'bob',
+        'alice',
+        'fred'
+    ];
+       
+And finally, a date range (inclusive):
 
-    filenames
-        .filter()
+    const start = ‘2016-12-01’;
+    const stop = ‘2016-12-15’;
 
-I should note that I'm using ES6 syntax to express this in a much more concise manner.  It may not always be more readable to use ES6 syntax, so please don't consider it a silver bullet. But in this case I find it makes the code concise yet readable. This would be the ES5 alternative:
 
-    function inRange (start, stop) {
-        return function (date) {
-            return moment(date).isBetween(moment(start), moment(stop));
-        }
-    }
-
-This definition syntax is generalizable, so if you wanted to, you could write a function that returns a function that returns a function:
-
-    const fn1 = (a) => (b) => (c) => max(a, b, c);
-
-And now, when you get around to using `has`, you can write this:
-
-    dataset
-        .filter(hasX('Z'))
-        .map(toY)
-        .some(isZ);
-
-## A Real Example
+If the goal were to find all files missing from the date range for each user in `users`, here’s how I could use the technique discussed above:
 
     const moment = require('moment');
     const assert = require('assert');
@@ -156,53 +142,52 @@ And now, when you get around to using `has`, you can write this:
         'bob_2016-12-02.json'
 
     ];
-
-    const range = (max) => [ ...Array(max).keys() ];
-    const parseDateString = (filename) => filename.split('_')[1].split('.')[0];
-    const belongsTo = (user) => (filename) => filename.split('_')[0] === user;
-    const inDateRange = (start, stop) => (dateString) => moment(dateString).isBetween(moment(start), moment(stop), null, '[]');
+    
+    /* utilities for generating dates */
+    const range = (n) => [ ...Array(n).keys() ];
     const generateDateRange = (start, stop) => {
 
-        let [ startDate, stopDate ] = [ moment(start), moment(stop) ];
-        let diff = moment.duration(stopDate.diff(startDate)).days();
+        let startDate = moment(start);
+        let stopDate = moment(stop);
+        let diff = moment.duration( stopDate.diff(startDate) ).days();
 
         return range(diff + 1).map(offset => startDate.clone().add({ days: offset }).format('YYYY-MM-DD'));
-        
+
     };
+
+    /* callbacks */
+    const belongsToUser = (user) => (filename) => filename.split('_')[0] === user;
+    const inDateRange = (start, stop) => (dateString) => moment(dateString).isBetween(moment(start), moment(stop), null, '[]');
+    const toDateString = (filename) => filename.split('_')[1].split('.')[0];
+
+    /* report functions */
     const getMissingDates = (user, filenames, { start, stop }) => {
 
         const idealDates = generateDateRange(start, stop);
-
         const userFilesInRange = filenames
-            .filter( belongsTo(user) )
-            .filter( filename => inDateRange(start, stop)(parseDateString(filename)) );
+            .filter( belongsToUser(user) )
+            .filter( filename => inDateRange(start, stop)(toDateString(filename)) );
 
         return idealDates
-            .filter(idealDate => !userFilesInRange.map(parseDateString).includes(idealDate));
+            .filter(idealDate => !userFilesInRange.map(toDateString).includes(idealDate));
 
     };
-    const missingDataReport = (users, filenames, dateRange) => {
 
-        const reportSchema = {
-            dateRange: null,
-            users: {}
-        };
+    const report = (users, filenames, dateRange) => {
 
-        console.log();
+        const schema = { dateRange: null, users: {} };
 
         const run = () => { 
 
             let data = users.reduce((obj, user) => {
-
                 obj['dateRange'] = dateRange; 
                 obj['users'][user] = { 
                     'missingDates': getMissingDates(user, filenames, dateRange),
-                    'files': filenames.filter(belongsTo(user))
+                    'files': filenames.filter(belongsToUser(user))
                 };
 
                 return obj;
-
-            }, reportSchema);
+            }, schema);
 
             return data;
 
@@ -212,6 +197,30 @@ And now, when you get around to using `has`, you can write this:
 
     };
 
-    const data = missingDataReport(users, filenames, { start: '2016-12-01', stop: '2016-12-15' }).run();
+    /* tests */
+    assert(range(5).length === 5);
+    assert(toDateString('test_2016-12-01.json') === '2016-12-01'); 
+    assert(generateDateRange('2016-12-01','2016-12-05').length === 5);
+    assert(generateDateRange('2016-12-01','2016-12-05').includes('2016-12-01'));
+    assert(generateDateRange('2016-12-01','2016-12-05').includes('2016-12-02'));
+    assert(generateDateRange('2016-12-01','2016-12-05').includes('2016-12-03'));
+    assert(generateDateRange('2016-12-01','2016-12-05').includes('2016-12-04'));
+    assert(generateDateRange('2016-12-01','2016-12-05').includes('2016-12-05'));
+    assert(belongsToUser('test')('test_2016-12-01.json'));
+
+    /* run report */
+    const data = report(users, filenames, { start: '2016-12-01', stop: '2016-12-15' }).run();
+
+    /* log results */
     console.log(JSON.stringify(data, null, 2));
+    
+## Parting Thoughts
+
+The point of all of this isn't just to be fancy with functions, although I'm a proponent of that because it vastly increases your programming literacy and problem-solving skills. And it's not to just create code that reads like English.  Another major additional benefit is that it decreases the complexity of your tests. When a function has implicit context (like a date function generating now()), those values aren't manipulable, and thus you can't pass them into your function at the time of the test. If you want to test against some other time than now, you run into an issue.
+
+Whether you are for or against testing, if you do them right, they'll save you time.  But tests are only useful insofar as you can trust them, and trusting them means they need to be transparent and as simple as possible. Otherwise, you need to test your tests!  If I can get my transparent tests to pass, I don't have to worry about the validity of these building blocks, just whether they are adequate for solving the larger task.  At that point, I'm free to write code at a consistent level of concern (doing things to lists versus managing state *while* doing things to lists).
+
+## <a name="references"></a>References
+
+[1] [JavaScript Arrow Functions] (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 

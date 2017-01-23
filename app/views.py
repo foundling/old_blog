@@ -41,8 +41,8 @@ def news():
     return render_template('news.html', posts=posts)
 
 @blog.route('/about/')
-def about_me():
-    return render_template('about.html', about_me=about_me)
+def about():
+    return render_template('about.html')
 
 @blog.route('/search/<search_query>/')
 def search(search_query):

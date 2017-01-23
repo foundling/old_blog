@@ -141,7 +141,7 @@ p {
   line-height: 1.6em; }
 
 /* Components */
-div.main {
+.main {
   margin: 5% 20%; }
 
 header.site-header {
@@ -336,6 +336,29 @@ li.post-keyword {
   color: #464646; }
   li.post-keyword > a:hover {
     color: #464646; }
+
+a[href="#references"] {
+  color: rgba(255, 0, 0, 0.62);
+  font-size: .6em;
+  vertical-align: super; }
+
+section.contribute {
+  padding: 5%;
+  background: lightgreen; }
+  section.contribute div.contribute-question-container {
+    height: 2em;
+    width: 2em;
+    margin-right: 5px;
+    display: inline-flex;
+    border: 1px solid rgba(255, 0, 0, 0.62);
+    background: rgba(255, 0, 0, 0.3);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center; }
+  section.contribute p.contribute-copy {
+    display: inline !important; }
+  section.contribute a.gh-repo-blog-posts {
+    text-decoration: underline; }
 
 section.single-post {
   padding: 0% 0% 0% 0%;

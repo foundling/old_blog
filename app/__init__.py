@@ -24,6 +24,8 @@ blog.config['BASE_DIR'] = os.path.abspath(os.path.dirname(__file__))
 
 blog.jinja_env.filters['human_readable_date'] = filters.human_readable_date
 blog.jinja_env.filters['clean_date'] = filters.clean_date
+blog.jinja_env.filters['urlencode'] = filters.urlencode
+blog.jinja_env.filters['urldecode'] = filters.urldecode
 
 blog.secret_key = 'test'
 
@@ -42,4 +44,3 @@ import views
 #import admin 
 
 print ''' Running on theme {}. '''.format(theme)
-
