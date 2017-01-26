@@ -13,14 +13,33 @@ from themes import themes
 
 @blog.route('/')
 def index():
-    latest_posts = g.db.find_n_most_recent(1)
-    return render_template('index.html', posts=latest_posts)
 
-@blog.route('/blog/')
-def blog_main():
-    latest_posts = g.db.find_n_most_recent(5)
+    query = {
+        'content_type': {
+            '$in': ['article', 'news', 'quick_tip']
+        }
+    }
+
+    latest_posts = g.db.find_n_most_recent(n=5, query=query)
     return render_template('index.html', posts=latest_posts)
  
+@blog.route('/blog/')
+def blog_main():
+
+    query = {
+        'content_type': {
+            '$in': ['article', 'news', 'quick_tip']
+        }
+    }
+
+    latest_posts = g.db.find_n_most_recent(n=5, query=query)
+    return render_template('index.html', posts=latest_posts)
+ 
+@blog.route('/blog/recent')
+def recent_articles():
+    posts = g.db.find_n_most_recent({'content_type': 'article'}, n=5)
+    return render_template('index.html', posts=recent_pasts)
+
 @blog.route('/blog/<permalink>/')
 def single_post(permalink):
     post = g.db.find_one({'permalink': permalink})
@@ -31,14 +50,20 @@ def archive():
     return render_template('archive.html')
 
 #@blog.route('/projects/')
-#def projects():
-#    projects = g.db.find_all({}, collection='projects')
-#    return render_template('projects.html', projects=projects)
+# def projects():
+#     projects = g.db.find_all({}, collection='projects')
+#     return render_template('projects.html', projects=projects)
 
 @blog.route('/news/')
 def news():
-    posts = g.db.find_all(query={'is_news': 'on'})
+    posts = g.db.find_all(query={'content_type': 'news'})
     return render_template('news.html', posts=posts)
+
+@blog.route('/quick_tips/')
+def quick_tips():
+    posts = g.db.find_all(query={'content_type': 'quick_tip'})
+    return render_template('news.html', posts=posts)
+
 
 @blog.route('/about/')
 def about():
@@ -56,17 +81,3 @@ def search(search_query):
     }
     matched = g.db.find_all(query=db_query)
     return render_template('search.html', posts=matched); 
-
-#@blog.route('/fun/photos/<collection_name>/')
-#def photos(collection_name):
-#    collection = {
-#        'name' : collection_name,
-#        'photos': os.listdir(
-#            os.path.join(
-#                blog.config['BASE_DIR'],
-#                'static/img/static',
-#                collection_name, 'med'
-#            )
-#        )
-#    }
-#    return render_template('fun.html',collection=collection) 

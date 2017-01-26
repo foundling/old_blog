@@ -6,14 +6,11 @@
 
         <label>Content Type:</type>
         <select name="content_type">
-            <option value="post">Post</option>
+            <option value="article">Article</option>
+            <option value="news">News</option>
+            <option value="quick_tip">Quick Tip</option>
             <option value="project">Project</option>
         </select>
-
-        <label>News ?</label>
-        <input 
-        type="checkbox" 
-        name="is_news" />
 
         <input 
             name="title" 
@@ -36,7 +33,7 @@
         <input 
             name="tags" 
             placeholder="Tags"
-            value="tags"
+            value=""
             class="tags"></input>
 
         {% include 'admin/controls.html' %}

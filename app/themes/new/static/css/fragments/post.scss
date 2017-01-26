@@ -39,7 +39,8 @@ section.contribute {
 }
 section.single-post {
 
-    padding: 0% 0% 0% 0%;
+    text-align: left;
+
     font-family: "Droid Serif";
 
     >p {
@@ -67,6 +68,9 @@ section.single-post {
 @media(max-width: 750px) {
 
     section.single-post {
+
+        margin: 5px;
+        padding: 5%;
 
         >p:first-of-type {
             padding: 10% 0%;

@@ -9,15 +9,11 @@
         <select 
         name="content_type" 
         selected="{{ post['content_type'] }}">
-            <option value="post">Post</option>
+            <option value="article">Article</option>
+            <option value="quick_tip">Quick Tip</option>
+            <option value="news">News</option>
             <option value="project">Project</option>
         </select>
-
-        <label>News ?</type>
-        <input 
-        type="checkbox" 
-        name="is_news" 
-        {{ 'checked' if post['is_news'] else '' }} />
 
         <input 
         type="hidden" 

@@ -1,8 +1,6 @@
 <h1 class="recent-post-title">
+    {% include 'post/badges/' + post.content_type + '.html' %} 
     <a href="/blog/{{ post['permalink'] }}"> {{ post['title'] | markdown }} </a>
-    {% if post['is_news'] %}
-    {% include 'post/news_badge.html' %}
-    {% endif %}
 </h1>
 {% include 'post/social_media.html' %}
 

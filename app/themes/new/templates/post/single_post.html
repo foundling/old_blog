@@ -9,12 +9,9 @@
 
         {{ post['content'] | markdown }}
 
-        <section class="contribute">
-            <div class="contribute-question-container"><i class="fa fa-question"></i></div>
-            <p class="contribute-copy"> I welcome constructive corrections to my posts. You can do that by submitting a pull 
-                request to my <a class="gh-repo-blog-posts" href="http://github.com/foundling/blog_posts">blog posts repo on GitHub</a>.
-            </p>
-        </section>
+        {% if post['content_type'] == 'article' %}
+        {% include 'post/contribute.html' %}
+        {% endif %}
 
     </section>
 
