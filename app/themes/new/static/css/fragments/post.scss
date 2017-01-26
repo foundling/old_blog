@@ -1,12 +1,3 @@
-li.post-keyword {
-
-    color: rgb(70,70,70);
-    >a:hover {
-        color: rgb(70,70,70);
-    }
-
-}
-
 a[href="#references"] {
     color: rgba(255, 0, 0, 0.62);
     font-size: .6em;
@@ -23,8 +14,7 @@ section.contribute {
         width: 2em;
         margin-right: 5px;
         display: inline-flex;
-        border: 1px solid rgba(255, 0, 0, 0.62);
-        background: rgba(255, 0, 0, 0.3);
+        background: white;
         border-radius: 50%;
         align-items: center;
         justify-content: center;

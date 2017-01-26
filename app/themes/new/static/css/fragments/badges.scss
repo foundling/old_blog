@@ -1,6 +1,6 @@
-.article-badge,
-.news-badge,
-.quick-tip-badge {
+div.article-badge,
+div.news-badge,
+div.quick-tip-badge {
 
     position: absolute;
     left: -2.5em;
@@ -20,7 +20,7 @@
 
 }
 
-.article-badge {
+div.article-badge {
 
     border-radius: 50%;
     background: lightgreen;
@@ -39,7 +39,7 @@
 
 }
 
-.quick-tip-badge {
+div.quick-tip-badge {
     a {
         padding: 10px;
     }
@@ -52,7 +52,7 @@
 
 }
 
-.news-badge {
+div.news-badge {
 
 
     a {
@@ -69,9 +69,9 @@
 
 @media(max-width:750px) {
 
-    .article-badge,
-    .news-badge,
-    .quick-tip-badge {
+    div.article-badge,
+    div.news-badge,
+    div.quick-tip-badge {
         position: relative;
         top: initial;
         left: initial;
@@ -79,14 +79,14 @@
         vertical-align: text-bottom;
         margin-right: 10px;
     }
-    .news-badge a {
+    div.news-badge a {
         font-size: 0.4em;
         font-weight: 100;
     }
-    .article-badge i {
+    div.article-badge i {
         font-size:  1.4em;
     }
-    .quick-tip-badge i {
+    div.quick-tip-badge i {
         font-size: 1.3em;
     }
 }
