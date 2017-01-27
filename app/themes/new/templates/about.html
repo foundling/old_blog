@@ -1,14 +1,58 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<section class="about">
 
-<img src="{{ url_for('static', filename='img/alex.jpg') }}" />
-<p class="caption">Photo by Dan <a href="https://www.flickr.com/photos/dsquires/albums">Squires</a>.</>
+    <section class="img-box">
 
-<section class="about-copy">
-<p>
-I'm Alex Ramsdell, a software developer in Seattle, Washington.
-</p>
+        <img 
+        class="bio-img" 
+        src="{{ url_for('static', filename='img/alex.jpg') }}" />
+        <p class="img-caption">Photo by <a href="https://www.flickr.com/photos/dsquires/">Dan Squires</a>.</p>
+
+    </section>
+
+    <section class="about-copy">
+
+        <h2>About Me</h2>
+
+        <p>I'm Alex Ramsdell, a software developer in Seattle. I love building spare, edible and usable user interfaces, offline-first 'progressive' web apps, brower-based instruments and command-line-based productivity tools.</p> 
+
+        <p>My trajectory into softwareland has mostly been a self-taught affair (althought this may change soon) and I consider that a strength.  I am always hungry to build and learn more things. These days I'm feeling the pull of the functional approach to software construction, as I keep discovering interesting and useful applications for higher-order functions.</p>
+
+        <!--
+        <p>More about me ... </p>
+        <h2>Some Things I Really Like</h2>
+        <ul>
+            <li>The Stack Overflow / Stack Exchange Podcast up to and including the episode where Jeff Atwood Leave.</li>
+            <li>Researching on The Benefit of Adequate Naming Variables</li>
+            <li>Synthesizers</li>
+            <li>Kraftwerk<li>
+            <li>Cybotron<li>
+            <li>Salsa Dura</li>
+            <li>King Crimson</li>
+            <li>Using Functions in Interesting Ways</li>
+            <li>Dogs!</li>
+            <li>Andy Kaufman</li>
+        </ul>
+
+        <h2>Some Things I Don't Particularly Care For</h2>
+        <ul>
+            <li>Hypotheticals (they're not convincing)</li>
+            <li>Memes</li>
+            <li>Bigotry</li>
+            <li>The Stack Overflow / Stack Exchange Podcast after and not including the episode After Jeff Atwood left.</li>
+        </ul>
+        -->
+
+        <h2>About This Site</h2>
+        <p>
+        I intend for this site to be a venue for focused articles on matters related to software. With that said, I've always had a 
+        difficult time maintaining any kind of 
+        real boundary between software and the lessons and joys of life, so other topics may creep in. In any case, I
+        aim to produce articles more toward the timeless end of the spectrum rather than the keeping-up-with-the-dev-tools end of the spectrum.
+        </p> 
+    </section>
+
 </section>
-
 {% endblock %}

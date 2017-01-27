@@ -16,9 +16,18 @@ footer {
     p {
         height: 5vh;
         line-height: 5vh;
+        text-align: center;
     }
 
 }
 
 
 
+@media (max-width: 750px) {
+    footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1%;
+    }
+}
