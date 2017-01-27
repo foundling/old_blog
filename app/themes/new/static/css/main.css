@@ -483,15 +483,14 @@ section.about {
   width: 100%;
   text-align: center; }
   section.about section.img-box {
-    width: 100%;
-    padding: 0% 5% 5% 5%; }
+    width: 100%; }
     section.about section.img-box img.bio-img {
       width: 100%;
       margin: 0 auto; }
     section.about section.img-box p.img-caption {
       font-size: 0.8em; }
   section.about section.about-copy {
-    margin: 5%;
+    margin: 5% 0%;
     text-align: initial; }
     section.about section.about-copy h2 {
       padding-top: 20px;
@@ -500,5 +499,12 @@ section.about {
       padding-top: 0px; }
     section.about section.about-copy p {
       padding-bottom: 20px; }
+
+@media (max-width: 750px) {
+  section.about section.about-copy {
+    margin: 5% 5%; }
+
+  section.img-box {
+    padding: 0% 5% 5% 5%; } }
 
 /*# sourceMappingURL=main.css.map */

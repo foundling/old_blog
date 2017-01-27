@@ -6,7 +6,6 @@ section.about {
     section.img-box {
 
         width: 100%;
-        padding: 0% 5% 5% 5%;
 
         img.bio-img {
             width: 100%;
@@ -20,7 +19,7 @@ section.about {
 
     section.about-copy {
 
-        margin: 5%;
+        margin: 5% 0%;
         text-align: initial;
 
         h2 {
@@ -40,3 +39,14 @@ section.about {
     }
 
 }
+
+@media(max-width: 750px) {
+    section.about {
+        section.about-copy {
+            margin: 5% 5%;
+        }
+    }
+    section.img-box {
+        padding: 0% 5% 5% 5%;
+    }
+};
