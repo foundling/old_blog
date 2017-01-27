@@ -37,8 +37,8 @@ def blog_main():
  
 @blog.route('/blog/recent')
 def recent_articles():
-    posts = g.db.find_n_most_recent({'content_type': 'article'}, n=5)
-    return render_template('index.html', posts=recent_pasts)
+    posts = g.db.find_n_most_recent(n=5, query={'content_type': 'article'})
+    return render_template('index.html', posts=posts)
 
 @blog.route('/blog/<permalink>/')
 def single_post(permalink):

@@ -16,13 +16,12 @@ class Database(object):
       ''' returns client or exits '''
 
       server_running = os.system('pgrep mongod > /dev/null') == 0
+
       if not server_running:
           print('The mongod server is not running. Try starting it and run the script again.')
           sys.exit(1)
-
       try:
           client = pymongo.MongoClient(uri, connectTimeoutMS=1000)
-
       except pymongo.errors.ConnectionFailure:
           print('could not connect to the database')
           sys.exit(1)

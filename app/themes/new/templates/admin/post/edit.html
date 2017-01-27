@@ -7,28 +7,30 @@
 
         <label>Content Type:</label>
         <select name="content_type"> 
-            <option 
-                {% if post['content_type'] == 'article' %}
-                selected="selected"
-                {% endif %}
-                value="article">
-                Article</option>
-            <option 
-            {% if post['content_type'] == 'quick_tip' %}
-            selected="selected"
-            {% endif %}
-            value="quick_tip">Quick Tip</option>
-            <option 
-            {% if post['content_type'] == 'news' %}
-            selected="selected"
-            {% endif %}
-            value="news">News</option>
 
             <option 
-            {% if post['content_type'] == 'project' %}
-            selected="selected"
-            {% endif %}
-            value="project">Project</option>
+            {% if post['content_type'] == 'article' %} selected="selected" {% endif %}
+            value="article">
+            Article
+            </option>
+
+            <option 
+            {% if post['content_type'] == 'quick_tip' %} selected="selected" {% endif %}
+            value="quick_tip">
+            Quick Tip
+            </option>
+
+            <option 
+            {% if post['content_type'] == 'news' %} selected="selected" {% endif %}
+            value="news">
+            News
+            </option>
+
+            <option 
+            {% if post['content_type'] == 'project' %} selected="selected" {% endif %}
+            value="project">
+            Project
+            </option>
 
         </select>
 

@@ -51,12 +51,12 @@ def admin_edit_post(id):
 def admin_save_existing_post(id):
     ''' Save an existing post. '''
 
+    query = { '_id': ObjectId(id) }
     fields = ['title', 'short_text', 'content', 'tags', 'content_type']
     document = dict((field, request.form.get(field)) for field in fields)
-    updates = utils.add_metadata(document, update=True) # todo: add mixin argument object to add_metadata 
-    query = { '_id': ObjectId(id) }
-    g.db.update_one(query, updates, collection=document['content_type'])
+    update = utils.add_metadata(document, update=True) 
 
+    g.db.update_one(update, query=query)
     return redirect('/admin')
 
 @blog.route('/admin/post/<id>/delete', methods=['POST'])
