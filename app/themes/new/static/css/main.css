@@ -220,8 +220,6 @@ ul.social-media-icons {
 section.single-post {
   text-align: left;
   font-family: "Droid Serif"; }
-  section.single-post div[class*="-badge"] {
-    visibility: hidden; }
   section.single-post > p {
     font-family: Georgia; }
   section.single-post > p:first-of-type {

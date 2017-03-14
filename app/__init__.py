@@ -41,6 +41,9 @@ def before_request():
     g.db = connect_db()
 
 import views 
-import admin 
+
+if not os.environ.get('BUILD'):
+    import admin 
+
 
 print ''' Running on theme {}. '''.format(theme)

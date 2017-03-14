@@ -1,36 +1,32 @@
-Recently, I've been building a command-line application to manage the data-acquisition process for a scientific study.  Today I admitted that it's just too slow to load and went about figuring out how to fix it.  The results were great! I'd like to write a little bit about how I created the problem and how I fixed it.
+Recently, I was working on a command-line application to manage the data acquisition process for a scientific study.  As the subcommands grew in complexity, the load time increased quite noticeably. I went about figuring out how to fix it and I'd like to write a little bit about that process.
  
-The app has the standard sub-command structure: 
+The cli app has a straightforward standard sub-command structure: 
 
     cmd sub-cmd [ arguments ... ] [ options ... ]
 
-e.g.
+The sub-commands are where the main functionality is. The app exposes five of them:
 
-    npm install commander
-
-Sub-commands are the items of interest, but otherwise there's nothing that complicated going on from an interface standpoint. The app exposes exactly five, mutually-exclusive sub-commands:
-
-    cmd stats
-    cmd run
-    cmd show <project metric>
+    cmd register
     cmd query <name> <date-range>
+    cmd show <project metric>
+    cmd stats
     cmd update
 
-## Enter Commander.js 
+## Finding a Command Parsing Library
 
-I decided to use [commander.js](https://github.com/tj/commander.js) to parse the commands. Commander is a nice, small and simple command-line application written by TJ Holowaychuk that exudes transparent feels and a great API. I recommend it.
+I decided to use [commander.js](https://github.com/tj/commander.js) to parse the commands. Commander is a simple and fairly transparent library for building simple to moderately complex command-line interfaces. The library was written by Tj Holowaychuk, author of Express. 
 
-## Modularity Only Gets You Half the Way There
+## Modularity: Only Gets You Half the Way There
 
-Wanting to keep this application modular, I was breaking the functionality into atomic units and assembling these into top-level function modules for each path that the application could take. The cli index.js file was a basic entry point where I could register the module functions as callbacks to their respective sub-command and finally kick off the parser. 
+Wanting to keep this application modular for testing, I broke the functionality into atomic units and assembled these into top-level function modules for each sub-command. Below is the cli entry point that is run on invocation of the cli app. There I pull in the modules my cli requires, register them as callbacks for their respective sub-commands, nd then start the parser which parses the command line input and calls the appropriate callback.
 
-Here is roughly what my `index.js` looked like: 
+Here is what my initial `index.js` looked like: 
 
     const cli = require('commander');
-    const { stats, run, query, health, update } = require('./commands');
+    const { register, query, show, stats, update } = require('./commands');
 
     cli
-        .command('stats')
+        .command('query')
         .description('gives you stats.')
         .action(stats);
 
@@ -58,52 +54,47 @@ Here is roughly what my `index.js` looked like:
 
 ## I'm Loading Everything Every Time
 
-Once I started registering these modules with `commander`, the execution time for just the base command that prints a help page was 8 seconds! Of course subsequent proximal invocations of the command execute in around 300 to 400 milliseconds due to the OS cache. But for a user who is coming in and running this app infrequently over the course of a week, 8 seconds of start up time is prohibitive. It's unacceptable. While I don't expect a non-trivial command-line app written with Node to run as fast as a compiled coreutil, but getting close is important. I mean, 8 fucking seconds !?!?
+Once I started registering these modules with `commander`, the execution time for just the base command that prints a help page was something like 8 seconds (granted my computer is getting up there in years). This is because the `index.js` file pulls in the dependencies for the entire application and loads them all synchronously before parsing the command. And while the OS caches recently loaded modules, bringing subsequent invocations of the command down to just a few hundred milliseconds, the cli would most likely be used sporadically, negating the benefits of the cache.  In the average use case, the performance was not good.
 
 ## Loading Just the Libraries You Need
 
-We want to restrict the loading of dependencies to the just those required by the sub-command we're running. More fundamentally, we want to gain a little more control over *when* we load our dependencies.  At the very least, this can be achieved by putting our require call inside of a function.
+In order to cut the load time down, I decided to restrict the loading of dependencies to the just those required by the sub-command being executed. This comes down to shifting the scope and timing of the require call so that it gets called as part of the callback associated with a command rather than on the execution of the top level `index.js` entry-point file. While `commander` allows for independent git-style subcommands, I found that that design didn't fit my needs for two reasons:
 
-    function delayedRequire() {
+1) The subcommand files need to follow a specific naming and location convention. If the command is `cmd subcmd`, then there needs to be an executable file named `subcmd.js` in the directory where `cmd` is located. 
 
-        require('dependency-name');
+2) The subcommand module is `exec`'ed by Node and thus needs to take the form of a script, not a module. I needed my sub-command files to take the form as a module for testing purposes.
 
-    }
+I ended up writing a utility function like this:
 
-Woo! Problem solved. We can just pass something like this to commander's `.command` registration:
+    function delayedRequire(depName) {
 
-    cli
-        .command('stats')
-        .description('gets stats')
-        .command(delayedRequire);
-
-
-Well ... almost.  Commander is going to pass the parsed arguments to the function registered by `.command`. So our `delayedRequire` function should do something with these arguments. Lets try that out.
-
-    function requireStats(...args) {
-        
-        // require returns the sub-command function
-        // and we call the functions .apply method on the original arguments.
-
-        require('./commands/stats').apply(this, args);
-
-    }
-
-If you've never used the `.apply` method of a JavaScript function, it offers finer-grained control over how a function invocation. In this case, you first specify the context for the invocation and you second specify an array of arguments (supplied from `delayedRequire` function in this case).
-
-At this point, we might be tempted to start using our function, as it does the essential things we need: it requires the dependency only when we get around to calling it, it passes the cli-parsed arguments to the required module function. The `commander` object now has the right module and the correct arguments to run it as a callback. But it feels a little too boilerplate-y to register essentially the same function expression with the hardcoded dependency name in each `.command` call.
-
-We can wrap a function like `requireStats` in an outer function that takes the dependencyName that you'd pass to `require`. This way, you can pass it a single argument, like require, and be done. 
-
-    function makeLoader(dependencyName) {
-
-        return function(...args) {
-            require(dependencyName).apply(this, args);
+        return function() {
+            require(`./${ depName }`);
         }
 
     }
 
-So that's the solution! Here's what I came up with (including a few additional variations):
+That solves the lazy-loading issue. Now instead of registering the submodule command directly with commander (which requires the submodules and their dependencies to be imported first), I register the result of the `delayedRequire` function call, which produces a callback that requires the dependency:
+
+    cli
+        .command('stats')
+        .description('gets stats')
+        .command( delayedRequire('stats') );
+
+I've moved the scope and timing of the require call from the initial `index.js` execution to the execution of a command callback by `commander`.
+
+The final issue still left to resolve was to pass the arguments from commander to my command callback. Commander is going to pass the parsed arguments to the function registered by `.command`, which is `delayedRequire`'s inner function. That inner function should do something with these arguments.
+
+    function delayedRequire(depName) {
+        
+        return function(...args) {
+            const entryPoint = require(`./commands/${ depName }`);
+            entryPoint(...args);
+        };
+
+    }
+
+Here's what I came up with (including a few additional variations):
 
 
     const cli = require('commander');
@@ -112,7 +103,8 @@ So that's the solution! Here's what I came up with (including a few additional v
 
         return function(...args) {
 
-            require(`${basepath}/${name}`).apply(this, args);
+            let entryPoint = require(`${basepath}/${name}`);
+            entryPoint.(...args);
 
         };
 

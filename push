@@ -1,21 +1,10 @@
 #!/bin/sh
 
-. env/bin/activate
-
 user=$1
 
 if [ -z "$user" ]
 then
     echo 'usage: push [user]'
-    exit 1
-fi
-
-echo "Did you remember to comment out the admin views import in /data/web/blog/app/__init__.py (y/N)?"
-read fixed_admin
-
-if [ ! $fixed_admin == 'y' ] && [ ! $fixed_admin == 'yes' ]
-then 
-    echo 'exiting ...'
     exit 1
 fi
 
@@ -25,17 +14,6 @@ then
     exit 1
 fi
 
-echo "generating a static version of alexramsdell.com ... "
-/usr/bin/env python ./freeze.py
-
-echo 'static build complete. Copy to server?'
-read copy_to_server
-
-if [ ! "$copy_to_server" == 'y' ]
-then
-    echo 'not copying to server. exiting ...'
-    exit 0
-fi
 
 echo "deleting remote version of files ... "
 ssh alex@$box 'if [ -e alexramsdell.com/public_html ]; then ls && rm -rf alexramsdell.com/public_html/*; fi'

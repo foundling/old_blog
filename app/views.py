@@ -35,7 +35,7 @@ def blog_main():
     latest_posts = g.db.find_n_most_recent(n=5, query=query)
     return render_template('index.html', posts=latest_posts)
  
-@blog.route('/blog/recent')
+@blog.route('/blog/recent/')
 def recent_articles():
     posts = g.db.find_n_most_recent(n=5, query={'content_type': 'article'})
     return render_template('index.html', posts=posts)
@@ -47,7 +47,8 @@ def single_post(permalink):
 
 @blog.route('/archive/')
 def archive():
-    return render_template('archive.html')
+    posts = g.db.find_all()
+    return render_template('index.html', posts=posts)
 
 #@blog.route('/projects/')
 # def projects():
