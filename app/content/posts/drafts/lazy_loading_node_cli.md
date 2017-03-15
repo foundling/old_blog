@@ -2,14 +2,14 @@ Recently, I was working on a command-line application to manage the data acquisi
 
 + Handling OAuth2-based subject registration on a local webserver 
 + HTML templating
-+ Tuerying FitBit's API
++ Querying FitBit's API
 + Reading from and writing to a local database
 + Async control flow
 + Date and time manipulation and formatting
 + Colorizing stdout output
 + Functional programming 
 
-As I moved toward completion of the project and the sub-command modules grew in size and complexity, I noticed that the load time increased to about 7 to 8 seconds to just show the help screen. I was able to get it down to less than a second without too much effort and I'd like to share a little bit about how I did that. 
+As I moved toward completion of the project and the sub-command modules grew in size and complexity, I noticed that the load time increased to about 8 seconds even to just show the help screen. I was able to get it down to less than a second without too much effort and I'd like to share a little bit about how I did that. 
 
 ## The Interface
 
@@ -24,11 +24,24 @@ The sub-commands are where the main functionality is. The app exposes four of th
     cmd stats
     cmd update
 
-I decided to use [commander.js](https://github.com/tj/commander.js) (written by TJ Holowaychuk, author of Express) to handle the parsing of command-line input. It's a simple and intuitive library that fits the use case for simple to moderately complex cli apps in JavaScript. 
+I decided to use [commander.js](https://github.com/tj/commander.js) (written by TJ Holowaychuk, author of Express) to handle the parsing of command-line input. It's a simple and intuitive library that fits the use case for simple to moderately complex cli apps in Node. 
 
 ## Modularity Only Gets You Half Way There
 
 In order to keep the application modular and easily testable, I broke the functionality into top-level modules that correspond to the sub-commands `register`, `query`, `stats` and `update`. Each of these was made up of a variety of custom and 3rd-party sub-modules. Below is the entry point that is executed when the cli app is run on the command line. I'm pulling in the top-level sub-command modules, registering each on the `commander` cli object as a callback for its respective sub-command, and then I call the parser to parse the stdin input and call the appropriate callback.
+
+Here is a pared-down version of my app's directory structure:
+
+    app/
+        cli/
+            index.js // app entry point
+            commands/
+                index.js // bundles the sub-commands into a single module and exports them
+                register.js
+                query.js
+                stats.js
+                update.js
+
 
 Here is what my initial `index.js` looked like when it took 8 seconds to load: 
 
@@ -40,7 +53,7 @@ Here is what my initial `index.js` looked like when it took 8 seconds to load:
         stats, 
         update 
 
-    } = require('./commands');
+    } = require('./commands'); // pulls in modules exported from app/commands/index.js
 
     cli
         .command('register')
@@ -64,7 +77,7 @@ Here is what my initial `index.js` looked like when it took 8 seconds to load:
 
     cli.parse(process.argv);
 
-## I'm Loading Everything Every Time
+## I'm Loading Everything, Every Time
 
 The problem is simply that in `index.js`, I'm pulling in the dependencies for the entire application and loading them all synchronously before parsing the command. So, even if you're looking for the help screen, when the app runs, this is what would be loaded:
 
@@ -81,7 +94,7 @@ The problem is simply that in `index.js`, I'm pulling in the dependencies for th
         "moment": "^2.16.0",
         "nedb": "^1.8.0",
 
-Each of these modules may include other modules as part of its package. And these modules don't include all of the modules I wrote specifically for the app. While the OS caches recently loaded modules, bringing subsequent invocations of the utility down to just a few hundred milliseconds, the utility would be used usually once per session and sporadically, negating the benefits of the cache.  So in the average use case the performance was ... *bad*.
+Well, these dependencies, *plus* the dependencies that they have, *plus* the sub-modules I wrote specifically for the app. While the OS caches recently loaded modules, bringing subsequent invocations of the utility down to just a few hundred milliseconds, the utility would be used usually once per session and sporadically, negating the benefits of the cache.  So in the average use case the performance was ... *bad*.
 
 ## Loading Just the Libraries You Need
 
@@ -103,18 +116,18 @@ Both of these issues could have been worked around, but I felt that it was easy 
 
     }
 
-`delayedRequire` takes a dependency name and return a function that requires the dependency. That solves the lazy-loading issue. Now instead of registering the submodule command directly with commander (which requires all submodules and their dependencies to be imported first), I register the result of the `delayedRequire` function call with `commander`.
+`delayedRequire` takes a dependency name and return a function that requires that dependency. That solves the lazy-loading issue. Now instead of registering the submodule command directly with commander (which requires all submodules and their dependencies to be imported first), I register a function that does both the `require` and module execution.
 
-    // if the user runs 'cmd stats' on the command line, then just the stats module is loaded
+    // if the user runs 'cmd stats' on the command line, 
+    // then just the stats module is loaded
     cli
         .command('stats')
         .description('gets stats')
-        // calling delayedRequire first, returning a function that requires the stats module
         .command( delayedRequire('stats') );
 
 ## Handling The Arguments 
 
-The final thing to work out was to forward the arguments passed from `commander` to the triggered callback. Since the new function both requires the sub-command module and calls it, we need to pass the arguments to the `require`ed module manually.
+The final thing to work out was to forward the arguments passed from `commander` to the triggered callback. Since the new function both requires the sub-command module and calls it, we need to pass the arguments to the `require`ed module manually. Here are is the approach in both ES5 and ES2015.
 
     // es5 way
     function delayedRequire(depName) {
@@ -135,7 +148,6 @@ The final thing to work out was to forward the arguments passed from `commander`
     }
 
     // the es2015 way
-
     function delayedRequire(depName) {
         
         // use rest parameter syntax to capture variable parameter lists as a single array
@@ -152,8 +164,8 @@ The final thing to work out was to forward the arguments passed from `commander`
 
     }
 
-    // the confusing, succinct es2015 way :)
-    const delayedRequire = (depName) => (...args) => require(`./commands/${ depName }`)(..args);
+    // the less clear ... or  'succinct' ... es2015 way :)
+    const delayedRequire = (depName) => (...args) => require(`./commands/${ depName }`)(...args);
 
 Here's a more complete version of what I came up with. Notice that the syntax for the `commander` callback registration is basically the same as it was in the beginning:
 
@@ -193,6 +205,7 @@ Here's a more complete version of what I came up with. Notice that the syntax fo
 
     }, {});
 
+    // then register the module bindings with their corresponding commands
     cli
         .command('register')
         .description('register subject for study.')
@@ -213,4 +226,5 @@ Here's a more complete version of what I came up with. Notice that the syntax fo
         .description('pull in new changes to the app')
         .action(update);
 
+    // parse the stdin input and route control to the right callback 
     cli.parse(process.argv);
