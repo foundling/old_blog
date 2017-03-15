@@ -1,12 +1,15 @@
 Recently, I was working on a command-line application to manage the data acquisition process for a scientific study.  The app performs a bunch of disparate tasks that require libraries for: 
 
-+ handling subject registration via a local webserver supporting OAuth2 Authorization Code Grant Flow
-+ importing a FitBit library for querying FitBit's API
-+ reading from and writing to a local database
-+ async control flow
-+ date and time manipulation and formatting
++ Handling OAuth2-based subject registration on a local webserver 
++ HTML templating
++ Tuerying FitBit's API
++ Reading from and writing to a local database
++ Async control flow
++ Date and time manipulation and formatting
++ Colorizing stdout output
++ Functional programming 
 
-As I moved toward completion of the project and the sub-command modules grew in size and complexity, I noticed that the load time increased to the point where, on my 2010 macbook (I know, it's old), it was taking about 7 to 8 seconds to just display the help screen. I was able to reduce the raw load time to less than a second without too much effort and I'd like to share a little bit about how I did that. 
+As I moved toward completion of the project and the sub-command modules grew in size and complexity, I noticed that the load time increased to about 7 to 8 seconds to just show the help screen. I was able to get it down to less than a second without too much effort and I'd like to share a little bit about how I did that. 
 
 ## The Interface
 
@@ -21,13 +24,11 @@ The sub-commands are where the main functionality is. The app exposes four of th
     cmd stats
     cmd update
 
-## Choosing a Command Parsing Library
-
-I needed a library to parse the command input and I decided to use [commander.js](https://github.com/tj/commander.js). It's a straightforward and fairly transparent library for building simple to moderately complex command-line interfaces. The library was written by Tj Holowaychuk, the author of Express. 
+I decided to use [commander.js](https://github.com/tj/commander.js) (written by TJ Holowaychuk, author of Express) to handle the parsing of command-line input. It's a simple and intuitive library that fits the use case for simple to moderately complex cli apps in JavaScript. 
 
 ## Modularity Only Gets You Half Way There
 
-Wanting to keep this application modular for testing, I broke the functionality into modules (one per sub-command) which were comprised of many sub-modules. Below is the entry point that is executed when the cli app is run on the command line. There I pull in modules for each sub-command, register them on the `commander` app object as callbacks for their respective sub-commands, and then I call the parser to parse the command-line input and call the appropriate callback.
+In order to keep the application modular and easily testable, I broke the functionality into top-level modules that correspond to the sub-commands `register`, `query`, `stats` and `update`. Each of these was made up of a variety of custom and 3rd-party sub-modules. Below is the entry point that is executed when the cli app is run on the command line. I'm pulling in the top-level sub-command modules, registering each on the `commander` cli object as a callback for its respective sub-command, and then I call the parser to parse the stdin input and call the appropriate callback.
 
 Here is what my initial `index.js` looked like when it took 8 seconds to load: 
 
@@ -65,31 +66,44 @@ Here is what my initial `index.js` looked like when it took 8 seconds to load:
 
 ## I'm Loading Everything Every Time
 
-The problem is simply that in `index.js`, I'm pulling in the dependencies for the entire application and loading them all synchronously before parsing the command. And while the OS caches recently loaded modules, bringing subsequent invocations of the utility down to just a few hundred milliseconds, the utility would be used usually once per session and sporadically, negating the benefits of the cache.  So in the average use case the performance was ... *bad*.
+The problem is simply that in `index.js`, I'm pulling in the dependencies for the entire application and loading them all synchronously before parsing the command. So, even if you're looking for the help screen, when the app runs, this is what would be loaded:
+
+
+        "async": "^2.1.4",
+        "body-parser": "^1.15.2",
+        "colors": "^1.1.2",
+        "commander": "^2.9.0",
+        "concat-map": "0.0.1",
+        "cors": "^2.8.1",
+        "express": "^4.14.0",
+        "fitbit-node": "foundling/fitbit-node",
+        "hbs": "^4.0.1",
+        "moment": "^2.16.0",
+        "nedb": "^1.8.0",
+
+Each of these modules may include other modules as part of its package. And these modules don't include all of the modules I wrote specifically for the app. While the OS caches recently loaded modules, bringing subsequent invocations of the utility down to just a few hundred milliseconds, the utility would be used usually once per session and sporadically, negating the benefits of the cache.  So in the average use case the performance was ... *bad*.
 
 ## Loading Just the Libraries You Need
 
-In order to cut the load time down, I decided to restrict the loading of dependencies to just those required by the sub-command being executed. This comes down to shifting the scope and timing of the `require` call so that it is performed as part of the callback associated with a single command rather than on the execution of the top level `index.js` entry-point file for every command. I should note that `commander` supports git-style sub-commands, but I found that that design didn't fit my needs for two reasons:
+In order to cut the load time down, I had to pull in only what was needed for the one sub-command being executed. This comes down to shifting the scope and timing of the `require` call so that it is executed in the callback for that single sub-command. 
+
+I should mention that `commander` supports git-style sub-commands, but I found that that design didn't fit my needs for two reasons:
 
 1) The sub-command files need to follow a specific naming and location convention in order for `commander` to execute them. If the command is `cmd subcmd`, then there needs to be an executable file named `cmd-subcmd.js` in the directory where `cmd.js` is located. 
 
 2) The subcommand module is `exec`'ed by Node and thus needs to take the form of a script, not a module. I needed my sub-command files to take the form as a module for testing purposes.
 
-Neither of these are truly shortcomings, but I felt that it was easy enough to work lazy sub-commands into my project  with a few lines of code.
+Both of these issues could have been worked around, but I felt that it was easy enough to work lazy sub-commands into my project with just a few lines of code. I ended up writing a utility function like this:
 
-I ended up writing a utility function like this:
-
-    // pass the dependency name in
     function delayedRequire(depName) {
 
-        // return a function that requires that dependency 
         return function() {
             require(`./${ depName }`);
         }
 
     }
 
-That solves the lazy-loading issue. Now instead of registering the submodule command directly with commander (which requires all submodules and their dependencies to be imported first), I register the result of the `delayedRequire` function call, which produces a callback that performs the dependency `require`:
+`delayedRequire` takes a dependency name and return a function that requires the dependency. That solves the lazy-loading issue. Now instead of registering the submodule command directly with commander (which requires all submodules and their dependencies to be imported first), I register the result of the `delayedRequire` function call with `commander`.
 
     // if the user runs 'cmd stats' on the command line, then just the stats module is loaded
     cli
@@ -98,26 +112,38 @@ That solves the lazy-loading issue. Now instead of registering the submodule com
         // calling delayedRequire first, returning a function that requires the stats module
         .command( delayedRequire('stats') );
 
-Again, I've shifted the scope and timing of the `require` call from the top-level `index.js` to the callback specified by the already parsed command-line input.
-
 ## Handling The Arguments 
 
-The final issue to resolve was the arguments that are passed from `commander` app object to the corresponding callback. Since the new function both requires the sub-command module and calls it, we need to pass the arguments to the callback function into the sub-module manually.
+The final thing to work out was to forward the arguments passed from `commander` to the triggered callback. Since the new function both requires the sub-command module and calls it, we need to pass the arguments to the `require`ed module manually.
 
     // es5 way
     function delayedRequire(depName) {
         
         return function() {
+
+            // .apply is an alternate way of calling a function
+            // it takes an array or array-like object of arguments
+
+            // arguments is a special quasi-array keyword pointing to the list of 
+            // arguments passed to any function
+
             const entryPoint = require(`./commands/${ depName }`);
-            entryPoint.apply(null, arguments);
+            entryPoint.apply(entryPoint, arguments);
+
         };
 
     }
 
     // the es2015 way
+
     function delayedRequire(depName) {
         
+        // use rest parameter syntax to capture variable parameter lists as a single array
+
         return function(...args) {
+
+            // destructure the array into its individual arguments in order to
+            // call the entryPoint function as usual, on the individual arguments
 
             const entryPoint = require(`./commands/${ depName }`);
             entryPoint(...args);
@@ -126,7 +152,7 @@ The final issue to resolve was the arguments that are passed from `commander` ap
 
     }
 
-    // the succinct es2015 way
+    // the confusing, succinct es2015 way :)
     const delayedRequire = (depName) => (...args) => require(`./commands/${ depName }`)(..args);
 
 Here's a more complete version of what I came up with. Notice that the syntax for the `commander` callback registration is basically the same as it was in the beginning:
