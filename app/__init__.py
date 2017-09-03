@@ -16,7 +16,7 @@ blog = Flask(
     template_folder = themes[theme]['templates']
 )
 CORS(blog)
-Misaka(blog)
+Misaka(blog, tables=True)
 
 blog.config['FREEZER_RELATIVE_URLS'] = True
 blog.config['MONGODB_DATABASE_URI'] = 'mongodb://localhost:27017'
@@ -26,6 +26,7 @@ blog.jinja_env.filters['human_readable_date'] = filters.human_readable_date
 blog.jinja_env.filters['clean_date'] = filters.clean_date
 blog.jinja_env.filters['urlencode'] = filters.urlencode
 blog.jinja_env.filters['urldecode'] = filters.urldecode
+blog.jinja_env.filters['md'] = filters.md
 
 blog.secret_key = 'test'
 

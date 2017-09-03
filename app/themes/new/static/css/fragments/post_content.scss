@@ -28,6 +28,14 @@ section.single-post {
         margin-top: 2%;
         margin-bottom: 2%;
     }
+    ul {
+        margin-bottom: 5%;
+        margin-left: 5%;
+    }
+    li {
+        font-family: Georgia;
+        list-style-type: initial;
+    }
     
 }
 
@@ -119,6 +127,10 @@ section.contribute {
 
         h2,h3,h4 {
             margin-bottom: 8%;
+        }
+
+        li {
+            list-style-type: initial;
         }
 
     }

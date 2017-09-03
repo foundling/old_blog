@@ -1,5 +1,6 @@
 import arrow
 import urllib
+import markdown
 
 def human_readable_date(datetime_object):
 
@@ -20,3 +21,22 @@ def urlencode(qs):
 def urldecode(qs):
     decoded = urllib.unquote_plus({ 'query': qs }) 
     return decoded.split('=')[1]
+
+def md(mdText):
+
+    return markdown.markdown(mdText, extensions=['markdown.extensions.toc'])
+
+def md_toc(md):
+
+    def parse(line):
+        tag, content = line.strip().split(' ', 1)
+        return ('\t'* (len(tag) - 1)) + '+ ' + content
+
+    output = [  parse(line)
+                for line in md.split('\n')
+                if line.strip().startswith('#') ]
+
+    print '\n'.join(['+ Table of Contents'] + output)
+    return '\n'.join(['+ Table of Contents'] + output)
+
+
