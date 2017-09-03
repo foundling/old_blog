@@ -46,5 +46,4 @@ import views
 if not os.environ.get('BUILD'):
     import admin 
 
-
 print ''' Running on theme {}. '''.format(theme)
